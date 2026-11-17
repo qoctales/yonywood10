@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Profil utilisateur de YonyWood (spectateur, créateur ou coproducteur)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["USER", "CREATOR", "ADMIN"] },
+        "territory": { "type": "string" },
+        "country": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "email", "name"]
+    },
+    "SubmittedVideo": {
+      "title": "SubmittedVideo",
+      "description": "Vidéo 9/16 soumise par un créateur ou protagoniste selon une série et une question imposée",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "seriesId": { "type": "string" },
+        "seriesTitle": { "type": "string" },
+        "question": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "protagonistName": { "type": "string" },
+        "protagonistRole": { "type": "string" },
+        "territory": { "type": "string" },
+        "country": { "type": "string" },
+        "pitch": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "seriesId", "videoUrl", "status"]
+    },
+    "SharePurchase": {
+      "title": "SharePurchase",
+      "description": "Achat de parts de coproduction (50 € la part, max 256 parts par série)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "seriesId": { "type": "string" },
+        "seriesTitle": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "sharesCount": { "type": "number" },
+        "pricePerShare": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["card", "mobile_money", "free_starter"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "seriesId", "userId", "sharesCount", "totalAmount"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Signalement d'une vidéo ou d'un contenu par la communauté",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "targetType": { "type": "string", "enum": ["video", "duo", "protagonist"] },
+        "targetId": { "type": "string" },
+        "targetTitle": { "type": "string" },
+        "reason": { "type": "string" },
+        "reasonLabel": { "type": "string" },
+        "details": { "type": "string" },
+        "reportedBy": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "RESOLVED", "DISMISSED"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["targetId", "reason", "targetTitle"]
+    },
+    "Participation": {
+      "title": "Participation",
+      "description": "Engagements et candidatures citoyennes (coproducteurs, effigies, entreprises)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["coproducteur", "effigie", "entreprise"] },
+        "seriesId": { "type": "string" },
+        "seriesTitle": { "type": "string" },
+        "name": { "type": "string" },
+        "phoneWhatsApp": { "type": "string" },
+        "email": { "type": "string" },
+        "sharesCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["type", "name", "phoneWhatsApp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection des profils utilisateurs"
+    },
+    "/submitted_videos/{videoId}": {
+      "schema": "SubmittedVideo",
+      "description": "Collection des vidéos soumises selon les directions éditoriales"
+    },
+    "/share_purchases/{purchaseId}": {
+      "schema": "SharePurchase",
+      "description": "Registre des parts de coproduction achetées par les utilisateurs"
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "Collection des signalements pour la modération éditoriale"
+    },
+    "/participations/{participationId}": {
+      "schema": "Participation",
+      "description": "Collection des promesses de coproduction et candidatures citoyennes"
+    }
+  }
+}

@@ -1,0 +1,341 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  BookOpen, 
+  Bookmark, 
+  Check, 
+  X,
+  Award 
+} from 'lucide-react';
+import { MatrixProfile } from '../../utils/matrixGridService';
+import { TvPlayerIcon } from '../YonywoodBrandIcons';
+import { ShareIcon } from '../ShareIcon';
+import { ResonanceModal } from '../ResonanceModal';
+import { UnifiedVideoCardOverlay } from '../UnifiedVideoCardOverlay';
+import { ViewScreen } from '../../types';
+import { SHOW_CAROUSEL_ARROWS } from '../../config/flags';
+
+interface DirectSwipePersonViewProps {
+  profiles: MatrixProfile[];
+  initialIndex?: number;
+  onNavigate?: (screen: ViewScreen) => void;
+}
+
+export const DirectSwipePersonView: React.FC<DirectSwipePersonViewProps> = ({
+  profiles,
+  initialIndex = 0,
+  onNavigate
+}) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(initialIndex);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const [isResonanceModalOpen, setIsResonanceModalOpen] = useState<boolean>(false);
+  const [resonancePct, setResonancePct] = useState<number | null>(null);
+  const [isQuestionOpen, setIsQuestionOpen] = useState<boolean>(false);
+  const [swipeOffset, setSwipeOffset] = useState<number>(0);
+
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchEndXRef = useRef<number | null>(null);
+  const isMouseDownRef = useRef<boolean>(false);
+  const mouseStartXRef = useRef<number | null>(null);
+  const didSwipeRef = useRef<boolean>(false);
+
+  const safeProfiles = profiles.length > 0 ? profiles : [];
+  const currentPerson = safeProfiles[currentIndex] || null;
+
+  // Réinitialiser la lecture et les popups lors du changement de personne
+  useEffect(() => {
+    setIsPlaying(false);
+    setIsBookmarked(false);
+    setIsCopied(false);
+    setIsQuestionOpen(false);
+    setIsResonanceModalOpen(false);
+    setSwipeOffset(0);
+
+    if (currentPerson) {
+      try {
+        const stored = localStorage.getItem(`yonywood_resonance_story-${currentPerson.id}`);
+        if (stored) {
+          const val = parseInt(stored, 10);
+          setResonancePct(isNaN(val) ? null : val);
+        } else {
+          setResonancePct(null);
+        }
+      } catch {
+        setResonancePct(null);
+      }
+    }
+  }, [currentIndex, currentPerson]);
+
+  // Synchronisation du son
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
+  // Navigation tactile & souris (Swipe / Drag horizontal)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if ((e.target as HTMLElement).closest('button, input, a, [role="button"]')) return;
+    didSwipeRef.current = false;
+    touchStartXRef.current = e.touches[0].clientX;
+    touchEndXRef.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndXRef.current = e.touches[0].clientX;
+    if (touchStartXRef.current !== null) {
+      const diff = e.touches[0].clientX - touchStartXRef.current;
+      if (Math.abs(diff) > 6) didSwipeRef.current = true;
+      setSwipeOffset(diff * 0.4);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartXRef.current !== null && touchEndXRef.current !== null) {
+      const diff = touchStartXRef.current - touchEndXRef.current;
+      if (diff > 45) {
+        didSwipeRef.current = true;
+        goToNext();
+      } else if (diff < -45) {
+        didSwipeRef.current = true;
+        goToPrev();
+      }
+    }
+    touchStartXRef.current = null;
+    touchEndXRef.current = null;
+    setSwipeOffset(0);
+    setTimeout(() => {
+      didSwipeRef.current = false;
+    }, 60);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button, input, a, [role="button"]')) return;
+    didSwipeRef.current = false;
+    isMouseDownRef.current = true;
+    mouseStartXRef.current = e.clientX;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMouseDownRef.current || mouseStartXRef.current === null) return;
+    const diff = e.clientX - mouseStartXRef.current;
+    if (Math.abs(diff) > 6) {
+      didSwipeRef.current = true;
+      setSwipeOffset(diff * 0.4);
+    }
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isMouseDownRef.current || mouseStartXRef.current === null) return;
+    const diff = mouseStartXRef.current - e.clientX;
+    isMouseDownRef.current = false;
+    mouseStartXRef.current = null;
+    setSwipeOffset(0);
+    if (diff > 45) {
+      didSwipeRef.current = true;
+      goToNext();
+    } else if (diff < -45) {
+      didSwipeRef.current = true;
+      goToPrev();
+    }
+    setTimeout(() => {
+      didSwipeRef.current = false;
+    }, 60);
+  };
+
+  // Clavier (Flèches Gauche/Droite)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isResonanceModalOpen || isQuestionOpen) return;
+      if (e.key === 'ArrowRight') {
+        goToNext();
+      } else if (e.key === 'ArrowLeft') {
+        goToPrev();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, isResonanceModalOpen, isQuestionOpen]);
+
+  const goToNext = () => {
+    if (safeProfiles.length === 0) return;
+    setCurrentIndex(prev => (prev + 1) % safeProfiles.length);
+  };
+
+  const goToPrev = () => {
+    if (safeProfiles.length === 0) return;
+    setCurrentIndex(prev => (prev - 1 + safeProfiles.length) % safeProfiles.length);
+  };
+
+  const togglePlay = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setIsPlaying(prev => {
+      if (!prev && videoRef.current) {
+        videoRef.current.play().catch(() => {});
+      } else if (prev && videoRef.current) {
+        videoRef.current.pause();
+      }
+      return !prev;
+    });
+  };
+
+  const toggleMute = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
+
+  const handleShare = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    }
+  };
+
+  if (!currentPerson) {
+    return (
+      <div className="w-full h-full flex items-center justify-center text-stone-500">
+        Aucun récit disponible.
+      </div>
+    );
+  }
+
+  const videoUrl = currentPerson.teaserVideoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+  const tagLabel = currentPerson.directionLabel || 'Résilience';
+  const displayName = currentPerson.firstName || currentPerson.name.split(' ')[0] || currentPerson.name;
+
+  return (
+    <div className="relative flex-1 w-full min-h-0 flex flex-col items-center justify-center select-none overflow-hidden my-auto">
+      
+      {/* ZONE CENTRALE : FLÈCHES LATÉRALES + CARTE VIDÉO FORMAT DUO */}
+      <div className="relative w-full flex-1 flex items-center justify-center min-h-0 my-auto">
+        
+        {/* Flèche Personne Précédente (Desktop) */}
+        {SHOW_CAROUSEL_ARROWS && (
+        <button
+          onClick={goToPrev}
+          className="hidden md:flex absolute left-4 lg:left-8 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+          title="Histoire précédente (Flèche gauche)"
+          id="btn-swipe-matrix-prev"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        )}
+
+        {/* CARTE VIDÉO VERTICALE AU GABARIT STANDARD (MODÈLE DIEUDONNÉ) */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onClick={(e) => {
+            if (didSwipeRef.current) {
+              didSwipeRef.current = false;
+              return;
+            }
+            if ((e.target as HTMLElement).closest('button, a')) return;
+            togglePlay();
+          }}
+          style={{ transform: `translateX(${swipeOffset}px)` }}
+          className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
+            aspect-[9/16] 
+            w-[min(calc(100vw-32px),calc((100dvh-200px)*9/16))] 
+            max-w-[280px] sm:max-w-[290px] 
+            h-[min(500px,calc(100dvh-200px))] 
+            mx-auto shrink-0 transition-transform duration-100 cursor-pointer select-none my-auto"
+        >
+          {/* Media de fond : Vidéo ou Photo */}
+          {isPlaying ? (
+            <video
+              ref={videoRef}
+              src={videoUrl}
+              autoPlay
+              loop
+              playsInline
+              muted={isMuted}
+              className="absolute inset-0 w-full h-full object-cover"
+            preload="metadata"
+            />
+          ) : (
+            <img
+              src={currentPerson.photoUrl}
+              alt={currentPerson.name}
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+
+          {/* Voile cinématographique pour lisibilité optimale */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/50 pointer-events-none" />
+
+          {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
+          <UnifiedVideoCardOverlay
+            videoId={currentPerson.id}
+            titleBadge={tagLabel}
+            displayName={displayName}
+            isPlaying={isPlaying}
+            onTogglePlay={togglePlay}
+            isMuted={isMuted}
+            onToggleMute={toggleMute}
+            isCastingPage={true}
+            resonanceScore={resonancePct}
+            onOpenResonance={() => setIsResonanceModalOpen(true)}
+            showCastingScore={true}
+            castingScore={resonancePct || 91}
+            questionText={currentPerson.question || currentPerson.centralQuestion || currentPerson.invitationStory || "Quelle mémoire choisissons-nous de transmettre aux générations qui viennent ?"}
+            factText={currentPerson.quote || currentPerson.teaserPitch || "Passeur d'un savoir vivant transmis à sa communauté."}
+            onOpenProfile={() => {
+              if (onNavigate) {
+                onNavigate({ type: 'protagonist_profile', protagonistId: currentPerson.id });
+              }
+            }}
+            onShare={handleShare}
+            isShareCopied={isCopied}
+            onBlockVideo={() => {
+              goToNext();
+            }}
+          />
+
+          {/* Modal d'évaluation de la résonance confinée dans la carte vidéo */}
+          <ResonanceModal
+            isOpen={isResonanceModalOpen}
+            onClose={() => setIsResonanceModalOpen(false)}
+            storyId={`story-${currentPerson.id}`}
+            topicId={currentPerson.doorId || 'exploration-matrice'}
+            personName={currentPerson.name}
+            initialPercentage={resonancePct}
+            onRatingSubmitted={(pct) => setResonancePct(pct)}
+          />
+        </div>
+
+        {/* Flèche Personne Suivante (Desktop) */}
+        {SHOW_CAROUSEL_ARROWS && (
+        <button
+          onClick={goToNext}
+          className="hidden md:flex absolute right-4 lg:right-8 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+          title="Histoire suivante (Flèche droite)"
+          id="btn-swipe-matrix-next"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+        )}
+      </div>
+    </div>
+  );
+};

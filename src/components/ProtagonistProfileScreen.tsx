@@ -1,0 +1,550 @@
+import React, { useState } from 'react';
+import { 
+  ArrowLeft, 
+  X, 
+  Play, 
+  Check, 
+  FolderKanban, 
+  BookOpen, 
+  HeartHandshake, 
+  ShoppingBag,
+  Compass,
+  Video,
+  Link2, 
+  ChevronRight, 
+  Film,
+  Star
+} from 'lucide-react';
+import { ShareIcon } from './ShareIcon';
+import { PROTAGONISTS, DUOS, DOCUMENTARIES } from '../data/mockData';
+import { ViewScreen } from '../types';
+import { UniverseDimensionPage, DimensionKey } from './UniverseDimensionPage';
+import { ProfilePhotoTvFrame } from './ProfilePhotoTvFrame';
+import { ParcoursDeVieIcon, ProjetsIcon, ProduitsServicesIcon, BesoinsIcon } from './YonywoodBrandIcons';
+
+interface ProtagonistProfileScreenProps {
+  protagonistId: string;
+  onNavigate: (screen: ViewScreen) => void;
+}
+
+interface FlowerPetalConfig {
+  key: DimensionKey;
+  label: string;
+  shortDescription: string;
+  icon: React.ElementType;
+  angle: number; // Angle in degrees around center
+}
+
+export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> = ({
+  protagonistId,
+  onNavigate
+}) => {
+  const protagonist = PROTAGONISTS.find(p => p.id === protagonistId) || PROTAGONISTS[0];
+  const [activeDimension, setActiveDimension] = useState<DimensionKey | null>('histoire');
+  const [showDuosModal, setShowDuosModal] = useState<boolean>(false);
+  const [copied, setCopied] = useState(false);
+  const [showCastingDetails, setShowCastingDetails] = useState(false);
+
+  // Note globale Casting : moyenne des 3 pourcentages d'évaluation du jury
+  const castingScores = React.useMemo(() => {
+    const charCodeSum = (protagonist.id || 'p').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    const auth = 88 + (charCodeSum % 10);
+    const reso = 85 + ((charCodeSum * 3) % 12);
+    const cine = 84 + ((charCodeSum * 7) % 13);
+    const avg = Math.round((auth + reso + cine) / 3);
+    return {
+      authenticity: auth,
+      resonance: reso,
+      cinematography: cine,
+      globalAverage: avg
+    };
+  }, [protagonist.id]);
+
+  // 6 Directions strictly matching user order:
+  // Transmission, Parcours, Histoire, Projet, Offre, Besoin
+  const FLOWER_DIRECTIONS: FlowerPetalConfig[] = [
+    { 
+      key: 'transmissions', 
+      label: 'Transmission', 
+      shortDescription: 'Savoirs & mémoires reçus',
+      icon: BookOpen, 
+      angle: 270 // Top
+    },
+    { 
+      key: 'parcours', 
+      label: 'Parcours', 
+      shortDescription: 'Itinéraire & étapes de vie',
+      icon: ParcoursDeVieIcon, 
+      angle: 330 // Top Right
+    },
+    { 
+      key: 'histoire', 
+      label: 'Histoire', 
+      shortDescription: 'Duos documentaires & récits',
+      icon: Video, 
+      angle: 30 // Bottom Right
+    },
+    { 
+      key: 'projects', 
+      label: 'Projet', 
+      shortDescription: 'Chantiers vivants en cours',
+      icon: ProjetsIcon, 
+      angle: 90 // Bottom
+    },
+    { 
+      key: 'offers', 
+      label: 'Offre', 
+      shortDescription: 'Créations, ateliers & pièces',
+      icon: ProduitsServicesIcon, 
+      angle: 150 // Bottom Left
+    },
+    { 
+      key: 'needs', 
+      label: 'Besoin', 
+      shortDescription: 'Appels au réseau & matières',
+      icon: BesoinsIcon, 
+      angle: 210 // Top Left
+    }
+  ];
+
+  const handleShare = () => {
+    navigator.clipboard?.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Find duos featuring this protagonist
+  const directDuos = DUOS.filter(
+    d => d.protagonistA.id === protagonist.id || d.protagonistB.id === protagonist.id
+  );
+
+  const seriesDuos = DUOS.filter(
+    d => !directDuos.some(dd => dd.id === d.id)
+  );
+  const allParticipatingDuos = [...directDuos, ...seriesDuos];
+
+  // Circle radius for flower petals on larger screens
+  const petalDistance = 160;
+
+  // IF AN ACTIVE DIMENSION IS SELECTED: RENDER THE FULL IMMERSIVE UNIVERSE PAGE!
+  if (activeDimension) {
+    return (
+      <UniverseDimensionPage
+        initialDimension={activeDimension}
+        protagonist={{
+          id: protagonist.id,
+          name: protagonist.name,
+          age: protagonist.age,
+          territory: protagonist.territory,
+          role: protagonist.role,
+          photoUrl: protagonist.photoUrl,
+          bio: protagonist.bio,
+          quote: protagonist.quote,
+          documentaryId: protagonist.documentaryId
+        }}
+        onBack={() => onNavigate({ type: 'duo_feed' })}
+        onNavigate={onNavigate}
+        customOffers={protagonist.tree.offers}
+        customStories={protagonist.stories}
+        customTransmissions={protagonist.tree.transmissions}
+        customParcours={protagonist.tree.parcours}
+        customProjects={protagonist.tree.projects}
+        customNeeds={protagonist.tree.needs}
+        passeurs={protagonist.tree.passeurs}
+        heritiers={protagonist.tree.heritiers}
+      />
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col justify-between pb-32 text-[#1C1917] font-sans">
+      
+      {/* 1. TOP MINIMAL NAVIGATION BAR */}
+      <div className="max-w-4xl w-full mx-auto px-4 pt-4">
+        <div className="flex items-center justify-between border-b border-[#E7E5E4] pb-3">
+          <button
+            onClick={() => onNavigate({ type: 'duo_feed' })}
+            className="text-xs font-semibold text-[#8B6845] hover:text-[#1C1917] flex items-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Duos</span>
+          </button>
+
+          <div className="flex items-center gap-2">
+            <select
+              value={protagonist.id}
+              onChange={(e) => onNavigate({ type: 'protagonist_profile', protagonistId: e.target.value })}
+              className="text-xs bg-[#FFFFFF] border border-[#E7E5E4] rounded-full px-3 py-1.5 text-[#1C1917] outline-hidden cursor-pointer hover:border-[#C89B3C] transition-colors"
+            >
+              {PROTAGONISTS.map(p => (
+                <option key={p.id} value={p.id}>
+                  {p.name.split(' ')[0]} ({p.territory})
+                </option>
+              ))}
+            </select>
+
+            <button
+              onClick={handleShare}
+              title="Partager le profil"
+              className="p-1.5 rounded-full border border-[#E7E5E4] bg-[#FFFFFF] hover:bg-[#FAFAF9] text-[#68655D] transition-colors cursor-pointer"
+            >
+              {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <ShareIcon className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. THE FLOWER INTERFACE (6 DIRECTIONS AROUND PROTAGONIST) */}
+      <section className="relative max-w-2xl w-full mx-auto px-4 my-auto flex flex-col items-center pt-4">
+        
+        {/* DESKTOP / TABLET FLOWER VIEW */}
+        <div className="hidden sm:block relative w-[420px] h-[420px] mx-auto my-2">
+          
+          {/* Subtle Organic Dashed Ring */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-dashed border-[#C89B3C]/30 pointer-events-none" />
+
+          {/* Hairline connecting spokes */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none">
+            {FLOWER_DIRECTIONS.map((petal) => {
+              const rad = (petal.angle * Math.PI) / 180;
+              const centerX = 210;
+              const centerY = 210;
+              const nodeX = centerX + petalDistance * Math.cos(rad);
+              const nodeY = centerY + petalDistance * Math.sin(rad);
+              return (
+                <line
+                  key={`spoke-${petal.key}`}
+                  x1={centerX}
+                  y1={centerY}
+                  x2={nodeX}
+                  y2={nodeY}
+                  stroke="#C89B3C"
+                  strokeOpacity="0.25"
+                  strokeWidth="1"
+                  strokeDasharray="2 3"
+                />
+              );
+            })}
+          </svg>
+
+          {/* CENTRAL PROTAGONIST PORTRAIT */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-10 text-center pointer-events-auto">
+            <ProfilePhotoTvFrame
+              photoUrl={protagonist.photoUrl}
+              alt={protagonist.name}
+              className="w-24 h-24 sm:w-28 sm:h-28"
+              strokeColor="#1C1917"
+            />
+
+            {/* Prénom harmonisé avec les cartes vidéo, sans coupure de lettre */}
+            <div className="mt-2 text-center flex flex-col items-center">
+              <h2 className="font-editorial text-xl sm:text-2xl font-semibold text-[#1C1917] tracking-normal leading-tight pb-0.5">
+                {protagonist.name.split(' ')[0]}
+              </h2>
+
+              {/* Note globale Casting : moyenne des 3 critères */}
+              <button
+                type="button"
+                onClick={() => setShowCastingDetails(prev => !prev)}
+                className="mt-1 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#A2482B]/10 hover:bg-[#A2482B]/20 border border-[#A2482B]/25 text-[#A2482B] text-[11px] font-semibold transition-all cursor-pointer shadow-2xs hover:scale-102"
+                title="Moyenne des 3 critères d'évaluation du Casting"
+              >
+                <Star className="w-3 h-3 fill-[#A2482B]" />
+                <span>{castingScores.globalAverage}%</span>
+                <span className="text-[9.5px] font-normal text-stone-500">Casting</span>
+              </button>
+            </div>
+          </div>
+
+          {/* THE 6 PETALS */}
+          {FLOWER_DIRECTIONS.map((petal) => {
+            const rad = (petal.angle * Math.PI) / 180;
+            const centerX = 210;
+            const centerY = 210;
+            const nodeX = centerX + petalDistance * Math.cos(rad);
+            const nodeY = centerY + petalDistance * Math.sin(rad);
+            const Icon = petal.icon;
+
+            return (
+              <div
+                key={petal.key}
+                style={{
+                  left: `${nodeX}px`,
+                  top: `${nodeY}px`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+                className="absolute z-20 pointer-events-auto"
+              >
+                <button
+                  onClick={() => setActiveDimension(petal.key)}
+                  id={`flower-petal-${petal.key}`}
+                  className="group flex flex-col items-center justify-center p-2.5 rounded-2xl bg-[#FFFFFF] hover:bg-[#FAFAF9] border border-[#C89B3C]/35 hover:border-[#C89B3C] shadow-xs hover:shadow-md transition-all hover:scale-105 active:scale-95 text-center w-28 cursor-pointer"
+                  title={petal.label}
+                >
+                  <div className="w-9 h-9 rounded-2xl bg-[#C89B3C]/10 group-hover:bg-[#C89B3C] text-[#8B6845] group-hover:text-[#FFFFFF] flex items-center justify-center transition-colors">
+                    <Icon className="w-4.5 h-4.5" />
+                  </div>
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* MOBILE COMPACT VIEW */}
+        <div className="sm:hidden w-full space-y-4 py-2">
+          {/* Center Identity */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <ProfilePhotoTvFrame
+              photoUrl={protagonist.photoUrl}
+              alt={protagonist.name}
+              className="w-20 h-20 sm:w-24 sm:h-24"
+              strokeColor="#1C1917"
+            />
+            <h2 className="font-editorial text-xl sm:text-2xl font-semibold text-[#1C1917] tracking-normal leading-tight pb-0.5 mt-2">
+              {protagonist.name.split(' ')[0]}
+            </h2>
+            <button
+              type="button"
+              onClick={() => setShowCastingDetails(prev => !prev)}
+              className="mt-1 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#A2482B]/10 hover:bg-[#A2482B]/20 border border-[#A2482B]/25 text-[#A2482B] text-[11px] font-semibold transition-all cursor-pointer shadow-2xs"
+            >
+              <Star className="w-3 h-3 fill-[#A2482B]" />
+              <span>{castingScores.globalAverage}%</span>
+              <span className="text-[9.5px] font-normal text-stone-500">Casting</span>
+            </button>
+          </div>
+
+          {/* 6 Grid Directions — Icônes seules, aucun texte */}
+          <div className="grid grid-cols-3 gap-2.5 pt-2">
+            {FLOWER_DIRECTIONS.map((petal) => {
+              const Icon = petal.icon;
+              return (
+                <button
+                  key={petal.key}
+                  onClick={() => setActiveDimension(petal.key)}
+                  className="flex items-center justify-center p-3 rounded-2xl bg-[#FFFFFF] border border-[#E7E5E4] hover:border-[#C89B3C] transition-all active:scale-95 shadow-xs cursor-pointer"
+                  title={petal.label}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#C89B3C]/10 text-[#8B6845] flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ACTION BUTTON: LE VOIR DANS DES DUOS */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => setShowDuosModal(true)}
+            id="btn-see-in-duos"
+            className="px-5 py-2.5 rounded-full bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold shadow-md flex items-center gap-2 transition-all hover:scale-102 active:scale-98 mx-auto cursor-pointer"
+          >
+            <Link2 className="w-3.5 h-3.5 text-[#C89B3C] group-hover:text-[#FFFFFF]" />
+            <span>Le voir dans des duos</span>
+          </button>
+        </div>
+
+      </section>
+
+      {/* 3. MODAL: LE VOIR DANS DES DUOS */}
+      {showDuosModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1C1917]/75">
+          <div className="w-full max-w-xl max-h-[85vh] bg-[#FFFFFF] rounded-3xl border border-[#E7E5E4] shadow-2xl overflow-y-auto flex flex-col">
+            
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-[#E7E5E4] flex items-center justify-between sticky top-0 bg-[#FFFFFF] z-30">
+              <div className="flex items-center gap-2">
+                <Link2 className="w-4 h-4 text-[#C89B3C]" />
+                <h3 className="text-sm font-bold text-[#1C1917]">
+                  {protagonist.name.split(' ')[0]} dans les duos
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowDuosModal(false)}
+                className="p-1.5 rounded-full hover:bg-[#E7E5E4]/50 text-[#68655D] transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-4">
+              <p className="text-xs text-[#68655D]">
+                Retrouvez {protagonist.name.split(' ')[0]} et ses dialogues vivants à travers les 4 duocumentaires fondateurs.
+              </p>
+
+              <div className="space-y-3">
+                {allParticipatingDuos.map((duo) => {
+                  const isA = duo.protagonistA.id === protagonist.id;
+                  const partner = isA ? duo.protagonistB : duo.protagonistA;
+
+                  return (
+                    <div 
+                      key={duo.id} 
+                      className="p-4 rounded-2xl bg-[#FAFAF9]/70 border border-[#E7E5E4] hover:border-[#C89B3C]/60 transition-all space-y-3"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-[#C89B3C] uppercase tracking-wider bg-[#FFFFFF] px-2.5 py-0.5 rounded-full border border-[#E7E5E4]">
+                          {duo.documentaryTitle} • {duo.episodeNumber}
+                        </span>
+                        <span className="text-[10px] text-[#68655D]">
+                          {duo.questionTitle}
+                        </span>
+                      </div>
+
+                      {/* Partner info */}
+                      <div className="flex items-center gap-3">
+                        <img 
+                          src={partner.photoUrl} 
+                          alt={partner.name}
+                          className="w-11 h-11 rounded-full object-cover border border-[#C89B3C]" 
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-xs font-bold text-[#1C1917]">
+                              En duo avec {partner.name.split(' ')[0]}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-[#68655D] truncate max-w-xs">
+                            {duo.centralQuestion}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Watch button */}
+                      <div className="flex items-center gap-2 pt-1">
+                        <button
+                          onClick={() => {
+                            setShowDuosModal(false);
+                            onNavigate({ 
+                              type: 'video_player', 
+                              story: duo.storyA, 
+                              protagonist: duo.protagonistA, 
+                              duoId: duo.id, 
+                              documentaryTitle: duo.documentaryTitle 
+                            });
+                          }}
+                          className="flex-1 py-2 px-3 rounded-xl bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          <span>Visionner ce duo</span>
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Documentary Series shortcut */}
+              <div className="pt-2 border-t border-[#E7E5E4] text-center">
+                <button
+                  onClick={() => {
+                    setShowDuosModal(false);
+                    onNavigate({ type: 'home' });
+                  }}
+                  className="text-xs text-[#8B6845] hover:underline font-medium inline-flex items-center gap-1 cursor-pointer"
+                >
+                  <Film className="w-3.5 h-3.5" />
+                  <span>Explorer l'arbre des 4 duocumentaires</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* MODALE DÉTAIL DES 3 CRITÈRES DU CASTING */}
+      {showCastingDetails && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+          onClick={() => setShowCastingDetails(false)}
+        >
+          <div 
+            className="relative w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl border border-stone-200 text-left animate-in zoom-in-95 duration-200 pointer-events-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowCastingDetails(false)}
+              className="absolute top-4 right-4 w-7 h-7 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center cursor-pointer transition-colors"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold text-[#A2482B] uppercase tracking-wider">
+                Note Casting du Jury
+              </span>
+              <h3 className="font-editorial text-xl font-bold text-stone-900">
+                {protagonist.name}
+              </h3>
+              <p className="text-xs text-stone-500">
+                Moyenne des trois critères d'évaluation du public
+              </p>
+            </div>
+
+            <div className="mt-4 p-3.5 rounded-2xl bg-stone-900 text-white flex items-center justify-between">
+              <div>
+                <p className="text-[10px] text-stone-400 uppercase font-semibold">Note Globale</p>
+                <p className="text-xs text-stone-300">Éligible Matrice</p>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/10 border border-white/20">
+                <Star className="w-3.5 h-3.5 text-[#FFE7A3] fill-[#FFE7A3]" />
+                <span className="text-lg font-bold text-[#FFE7A3]">
+                  {castingScores.globalAverage}%
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-4 space-y-3">
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-stone-600">1. Authenticité du récit</span>
+                  <span className="font-bold text-stone-900">{castingScores.authenticity}%</span>
+                </div>
+                <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-[#A2482B] h-full rounded-full" style={{ width: `${castingScores.authenticity}%` }} />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-stone-600">2. Résonance humaine</span>
+                  <span className="font-bold text-stone-900">{castingScores.resonance}%</span>
+                </div>
+                <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-amber-600 h-full rounded-full" style={{ width: `${castingScores.resonance}%` }} />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-stone-600">3. Puissance cinématographique</span>
+                  <span className="font-bold text-stone-900">{castingScores.cinematography}%</span>
+                </div>
+                <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-stone-800 h-full rounded-full" style={{ width: `${castingScores.cinematography}%` }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-end">
+              <button
+                onClick={() => setShowCastingDetails(false)}
+                className="w-full py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold transition-colors cursor-pointer text-center"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+};

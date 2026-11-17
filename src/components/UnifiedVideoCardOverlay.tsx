@@ -1,0 +1,430 @@
+import React, { useState } from 'react';
+import { 
+  Award, 
+  BookOpen, 
+  Sparkles, 
+  Star,
+  Check, 
+  Pause, 
+  Volume2, 
+  VolumeX 
+} from 'lucide-react';
+import { TvPlayerIcon, ProfileSoloIcon } from './YonywoodBrandIcons';
+import { ShareIcon } from './ShareIcon';
+import { VideoCardShareModal } from './VideoCardShareModal';
+import { blockVideo } from '../utils/blockedContent';
+import { formatFirstLetterOnly } from '../utils/textFormatters';
+
+export interface UnifiedVideoCardOverlayProps {
+  // Identifiant optionnel pour le blocage effectif
+  videoId?: string;
+
+  // Haut gauche
+  titleBadge: string;
+  badgeIcon?: React.ReactNode;
+  subBadgeText?: string;
+  topLeftSlot?: React.ReactNode;
+
+  // Bas gauche
+  displayName: string;
+  preserveFullName?: boolean;
+  roleSubtitle?: string;
+
+  // Video progress
+  videoProgress?: number;
+
+  // Lecteur vidéo en haut à droite
+  isPlaying: boolean;
+  onTogglePlay: (e?: React.MouseEvent) => void;
+  isMuted?: boolean;
+  onToggleMute?: () => void;
+
+  // 1. Évaluation (Award - uniquement sur page casting)
+  isCastingPage?: boolean;
+  resonanceScore?: number | null;
+  onOpenResonance?: () => void;
+  castingScore?: number | null;
+  showCastingScore?: boolean;
+
+  // 2. Question (BookOpen)
+  questionText?: string;
+  onOpenQuestionModal?: () => void; // Si géré en externe
+
+  // 3. Fait (Sparkles)
+  factText?: string;
+  onOpenFactModal?: () => void; // Si géré en externe
+
+  // 4. Profil (ProfileSoloIcon)
+  onOpenProfile?: () => void;
+
+  // 5. Partager (ShareIcon)
+  onShare?: () => void;
+  isShareCopied?: boolean;
+
+  // 6. Options (...) Signaler & Bloquer
+  onReportVideo?: () => void;
+  onBlockVideo?: () => void;
+
+  // Colonne d'actions personnalisée (ex: boutons de navigation du profil)
+  customActionButtons?: React.ReactNode;
+
+  // Enfants optionnels (modales internes spécifiques, etc.)
+  children?: React.ReactNode;
+}
+
+export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = ({
+  videoId,
+  titleBadge,
+  badgeIcon,
+  subBadgeText,
+  topLeftSlot,
+  displayName,
+  preserveFullName = false,
+  roleSubtitle,
+  videoProgress = 0,
+  isPlaying,
+  onTogglePlay,
+  isMuted = false,
+  onToggleMute,
+  isCastingPage = false,
+  resonanceScore,
+  onOpenResonance,
+  castingScore,
+  showCastingScore = false,
+  questionText,
+  onOpenQuestionModal,
+  factText,
+  onOpenFactModal,
+  onOpenProfile,
+  onShare,
+  isShareCopied = false,
+  onReportVideo,
+  onBlockVideo,
+  customActionButtons,
+  children
+}) => {
+  const [internalQuestionOpen, setInternalQuestionOpen] = useState(false);
+  const [internalFactOpen, setInternalFactOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [feedbackToast, setFeedbackToast] = useState<string | null>(null);
+
+  // Gestion du clic sur Question
+  const handleQuestionClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onOpenQuestionModal) {
+      onOpenQuestionModal();
+    } else {
+      setInternalFactOpen(false);
+      setInternalQuestionOpen(prev => !prev);
+    }
+  };
+
+  // Gestion du clic sur Fait
+  const handleFactClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onOpenFactModal) {
+      onOpenFactModal();
+    } else {
+      setInternalQuestionOpen(false);
+      setInternalFactOpen(prev => !prev);
+    }
+  };
+
+  // Clic sur l'icône Partager : ouvre la boîte complète Partager / Réseaux / Signaler / Enregistrer
+  const handleShareButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onShare) {
+      onShare();
+    }
+    setIsShareModalOpen(true);
+  };
+
+  // Prénom ou nom épuré
+  const cleanDisplayName = displayName ? displayName.split(' ')[0] : '';
+
+  return (
+    <>
+      {/* =================================================================== */}
+      {/* HAUT GAUCHE : TITRE / THÉMATIQUE / ENTREPRISE (BADGE ÉPURÉ)        */}
+      {/* =================================================================== */}
+      <div className="absolute top-3.5 left-3.5 z-20 pointer-events-auto max-w-[calc(100%-80px)] flex flex-col items-start gap-1">
+        {topLeftSlot ? (
+          topLeftSlot
+        ) : (
+          <>
+            <div className="px-3 py-1.5 rounded-full bg-black/60 border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
+              {badgeIcon && <span className="shrink-0">{badgeIcon}</span>}
+              <span className="truncate">{formatFirstLetterOnly(titleBadge)}</span>
+            </div>
+            {subBadgeText && (
+              <div className="px-2.5 py-0.5 rounded-full bg-black/55 border border-white/15 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
+                <span className="truncate">{subBadgeText}</span>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* =================================================================== */}
+      {/* HAUT DROITE : LECTEUR VIDÉO TÉLÉ VINTAGE & MUET (SANS AUCUN 3-POINTS) */}
+      {/* =================================================================== */}
+      <div 
+        className="absolute top-3 sm:top-3.5 right-3 sm:right-3.5 z-20 pointer-events-auto flex items-center gap-1.5"
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+      >
+        {/* Bouton Muet discret (uniquement si en lecture et fonction fournie) */}
+        {isPlaying && onToggleMute && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleMute();
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+            title={isMuted ? 'Activer le son' : 'Couper le son'}
+          >
+            {isMuted ? <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
+          </button>
+        )}
+
+        {/* Déclencheur lecteur vidéo officiel TvPlayerIcon en haut à droite */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onTogglePlay(e);
+          }}
+          onMouseDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+          title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
+        >
+          {isPlaying ? (
+            <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white" />
+          ) : (
+            <TvPlayerIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white transition-transform" strokeWidth={1.7} />
+          )}
+        </button>
+      </div>
+
+      {/* =================================================================== */}
+      {/* COLONNE D'ACTIONS VERTICALE : Question, Évaluation (Casting), Profil, Partage */}
+      {/* =================================================================== */}
+      <div 
+        className="absolute right-2.5 sm:right-3.5 top-[56%] sm:top-[58%] -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 sm:gap-2 pointer-events-auto"
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+      >
+        {customActionButtons ? (
+          customActionButtons
+        ) : (
+          <>
+            {/* 1. LA QUESTION (BookOpen) */}
+            <button
+              type="button"
+              onClick={handleQuestionClick}
+              className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
+                internalQuestionOpen
+                  ? 'bg-[#FFE7A3] text-stone-900 border-[#FFE7A3] shadow-md'
+                  : 'bg-black/65 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+              }`}
+              title="Découvrir la question"
+            >
+              <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </button>
+
+            {/* 2. ÉVALUATION (Award) - UNIQUEMENT SUR LES CARTES VIDÉO DE LA PAGE CASTING */}
+            {(isCastingPage || showCastingScore) && onOpenResonance && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpenResonance();
+                }}
+                className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
+                  resonanceScore !== null && resonanceScore !== undefined
+                    ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_10px_rgba(162,72,43,0.5)]'
+                    : 'bg-black/65 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                }`}
+                title={resonanceScore !== null && resonanceScore !== undefined ? `Résonance : ${resonanceScore}%` : 'Évaluer la vidéo'}
+              >
+                <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+              </button>
+            )}
+
+            {/* 3. LE PROFIL (ProfileSoloIcon) */}
+            {onOpenProfile && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpenProfile();
+                }}
+                className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                title={`Voir le profil`}
+              >
+                <ProfileSoloIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white" />
+              </button>
+            )}
+
+            {/* 4. PARTAGER (ShareIcon) - Ouvre la modale complète de partage & signalement */}
+            <button
+              type="button"
+              onClick={handleShareButtonClick}
+              className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
+                isShareCopied
+                  ? 'bg-emerald-600 border-emerald-500 text-white'
+                  : 'bg-black/65 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+              }`}
+              title="Partager ou signaler la vidéo"
+            >
+              {isShareCopied ? <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /> : <ShareIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />}
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* =================================================================== */}
+      {/* BAS GAUCHE : PRÉNOM / NOM POSITIONNÉ DE FAÇON UNIFORME               */}
+      {/* =================================================================== */}
+      <div className="absolute bottom-3.5 sm:bottom-4 left-3.5 sm:left-4 z-20 pointer-events-none flex flex-col items-start">
+        {displayName ? (
+          <h3 className="font-editorial text-base sm:text-lg font-bold text-white tracking-wide leading-tight drop-shadow-md truncate max-w-[170px] sm:max-w-[210px]">
+            {preserveFullName ? displayName : cleanDisplayName}
+          </h3>
+        ) : null}
+        {roleSubtitle && (
+          <p className="text-[10px] sm:text-xs text-stone-300 font-medium tracking-wide drop-shadow-md truncate mt-0.5">
+            {roleSubtitle}
+          </p>
+        )}
+        {/* Hauteur réservée fixe : le nom ne bouge JAMAIS lorsque le curseur apparaît */}
+        <div className="h-2 flex items-center mt-1">
+          <div 
+            className={`w-24 sm:w-28 h-1 bg-white/25 rounded-full overflow-hidden shadow-xs transition-opacity duration-200 ${
+              isPlaying ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div 
+              className="h-full bg-white transition-all duration-100 rounded-full"
+              style={{ width: `${Math.max(2, Math.min(100, videoProgress))}%` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* =================================================================== */}
+      {/* BAS DROITE : NOTE MOYENNE EN POURCENTAGE (PAGE CASTING)             */}
+      {/* =================================================================== */}
+      {(showCastingScore || castingScore !== undefined) && (
+        <div className="absolute bottom-2.5 sm:bottom-3.5 right-2.5 sm:right-3.5 z-20 pointer-events-auto">
+          <div 
+            className="px-2 sm:px-2.5 py-1 rounded-full bg-black/65 border border-white/20 shadow-md flex items-center gap-1 text-white"
+            title="Note moyenne d'évaluation du public"
+          >
+            <Star className="w-3 h-3 text-[#FFE7A3] fill-[#FFE7A3]" />
+            <span className="text-[11px] sm:text-xs font-bold text-white tracking-tight">
+              {castingScore ?? resonanceScore ?? 91}%
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* =================================================================== */}
+      {/* VOLETS DÉPLIANTS INTERNES : LA QUESTION OU LE FAIT                  */}
+      {/* =================================================================== */}
+      {internalQuestionOpen && (
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-x-3.5 sm:inset-x-4 bottom-14 sm:bottom-16 z-40 bg-black/85 p-3.5 rounded-2xl border border-white/20 text-white shadow-2xl animate-in fade-in slide-in-from-bottom-2 duration-200 pointer-events-auto"
+        >
+          <div className="flex items-center justify-between pb-1 mb-1.5 border-b border-white/10">
+            <span className="text-[10px] sm:text-[11px] font-bold text-[#FFE7A3] uppercase tracking-wider flex items-center gap-1.5">
+              <BookOpen className="w-3.5 h-3.5" />
+              Question posée
+            </span>
+            <button 
+              type="button"
+              onClick={() => setInternalQuestionOpen(false)}
+              className="text-white/60 hover:text-white text-xs px-1 cursor-pointer"
+            >
+              Fermer
+            </button>
+          </div>
+          <p className="font-serif italic text-xs sm:text-sm text-stone-100 leading-relaxed">
+            « {questionText || "Quelle vision singulière ce parcours apporte-t-il au monde ?"} »
+          </p>
+        </div>
+      )}
+
+      {internalFactOpen && (
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-x-3.5 sm:inset-x-4 bottom-14 sm:bottom-16 z-40 bg-black/85 p-3.5 rounded-2xl border border-white/20 text-white shadow-2xl animate-in fade-in slide-in-from-bottom-2 duration-200 pointer-events-auto"
+        >
+          <div className="flex items-center justify-between pb-1 mb-1.5 border-b border-white/10">
+            <span className="text-[10px] sm:text-[11px] font-bold text-[#FFE7A3] uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
+              Le fait marquant
+            </span>
+            <button 
+              type="button"
+              onClick={() => setInternalFactOpen(false)}
+              className="text-white/60 hover:text-white text-xs px-1 cursor-pointer"
+            >
+              Fermer
+            </button>
+          </div>
+          <p className="text-xs sm:text-sm text-stone-100 leading-relaxed font-sans">
+            {factText || "Ce passeur de savoir incarne une tradition vivante et une transmission concrète auprès de sa communauté."}
+          </p>
+        </div>
+      )}
+
+      {/* Feedback Toast (signalement / blocage) */}
+      {feedbackToast && (
+        <div className="absolute inset-x-4 top-16 z-40 bg-stone-900/95 border border-white/25 text-white px-3 py-2 rounded-xl text-center text-xs shadow-xl animate-in fade-in pointer-events-none">
+          {feedbackToast}
+        </div>
+      )}
+
+      {/* Modale de partage & signalement façon YouTube */}
+      <VideoCardShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        videoTitle={preserveFullName ? displayName : cleanDisplayName}
+        videoId={videoId}
+        onReport={() => {
+          if (onReportVideo) onReportVideo();
+          setFeedbackToast('Vidéo signalée à notre équipe de modération.');
+          setTimeout(() => setFeedbackToast(null), 2500);
+        }}
+        onBlockPerson={() => {
+          if (videoId) blockVideo(videoId);
+          if (onBlockVideo) onBlockVideo();
+          setFeedbackToast('Cette personne a été bloquée. Ses contenus ne vous seront plus proposés.');
+          setTimeout(() => setFeedbackToast(null), 2500);
+        }}
+        onNotInterested={() => {
+          if (videoId) blockVideo(videoId);
+          if (onBlockVideo) onBlockVideo();
+          setFeedbackToast('Cette personne a été bloquée. Ses contenus ne vous seront plus proposés.');
+          setTimeout(() => setFeedbackToast(null), 2500);
+        }}
+        onSaveToList={(saved) => {
+          setFeedbackToast(saved ? 'Ajouté à vos mémoires sauvegardées.' : 'Retiré de vos mémoires.');
+          setTimeout(() => setFeedbackToast(null), 2500);
+        }}
+      />
+
+      {/* Enfants supplémentaires */}
+      {children}
+    </>
+  );
+};

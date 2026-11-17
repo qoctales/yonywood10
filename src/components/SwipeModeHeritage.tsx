@@ -1,0 +1,688 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Play,
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  Award, 
+  BookOpen, 
+  Check,
+  ArrowRight,
+  MoreVertical
+} from 'lucide-react';
+import { Dimension, SousCategorie } from '../data/dimensionsData';
+import { AffiliationPerson, ViewScreen } from '../types';
+import { DimensionIcon } from './DimensionIcon';
+import { ProfileSoloIcon, TvPlayerIcon } from './YonywoodBrandIcons';
+import { VideoReportModal } from './VideoReportModal';
+import { celestialAudio } from '../utils/celestialAudio';
+import { get16StoriesForTopic } from '../data/explorerTopicsData';
+import { UnifiedVideoCardOverlay } from './UnifiedVideoCardOverlay';
+import { SHOW_CAROUSEL_ARROWS } from '../config/flags';
+
+interface SwipeModeHeritageProps {
+  swipeStep: 1 | 2 | 3;
+  setSwipeStep: (step: 1 | 2 | 3) => void;
+  swipeDoorIndex: number;
+  setSwipeDoorIndex: React.Dispatch<React.SetStateAction<number>>;
+  swipeSubIndex: number;
+  setSwipeSubIndex: React.Dispatch<React.SetStateAction<number>>;
+  swipeSelectedSubcategory: SousCategorie | null;
+  setSwipeSelectedSubcategory: (sub: SousCategorie | null) => void;
+  swipePersonIndex: number;
+  setSwipePersonIndex: React.Dispatch<React.SetStateAction<number>>;
+  currentSwipeDoor: Dimension;
+  swipeSubcategories: SousCategorie[];
+  currentSubcategory: SousCategorie;
+  swipeProtagonists: AffiliationPerson[];
+  currentSwipePerson: AffiliationPerson | undefined;
+  onNavigate: (screen: ViewScreen) => void;
+  onOpenQuestionModal: (title: string, question: string) => void;
+  onOpenResonanceModal: (person: AffiliationPerson) => void;
+  personResonancePct: number | null;
+  isShareCopied: boolean;
+  onSharePerson: (person: AffiliationPerson) => void;
+  handleNextSwipeDoor: () => void;
+  handlePrevSwipeDoor: () => void;
+  handleNextSwipeSub: () => void;
+  handlePrevSwipeSub: () => void;
+  handleNextSwipePerson: () => void;
+  handlePrevSwipePerson: () => void;
+}
+
+const STOCK_VIDEOS = [
+  '/sample.mp4',
+  '/sample.mp4',
+  '/sample.mp4',
+  '/sample.mp4'
+];
+
+export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
+  swipeStep,
+  setSwipeStep,
+  swipeDoorIndex,
+  setSwipeDoorIndex,
+  swipeSubIndex,
+  setSwipeSubIndex,
+  swipeSelectedSubcategory,
+  setSwipeSelectedSubcategory,
+  swipePersonIndex,
+  setSwipePersonIndex,
+  currentSwipeDoor,
+  swipeSubcategories,
+  currentSubcategory,
+  swipeProtagonists,
+  currentSwipePerson,
+  onNavigate,
+  onOpenQuestionModal,
+  onOpenResonanceModal,
+  personResonancePct,
+  isShareCopied,
+  onSharePerson,
+  handleNextSwipeDoor,
+  handlePrevSwipeDoor,
+  handleNextSwipeSub,
+  handlePrevSwipeSub,
+  handleNextSwipePerson,
+  handlePrevSwipePerson
+}) => {
+  // Vidéo en pause par défaut (pas d'autoplay non désiré) : déclenchement par la petite télé ou clic carte
+  const [isPlayingStep1, setIsPlayingStep1] = useState<boolean>(false);
+  const [isPlayingStep2, setIsPlayingStep2] = useState<boolean>(false);
+  const [isPlayingStep3, setIsPlayingStep3] = useState<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
+  const video1Ref = useRef<HTMLVideoElement | null>(null);
+  const video2Ref = useRef<HTMLVideoElement | null>(null);
+  const video3Ref = useRef<HTMLVideoElement | null>(null);
+
+  // Wrappers de navigation pour réinitialiser la lecture lors du changement de carte
+  const onNextDoor = () => {
+    setIsPlayingStep1(false);
+    handleNextSwipeDoor();
+  };
+  const onPrevDoor = () => {
+    setIsPlayingStep1(false);
+    handlePrevSwipeDoor();
+  };
+  const onNextSub = () => {
+    setIsPlayingStep2(false);
+    handleNextSwipeSub();
+  };
+  const onPrevSub = () => {
+    setIsPlayingStep2(false);
+    handlePrevSwipeSub();
+  };
+  const onNextPerson = () => {
+    setIsPlayingStep3(false);
+    handleNextSwipePerson();
+  };
+  const onPrevPerson = () => {
+    setIsPlayingStep3(false);
+    handlePrevSwipePerson();
+  };
+
+  // Fallbacks fiables pour garantir que les données s'affichent toujours sans écran noir
+  const effectiveSubcategory = currentSubcategory || (swipeSubcategories && swipeSubcategories[swipeSubIndex]) || (swipeSubcategories && swipeSubcategories[0]);
+  const fallbackProtagonists = React.useMemo(() => {
+    return get16StoriesForTopic(effectiveSubcategory?.slug || 'resilience', 0);
+  }, [effectiveSubcategory?.slug]);
+  const activeProtagonists = (swipeProtagonists && swipeProtagonists.length > 0) ? swipeProtagonists : fallbackProtagonists;
+  const effectivePerson = currentSwipePerson || (activeProtagonists && activeProtagonists[swipePersonIndex % activeProtagonists.length]) || activeProtagonists[0];
+
+  // Modale de signalement sous les 3 points
+  const [reportingTarget, setReportingTarget] = useState<{ id: string; title: string } | null>(null);
+
+  // Gestes tactiles pour swipe fluide
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchEndY, setTouchEndY] = useState<number | null>(null);
+  const [swipeOffset, setSwipeOffset] = useState<number>(0);
+  const isDraggingRef = useRef<boolean>(false);
+  const isMouseDownRef = useRef<boolean>(false);
+  const mouseStartXRef = useRef<number | null>(null);
+  const didSwipeRef = useRef<boolean>(false);
+
+  // Relance de la vidéo lors du changement de porte (Étape 1), de direction (Étape 2) ou de protagoniste (Étape 3)
+  useEffect(() => {
+    if (swipeStep === 1 && video1Ref.current && isPlayingStep1) {
+      video1Ref.current.currentTime = 0;
+      video1Ref.current.play().catch(() => {});
+    }
+  }, [swipeDoorIndex, swipeStep, isPlayingStep1]);
+
+  useEffect(() => {
+    if (swipeStep === 2 && video2Ref.current && isPlayingStep2) {
+      video2Ref.current.currentTime = 0;
+      video2Ref.current.play().catch(() => {});
+    }
+  }, [swipeSubIndex, swipeStep, isPlayingStep2]);
+
+  useEffect(() => {
+    if (swipeStep === 3 && video3Ref.current && isPlayingStep3) {
+      video3Ref.current.currentTime = 0;
+      video3Ref.current.play().catch(() => {});
+    }
+  }, [swipePersonIndex, swipeStep, isPlayingStep3]);
+
+  const toggleMute = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setIsMuted(prev => !prev);
+  };
+
+  const togglePlay1 = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setIsPlayingStep1(prev => !prev);
+  };
+
+  const togglePlay2 = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setIsPlayingStep2(prev => !prev);
+  };
+
+  const togglePlay3 = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setIsPlayingStep3(prev => !prev);
+  };
+
+  // Gestion des événements tactiles et souris
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if ((e.target as HTMLElement).closest('button, input, a, [role="button"]')) return;
+    didSwipeRef.current = false;
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
+    setTouchEndX(null);
+    setTouchEndY(null);
+    isDraggingRef.current = true;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingRef.current || touchStartX === null) return;
+    const currentX = e.targetTouches[0].clientX;
+    const currentY = e.targetTouches[0].clientY;
+    setTouchEndX(currentX);
+    setTouchEndY(currentY);
+    const diffX = currentX - touchStartX;
+    if (Math.abs(diffX) > 6) {
+      didSwipeRef.current = true;
+    }
+    setSwipeOffset(Math.max(-70, Math.min(70, diffX * 0.4)));
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+    setSwipeOffset(0);
+    if (touchStartX !== null && touchEndX !== null) {
+      const diffX = touchStartX - touchEndX;
+      const diffY = touchStartY !== null && touchEndY !== null ? touchStartY - touchEndY : 0;
+
+      // Détection d'un swipe horizontal franc
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        didSwipeRef.current = true;
+        if (diffX > 0) {
+          // Swipe gauche -> Suivant
+          if (swipeStep === 1) onNextDoor();
+          else if (swipeStep === 2) onNextSub();
+          else if (swipeStep === 3) onNextPerson();
+        } else {
+          // Swipe droite -> Précédent
+          if (swipeStep === 1) onPrevDoor();
+          else if (swipeStep === 2) onPrevSub();
+          else if (swipeStep === 3) onPrevPerson();
+        }
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+    setTouchStartY(null);
+    setTouchEndY(null);
+    setTimeout(() => {
+      didSwipeRef.current = false;
+    }, 60);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button, input, a, [role="button"]')) return;
+    didSwipeRef.current = false;
+    isMouseDownRef.current = true;
+    isDraggingRef.current = true;
+    mouseStartXRef.current = e.clientX;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMouseDownRef.current || mouseStartXRef.current === null) return;
+    const diffX = e.clientX - mouseStartXRef.current;
+    if (Math.abs(diffX) > 6) {
+      didSwipeRef.current = true;
+      setSwipeOffset(Math.max(-70, Math.min(70, diffX * 0.4)));
+    }
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isMouseDownRef.current || mouseStartXRef.current === null) return;
+    const diffX = mouseStartXRef.current - e.clientX;
+    isMouseDownRef.current = false;
+    isDraggingRef.current = false;
+    mouseStartXRef.current = null;
+    setSwipeOffset(0);
+
+    if (Math.abs(diffX) > 40) {
+      didSwipeRef.current = true;
+      if (diffX > 0) {
+        if (swipeStep === 1) onNextDoor();
+        else if (swipeStep === 2) onNextSub();
+        else if (swipeStep === 3) onNextPerson();
+      } else {
+        if (swipeStep === 1) onPrevDoor();
+        else if (swipeStep === 2) onPrevSub();
+        else if (swipeStep === 3) onPrevPerson();
+      }
+    }
+    setTimeout(() => {
+      didSwipeRef.current = false;
+    }, 60);
+  };
+
+  return (
+    <div 
+      id="swipe-mode-container"
+      className="relative w-full h-[calc(100dvh-55px)] sm:h-[calc(100dvh-70px)] pt-14 sm:pt-16 pb-20 sm:pb-24 flex flex-col items-center justify-center overflow-hidden z-20 select-none"
+    >
+      {/* ========================================================================= */}
+      {/* ÉTAPE 1 : CHOISIR LA PORTE (CARTE VIDÉO 9:16 PURE, EXACTEMENT COMME STUDIO) */}
+      {/* ========================================================================= */}
+      {swipeStep === 1 && (
+        <div className="flex-1 w-full flex flex-col items-center justify-center min-h-0 px-3 sm:px-6 animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative w-full flex-1 flex items-center justify-center min-h-0">
+            {/* Flèche Porte Précédente */}
+            {SHOW_CAROUSEL_ARROWS && (
+            <button
+              id="swipe-prev-door-btn"
+              onClick={onPrevDoor}
+              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Porte précédente"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            )}
+
+            {/* CARTE FORMAT VIDÉO VERTICAL 9:16 DE LA PORTE */}
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onClick={(e) => {
+                if (didSwipeRef.current) {
+                  didSwipeRef.current = false;
+                  return;
+                }
+                if ((e.target as HTMLElement).closest('button')) return;
+                setIsPlayingStep1(false);
+                setIsPlayingStep2(false);
+                setSwipeStep(2);
+                celestialAudio.playOrbSelect();
+              }}
+              style={{ transform: `translateX(${swipeOffset}px)` }}
+              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl flex flex-col justify-between p-3.5 sm:p-4.5 relative select-none shrink-0 transition-transform duration-100 cursor-pointer"
+            >
+              {/* Fond visuel permanent de la Porte */}
+              <img
+                src={currentSwipeDoor.coverImage}
+                alt={currentSwipeDoor.label}
+                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                loading="lazy"
+                decoding="async"
+              />
+              {/* Vidéo de la Porte active */}
+              {isPlayingStep1 && (
+                <video
+                  ref={video1Ref}
+                  key={`door-video-${currentSwipeDoor.id}`}
+                  src={STOCK_VIDEOS[swipeDoorIndex % STOCK_VIDEOS.length]}
+                  poster={currentSwipeDoor.coverImage}
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  playsInline
+                  onCanPlay={(e) => {
+                    if (isPlayingStep1) (e.target as HTMLVideoElement).play().catch(() => {});
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                preload="metadata"
+                />
+              )}
+
+              {/* Voile cinématographique clair (modèle Studio / Coproduction) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35 pointer-events-none" />
+
+              {/* HAUT : Titre seul de la porte dans une pilule sobre + Déclencheur vidéo en haut à droite */}
+              <div className="relative z-20 flex items-center justify-between pointer-events-auto">
+                <div className="px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide">
+                  <span>{currentSwipeDoor.label}</span>
+                </div>
+
+                <div className="flex items-center gap-1.5">
+                  {isPlayingStep1 && (
+                    <button
+                      onClick={toggleMute}
+                      className="p-1.5 rounded-full bg-black/60 hover:bg-[#A2482B] text-white border border-white/15 hover:border-[#A2482B] transition-colors cursor-pointer"
+                      title={isMuted ? 'Activer le son' : 'Couper le son'}
+                    >
+                      {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+                    </button>
+                  )}
+                  {/* Déclencheur lecteur vidéo vintage officiel TvPlayerIcon en haut à droite */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      togglePlay1();
+                    }}
+                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    title={isPlayingStep1 ? 'Mettre en pause' : 'Lire la vidéo'}
+                  >
+                    {isPlayingStep1 ? (
+                      <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white" />
+                    ) : (
+                      <TvPlayerIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white transition-transform" strokeWidth={1.6} />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Flèche Porte Suivante */}
+            {SHOW_CAROUSEL_ARROWS && (
+            <button
+              id="swipe-next-door-btn"
+              onClick={onNextDoor}
+              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Porte suivante"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* ÉTAPE 2 : CHOISIR LA DIRECTION (CARTES VIDÉO 9:16 À SWIPER, EXACTEMENT COMME STUDIO) */}
+      {/* ========================================================================= */}
+      {swipeStep === 2 && effectiveSubcategory && (
+        <div className="flex-1 w-full flex flex-col items-center justify-center min-h-0 px-3 sm:px-6 animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative w-full flex-1 flex items-center justify-center min-h-0">
+            {/* Flèche Direction Précédente */}
+            {SHOW_CAROUSEL_ARROWS && (
+            <button
+              id="swipe-prev-sub-btn"
+              onClick={onPrevSub}
+              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Direction précédente"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            )}
+
+            {/* CARTE FORMAT VIDÉO VERTICAL 9:16 DE LA DIRECTION */}
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onClick={(e) => {
+                if (didSwipeRef.current) {
+                  didSwipeRef.current = false;
+                  return;
+                }
+                if ((e.target as HTMLElement).closest('button')) return;
+                setSwipeSelectedSubcategory(effectiveSubcategory);
+                setSwipePersonIndex(0);
+                setIsPlayingStep2(false);
+                setIsPlayingStep3(false);
+                setSwipeStep(3);
+                celestialAudio.playOrbSelect();
+              }}
+              style={{ transform: `translateX(${swipeOffset}px)` }}
+              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl flex flex-col justify-between p-3.5 sm:p-4.5 relative select-none shrink-0 transition-transform duration-100 cursor-pointer"
+            >
+              {/* Image d'art céleste composée de la Direction */}
+              <img
+                src={effectiveSubcategory.photoUrl || currentSwipeDoor.coverImage}
+                alt={effectiveSubcategory.label}
+                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                loading="lazy"
+                decoding="async"
+              />
+              {isPlayingStep2 && (
+                <video
+                  ref={video2Ref}
+                  key={`sub-video-${effectiveSubcategory.slug}`}
+                  src={STOCK_VIDEOS[swipeSubIndex % STOCK_VIDEOS.length]}
+                  poster={effectiveSubcategory.photoUrl || currentSwipeDoor.coverImage}
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  playsInline
+                  onCanPlay={(e) => {
+                    if (isPlayingStep2) (e.target as HTMLVideoElement).play().catch(() => {});
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                preload="metadata"
+                />
+              )}
+
+              {/* Voile cinématographique */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/35 pointer-events-none" />
+
+              {/* HAUT : Icône + Titre de la direction dans une pilule sobre */}
+              <div className="relative z-20 flex items-center justify-between">
+                <div className="px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide flex items-center gap-1.5 max-w-[85%]">
+                  <DimensionIcon 
+                    name={effectiveSubcategory.icone} 
+                    size={14} 
+                    className="text-[#FFE7A3] shrink-0" 
+                  />
+                  <span className="truncate">{effectiveSubcategory.label}</span>
+                </div>
+
+                <div className="flex items-center gap-1.5">
+                  {isPlayingStep2 && (
+                    <button
+                      onClick={toggleMute}
+                      className="p-1.5 rounded-full bg-black/60 hover:bg-[#A2482B] text-white border border-white/15 hover:border-[#A2482B] transition-colors cursor-pointer shrink-0"
+                      title={isMuted ? 'Activer le son' : 'Couper le son'}
+                    >
+                      {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+                    </button>
+                  )}
+                  {/* Déclencheur lecteur vidéo vintage officiel TvPlayerIcon en haut à droite */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      togglePlay2();
+                    }}
+                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    title={isPlayingStep2 ? 'Mettre en pause' : 'Lire la vidéo'}
+                  >
+                    {isPlayingStep2 ? (
+                      <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white" />
+                    ) : (
+                      <TvPlayerIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white transition-transform" strokeWidth={1.6} />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Flèche Direction Suivante */}
+            {SHOW_CAROUSEL_ARROWS && (
+            <button
+              id="swipe-next-sub-btn"
+              onClick={onNextSub}
+              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Direction suivante"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* ÉTAPE 3 : CARTE DU PROTAGONISTE (JUSTE PRÉNOM ET ÂGE EN BAS)             */}
+      {/* ========================================================================= */}
+      {swipeStep === 3 && effectivePerson && (
+        <div className="flex-1 w-full flex flex-col items-center justify-center min-h-0 px-3 sm:px-6 animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative w-full flex-1 flex items-center justify-center min-h-0">
+            {/* Flèche Personne Précédente */}
+            {SHOW_CAROUSEL_ARROWS && (
+            <button
+              id="swipe-prev-person-btn"
+              onClick={onPrevPerson}
+              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Protagoniste précédent"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            )}
+
+            {/* CARTE FORMAT VIDÉO VERTICAL 9:16 DU PROTAGONISTE */}
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              style={{ transform: `translateX(${swipeOffset}px)` }}
+              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between relative select-none shrink-0 transition-transform duration-100"
+            >
+              {/* Vidéo ou photo du protagoniste */}
+              <img
+                src={effectivePerson.photoUrl}
+                alt={effectivePerson.name}
+                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                loading="lazy"
+                decoding="async"
+              />
+              {isPlayingStep3 && (
+                <video
+                  ref={video3Ref}
+                  key={`swipe-video-${effectivePerson.id}`}
+                  src={effectivePerson.teaserVideoUrl || STOCK_VIDEOS[swipePersonIndex % STOCK_VIDEOS.length]}
+                  poster={effectivePerson.photoUrl}
+                  playsInline
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  onCanPlay={(e) => {
+                    if (isPlayingStep3) (e.target as HTMLVideoElement).play().catch(() => {});
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                preload="metadata"
+                />
+              )}
+
+              {/* Gradient pour contraste cinématographique */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/85 pointer-events-none" />
+
+              {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
+              <UnifiedVideoCardOverlay
+                titleBadge={effectiveSubcategory?.label || 'Héritage'}
+                badgeIcon={
+                  <DimensionIcon 
+                    name={effectiveSubcategory?.icone || '01-sagesses/_dimension'} 
+                    size={14} 
+                    className="text-[#FFE7A3] shrink-0" 
+                  />
+                }
+                displayName={effectivePerson.firstName || effectivePerson.name.split(' ')[0]}
+                isPlaying={isPlayingStep3}
+                onTogglePlay={() => togglePlay3()}
+                isMuted={isMuted}
+                onToggleMute={toggleMute}
+                isCastingPage={true}
+                showCastingScore={true}
+                castingScore={personResonancePct || 91}
+                resonanceScore={personResonancePct}
+                onOpenResonance={() => onOpenResonanceModal(effectivePerson)}
+                questionText={
+                  effectiveSubcategory?.question || 
+                  (effectivePerson as any).question || 
+                  effectivePerson.teaserPitch || 
+                  "Quelle vision singulière ce parcours apporte-t-il au monde ?"
+                }
+                onOpenQuestionModal={() => {
+                  const qText = effectiveSubcategory?.question || 
+                    (effectivePerson as any).question || 
+                    effectivePerson.teaserPitch || 
+                    "Quelle vision singulière ce parcours apporte-t-il au monde ?";
+                  onOpenQuestionModal(effectiveSubcategory?.label || effectivePerson.name, qText);
+                }}
+                factText={
+                  effectivePerson.teaserPitch || 
+                  effectivePerson.quote || 
+                  (effectivePerson as any).story?.description || 
+                  "Passeur d'un savoir vivant transmis à sa communauté."
+                }
+                onOpenProfile={() => onNavigate({ type: 'protagonist_profile', protagonistId: effectivePerson.id })}
+                videoId={effectivePerson.id}
+                onShare={() => onSharePerson(effectivePerson)}
+                isShareCopied={isShareCopied}
+                onReportVideo={() => {
+                  setReportingTarget({
+                    id: effectivePerson.id,
+                    title: `${effectivePerson.name} — ${effectivePerson.story?.title || 'Récit d\'héritage'}`
+                  });
+                }}
+                onBlockVideo={() => {
+                  onNextPerson();
+                }}
+              />
+            </div>
+
+            {/* Flèche Personne Suivante */}
+            {SHOW_CAROUSEL_ARROWS && (
+            <button
+              id="swipe-next-person-btn"
+              onClick={onNextPerson}
+              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Protagoniste suivant"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Modale de signalement de la vidéo */}
+      {reportingTarget && (
+        <VideoReportModal
+          isOpen={Boolean(reportingTarget)}
+          onClose={() => setReportingTarget(null)}
+          targetType="video"
+          targetId={reportingTarget.id}
+          targetTitle={reportingTarget.title}
+        />
+      )}
+    </div>
+  );
+};
