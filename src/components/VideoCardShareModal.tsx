@@ -183,21 +183,21 @@ export const VideoCardShareModal: React.FC<VideoCardShareModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/92 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 animate-in fade-in duration-200"
       onClick={(e) => {
         e.stopPropagation();
         onClose();
       }}
     >
-      {/* Modale claire, élégante et calibrée strictement sur l'esprit de la modale d'évaluation */}
+      {/* Modale calibrée strictement sur la largeur de la carte vidéo active */}
       <div 
-        className="relative w-[min(340px,calc(100vw-32px))] sm:w-[350px] max-h-[90vh] overflow-y-auto no-scrollbar mx-auto bg-white/98 rounded-3xl p-4.5 sm:p-5 shadow-2xl border border-stone-200/90 text-[#1C1917] space-y-3 animate-in zoom-in-95 duration-200 select-none shrink-0"
+        className="relative w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] max-h-[calc(100dvh-48px)] overflow-y-auto no-scrollbar mx-auto bg-white/98 rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shadow-2xl border border-stone-200/90 text-[#1C1917] space-y-2.5 animate-in zoom-in-95 duration-200 select-none shrink-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête raffiné avec badge terracotta et fermeture douce */}
-        <div className="flex items-center justify-between pb-2.5 border-b border-stone-100">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-xl bg-[#A2482B]/10 border border-[#A2482B]/20 flex items-center justify-center text-[#A2482B] shrink-0">
+        <div className="flex items-center justify-between pb-2 border-b border-stone-100 gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-7 h-7 rounded-xl bg-[#A2482B]/10 border border-[#A2482B]/20 flex items-center justify-center text-[#A2482B] shrink-0">
               <Share2 className="w-3.5 h-3.5" />
             </div>
             <div className="min-w-0">
@@ -205,7 +205,7 @@ export const VideoCardShareModal: React.FC<VideoCardShareModalProps> = ({
                 Partage et options
               </h3>
               {cleanTitle && (
-                <p className="text-[10.5px] text-stone-500 font-medium block truncate max-w-[200px] leading-tight mt-0.5">
+                <p className="text-[10px] text-stone-500 font-medium block truncate leading-tight mt-0.5">
                   {cleanTitle}
                 </p>
               )}

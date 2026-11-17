@@ -1,17 +1,11 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { 
-  ChevronLeft,
-  ChevronRight,
-  Plus,
   X,
   MessageSquare,
   CheckCircle2,
   Video,
-  ArrowLeft,
   Send,
-  Copy,
-  AlertCircle,
-  UploadCloud
+  Copy
 } from 'lucide-react';
 import { useAuth } from '../services/authContext';
 import { ShareIcon } from './ShareIcon';
@@ -29,6 +23,9 @@ import {
   DemoProfileCategory 
 } from './landing/DemoProfilPascalSection';
 import { UnifiedVideoCardOverlay } from './UnifiedVideoCardOverlay';
+import { StageCarousel3D } from './shared/StageCarousel3D';
+import { CARD_WIDTH_MODAL_CLASS } from './shared/CardWidthModal';
+import { formatFirstLetterOnly } from '../utils/textFormatters';
 import {
   ViewScreen,
   AffiliationPerson,
@@ -44,9 +41,7 @@ import {
   ProfileVideoTab,
   PROFILE_TAB_LABELS,
   USER_VIDEOS_UPDATED_EVENT,
-  getUserProfileTabSubmissions,
-  getProfileTabQuotaStatus,
-  trySaveUserVideoSubmission
+  getUserProfileTabSubmissions
 } from '../utils/userVideoService';
 
 export type {
@@ -272,7 +267,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
 
   const [shareToast, setShareToast] = useState<string | null>(null);
 
-  // Indices de navigation par catégorie (chariot horizontal)
+  // Indices de navigation par catégorie (carrousel 3D horizontal)
   const [categoryIndices, setCategoryIndices] = useState<Record<string, number>>({
     parcours: 0,
     produits: 0,
@@ -283,16 +278,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
     offre: 0,
     appel: 0,
   });
-  // 2D Swiping state (Horizontal = changer vidéo)
-  const [swipeOffsetX, setSwipeOffsetX] = useState<number>(0);
-  const [isSwipeDragging, setIsSwipeDragging] = useState<boolean>(false);
-  const touchStartXRef = useRef<number | null>(null);
-  const touchStartYRef = useRef<number | null>(null);
-  const touchStartTimeRef = useRef<number>(0);
-  const isSwipeDraggingRef = useRef<boolean>(false);
-  const didSwipeRef = useRef<boolean>(false);
 
-  // Video playback & scrubber (Style Image 2)
+  // Video playback & scrubber
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [videoProgress, setVideoProgress] = useState<number>(0);
@@ -302,8 +289,6 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
   const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
   const [shareContentType, setShareContentType] = useState<'profile' | 'video'>('profile');
   const [isVideoCardShareModalOpen, setIsVideoCardShareModalOpen] = useState<boolean>(false);
-
-
 
   // Modale d'invitation à l'échange
   const [isInviteModalOpen, setIsInviteModalOpen] = useState<boolean>(false);
@@ -323,29 +308,6 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       window.removeEventListener(USER_VIDEOS_UPDATED_EVENT, refreshSubmissions);
     };
   }, []);
-
-  // Modale d'ajout direct sur un onglet du Profil
-  const [isAddVideoModalOpen, setIsAddVideoModalOpen] = useState<boolean>(false);
-  const [addVideoTargetTab, setAddVideoTargetTab] = useState<ProfileVideoTab>('parcours');
-  const [newVideoTitle, setNewVideoTitle] = useState<string>('');
-  const [newVideoDescription, setNewVideoDescription] = useState<string>('');
-  const [newVideoFileName, setNewVideoFileName] = useState<string | null>(null);
-  const [newVideoPreviewUrl, setNewVideoPreviewUrl] = useState<string | null>(null);
-  const [addVideoError, setAddVideoError] = useState<string | null>(null);
-
-  const handleContactProtagonist = () => {
-    const perm = localStorage.getItem('yonywood_msg_permission') || 'invitation';
-    if (perm === 'none') {
-      setShareToast('Les messages directs de ce profil sont actuellement désactivés.');
-      setTimeout(() => setShareToast(null), 3000);
-      return;
-    }
-    if (perm === 'invitation') {
-      setIsInviteModalOpen(true);
-      return;
-    }
-    onNavigate({ type: 'messaging' });
-  };
 
   const handleSendInvite = (e: React.FormEvent) => {
     e.preventDefault();
@@ -594,11 +556,6 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
     return [...ownerSubmittedItems, ...baseCategoryItems];
   }, [ownerSubmittedItems, baseCategoryItems]);
 
-  const activeTabQuota = useMemo(() => {
-    if (!isOwner || !activeProfileTab) return null;
-    return getProfileTabQuotaStatus(ownerUserId, activeProfileTab, baseCategoryItems.length);
-  }, [isOwner, activeProfileTab, ownerUserId, baseCategoryItems.length, submissionsVersion]);
-
   const totalItemsInActiveCategory = activeCategoryItems.length;
 
   const currentCategoryRawIndex = categoryIndices[activeCategory] ?? categoryIndices[normalizedCategory] ?? 0;
@@ -667,140 +624,11 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
     });
   };
 
-  // SWIPE HORIZONTAL : Passer de vidéo en vidéo selon la catégorie
-  const handleNextVideo = () => {
-    if (totalItemsInActiveCategory <= 1) return;
+  const handleSelectCategoryIndex = (nextIndex: number) => {
     setCategoryIndices((prev) => ({
       ...prev,
-      [activeCategory]: ((prev[activeCategory] || 0) + 1) % totalItemsInActiveCategory,
+      [activeCategory]: nextIndex
     }));
-  };
-
-  const handlePrevVideo = () => {
-    if (totalItemsInActiveCategory <= 1) return;
-    setCategoryIndices((prev) => ({
-      ...prev,
-      [activeCategory]: ((prev[activeCategory] || 0) - 1 + totalItemsInActiveCategory) % totalItemsInActiveCategory,
-    }));
-  };
-
-  const keyboardNavRef = useRef<{ next: () => void; prev: () => void }>({ next: () => {}, prev: () => {} });
-  keyboardNavRef.current = { next: handleNextVideo, prev: handlePrevVideo };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isShareModalOpen || isVideoCardShareModalOpen || isInviteModalOpen || isAddVideoModalOpen) return;
-      const target = e.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === 'INPUT' ||
-          target.tagName === 'TEXTAREA' ||
-          target.tagName === 'SELECT' ||
-          target.isContentEditable)
-      ) {
-        return;
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        keyboardNavRef.current.next();
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        keyboardNavRef.current.prev();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isShareModalOpen, isVideoCardShareModalOpen, isInviteModalOpen, isAddVideoModalOpen]);
-
-  // Touch Swipe Handlers (Horizontal = vidéo)
-  const onTouchStart = (e: React.TouchEvent) => {
-    if ((e.target as HTMLElement).closest('button, a, input, textarea, select, [role="button"]')) return;
-    didSwipeRef.current = false;
-    touchStartXRef.current = e.touches[0].clientX;
-    touchStartYRef.current = e.touches[0].clientY;
-    touchStartTimeRef.current = Date.now();
-    isSwipeDraggingRef.current = true;
-    setIsSwipeDragging(true);
-    setSwipeOffsetX(0);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (!isSwipeDraggingRef.current || touchStartXRef.current === null || touchStartYRef.current === null) return;
-    const diffX = e.touches[0].clientX - touchStartXRef.current;
-    const diffY = e.touches[0].clientY - touchStartYRef.current;
-    if (Math.abs(diffX) > 6 && Math.abs(diffX) > Math.abs(diffY)) {
-      didSwipeRef.current = true;
-      setSwipeOffsetX(Math.max(-90, Math.min(90, diffX * 0.65)));
-    }
-  };
-
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (!isSwipeDraggingRef.current || touchStartXRef.current === null) return;
-    const diffX = e.changedTouches[0].clientX - touchStartXRef.current;
-    const elapsed = Math.max(1, Date.now() - touchStartTimeRef.current);
-    const velocity = Math.abs(diffX) / elapsed;
-    isSwipeDraggingRef.current = false;
-    touchStartXRef.current = null;
-    touchStartYRef.current = null;
-    setIsSwipeDragging(false);
-    setSwipeOffsetX(0);
-
-    if (Math.abs(diffX) > 24 || velocity > 0.28) {
-      didSwipeRef.current = true;
-      if (diffX < 0) {
-        handleNextVideo();
-      } else {
-        handlePrevVideo();
-      }
-    }
-    setTimeout(() => {
-      didSwipeRef.current = false;
-    }, 60);
-  };
-
-  // Mouse Drag Handlers (Horizontal only - no vertical shifting)
-  const onMouseDown = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('button, a, input, textarea, select, [role="button"]')) return;
-    didSwipeRef.current = false;
-    touchStartXRef.current = e.clientX;
-    touchStartYRef.current = e.clientY;
-    touchStartTimeRef.current = Date.now();
-    isSwipeDraggingRef.current = true;
-    setIsSwipeDragging(true);
-    setSwipeOffsetX(0);
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isSwipeDraggingRef.current || touchStartXRef.current === null) return;
-    const diffX = e.clientX - touchStartXRef.current;
-    if (Math.abs(diffX) > 6) {
-      didSwipeRef.current = true;
-      setSwipeOffsetX(Math.max(-90, Math.min(90, diffX * 0.65)));
-    }
-  };
-
-  const onMouseUp = (e: React.MouseEvent) => {
-    if (!isSwipeDraggingRef.current || touchStartXRef.current === null) return;
-    const diffX = e.clientX - touchStartXRef.current;
-    const elapsed = Math.max(1, Date.now() - touchStartTimeRef.current);
-    const velocity = Math.abs(diffX) / elapsed;
-    isSwipeDraggingRef.current = false;
-    touchStartXRef.current = null;
-    touchStartYRef.current = null;
-    setIsSwipeDragging(false);
-    setSwipeOffsetX(0);
-
-    if (Math.abs(diffX) > 24 || velocity > 0.28) {
-      didSwipeRef.current = true;
-      if (diffX < 0) {
-        handleNextVideo();
-      } else {
-        handlePrevVideo();
-      }
-    }
-    setTimeout(() => {
-      didSwipeRef.current = false;
-    }, 60);
   };
 
   // Prénom affiché uniquement (ex: Pascal)
@@ -987,75 +815,9 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
     setIsShareModalOpen(true);
   };
 
-  // Partager la vidéo spécifique actuellement affichée (ouvre le menu YouTube avec sauvegarde, partage, masquage et signalement)
+  // Partager la vidéo spécifique actuellement affichée
   const handleShareVideo = () => {
     setIsVideoCardShareModalOpen(true);
-  };
-
-  const openAddVideoModal = (tab: ProfileVideoTab) => {
-    const tabBaseCount = getBaseItemsForCategory(tab).length;
-    const quota = getProfileTabQuotaStatus(ownerUserId, tab, tabBaseCount);
-    if (quota.isLimitReached && quota.limitMessage) {
-      setShareToast(quota.limitMessage);
-      setTimeout(() => setShareToast(null), 4000);
-      return;
-    }
-    setAddVideoTargetTab(tab);
-    setNewVideoTitle('');
-    setNewVideoDescription('');
-    setNewVideoFileName(null);
-    setNewVideoPreviewUrl(null);
-    setAddVideoError(null);
-    setIsAddVideoModalOpen(true);
-  };
-
-  const handleSubmitProfileVideo = (e: React.FormEvent) => {
-    e.preventDefault();
-    const tabBaseCount = getBaseItemsForCategory(addVideoTargetTab).length;
-    const cleanTitle =
-      newVideoTitle.trim() ||
-      (newVideoFileName ? newVideoFileName.replace(/\.[^/.]+$/, '') : '') ||
-      PROFILE_TAB_LABELS[addVideoTargetTab];
-    const cleanDesc =
-      newVideoDescription.trim() ||
-      `Vidéo ajoutée dans l’onglet « ${PROFILE_TAB_LABELS[addVideoTargetTab]} ».`;
-
-    const result = trySaveUserVideoSubmission(
-      {
-        userId: ownerUserId,
-        userType: currentUser?.accountType || 'INDIVIDUAL',
-        authorName: profileFullDisplayName,
-        authorAvatarUrl: userPhoto,
-        title: cleanTitle,
-        synopsis: cleanDesc,
-        universe: addVideoTargetTab,
-        profileTab: addVideoTargetTab,
-        videoUrl: newVideoPreviewUrl || '/sample.mp4',
-        thumbnailUrl: userPhoto || '/assets/images/selfie_video_story.jpg'
-      },
-      { baseExistingCount: tabBaseCount }
-    );
-
-    if ('error' in result) {
-      setAddVideoError(result.error);
-      setShareToast(result.error);
-      setTimeout(() => setShareToast(null), 4000);
-      return;
-    }
-
-    setSubmissionsVersion((v) => v + 1);
-    setCategoryIndices((prev) => ({
-      ...prev,
-      [addVideoTargetTab]: 0
-    }));
-    setIsAddVideoModalOpen(false);
-    setNewVideoTitle('');
-    setNewVideoDescription('');
-    setNewVideoFileName(null);
-    setNewVideoPreviewUrl(null);
-    setAddVideoError(null);
-    setShareToast(`Vidéo ajoutée dans « ${PROFILE_TAB_LABELS[addVideoTargetTab]} ».`);
-    setTimeout(() => setShareToast(null), 3500);
   };
 
   // Question existentielle à laquelle répond la personne dans la vidéo
@@ -1076,38 +838,36 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
     return "Qu’est-ce qui, un jour, vous a fait sentir que quelque chose de plus grand que vous était présent ?";
   };
 
-  return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-center text-[#1C1917] select-none bg-white">
-      
-      {/* BANNIÈRE CONTEXTUELLE DE REPRISE D'ACHAT DEPUIS LE MARCHÉ (MASQUÉE) */}
-      {SHOW_MARKETPLACE_RETURN_BANNER && returnToMarketplace && marketplaceContext && (
-        <div className="max-w-4xl mx-auto px-4 mt-1 mb-1.5 w-full animate-in fade-in">
-          <div className="p-2.5 sm:p-3 rounded-2xl bg-amber-50/90 border border-amber-200/90 shadow-xs flex items-center justify-between gap-3 text-[#1C1917]">
-            <div className="min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block">
-                Offre consultée sur le Marché
-              </span>
-              <p className="text-xs sm:text-sm font-bold text-[#1C1917] truncate">
-                {marketplaceContext.sharesCount} part{marketplaceContext.sharesCount > 1 ? 's' : ''} de {marketplaceContext.seriesTitle} à {marketplaceContext.unitPrice} € / part
-              </p>
-              <span className="text-[10.5px] text-stone-500 font-medium">Vendeur : {marketplaceContext.sellerName}</span>
-            </div>
-            <button
-              onClick={() => onNavigate({
-                type: 'marketplace',
-                initialTab: 'marche',
-                initialPeerOfferId: marketplaceContext.offerId,
-                initialPeerIndex: marketplaceContext.offerIndex,
-                restoreContext: marketplaceContext
-              })}
-              className="shrink-0 px-3.5 py-1.5 rounded-full bg-[#A2482B] hover:bg-[#8A3B22] text-white text-xs font-bold shadow-sm transition-all cursor-pointer active:scale-95"
-            >
-              Reprendre l'achat
-            </button>
-          </div>
-        </div>
-      )}
+  const getBadgeTitleForItem = (item: VideoSimulationItem) => {
+    const stripFinancialText = (text?: string) => {
+      if (!text) return undefined;
+      if (/(€|%\s*financé|récoltés|contributeur|\bparts?\b|\binvestir\b|\brevenus?\b|\brendement\b|\bprix\b)/i.test(text)) {
+        return undefined;
+      }
+      return text;
+    };
 
+    let badgeTitle = stripFinancialText(item.tag) || item.title || 'Origines & Mémoire';
+
+    if (normalizedCategory === 'parcours') {
+      badgeTitle = stripFinancialText(item.tag) || item.title || 'Retour au pays';
+    } else if (normalizedCategory === 'projets') {
+      const titleLower = item.title.toLowerCase();
+      badgeTitle = titleLower.includes('atelier')
+        ? 'L’Atelier créatif'
+        : titleLower.includes('résidence')
+        ? 'Résidence lagune'
+        : titleLower.includes('passeurs')
+        ? 'Passeurs d’avenir'
+        : titleLower.includes('mémoires')
+        ? 'Mémoires vivantes'
+        : item.title.split(/[:–—]/)[0].trim();
+    }
+    return badgeTitle;
+  };
+
+  return (
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
       {/* TOAST SUCCÈS */}
       {shareToast && (
         <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm w-full px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">
@@ -1116,16 +876,10 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         </div>
       )}
 
-      {/* ========================================================================= */}
-      {/* 2. VISIONNEUSE VERTICALE 9:16 (STRICTEMENT ALIGNÉE SUR COPRODUCTION)       */}
-      {/* ========================================================================= */}
-      <div className="flex-1 flex flex-col items-center justify-center py-1 sm:py-2 min-h-0 overflow-visible px-2 sm:px-6 md:px-10 animate-in fade-in duration-200 relative">
+      <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
 
-        {/* Conteneur principal avec vidéo 9:16 épurée */}
-        <div className="relative w-full h-full flex items-center justify-center">
-          
-          {totalItemsInActiveCategory === 0 || !currentSimulationItem ? (
-            /* ÉTAT VIDE : INVITATION À PUBLIER UNE VIDÉO DANS LE STUDIO */
+        {totalItemsInActiveCategory === 0 || !currentSimulationItem ? (
+          <div className="flex-1 flex items-center justify-center min-h-0 py-1">
             <div className="aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white border border-stone-200/40 relative flex flex-col justify-between p-4 sm:p-5 text-center my-auto">
               <div className="my-auto flex flex-col items-center justify-center space-y-3 px-2">
                 <div className="w-12 h-12 rounded-full bg-[#A2482B]/20 text-[#A2482B] flex items-center justify-center border border-[#A2482B]/40">
@@ -1135,258 +889,124 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                   Aucune vidéo pour le moment
                 </h3>
                 <p className="text-[11px] sm:text-xs text-stone-300 leading-relaxed max-w-[210px]">
-                  {isOwner 
-                    ? "Racontez votre parcours et faites résonner votre histoire dans la communauté en publiant votre première vidéo."
-                    : `Ce profil n'a pas encore publié de vidéo dans cette catégorie.`}
+                  {isOwner
+                    ? "Déposez votre premier récit depuis le Studio ou Mon Studio."
+                    : "Ce profil n'a pas encore publié de vidéo dans cette catégorie."}
                 </p>
-                {isOwner && activeProfileTab && (
-                  <div className="mt-2 flex flex-col items-center gap-1.5">
-                    <button
-                      type="button"
-                      disabled={Boolean(activeTabQuota?.isLimitReached)}
-                      aria-disabled={Boolean(activeTabQuota?.isLimitReached)}
-                      title={activeTabQuota?.limitMessage || `Ajouter une vidéo dans « ${PROFILE_TAB_LABELS[activeProfileTab]} »`}
-                      onClick={() => openAddVideoModal(activeProfileTab)}
-                      className={`px-4 py-2 rounded-full text-xs font-semibold shadow-md transition-all flex items-center gap-1.5 ${
-                        activeTabQuota?.isLimitReached
-                          ? 'bg-stone-700 text-stone-300 cursor-not-allowed opacity-75'
-                          : 'bg-[#A2482B] hover:bg-[#8A3B22] text-white active:scale-95 cursor-pointer'
-                      }`}
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                      <span>Ajouter une vidéo</span>
-                    </button>
-                    {activeTabQuota?.isLimitReached && activeTabQuota.limitMessage && (
-                      <p
-                        role="status"
-                        className="text-[11px] text-amber-200 bg-amber-950/60 border border-amber-400/30 rounded-xl px-2.5 py-1.5 max-w-[220px] leading-snug"
-                      >
-                        {activeTabQuota.limitMessage}
-                      </p>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
-          ) : (
-            <>
-              {/* FLÈCHE GAUCHE (Strictement identique et alignée sur la page Studio) */}
-              {SHOW_CAROUSEL_ARROWS && totalItemsInActiveCategory > 1 && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevVideo();
-                  }}
-                  className="hidden sm:flex absolute left-2 sm:left-4 lg:left-6 z-20 w-11 h-11 rounded-full shrink-0 bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-xl items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
-                  title="Vidéo précédente"
-                  aria-label="Vidéo précédente"
-                  id="prev-profile-card-btn"
+          </div>
+        ) : (
+          <StageCarousel3D
+            items={activeCategoryItems}
+            currentIndex={currentCategorySafeIndex}
+            onIndexChange={handleSelectCategoryIndex}
+            getKey={(item) => item.id}
+            circular={activeCategoryItems.length >= 3}
+            dragDisabled={isShareModalOpen || isVideoCardShareModalOpen || isInviteModalOpen}
+            showDesktopArrows={SHOW_CAROUSEL_ARROWS}
+            prevAriaLabel="Vidéo précédente"
+            nextAriaLabel="Vidéo suivante"
+            onActiveCardClick={() => toggleVideoPlayback()}
+            renderCard={(item, _idx, { isCenter }) => {
+              const isThisPlaying = isCenter && isPlaying;
+              return (
+                <div
+                  className="group relative w-full h-full flex flex-col justify-between text-white cursor-pointer"
+                  id={`card-video-${item.id}`}
                 >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-              )}
-
-              {/* CARTE FORMAT 9:16 VERTICAL AVEC GESTION DU SWIPE 2D */}
-              <div
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-                onTouchCancel={() => {
-                  isSwipeDraggingRef.current = false;
-                  touchStartXRef.current = null;
-                  touchStartYRef.current = null;
-                  setIsSwipeDragging(false);
-                  setSwipeOffsetX(0);
-                }}
-                onMouseDown={onMouseDown}
-                onMouseMove={onMouseMove}
-                onMouseUp={onMouseUp}
-                onMouseLeave={onMouseUp}
-                onClick={(e) => {
-                  if (didSwipeRef.current) {
-                    didSwipeRef.current = false;
-                    return;
-                  }
-                  if ((e.target as HTMLElement).closest('button, a, input, textarea, select')) return;
-                  toggleVideoPlayback();
-                }}
-                className="relative aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white border border-stone-200/90 flex flex-col justify-between cursor-pointer group select-none shrink-0 touch-pan-y"
-                style={{
-                  transform: `translateX(${swipeOffsetX}px)`,
-                  transition: isSwipeDragging ? 'none' : 'transform 0.22s ease-out'
-                }}
-              >
-            {/* ================================================================= */}
-            {/* CATÉGORIE 1 : RÉCIT (Récits personnels & Épisodes réunis)         */}
-            {/* ================================================================= */}
-              <div 
-                className="group relative w-full h-full flex flex-col justify-between text-white"
-                id={`card-video-${currentSimulationItem.id}`}
-              >
-                {/* Media de fond : Vidéo en lecture ou Photo HD */}
-                {isPlaying ? (
-                  <video
-                    ref={videoRef}
-                    key={`profile-video-${currentSimulationItem.id}`}
-                    src={currentSimulationItem.videoUrl}
-                    autoPlay
-                    loop
-                    muted={isMuted}
-                    playsInline
-                    onTimeUpdate={(e) => {
-                      const v = e.currentTarget;
-                      if (v.duration && v.duration > 0) {
-                        setVideoProgress((v.currentTime / v.duration) * 100);
-                      }
-                    }}
-                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                  preload="metadata"
-                  />
-                ) : (
-                  <img
-                    src={currentSimulationItem.posterUrl}
-                    alt={currentSimulationItem.title}
-                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                )}
-
-                {/* Dégradés pour lisibilité des badges, de la pagination et du texte */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 pointer-events-none" />
-
-                {/* Overlay standardisé unique : titre simple en blanc en haut à gauche, TvPlayerIcon en haut à droite, prénom en bas à gauche avec barre de lecture, et les 4 boutons verticaux à droite */}
-                {(() => {
-                  const stripFinancialText = (text?: string) => {
-                    if (!text) return undefined;
-                    if (/(€|%\s*financé|récoltés|contributeur|\bparts?\b|\binvestir\b|\brevenus?\b|\brendement\b|\bprix\b)/i.test(text)) {
-                      return undefined;
-                    }
-                    return text;
-                  };
-
-                  let badgeTitle = stripFinancialText(currentSimulationItem.tag) || currentSimulationItem.title || 'Origines & Mémoire';
-
-                  if (normalizedCategory === 'parcours') {
-                    badgeTitle = stripFinancialText(currentSimulationItem.tag) || currentSimulationItem.title || 'Retour au pays';
-                  } else if (normalizedCategory === 'projets') {
-                    const titleLower = currentSimulationItem.title.toLowerCase();
-                    badgeTitle = titleLower.includes('atelier')
-                      ? 'L’Atelier créatif'
-                      : titleLower.includes('résidence')
-                      ? 'Résidence lagune'
-                      : titleLower.includes('passeurs')
-                      ? 'Passeurs d’avenir'
-                      : titleLower.includes('mémoires')
-                      ? 'Mémoires vivantes'
-                      : currentSimulationItem.title.split(/[:–—]/)[0].trim();
-                  }
-
-                  return (
-                    <UnifiedVideoCardOverlay
-                      titleBadge={badgeTitle}
-                      displayName={profileDisplayName || 'Roméo'}
-                      videoProgress={videoProgress}
-                      isPlaying={isPlaying}
-                      onTogglePlay={toggleVideoPlayback}
-                      isMuted={isMuted}
-                      onToggleMute={toggleMute}
-                      questionText={getQuestionText()}
-                      factText={currentSimulationItem.description}
-                      onShare={handleShareProfile}
-                      onReportVideo={() => {
-                        setShareToast("Vidéo signalée à la modération.");
-                        setTimeout(() => setShareToast(null), 2500);
+                  {isThisPlaying ? (
+                    <video
+                      ref={videoRef}
+                      key={`profile-video-${item.id}`}
+                      src={item.videoUrl}
+                      autoPlay
+                      loop
+                      muted={isMuted}
+                      playsInline
+                      onTimeUpdate={(e) => {
+                        const v = e.currentTarget;
+                        if (v.duration && v.duration > 0) {
+                          setVideoProgress((v.currentTime / v.duration) * 100);
+                        }
                       }}
-                      onBlockVideo={() => {
-                        setShareToast("Cette vidéo a été masquée.");
-                        setTimeout(() => setShareToast(null), 2500);
-                      }}
-                      customActionButtons={profileCategoryActionButtons}
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                      preload="metadata"
                     />
-                  );
-                })()}
-              </div>
+                  ) : (
+                    <img
+                      src={item.posterUrl}
+                      alt={item.title}
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                      loading={isCenter ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                  )}
 
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 pointer-events-none" />
 
-
-
-
-
-          </div>
-
-              {/* FLÈCHE DROITE (Strictement identique et alignée sur la page Studio) */}
-              {SHOW_CAROUSEL_ARROWS && totalItemsInActiveCategory > 1 && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextVideo();
-                  }}
-                  className="hidden sm:flex absolute right-2 sm:right-4 lg:right-6 z-20 w-11 h-11 rounded-full shrink-0 bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-xl items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
-                  title="Vidéo suivante"
-                  aria-label="Vidéo suivante"
-                  id="next-profile-card-btn"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              )}
-            </>
-          )}
-
-        </div>
-
-        {/* Barre d'ajout discrète sous la carte (sans compteur de type 3/8) */}
-        {isOwner && activeProfileTab && totalItemsInActiveCategory > 0 && (
-          <div className="shrink-0 mt-2 flex flex-col items-center justify-center gap-1 px-2">
-            <button
-              type="button"
-              id="profile-add-video-btn"
-              disabled={Boolean(activeTabQuota?.isLimitReached)}
-              aria-disabled={Boolean(activeTabQuota?.isLimitReached)}
-              title={activeTabQuota?.limitMessage || `Ajouter une vidéo dans « ${PROFILE_TAB_LABELS[activeProfileTab]} »`}
-              onClick={() => openAddVideoModal(activeProfileTab)}
-              className={`px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1.5 border ${
-                activeTabQuota?.isLimitReached
-                  ? 'bg-stone-100 text-stone-400 border-stone-200 cursor-not-allowed'
-                  : 'bg-white hover:bg-[#A2482B] text-[#1C1917] hover:text-white border-stone-200 hover:border-[#A2482B] shadow-xs active:scale-95 cursor-pointer'
-              }`}
-            >
-              <Plus className="w-3.5 h-3.5" />
-              <span>Ajouter une vidéo ({PROFILE_TAB_LABELS[activeProfileTab]})</span>
-            </button>
-            {activeTabQuota?.isLimitReached && activeTabQuota.limitMessage && (
-              <p
-                id="profile-tab-limit-message"
-                role="status"
-                className="text-[11px] font-medium text-[#A2482B] bg-amber-50/95 border border-amber-200/90 rounded-xl px-3 py-1 text-center max-w-md leading-snug flex items-center gap-1.5"
-              >
-                <AlertCircle className="w-3.5 h-3.5 shrink-0 text-[#A2482B]" />
-                <span>{activeTabQuota.limitMessage}</span>
-              </p>
-            )}
-          </div>
+                  <UnifiedVideoCardOverlay
+                    titleBadge={getBadgeTitleForItem(item)}
+                    topLeftSlot={
+                      <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                        <span
+                          className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none truncate"
+                          title={formatFirstLetterOnly(getBadgeTitleForItem(item))}
+                        >
+                          {formatFirstLetterOnly(getBadgeTitleForItem(item))}
+                        </span>
+                      </div>
+                    }
+                    displayName={profileDisplayName || 'Roméo'}
+                    videoProgress={isCenter ? videoProgress : 0}
+                    isPlaying={isThisPlaying}
+                    onTogglePlay={isCenter ? toggleVideoPlayback : () => {}}
+                    isMuted={isMuted}
+                    onToggleMute={isCenter ? toggleMute : () => {}}
+                    questionText={getQuestionText()}
+                    factText={item.description}
+                    onShare={handleShareProfile}
+                    onReportVideo={() => {
+                      setShareToast("Vidéo signalée à la modération.");
+                      setTimeout(() => setShareToast(null), 2500);
+                    }}
+                    onBlockVideo={() => {
+                      setShareToast("Cette vidéo a été masquée.");
+                      setTimeout(() => setShareToast(null), 2500);
+                    }}
+                    customActionButtons={isCenter ? profileCategoryActionButtons : undefined}
+                  />
+                </div>
+              );
+            }}
+          />
         )}
-
       </div>
 
-
-
       {/* ========================================================================= */}
-      {/* 7. MODALE DE PARTAGE RÉSEAUX SOCIAUX                                      */}
+      {/* MODALE DE PARTAGE RÉSEAUX SOCIAUX (STRICTEMENT LARGEUR CARTE)             */}
       {/* ========================================================================= */}
       {isShareModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 animate-in fade-in">
-          <div className="bg-white max-w-sm w-full rounded-3xl p-6 shadow-2xl border border-stone-200 space-y-5">
+        <div
+          className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3 sm:p-4 animate-in fade-in"
+          onClick={() => setIsShareModalOpen(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`bg-white ${CARD_WIDTH_MODAL_CLASS} max-h-[calc(100dvh-48px)] overflow-y-auto no-scrollbar rounded-2xl sm:rounded-3xl p-4 shadow-2xl border border-stone-200 space-y-3.5 shrink-0`}
+          >
             <div className="flex items-center justify-between pb-2 border-b border-stone-200">
-              <div className="flex items-center gap-2">
-                <ShareIcon className="w-5 h-5 text-[#C89B3C]" />
-                <h3 className="font-editorial text-base font-bold text-[#1C1917]">
+              <div className="flex items-center gap-2 min-w-0">
+                <ShareIcon className="w-4 h-4 text-[#C89B3C] shrink-0" />
+                <h3 className="font-editorial text-xs sm:text-sm font-bold text-[#1C1917] truncate">
                   {shareContentType === 'video' ? 'Partager la vidéo' : 'Partager le profil'}
                 </h3>
               </div>
-              <button onClick={() => setIsShareModalOpen(false)} className="p-1 text-stone-400 hover:text-stone-700">
+              <button
+                type="button"
+                onClick={() => setIsShareModalOpen(false)}
+                className="p-1 text-stone-400 hover:text-stone-700 cursor-pointer shrink-0"
+              >
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -1518,14 +1138,20 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* MODALE D'INVITATION À L'ÉCHANGE (Pour contacter un protagoniste)         */}
+      {/* MODALE D'INVITATION À L'ÉCHANGE (STRICTEMENT LARGEUR CARTE)               */}
       {/* ========================================================================= */}
       {isInviteModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 animate-in fade-in">
-          <div className="bg-white max-w-md w-full rounded-3xl p-5 sm:p-6 shadow-2xl border border-stone-200 space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl overflow-hidden border border-stone-200 shadow-xs bg-stone-100 shrink-0">
+        <div
+          className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3 sm:p-4 animate-in fade-in"
+          onClick={() => setIsInviteModalOpen(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`bg-white ${CARD_WIDTH_MODAL_CLASS} max-h-[calc(100dvh-48px)] overflow-y-auto no-scrollbar rounded-2xl sm:rounded-3xl p-4 shadow-2xl border border-stone-200 space-y-3 shrink-0`}
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-stone-200 gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-9 h-9 rounded-xl overflow-hidden border border-stone-200 shadow-xs bg-stone-100 shrink-0">
                   <img
                     src={userPhoto || '/assets/duos/codjo-blind.jpg'}
                     alt={profileDisplayName}
@@ -1534,39 +1160,35 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                     decoding="async"
                   />
                 </div>
-                <div>
-                  <h3 className="font-editorial text-base sm:text-lg font-bold text-[#1C1917]">
-                    Inviter {profileDisplayName} à échanger
+                <div className="min-w-0">
+                  <h3 className="font-editorial text-xs sm:text-sm font-bold text-[#1C1917] truncate">
+                    Inviter {profileDisplayName}
                   </h3>
-                  <p className="text-[11px] text-stone-500">
-                    Messagerie protectrice sur invitation
+                  <p className="text-[10px] text-stone-500 truncate">
+                    Messagerie sur invitation
                   </p>
                 </div>
               </div>
               <button 
                 type="button"
                 onClick={() => setIsInviteModalOpen(false)} 
-                className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 cursor-pointer"
+                className="p-1 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 cursor-pointer shrink-0"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <p className="text-xs text-stone-600 leading-relaxed bg-amber-50/60 p-3 rounded-xl border border-amber-200/60">
-              Pour préserver l'authenticité des liens et le temps de création de <span className="font-semibold text-stone-900">{profileDisplayName}</span>, la discussion débute par une invitation respectueuse.
-            </p>
-
-            <form onSubmit={handleSendInvite} className="space-y-3.5 text-xs">
+            <form onSubmit={handleSendInvite} className="space-y-2.5 text-xs">
               <div>
-                <label className="text-stone-800 font-semibold block mb-1.5">
-                  Motif de votre prise de contact :
+                <label className="text-stone-800 font-semibold block mb-1 text-[11px]">
+                  Motif :
                 </label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-1.5">
                   {[
-                    { id: 'coprod', label: 'Initiative & Projet', icon: '🎬' },
-                    { id: 'savoir_faire', label: 'Savoir-faire & Métier', icon: '🌿' },
-                    { id: 'collab', label: 'Collaboration artistique', icon: '🤝' },
-                    { id: 'question', label: 'Question sur une œuvre', icon: '💬' }
+                    { id: 'coprod', label: 'Initiative & Projet' },
+                    { id: 'savoir_faire', label: 'Savoir-faire & Métier' },
+                    { id: 'collab', label: 'Collaboration artistique' },
+                    { id: 'question', label: 'Question sur une œuvre' }
                   ].map((m) => {
                     const isSel = inviteMotif === m.id;
                     return (
@@ -1574,14 +1196,13 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                         key={m.id}
                         type="button"
                         onClick={() => setInviteMotif(m.id as any)}
-                        className={`p-2.5 rounded-xl border text-left cursor-pointer transition-all flex items-center gap-2 ${
+                        className={`px-2.5 py-2 rounded-xl border text-left cursor-pointer transition-all text-[11px] font-semibold ${
                           isSel
-                            ? 'bg-[#A2482B] text-white border-[#A2482B] shadow-2xs'
+                            ? 'bg-[#A2482B] text-white border-[#A2482B]'
                             : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border-stone-200'
                         }`}
                       >
-                        <span className="text-sm shrink-0">{m.icon}</span>
-                        <span className="font-semibold text-[11px] leading-tight">{m.label}</span>
+                        {m.label}
                       </button>
                     );
                   })}
@@ -1589,183 +1210,36 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               </div>
 
               <div>
-                <label className="text-stone-800 font-semibold block mb-1">
-                  Votre message d'introduction :
+                <label className="text-stone-800 font-semibold block mb-1 text-[11px]">
+                  Message :
                 </label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={inviteMessage}
                   onChange={(e) => setInviteMessage(e.target.value)}
-                  placeholder={`Bonjour ${profileDisplayName}, j'ai été très touché(e) par votre univers et souhaiterais vous proposer...`}
-                  className="w-full px-3 py-2.5 rounded-xl border border-stone-300 text-xs bg-stone-50 focus:bg-white focus:outline-none focus:border-[#A2482B] resize-none"
+                  placeholder={`Bonjour ${profileDisplayName}…`}
+                  className="w-full px-2.5 py-2 rounded-xl border border-stone-300 text-xs bg-stone-50 focus:bg-white focus:outline-none focus:border-[#A2482B] resize-none"
                   required
                 />
               </div>
 
-              <div className="flex gap-2 pt-2 border-t border-stone-200">
+              <div className="flex gap-1.5 pt-1 border-t border-stone-200">
                 <button
                   type="submit"
-                  className="flex-1 h-10 sm:h-11 bg-[#A2482B] hover:bg-[#8B3A20] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-[0.98] cursor-pointer flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2 bg-[#A2482B] hover:bg-[#8B3A20] text-white font-bold text-[11px] rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1"
                 >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Envoyer l'invitation</span>
+                  <Send className="w-3 h-3" />
+                  <span>Envoyer</span>
                 </button>
                 <button 
                   type="button"
                   onClick={() => setIsInviteModalOpen(false)} 
-                  className="h-10 sm:h-11 px-4 bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs rounded-xl border border-stone-200/60 transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center"
+                  className="py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-[11px] rounded-xl border border-stone-200/60 cursor-pointer"
                 >
                   Annuler
                 </button>
               </div>
             </form>
-          </div>
-        </div>
-      )}
-
-
-
-      {/* Modale d'ajout rapide d'une vidéo sur un onglet du Profil */}
-      {isAddVideoModalOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] flex items-center justify-center p-4 animate-modal-backdrop"
-          onClick={() => setIsAddVideoModalOpen(false)}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Ajouter une vidéo — ${PROFILE_TAB_LABELS[addVideoTargetTab]}`}
-            className="bg-[#FAF7F2] max-w-md w-full rounded-3xl p-5 sm:p-6 shadow-2xl border border-stone-200 space-y-4 animate-modal-sheet text-[#1C1917]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200">
-              <div>
-                <h3 className="font-editorial text-base sm:text-lg font-bold text-[#1C1917]">
-                  Ajouter une vidéo
-                </h3>
-                <p className="text-[11px] text-stone-500">
-                  Onglet : <span className="font-semibold text-[#A2482B]">{PROFILE_TAB_LABELS[addVideoTargetTab]}</span>
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsAddVideoModalOpen(false)}
-                className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 cursor-pointer"
-                aria-label="Fermer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {(() => {
-              const modalBaseCount = getBaseItemsForCategory(addVideoTargetTab).length;
-              const modalQuota = getProfileTabQuotaStatus(ownerUserId, addVideoTargetTab, modalBaseCount);
-              const blockingMessage = addVideoError || modalQuota.limitMessage;
-              return (
-                <form onSubmit={handleSubmitProfileVideo} className="space-y-3.5 text-xs">
-                  {blockingMessage && (
-                    <div
-                      role="alert"
-                      className="p-3 rounded-2xl bg-amber-50 border border-amber-300 text-[#8A3B22] font-semibold flex items-start gap-2 leading-snug"
-                    >
-                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-[#A2482B]" />
-                      <span>{blockingMessage}</span>
-                    </div>
-                  )}
-
-                  <div>
-                    <label className="block text-stone-800 font-semibold mb-1">
-                      Titre de votre vidéo
-                    </label>
-                    <input
-                      type="text"
-                      value={newVideoTitle}
-                      onChange={(e) => {
-                        setNewVideoTitle(e.target.value);
-                        if (addVideoError) setAddVideoError(null);
-                      }}
-                      placeholder={
-                        addVideoTargetTab === 'parcours'
-                          ? 'Ex : Mon retour à Cotonou'
-                          : 'Ex : Atelier de création locale'
-                      }
-                      required
-                      disabled={modalQuota.isLimitReached}
-                      className="w-full px-3 py-2.5 rounded-xl border border-stone-300 text-xs bg-white focus:outline-none focus:border-[#A2482B] disabled:opacity-60"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-stone-800 font-semibold mb-1">
-                      Fichier vidéo (optionnel pour aperçu)
-                    </label>
-                    <label className="relative border border-dashed border-stone-300 hover:border-[#A2482B] rounded-xl px-3 py-2.5 bg-white flex items-center justify-between gap-2 cursor-pointer">
-                      <input
-                        type="file"
-                        accept="video/mp4,video/quicktime,video/webm"
-                        disabled={modalQuota.isLimitReached}
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            setNewVideoFileName(file.name);
-                            try {
-                              setNewVideoPreviewUrl(URL.createObjectURL(file));
-                            } catch {
-                              setNewVideoPreviewUrl('/sample.mp4');
-                            }
-                            if (!newVideoTitle.trim()) {
-                              setNewVideoTitle(file.name.replace(/\.[^/.]+$/, ''));
-                            }
-                          }
-                        }}
-                        className="sr-only"
-                      />
-                      <span className="flex items-center gap-2 text-stone-600 truncate">
-                        <UploadCloud className="w-4 h-4 text-[#A2482B] shrink-0" />
-                        <span className="truncate">
-                          {newVideoFileName || 'Choisir un fichier MP4 / MOV'}
-                        </span>
-                      </span>
-                      <span className="text-[11px] font-semibold text-[#A2482B] shrink-0">
-                        {newVideoFileName ? 'Changer' : 'Parcourir'}
-                      </span>
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="block text-stone-800 font-semibold mb-1">
-                      Présentation courte
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={newVideoDescription}
-                      onChange={(e) => setNewVideoDescription(e.target.value)}
-                      placeholder="Quelques mots pour présenter cette vidéo…"
-                      disabled={modalQuota.isLimitReached}
-                      className="w-full px-3 py-2 rounded-xl border border-stone-300 text-xs bg-white focus:outline-none focus:border-[#A2482B] resize-none disabled:opacity-60"
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between gap-2 pt-2 border-t border-stone-200">
-                    <button
-                      type="button"
-                      onClick={() => setIsAddVideoModalOpen(false)}
-                      className="h-10 px-4 bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs rounded-xl border border-stone-200/60 transition-all cursor-pointer"
-                    >
-                      Annuler
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={modalQuota.isLimitReached}
-                      className="h-10 px-5 bg-[#A2482B] hover:bg-[#8B3A20] disabled:bg-stone-300 disabled:text-stone-500 disabled:cursor-not-allowed text-white font-bold text-xs rounded-xl transition-all shadow-md cursor-pointer flex items-center gap-1.5"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                      <span>Publier dans l’onglet</span>
-                    </button>
-                  </div>
-                </form>
-              );
-            })()}
           </div>
         </div>
       )}

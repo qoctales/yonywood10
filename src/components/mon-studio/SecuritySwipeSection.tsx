@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  ChevronLeft,
-  ChevronRight,
   Camera,
   Check,
   Edit3,
@@ -13,7 +11,8 @@ import {
   X
 } from 'lucide-react';
 import { UserAccount } from '../../types';
-import { STAGE_PERSPECTIVE } from '../../config/cardLayout';
+import { StageCarousel3D } from '../shared/StageCarousel3D';
+import { StageBreadcrumb } from '../shared/StageBreadcrumb';
 
 export type MessagePermissionOption = 'all' | 'invitation' | 'none';
 
@@ -127,7 +126,6 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
     return 'all';
   });
 
-  // Resynchroniser si le profil externe change hors édition
   useEffect(() => {
     if (!isEditingCard) {
       setName(profile.name || 'Romeo Nonvide');
@@ -139,12 +137,6 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
       setPhone(profile.phone || '');
     }
   }, [profile, isEditingCard]);
-
-  // Gestion du swipe — strictement désactivé pendant le mode édition
-  const [dragOffset, setDragOffset] = useState<number>(0);
-  const isDraggingRef = useRef<boolean>(false);
-  const startXRef = useRef<number | null>(null);
-  const didDragRef = useRef<boolean>(false);
 
   const resetFormFromProfile = () => {
     setName(profile.name || 'Romeo Nonvide');
@@ -170,78 +162,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
       resetFormFromProfile();
       setIsEditingCard(false);
     }
-    isDraggingRef.current = false;
-    startXRef.current = null;
-    setDragOffset(0);
     setCardIndex(targetIndex);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (isEditingCard) return;
-    startXRef.current = e.touches[0].clientX;
-    isDraggingRef.current = true;
-    didDragRef.current = false;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (isEditingCard || !isDraggingRef.current || startXRef.current === null) return;
-    const diff = e.touches[0].clientX - startXRef.current;
-    if (Math.abs(diff) > 6) {
-      didDragRef.current = true;
-    }
-    setDragOffset(diff);
-  };
-
-  const handleTouchEnd = () => {
-    if (isEditingCard || !isDraggingRef.current) {
-      isDraggingRef.current = false;
-      startXRef.current = null;
-      setDragOffset(0);
-      return;
-    }
-    isDraggingRef.current = false;
-    const threshold = 52;
-    if (dragOffset < -threshold && cardIndex < CARD_META.length - 1) {
-      setCardIndex((prev) => prev + 1);
-    } else if (dragOffset > threshold && cardIndex > 0) {
-      setCardIndex((prev) => prev - 1);
-    }
-    setDragOffset(0);
-    startXRef.current = null;
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (isEditingCard) return;
-    startXRef.current = e.clientX;
-    isDraggingRef.current = true;
-    didDragRef.current = false;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (isEditingCard || !isDraggingRef.current || startXRef.current === null) return;
-    const diff = e.clientX - startXRef.current;
-    if (Math.abs(diff) > 6) {
-      didDragRef.current = true;
-    }
-    setDragOffset(diff);
-  };
-
-  const handleMouseUpOrLeave = () => {
-    if (isEditingCard || !isDraggingRef.current) {
-      isDraggingRef.current = false;
-      startXRef.current = null;
-      setDragOffset(0);
-      return;
-    }
-    isDraggingRef.current = false;
-    const threshold = 52;
-    if (dragOffset < -threshold && cardIndex < CARD_META.length - 1) {
-      setCardIndex((prev) => prev + 1);
-    } else if (dragOffset > threshold && cardIndex > 0) {
-      setCardIndex((prev) => prev - 1);
-    }
-    setDragOffset(0);
-    startXRef.current = null;
   };
 
   const handlePhotoFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -322,138 +243,55 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
   };
 
   return (
-    <div className="h-[100dvh] max-h-[100dvh] w-full bg-[#FAF7F2] text-[#1C1917] flex flex-col font-sans overflow-hidden">
-      {/* Barre supérieure */}
-      <header className="shrink-0 h-14 sm:h-16 px-4 sm:px-6 border-b border-stone-200/80 bg-white/95 flex items-center justify-between z-30">
-        <div className="flex items-center gap-3 min-w-0">
-          <button
-            type="button"
-            onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 flex items-center justify-center transition-colors cursor-pointer active:scale-95 shrink-0"
-            aria-label="Retour à Mon Studio"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <h1 className="font-editorial text-base sm:text-lg font-bold text-stone-900 truncate">
-            Sécurité
-          </h1>
-        </div>
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+      <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
+        <StageBreadcrumb
+          items={[
+            { label: 'Profil', onClick: onBack },
+            { label: 'Sécurité' }
+          ]}
+        />
 
-        {/* Navigation rapide entre cartes via petites flèches */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <button
-            type="button"
-            onClick={() => goToCard(cardIndex - 1)}
-            disabled={cardIndex === 0}
-            className="w-8 h-8 rounded-lg border border-stone-200 bg-white hover:bg-stone-50 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-stone-700 cursor-pointer transition-colors"
-            aria-label="Carte précédente"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => goToCard(cardIndex + 1)}
-            disabled={cardIndex === CARD_META.length - 1}
-            className="w-8 h-8 rounded-lg border border-stone-200 bg-white hover:bg-stone-50 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center text-stone-700 cursor-pointer transition-colors"
-            aria-label="Carte suivante"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-      </header>
-
-      {/* Scène des 3 cartes swipables */}
-      <main
-        className={`flex-1 min-h-0 flex flex-col items-center justify-center px-3 sm:px-6 py-3 sm:py-5 overflow-hidden ${
-          isEditingCard ? 'select-text' : 'select-none touch-pan-y'
-        }`}
-        onTouchStart={isEditingCard ? undefined : handleTouchStart}
-        onTouchMove={isEditingCard ? undefined : handleTouchMove}
-        onTouchEnd={isEditingCard ? undefined : handleTouchEnd}
-        onMouseDown={isEditingCard ? undefined : handleMouseDown}
-        onMouseMove={isEditingCard ? undefined : handleMouseMove}
-        onMouseUp={isEditingCard ? undefined : handleMouseUpOrLeave}
-        onMouseLeave={isEditingCard ? undefined : handleMouseUpOrLeave}
-      >
-        <div
-          className="relative w-full max-w-[380px] flex-1 min-h-0 max-h-[560px] flex items-center justify-center"
-          style={{ perspective: STAGE_PERSPECTIVE }}
-        >
-          {CARD_META.map((meta, idx) => {
-            const diff = idx - cardIndex;
-            const isCenter = diff === 0;
+        <StageCarousel3D
+          items={[...CARD_META]}
+          currentIndex={cardIndex}
+          onIndexChange={goToCard}
+          getKey={(meta) => meta.id}
+          circular={true}
+          dragDisabled={isEditingCard}
+          showDesktopArrows={true}
+          prevAriaLabel="Carte précédente"
+          nextAriaLabel="Carte suivante"
+          cardClassName={(_meta, _idx, isCenter) => {
+            const isThisEditing = isCenter && isEditingCard;
+            return `bg-white text-[#1C1917] ${
+              isThisEditing
+                ? 'border-[#A2482B] ring-1 ring-[#A2482B]/40 shadow-2xl'
+                : isCenter
+                  ? 'border-stone-200/95 shadow-2xl'
+                  : 'border-stone-200/70 shadow-lg cursor-pointer hover:border-stone-300'
+            }`;
+          }}
+          renderCard={(meta, _idx, { isCenter }) => {
             const Icon = meta.icon;
-
-            const activeDrag = isEditingCard ? 0 : dragOffset;
-            let transformStyle = '';
-            let zIndex = 10;
-            let opacity = 0;
-
-            if (diff === 0) {
-              transformStyle = `translateX(${activeDrag}px) translateZ(20px) rotateY(${activeDrag * -0.06}deg) scale(1)`;
-              zIndex = 30;
-              opacity = 1;
-            } else if (diff === 1) {
-              transformStyle = `translateX(calc(92% + ${activeDrag}px)) translateZ(-60px) rotateY(-12deg) scale(0.9)`;
-              zIndex = 20;
-              opacity = 0.45;
-            } else if (diff === -1) {
-              transformStyle = `translateX(calc(-92% + ${activeDrag}px)) translateZ(-60px) rotateY(12deg) scale(0.9)`;
-              zIndex = 20;
-              opacity = 0.45;
-            } else {
-              transformStyle = `translateX(${diff > 0 ? '180%' : '-180%'}) scale(0.8)`;
-              zIndex = 5;
-              opacity = 0;
-            }
-
             const isThisCardEditing = isCenter && isEditingCard;
 
             return (
-              <section
-                key={meta.id}
-                onClick={() => {
-                  if (didDragRef.current) {
-                    didDragRef.current = false;
-                    return;
-                  }
-                  if (!isCenter) {
-                    goToCard(idx);
-                  }
-                }}
-                style={{
-                  transform: transformStyle,
-                  zIndex,
-                  opacity,
-                  pointerEvents: Math.abs(diff) <= 1 ? 'auto' : 'none',
-                  transition:
-                    isDraggingRef.current && !isEditingCard
-                      ? 'none'
-                      : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
-                }}
-                className={`absolute inset-0 bg-white rounded-3xl border shadow-sm flex flex-col overflow-hidden ${
-                  isThisCardEditing
-                    ? 'border-[#A2482B] ring-1 ring-[#A2482B]/40'
-                    : isCenter
-                      ? 'border-stone-200/95'
-                      : 'border-stone-200/70 cursor-pointer'
-                }`}
-                aria-hidden={!isCenter}
-              >
+              <div className="w-full h-full flex flex-col overflow-hidden bg-white">
                 {/* En-tête carte + Bouton explicite Modifier / Valider */}
-                <div className="shrink-0 px-5 py-3.5 border-b border-stone-100 flex items-center justify-between gap-2 bg-white">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 stroke-[1.75]" />
+                <div className="shrink-0 px-3.5 sm:px-4 py-2.5 sm:py-3 border-b border-stone-100 flex items-center justify-between gap-2 bg-white">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]" />
                     </div>
-                    <h2 className="text-sm sm:text-base font-bold text-stone-900 truncate">
+                    <h2 className="text-xs sm:text-sm font-bold text-stone-900 truncate">
                       {meta.title}
                     </h2>
                   </div>
 
                   {isCenter && (
                     <div
-                      className="flex items-center gap-1.5 shrink-0"
+                      className="flex items-center gap-1 shrink-0"
                       onMouseDown={(e) => e.stopPropagation()}
                       onTouchStart={(e) => e.stopPropagation()}
                     >
@@ -462,18 +300,18 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                           <button
                             type="button"
                             onClick={handleCancelEdit}
-                            className="w-8 h-8 rounded-xl border border-stone-200 text-stone-500 hover:text-stone-800 hover:bg-stone-50 flex items-center justify-center cursor-pointer transition-colors"
+                            className="w-7 h-7 rounded-xl border border-stone-200 text-stone-500 hover:text-stone-800 hover:bg-stone-50 flex items-center justify-center cursor-pointer transition-colors"
                             aria-label="Annuler les modifications"
                             title="Annuler"
                           >
-                            <X className="w-4 h-4" />
+                            <X className="w-3.5 h-3.5" />
                           </button>
                           <button
                             type="button"
                             onClick={handleValidateActiveCard}
-                            className="px-3.5 py-1.5 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors shadow-xs"
+                            className="px-2.5 py-1 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-[11px] font-bold flex items-center gap-1 cursor-pointer transition-colors shadow-xs"
                           >
-                            <Check className="w-3.5 h-3.5" />
+                            <Check className="w-3 h-3" />
                             <span>Valider</span>
                           </button>
                         </>
@@ -481,9 +319,9 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                         <button
                           type="button"
                           onClick={() => setIsEditingCard(true)}
-                          className="px-3 py-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-colors"
+                          className="px-2.5 py-1 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-[11px] font-semibold flex items-center gap-1 cursor-pointer transition-colors"
                         >
-                          <Edit3 className="w-3.5 h-3.5" />
+                          <Edit3 className="w-3 h-3" />
                           <span>Modifier</span>
                         </button>
                       )}
@@ -493,7 +331,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
 
                 {/* Contenu scrollable interne de la carte */}
                 <div
-                  className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-3.5"
+                  className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-3.5 sm:px-4 py-3 space-y-2.5"
                   onMouseDown={(e) => {
                     if (isThisCardEditing) e.stopPropagation();
                   }}
@@ -501,13 +339,11 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                     if (isThisCardEditing) e.stopPropagation();
                   }}
                 >
-                  {/* ============================================= */}
-                  {/* CARTE 1 : IDENTITÉ                            */}
-                  {/* ============================================= */}
+                  {/* CARTE 1 : IDENTITÉ */}
                   {meta.id === 'identity' && (
-                    <div className="space-y-3.5">
-                      <div className="flex items-center gap-3.5 pb-3 border-b border-stone-100">
-                        <div className="w-16 h-16 rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 shrink-0">
+                    <div className="space-y-2.5">
+                      <div className="flex items-center gap-2.5 pb-2 border-b border-stone-100">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 shrink-0">
                           <img
                             src={avatarUrl}
                             alt={name}
@@ -532,20 +368,20 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                             type="button"
                             disabled={!isThisCardEditing}
                             onClick={() => photoInputRef.current?.click()}
-                            className={`px-3 py-2 rounded-xl border text-xs font-semibold inline-flex items-center gap-1.5 transition-colors ${
+                            className={`px-2.5 py-1.5 rounded-xl border text-[11px] font-semibold inline-flex items-center gap-1.5 transition-colors ${
                               isThisCardEditing
                                 ? 'border-stone-300 bg-white hover:bg-stone-50 text-stone-800 cursor-pointer'
                                 : 'border-stone-200 bg-stone-50 text-stone-400 cursor-not-allowed'
                             }`}
                           >
-                            <Camera className="w-3.5 h-3.5" />
+                            <Camera className="w-3 h-3" />
                             <span>Changer la photo</span>
                           </button>
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-semibold text-stone-500 mb-1">
+                        <label className="block text-[10px] font-semibold text-stone-500 mb-0.5">
                           Nom et prénom
                         </label>
                         <input
@@ -554,7 +390,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                           onChange={(e) => setName(e.target.value)}
                           readOnly={!isThisCardEditing}
                           disabled={!isThisCardEditing}
-                          className={`w-full px-3 py-2 rounded-xl border text-sm transition-colors ${
+                          className={`w-full px-2.5 py-1.5 rounded-xl border text-xs sm:text-[13px] transition-colors ${
                             isThisCardEditing
                               ? 'bg-white border-stone-300 text-stone-900 focus:outline-none focus:border-[#A2482B]'
                               : 'bg-stone-50/70 border-stone-200/80 text-stone-800'
@@ -563,7 +399,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-semibold text-stone-500 mb-1">
+                        <label className="block text-[10px] font-semibold text-stone-500 mb-0.5">
                           Identifiant public
                         </label>
                         <input
@@ -572,7 +408,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                           onChange={(e) => setHandle(e.target.value)}
                           readOnly={!isThisCardEditing}
                           disabled={!isThisCardEditing}
-                          className={`w-full px-3 py-2 rounded-xl border text-sm font-mono transition-colors ${
+                          className={`w-full px-2.5 py-1.5 rounded-xl border text-xs sm:text-[13px] font-mono transition-colors ${
                             isThisCardEditing
                               ? 'bg-white border-stone-300 text-stone-900 focus:outline-none focus:border-[#A2482B]'
                               : 'bg-stone-50/70 border-stone-200/80 text-stone-800'
@@ -580,9 +416,9 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                         />
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-2 gap-2">
                         <div>
-                          <label className="block text-[11px] font-semibold text-stone-500 mb-1">
+                          <label className="block text-[10px] font-semibold text-stone-500 mb-0.5">
                             Ville
                           </label>
                           <input
@@ -591,7 +427,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                             onChange={(e) => setCity(e.target.value)}
                             readOnly={!isThisCardEditing}
                             disabled={!isThisCardEditing}
-                            className={`w-full px-3 py-2 rounded-xl border text-sm transition-colors ${
+                            className={`w-full px-2.5 py-1.5 rounded-xl border text-xs sm:text-[13px] transition-colors ${
                               isThisCardEditing
                                 ? 'bg-white border-stone-300 text-stone-900 focus:outline-none focus:border-[#A2482B]'
                                 : 'bg-stone-50/70 border-stone-200/80 text-stone-800'
@@ -600,7 +436,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-semibold text-stone-500 mb-1">
+                          <label className="block text-[10px] font-semibold text-stone-500 mb-0.5">
                             Pays
                           </label>
                           <input
@@ -609,7 +445,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                             onChange={(e) => setCountry(e.target.value)}
                             readOnly={!isThisCardEditing}
                             disabled={!isThisCardEditing}
-                            className={`w-full px-3 py-2 rounded-xl border text-sm transition-colors ${
+                            className={`w-full px-2.5 py-1.5 rounded-xl border text-xs sm:text-[13px] transition-colors ${
                               isThisCardEditing
                                 ? 'bg-white border-stone-300 text-stone-900 focus:outline-none focus:border-[#A2482B]'
                                 : 'bg-stone-50/70 border-stone-200/80 text-stone-800'
@@ -620,14 +456,12 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                     </div>
                   )}
 
-                  {/* ============================================= */}
-                  {/* CARTE 2 : COMPTE                              */}
-                  {/* ============================================= */}
+                  {/* CARTE 2 : COMPTE */}
                   {meta.id === 'account' && (
-                    <div className="min-h-full flex flex-col justify-between gap-4">
-                      <div className="space-y-3.5">
+                    <div className="min-h-full flex flex-col justify-between gap-3">
+                      <div className="space-y-2.5">
                         <div>
-                          <label className="block text-[11px] font-semibold text-stone-500 mb-1">
+                          <label className="block text-[10px] font-semibold text-stone-500 mb-0.5">
                             Email du compte
                           </label>
                           <input
@@ -636,7 +470,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                             onChange={(e) => setEmail(e.target.value)}
                             readOnly={!isThisCardEditing}
                             disabled={!isThisCardEditing}
-                            className={`w-full px-3 py-2 rounded-xl border text-sm font-mono transition-colors ${
+                            className={`w-full px-2.5 py-1.5 rounded-xl border text-xs font-mono transition-colors ${
                               isThisCardEditing
                                 ? 'bg-white border-stone-300 text-stone-900 focus:outline-none focus:border-[#A2482B]'
                                 : 'bg-stone-50/70 border-stone-200/80 text-stone-800'
@@ -645,7 +479,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-semibold text-stone-500 mb-1">
+                          <label className="block text-[10px] font-semibold text-stone-500 mb-0.5">
                             Numéro de téléphone
                           </label>
                           <input
@@ -655,7 +489,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                             onChange={(e) => setPhone(e.target.value)}
                             readOnly={!isThisCardEditing}
                             disabled={!isThisCardEditing}
-                            className={`w-full px-3 py-2 rounded-xl border text-sm transition-colors ${
+                            className={`w-full px-2.5 py-1.5 rounded-xl border text-xs transition-colors ${
                               isThisCardEditing
                                 ? 'bg-white border-stone-300 text-stone-900 focus:outline-none focus:border-[#A2482B]'
                                 : 'bg-stone-50/70 border-stone-200/80 text-stone-800'
@@ -663,9 +497,9 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                           />
                         </div>
 
-                        <div className="pt-1">
-                          <div className="flex items-center justify-between mb-1">
-                            <label className="block text-[11px] font-semibold text-stone-500">
+                        <div className="pt-0.5">
+                          <div className="flex items-center justify-between mb-0.5 gap-1">
+                            <label className="block text-[10px] font-semibold text-stone-500">
                               Mot de passe
                             </label>
                             {isThisCardEditing && !isChangingPassword && (
@@ -675,20 +509,20 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                                   setIsChangingPassword(true);
                                   setPasswordError(null);
                                 }}
-                                className="text-[11px] font-semibold text-[#A2482B] hover:underline cursor-pointer"
+                                className="text-[10px] font-semibold text-[#A2482B] hover:underline cursor-pointer"
                               >
-                                Changer le mot de passe
+                                Modifier
                               </button>
                             )}
                           </div>
 
                           {!isChangingPassword ? (
-                            <div className="w-full px-3 py-2 rounded-xl border border-stone-200/80 bg-stone-50/70 text-sm text-stone-600 flex items-center justify-between">
+                            <div className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200/80 bg-stone-50/70 text-xs text-stone-600 flex items-center justify-between">
                               <span className="tracking-widest">••••••••••</span>
-                              <Lock className="w-3.5 h-3.5 text-stone-400" />
+                              <Lock className="w-3 h-3 text-stone-400" />
                             </div>
                           ) : (
-                            <div className="space-y-2 p-3 rounded-2xl bg-stone-50 border border-stone-200">
+                            <div className="space-y-1.5 p-2.5 rounded-xl bg-stone-50 border border-stone-200">
                               <input
                                 type="password"
                                 value={newPassword}
@@ -697,7 +531,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                                   setPasswordError(null);
                                 }}
                                 placeholder="Nouveau mot de passe"
-                                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B]"
+                                className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B]"
                               />
                               <input
                                 type="password"
@@ -706,36 +540,33 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                                   setConfirmPassword(e.target.value);
                                   setPasswordError(null);
                                 }}
-                                placeholder="Confirmer le mot de passe"
-                                className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B]"
+                                placeholder="Confirmer"
+                                className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B]"
                               />
                               {passwordError && (
-                                <p className="text-[11px] text-rose-600 font-medium">{passwordError}</p>
+                                <p className="text-[10px] text-rose-600 font-medium">{passwordError}</p>
                               )}
                             </div>
                           )}
                         </div>
                       </div>
 
-                      {/* Lien discret Se déconnecter tout en bas de la carte 2 */}
-                      <div className="pt-3 border-t border-stone-100 flex justify-center">
+                      <div className="pt-2 border-t border-stone-100 flex justify-center">
                         <button
                           type="button"
                           onClick={onLogout}
-                          className="text-xs font-medium text-stone-400 hover:text-rose-600 inline-flex items-center gap-1.5 py-1.5 px-2 cursor-pointer transition-colors"
+                          className="text-[11px] font-medium text-stone-400 hover:text-rose-600 inline-flex items-center gap-1.5 py-1 px-2 cursor-pointer transition-colors"
                         >
-                          <LogOut className="w-3.5 h-3.5" />
+                          <LogOut className="w-3 h-3" />
                           <span>Se déconnecter</span>
                         </button>
                       </div>
                     </div>
                   )}
 
-                  {/* ============================================= */}
-                  {/* CARTE 3 : MESSAGERIE (VERSION COMPACTE)       */}
-                  {/* ============================================= */}
+                  {/* CARTE 3 : MESSAGERIE */}
                   {meta.id === 'messaging' && (
-                    <div className="space-y-2.5">
+                    <div className="space-y-2">
                       {MESSAGING_OPTIONS.map((option) => {
                         const isSelected = messagePermission === option.id;
                         return (
@@ -747,29 +578,29 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                               if (!isThisCardEditing) return;
                               setMessagePermission(option.id);
                             }}
-                            className={`w-full text-left p-3.5 rounded-2xl border flex items-center justify-between gap-3 transition-all ${
+                            className={`w-full text-left p-2.5 sm:p-3 rounded-2xl border flex items-center justify-between gap-2 transition-all ${
                               isSelected
                                 ? 'border-[#A2482B] bg-[#A2482B]/5 ring-1 ring-[#A2482B]'
                                 : 'border-stone-200 bg-stone-50/60'
                             } ${isThisCardEditing ? 'cursor-pointer hover:border-stone-300' : 'cursor-default'}`}
                           >
                             <div className="min-w-0">
-                              <p className="text-xs sm:text-sm font-bold text-stone-900 truncate">
+                              <p className="text-xs font-bold text-stone-900 truncate">
                                 {option.title}
                               </p>
-                              <p className="text-[11px] text-stone-500 mt-0.5 truncate">
+                              <p className="text-[10px] text-stone-500 mt-0.5 truncate">
                                 {option.subtitle}
                               </p>
                             </div>
 
                             <div
-                              className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
+                              className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
                                 isSelected
                                   ? 'border-[#A2482B] bg-[#A2482B] text-white'
                                   : 'border-stone-300 bg-white'
                               }`}
                             >
-                              {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                              {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                             </div>
                           </button>
                         );
@@ -777,51 +608,11 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                     </div>
                   )}
                 </div>
-              </section>
+              </div>
             );
-          })}
-        </div>
-
-        {/* Indicateurs à points + petites flèches cliquables (actifs même en mode édition) */}
-        <div className="shrink-0 mt-4 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => goToCard(cardIndex - 1)}
-            disabled={cardIndex === 0}
-            className="w-7 h-7 rounded-full border border-stone-200 bg-white text-stone-700 disabled:opacity-30 flex items-center justify-center cursor-pointer disabled:cursor-not-allowed hover:bg-stone-50"
-            aria-label="Carte précédente"
-          >
-            <ChevronLeft className="w-3.5 h-3.5" />
-          </button>
-
-          <div className="flex items-center gap-2">
-            {CARD_META.map((meta, idx) => {
-              const active = idx === cardIndex;
-              return (
-                <button
-                  key={meta.id}
-                  type="button"
-                  onClick={() => goToCard(idx)}
-                  aria-label={`Aller à la carte ${meta.title}`}
-                  className={`h-2 rounded-full transition-all cursor-pointer ${
-                    active ? 'w-6 bg-[#A2482B]' : 'w-2 bg-stone-300 hover:bg-stone-400'
-                  }`}
-                />
-              );
-            })}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => goToCard(cardIndex + 1)}
-            disabled={cardIndex === CARD_META.length - 1}
-            className="w-7 h-7 rounded-full border border-stone-200 bg-white text-stone-700 disabled:opacity-30 flex items-center justify-center cursor-pointer disabled:cursor-not-allowed hover:bg-stone-50"
-            aria-label="Carte suivante"
-          >
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </main>
+          }}
+        />
+      </div>
     </div>
   );
 };

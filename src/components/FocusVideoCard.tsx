@@ -30,6 +30,8 @@ export interface FocusVideoCardProps {
   onOpenPortrait: () => void;
   portraitTitle: string;
   onOpenShare: () => void;
+  embeddedInCarousel?: boolean;
+  isActive?: boolean;
 }
 
 export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
@@ -58,6 +60,8 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
   onOpenPortrait,
   portraitTitle,
   onOpenShare,
+  embeddedInCarousel = false,
+  isActive = true,
 }) => {
   const hasVideo = Boolean(videoUrl);
   const resolvedVideoUrl =
@@ -67,11 +71,19 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
 
   return (
     <div
-      className={`relative ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/90 bg-[#12110F] text-white flex flex-col justify-between select-none shadow-2xl ring-1 ring-white/20`}
-      style={{
-        transform: `translateX(${dragOffset}px) translateZ(${STAGE_CENTER_TRANSLATE_Z}px)`,
-        transition: isDragging ? 'none' : 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
+      className={
+        embeddedInCarousel
+          ? 'relative w-full h-full bg-[#12110F] text-white flex flex-col justify-between select-none'
+          : `relative ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/90 bg-[#12110F] text-white flex flex-col justify-between select-none shadow-2xl ring-1 ring-white/20`
+      }
+      style={
+        embeddedInCarousel
+          ? undefined
+          : {
+              transform: `translateX(${dragOffset}px) translateZ(${STAGE_CENTER_TRANSLATE_Z}px)`,
+              transition: isDragging ? 'none' : 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1)',
+            }
+      }
     >
       {/* EN-TÊTE DE LA CARTE : PASTILLES SÉRIE(S) EN HAUT À GAUCHE + CONTRÔLES LECTURE EN HAUT À DROITE */}
       <div className="relative z-30 pt-3 px-3 flex items-start justify-between gap-1 pointer-events-auto">
@@ -164,7 +176,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
       </div>
 
       {/* LECTEUR VIDÉO OU PHOTO PLEIN CADRE */}
-      {hasVideo ? (
+      {hasVideo && isActive ? (
         <div
           onClick={onTogglePlay}
           className="absolute inset-0 overflow-hidden cursor-pointer"

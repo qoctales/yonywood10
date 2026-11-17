@@ -1,18 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback, Suspense } from 'react';
-import { 
-  ChevronLeft, 
-  ChevronRight
-} from 'lucide-react';
 import { ViewScreen, AffiliationPerson } from '../types';
 import { ActionClapperboardIcon } from './YonywoodBrandIcons';
 import { FocusVideoCard } from './FocusVideoCard';
-import { STAGE_PERSPECTIVE } from '../config/cardLayout';
 import { VideoCardShareModal } from './VideoCardShareModal';
 import { ACTION_SHAREHOLDERS, ActionShareholderProfile } from '../data/actionShareholdersData';
 import { celestialAudio } from '../utils/celestialAudio';
 import { ChunkErrorBoundary } from './ChunkErrorBoundary';
 import { lazyWithRetry } from '../utils/lazyWithRetry';
 import { SHOW_FINANCIAL_SCREENS, SHOW_CAROUSEL_ARROWS } from '../config/flags';
+import { StageCarousel3D } from './shared/StageCarousel3D';
 
 // Masquage temporaire de l'ancien marché financier (dérivé de SHOW_FINANCIAL_SCREENS, conservé sans suppression)
 const ENABLE_LEGACY_FINANCIAL_MARKETPLACE = SHOW_FINANCIAL_SCREENS;
@@ -48,32 +44,16 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
   const [shareItem, setShareItem] = useState<{ title: string; id: string } | null>(null);
   const [seriesModalPerson, setSeriesModalPerson] = useState<ActionShareholderProfile | null>(null);
 
-  const touchStartXRef = useRef<number>(0);
-  const touchStartYRef = useRef<number>(0);
-  const touchStartTimeRef = useRef<number>(0);
-  const isDraggingRef = useRef<boolean>(false);
-  const didSwipeRef = useRef<boolean>(false);
-  const [dragOffset, setDragOffset] = useState<number>(0);
-
   const total = ACTION_SHAREHOLDERS.length;
   const currentPerson: ActionShareholderProfile =
     ACTION_SHAREHOLDERS[cardIndex % Math.max(1, total)] || ACTION_SHAREHOLDERS[0];
 
-  const handleNextCard = useCallback(() => {
-    if (total <= 1) return;
-    setCardIndex((prev) => (prev + 1) % total);
+  const handleSelectCard = useCallback((nextIdx: number) => {
+    setCardIndex(nextIdx);
     setVideoProgress(0);
     setIsPlaying(true);
     celestialAudio.playOrbSelect();
-  }, [total]);
-
-  const handlePrevCard = useCallback(() => {
-    if (total <= 1) return;
-    setCardIndex((prev) => (prev - 1 + total) % total);
-    setVideoProgress(0);
-    setIsPlaying(true);
-    celestialAudio.playOrbSelect();
-  }, [total]);
+  }, []);
 
   useEffect(() => {
     const vid = videoRef.current;
@@ -95,99 +75,16 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
   };
 
   useEffect(() => {
+    if (!shareItem && !seriesModalPerson) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (shareItem || seriesModalPerson) {
-        if (e.key === 'Escape') {
-          setShareItem(null);
-          setSeriesModalPerson(null);
-        }
-        return;
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        handleNextCard();
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        handlePrevCard();
+      if (e.key === 'Escape') {
+        setShareItem(null);
+        setSeriesModalPerson(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [shareItem, seriesModalPerson, handleNextCard, handlePrevCard]);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    if (shareItem || seriesModalPerson) return;
-    if ((e.target as HTMLElement).closest('button, input, a, [role="button"]')) return;
-    touchStartXRef.current = e.touches[0].clientX;
-    touchStartYRef.current = e.touches[0].clientY;
-    touchStartTimeRef.current = Date.now();
-    isDraggingRef.current = true;
-    didSwipeRef.current = false;
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (!isDraggingRef.current) return;
-    const deltaX = e.touches[0].clientX - touchStartXRef.current;
-    const deltaY = e.touches[0].clientY - touchStartYRef.current;
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 6) {
-      didSwipeRef.current = true;
-      setDragOffset(Math.max(-75, Math.min(75, deltaX * 0.45)));
-    }
-  };
-
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
-    const elapsed = Date.now() - touchStartTimeRef.current;
-    const velocity = Math.abs(deltaX) / Math.max(1, elapsed);
-
-    if (Math.abs(deltaX) > 24 || velocity > 0.28) {
-      didSwipeRef.current = true;
-      if (deltaX < 0) handleNextCard();
-      else handlePrevCard();
-    }
-    setDragOffset(0);
-    setTimeout(() => {
-      didSwipeRef.current = false;
-    }, 60);
-  };
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (shareItem || seriesModalPerson) return;
-    if ((e.target as HTMLElement).closest('button, input, a, [role="button"]')) return;
-    touchStartXRef.current = e.clientX;
-    touchStartTimeRef.current = Date.now();
-    isDraggingRef.current = true;
-    didSwipeRef.current = false;
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDraggingRef.current) return;
-    const deltaX = e.clientX - touchStartXRef.current;
-    if (Math.abs(deltaX) > 6) {
-      didSwipeRef.current = true;
-      setDragOffset(Math.max(-75, Math.min(75, deltaX * 0.45)));
-    }
-  };
-
-  const onMouseUp = (e: React.MouseEvent) => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    const deltaX = e.clientX - touchStartXRef.current;
-    const elapsed = Date.now() - touchStartTimeRef.current;
-    const velocity = Math.abs(deltaX) / Math.max(1, elapsed);
-
-    if (Math.abs(deltaX) > 24 || velocity > 0.28) {
-      didSwipeRef.current = true;
-      if (deltaX < 0) handleNextCard();
-      else handlePrevCard();
-    }
-    setDragOffset(0);
-    setTimeout(() => {
-      didSwipeRef.current = false;
-    }, 60);
-  };
+  }, [shareItem, seriesModalPerson]);
 
   const formatCleanFullName = (rawName: string) =>
     rawName.replace(/\s*\(EXEMPLE\)\s*/gi, '').trim();
@@ -224,88 +121,60 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
 
   if (!currentPerson) return null;
 
-  const firstName = formatFirstName(currentPerson.name);
-
   return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-center text-[#1C1917] select-none bg-white relative">
-      {/* Fil vertical de cartes vidéo (format et swipe identiques à Focus, sans bandeau haut) */}
-      <div
-        className="relative flex-1 flex flex-col items-center justify-center min-h-0 py-1 px-3 sm:px-4 my-auto select-none overflow-hidden touch-pan-y"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={() => { isDraggingRef.current = false; setDragOffset(0); }}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-      >
-        <div
-          className="relative w-full flex-1 flex items-center justify-center min-h-0 animate-in fade-in duration-200"
-          style={{
-            perspective: STAGE_PERSPECTIVE,
-            perspectiveOrigin: 'center center'
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white relative">
+      <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
+        <StageCarousel3D
+          items={ACTION_SHAREHOLDERS}
+          currentIndex={cardIndex}
+          onIndexChange={handleSelectCard}
+          getKey={(person) => person.id}
+          circular={total >= 3}
+          dragDisabled={Boolean(shareItem || seriesModalPerson)}
+          showDesktopArrows={SHOW_CAROUSEL_ARROWS}
+          prevAriaLabel="Coproduction précédente"
+          nextAriaLabel="Coproduction suivante"
+          renderCard={(person, _idx, { isCenter }) => {
+            const personFirstName = formatFirstName(person.name);
+            return (
+              <FocusVideoCard
+                embeddedInCarousel={true}
+                isActive={isCenter}
+                mediaKey={person.id}
+                videoUrl={person.video}
+                photoUrl={person.photo}
+                displayName={personFirstName}
+                phrase={person.phrase}
+                videoRef={videoRef}
+                isPlaying={isCenter && isPlaying}
+                isMuted={isMuted}
+                videoProgress={isCenter ? videoProgress : 0}
+                dragOffset={0}
+                isDragging={false}
+                onTogglePlay={() => {
+                  if (!isCenter) return;
+                  setIsPlaying((p) => !p);
+                }}
+                onToggleMute={() => setIsMuted((m) => !m)}
+                onTimeUpdate={handleTimeUpdate}
+                onOpenSeries={() => setSeriesModalPerson(person)}
+                seriesTitle={
+                  person.series.length > 1
+                    ? 'Voir les séries'
+                    : 'Voir la série'
+                }
+                onOpenPortrait={() => handleOpenPortrait(person)}
+                portraitTitle={`Portrait de ${personFirstName}`}
+                onOpenShare={() =>
+                  setShareItem({
+                    title: `${personFirstName} — ${person.series.join(' · ')}`,
+                    id: person.id,
+                  })
+                }
+              />
+            );
           }}
-        >
-          {SHOW_CAROUSEL_ARROWS && total > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={handlePrevCard}
-                className="hidden md:flex absolute left-4 lg:left-8 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#1C1917] text-stone-800 hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
-                title="Carte précédente"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                type="button"
-                onClick={handleNextCard}
-                className="hidden md:flex absolute right-4 lg:right-8 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#1C1917] text-stone-800 hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
-                title="Carte suivante"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </>
-          )}
-
-          <FocusVideoCard
-            mediaKey={currentPerson.id}
-            videoUrl={currentPerson.video}
-            photoUrl={currentPerson.photo}
-            displayName={firstName}
-            phrase={currentPerson.phrase}
-            videoRef={videoRef}
-            isPlaying={isPlaying}
-            isMuted={isMuted}
-            videoProgress={videoProgress}
-            dragOffset={dragOffset}
-            isDragging={isDraggingRef.current}
-            onTogglePlay={() => {
-              if (didSwipeRef.current) {
-                didSwipeRef.current = false;
-                return;
-              }
-              setIsPlaying((p) => !p);
-            }}
-            onToggleMute={() => setIsMuted((m) => !m)}
-            onTimeUpdate={handleTimeUpdate}
-            onOpenSeries={() => setSeriesModalPerson(currentPerson)}
-            seriesTitle={
-              currentPerson.series.length > 1
-                ? 'Voir les séries'
-                : 'Voir la série'
-            }
-            onOpenPortrait={() => handleOpenPortrait(currentPerson)}
-            portraitTitle={`Portrait de ${firstName}`}
-            onOpenShare={() =>
-              setShareItem({
-                title: `${firstName} — ${currentPerson.series.join(' · ')}`,
-                id: currentPerson.id,
-              })
-            }
-          />
-        </div>
+        />
       </div>
 
       {seriesModalPerson && (

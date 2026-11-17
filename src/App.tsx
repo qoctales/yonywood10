@@ -384,13 +384,16 @@ export default function App() {
   }, [currentScreen]);
 
   const handleGlobalTouchStart = (e: React.TouchEvent) => {
-    // Ne pas intercepter les gestes sur Studio, Dialogue, Focus et Action qui possèdent leur propre navigation par swipe
+    // Ne pas intercepter les gestes sur les écrans possédant leur propre carrousel / swipe 3D
     if (
       currentScreen.type === 'submit_story' ||
       currentScreen.type === 'duo_feed' ||
       currentScreen.type === 'focus' ||
       currentScreen.type === 'enterprise' ||
-      currentScreen.type === 'marketplace'
+      currentScreen.type === 'marketplace' ||
+      currentScreen.type === 'settings' ||
+      currentScreen.type === 'profile' ||
+      currentScreen.type === 'protagonist_profile'
     ) return;
     if ((e.target as HTMLElement).closest('input[type="range"]')) return;
     appTouchStartRef.current = {
@@ -405,7 +408,10 @@ export default function App() {
       currentScreen.type === 'duo_feed' ||
       currentScreen.type === 'focus' ||
       currentScreen.type === 'enterprise' ||
-      currentScreen.type === 'marketplace'
+      currentScreen.type === 'marketplace' ||
+      currentScreen.type === 'settings' ||
+      currentScreen.type === 'profile' ||
+      currentScreen.type === 'protagonist_profile'
     ) return;
     if (!appTouchStartRef.current) return;
     const deltaX = e.changedTouches[0].clientX - appTouchStartRef.current.x;
@@ -437,7 +443,10 @@ export default function App() {
     currentScreen.type === 'focus' ||
     currentScreen.type === 'enterprise' ||
     currentScreen.type === 'marketplace' ||
-    currentScreen.type === 'submit_story';
+    currentScreen.type === 'submit_story' ||
+    currentScreen.type === 'settings' ||
+    currentScreen.type === 'profile' ||
+    currentScreen.type === 'protagonist_profile';
 
   return (
     <div className={`h-[100dvh] max-h-[100dvh] w-full overflow-hidden flex flex-col font-sans antialiased selection:bg-[#C89B3C]/20 selection:text-[#1C1917] relative ${

@@ -1,32 +1,38 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  ChevronLeft,
-  ChevronRight,
   Image as ImageIcon,
   Edit3,
   Trash2,
-  Video,
   Plus,
   Play,
   Pause,
   Check,
   X,
-  Upload
+  Upload,
+  Volume2,
+  VolumeX,
+  DoorOpen,
+  ArrowRight,
+  ChevronLeft,
+  AlertCircle
 } from 'lucide-react';
-import { UserVideoSubmission } from '../../types';
+import { UserAccount, UserVideoSubmission } from '../../types';
 import {
   MAX_VIDEO_TITLE_LENGTH,
+  ProfileVideoTab,
+  PROFILE_TAB_LABELS,
   deleteUserVideoSubmission,
   updateUserVideoTitle,
-  updateUserVideoThumbnail
+  updateUserVideoThumbnail,
+  trySaveUserVideoSubmission
 } from '../../utils/userVideoService';
-import {
-  STAGE_CARD_DIMENSIONS_CLASS,
-  STAGE_PERSPECTIVE,
-  STAGE_CENTER_TRANSLATE_Z
-} from '../../config/cardLayout';
+import { TvPlayerIcon } from '../YonywoodBrandIcons';
+import { StageCarousel3D } from '../shared/StageCarousel3D';
+import { StageBreadcrumb } from '../shared/StageBreadcrumb';
+import { CardWidthModal } from '../shared/CardWidthModal';
 
 interface MyVideosCarouselSectionProps {
+  profile: UserAccount;
   videos: UserVideoSubmission[];
   onRefreshVideos: () => void;
   onOpenStudioSubmit: () => void;
@@ -34,21 +40,25 @@ interface MyVideosCarouselSectionProps {
   onShowToast: (msg: string) => void;
 }
 
+type CarouselSlot =
+  | { kind: 'video'; video: UserVideoSubmission }
+  | { kind: 'add'; id: '__add_video_card__' };
+
 const STATUS_BADGE_MAP: Record<
   UserVideoSubmission['status'],
-  { label: string; className: string }
+  { label: string; dotClassName: string }
 > = {
   APPROVED: {
     label: 'En ligne',
-    className: 'bg-emerald-950/80 text-emerald-300 border-emerald-400/35'
+    dotClassName: 'bg-emerald-400'
   },
   PENDING: {
     label: 'En examen',
-    className: 'bg-amber-950/80 text-amber-200 border-amber-400/35'
+    dotClassName: 'bg-amber-400'
   },
   REJECTED: {
     label: 'Refusée',
-    className: 'bg-rose-950/80 text-rose-200 border-rose-400/35'
+    dotClassName: 'bg-rose-400'
   }
 };
 
@@ -60,6 +70,7 @@ function formatTime(seconds: number): string {
 }
 
 export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = ({
+  profile,
   videos,
   onRefreshVideos,
   onOpenStudioSubmit,
@@ -67,21 +78,43 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
   onShowToast
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
+
+  const carouselSlots: CarouselSlot[] = [
+    ...videos.map((video): CarouselSlot => ({ kind: 'video', video })),
+    { kind: 'add', id: '__add_video_card__' }
+  ];
 
   // Garder currentIndex dans les bornes si une vidéo est supprimée
   useEffect(() => {
     if (videos.length === 0) {
       setCurrentIndex(0);
-    } else if (currentIndex >= videos.length) {
-      setCurrentIndex(videos.length - 1);
+    } else if (currentIndex >= carouselSlots.length) {
+      setCurrentIndex(carouselSlots.length - 1);
     }
-  }, [videos.length, currentIndex]);
+  }, [videos.length, carouselSlots.length, currentIndex]);
 
-  // Modales dédiées (jamais d'édition inline sur carte swipable)
+  // Arrêter la lecture si on change de carte
+  useEffect(() => {
+    setPlayingVideoId(null);
+  }, [currentIndex]);
+
+  // Modales dédiées (strictement largeur carte)
   const [coverModalVideo, setCoverModalVideo] = useState<UserVideoSubmission | null>(null);
   const [titleModalVideo, setTitleModalVideo] = useState<UserVideoSubmission | null>(null);
   const [titleDraft, setTitleDraft] = useState<string>('');
   const [deleteConfirmVideo, setDeleteConfirmVideo] = useState<UserVideoSubmission | null>(null);
+
+  // Modale d'ajout rapide avec étape de rattachement de catégorie
+  const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+  const [addStep, setAddStep] = useState<'category' | 'form'>('category');
+  const [selectedCategory, setSelectedCategory] = useState<ProfileVideoTab>('parcours');
+  const [newTitle, setNewTitle] = useState<string>('');
+  const [newSynopsis, setNewSynopsis] = useState<string>('');
+  const [newVideoFileName, setNewVideoFileName] = useState<string | null>(null);
+  const [newVideoPreviewUrl, setNewVideoPreviewUrl] = useState<string | null>(null);
+  const [addError, setAddError] = useState<string | null>(null);
 
   // Contrôles du sélecteur de frame vidéo
   const videoPreviewRef = useRef<HTMLVideoElement>(null);
@@ -91,93 +124,12 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
   const [videoTime, setVideoTime] = useState<number>(0);
   const [captureError, setCaptureError] = useState<string | null>(null);
 
-  // État swipe horizontal du carrousel
-  const [dragOffset, setDragOffset] = useState<number>(0);
-  const isDraggingRef = useRef<boolean>(false);
-  const startXRef = useRef<number | null>(null);
-  const didDragRef = useRef<boolean>(false);
-
-  const anyModalOpen = Boolean(coverModalVideo || titleModalVideo || deleteConfirmVideo);
-
-  const handlePrev = () => {
-    if (videos.length <= 1) return;
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : videos.length - 1));
-  };
-
-  const handleNext = () => {
-    if (videos.length <= 1) return;
-    setCurrentIndex((prev) => (prev < videos.length - 1 ? prev + 1 : 0));
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (anyModalOpen || videos.length <= 1) return;
-    startXRef.current = e.touches[0].clientX;
-    isDraggingRef.current = true;
-    didDragRef.current = false;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (anyModalOpen || !isDraggingRef.current || startXRef.current === null) return;
-    const diff = e.touches[0].clientX - startXRef.current;
-    if (Math.abs(diff) > 6) {
-      didDragRef.current = true;
-    }
-    setDragOffset(diff);
-  };
-
-  const handleTouchEnd = () => {
-    if (anyModalOpen || !isDraggingRef.current) {
-      isDraggingRef.current = false;
-      startXRef.current = null;
-      setDragOffset(0);
-      return;
-    }
-    isDraggingRef.current = false;
-    const threshold = 48;
-    if (dragOffset < -threshold) {
-      handleNext();
-    } else if (dragOffset > threshold) {
-      handlePrev();
-    }
-    setDragOffset(0);
-    startXRef.current = null;
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (anyModalOpen || videos.length <= 1) return;
-    startXRef.current = e.clientX;
-    isDraggingRef.current = true;
-    didDragRef.current = false;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (anyModalOpen || !isDraggingRef.current || startXRef.current === null) return;
-    const diff = e.clientX - startXRef.current;
-    if (Math.abs(diff) > 6) {
-      didDragRef.current = true;
-    }
-    setDragOffset(diff);
-  };
-
-  const handleMouseUpOrLeave = () => {
-    if (anyModalOpen || !isDraggingRef.current) {
-      isDraggingRef.current = false;
-      startXRef.current = null;
-      setDragOffset(0);
-      return;
-    }
-    isDraggingRef.current = false;
-    const threshold = 48;
-    if (dragOffset < -threshold) {
-      handleNext();
-    } else if (dragOffset > threshold) {
-      handlePrev();
-    }
-    setDragOffset(0);
-    startXRef.current = null;
-  };
+  const anyModalOpen = Boolean(
+    coverModalVideo || titleModalVideo || deleteConfirmVideo || addModalOpen
+  );
 
   const openCoverModal = (video: UserVideoSubmission) => {
+    setPlayingVideoId(null);
     setIsPreviewPlaying(false);
     setVideoDuration(0);
     setVideoTime(0);
@@ -234,7 +186,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
       setCoverModalVideo(null);
       onShowToast('Couverture mise à jour.');
     } catch {
-      setCaptureError('Capture bloquée pour cette vidéo. Vous pouvez importer une image.');
+      setCaptureError('Capture bloquée pour cette vidéo. Importez une image.');
     }
   };
 
@@ -310,344 +262,348 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
     onShowToast('Vidéo supprimée.');
   };
 
+  const openAddModal = () => {
+    setPlayingVideoId(null);
+    setAddStep('category');
+    setSelectedCategory('parcours');
+    setNewTitle('');
+    setNewSynopsis('');
+    setNewVideoFileName(null);
+    setNewVideoPreviewUrl(null);
+    setAddError(null);
+    setAddModalOpen(true);
+  };
+
+  const handleSelectCategory = (tab: ProfileVideoTab) => {
+    setSelectedCategory(tab);
+    setAddError(null);
+    setAddStep('form');
+  };
+
+  const handleSubmitNewVideo = (e: React.FormEvent) => {
+    e.preventDefault();
+    const cleanTitle =
+      newTitle.trim().slice(0, MAX_VIDEO_TITLE_LENGTH) ||
+      (newVideoFileName ? newVideoFileName.replace(/\.[^/.]+$/, '').slice(0, MAX_VIDEO_TITLE_LENGTH) : '');
+
+    if (!cleanTitle) {
+      setAddError('Veuillez renseigner un titre court.');
+      return;
+    }
+
+    const result = trySaveUserVideoSubmission({
+      userId: profile.id,
+      userType: profile.accountType || 'INDIVIDUAL',
+      authorName: profile.name || 'Roméo Nonvide',
+      authorAvatarUrl: profile.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg',
+      title: cleanTitle,
+      synopsis:
+        newSynopsis.trim() ||
+        `Vidéo déposée dans « ${PROFILE_TAB_LABELS[selectedCategory]} ».`,
+      universe: selectedCategory,
+      profileTab: selectedCategory,
+      videoUrl: newVideoPreviewUrl || '/sample.mp4',
+      thumbnailUrl: profile.avatarUrl || '/assets/images/selfie_video_story.jpg'
+    });
+
+    if ('error' in result) {
+      setAddError(result.error);
+      return;
+    }
+
+    onRefreshVideos();
+    setAddModalOpen(false);
+    setCurrentIndex(0);
+    onShowToast(`Vidéo ajoutée dans « ${PROFILE_TAB_LABELS[selectedCategory]} ».`);
+  };
+
   return (
-    <div className="h-[100dvh] max-h-[100dvh] w-full bg-[#FAF7F2] text-[#1C1917] flex flex-col font-sans overflow-hidden">
-      {/* Barre supérieure */}
-      <header className="shrink-0 h-14 sm:h-16 px-4 sm:px-6 border-b border-stone-200/80 bg-white/95 flex items-center justify-between z-30">
-        <div className="flex items-center gap-3 min-w-0">
-          <button
-            type="button"
-            onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 flex items-center justify-center transition-colors cursor-pointer active:scale-95 shrink-0"
-            aria-label="Retour à Mon Studio"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <h1 className="font-editorial text-base sm:text-lg font-bold text-stone-900 truncate">
-            Mes Vidéos
-          </h1>
-        </div>
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+      <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
+        <StageBreadcrumb
+          items={[
+            { label: 'Profil', onClick: onBack },
+            { label: 'Mes Vidéos' }
+          ]}
+        />
 
-        <button
-          type="button"
-          onClick={onOpenStudioSubmit}
-          className="px-3.5 py-2 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs shrink-0"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Déposer</span>
-        </button>
-      </header>
+        <StageCarousel3D
+          items={carouselSlots}
+          currentIndex={currentIndex}
+          onIndexChange={setCurrentIndex}
+          getKey={(slot) => (slot.kind === 'add' ? slot.id : slot.video.id)}
+          circular={carouselSlots.length >= 3}
+          dragDisabled={anyModalOpen}
+          showDesktopArrows={true}
+          prevAriaLabel="Vidéo précédente"
+          nextAriaLabel="Vidéo suivante"
+          onActiveCardClick={(slot) => {
+            if (slot.kind === 'add') {
+              openAddModal();
+            }
+          }}
+          renderCard={(slot, idx, { isCenter }) => {
+            if (slot.kind === 'add') {
+              return (
+                <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513] cursor-pointer">
+                  <img
+                    src="/assets/images/selfie_video_story.jpg"
+                    alt="Ajouter une vidéo"
+                    className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/90 pointer-events-none" />
 
-      {/* Scène principale */}
-      {videos.length === 0 ? (
-        <main className="flex-1 flex flex-col items-center justify-center px-6 text-center space-y-4">
-          <div className="w-16 h-16 rounded-2xl bg-white border border-stone-200 flex items-center justify-center text-stone-300 shadow-xs">
-            <Video className="w-8 h-8" />
-          </div>
-          <div className="space-y-1">
-            <p className="text-sm font-bold text-stone-800">Aucune vidéo déposée</p>
-            <p className="text-xs text-stone-500">Déposez votre premier récit depuis le Studio.</p>
-          </div>
-          <button
-            type="button"
-            onClick={onOpenStudioSubmit}
-            className="px-5 py-2.5 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-xs font-bold cursor-pointer transition-colors"
-          >
-            Ouvrir le Studio
-          </button>
-        </main>
-      ) : (
-        <main
-          className="flex-1 min-h-0 flex flex-col items-center justify-center px-2 sm:px-6 py-2 overflow-hidden select-none touch-pan-y"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUpOrLeave}
-          onMouseLeave={handleMouseUpOrLeave}
-        >
-          {/* Carrousel 3D niveau 1 Studio */}
-          <div className="relative w-full flex-1 min-h-0 flex items-center justify-center">
-            {videos.length > 1 && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrev();
-                }}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                className="hidden sm:flex absolute left-2 md:left-6 z-40 w-10 h-10 rounded-full bg-white/90 hover:bg-white border border-stone-200 text-stone-800 items-center justify-center shadow-md cursor-pointer transition-transform hover:scale-105 active:scale-95"
-                aria-label="Vidéo précédente"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-            )}
+                  <div className="relative z-10 flex items-center justify-between gap-1 w-full">
+                    <div className="inline-flex items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                      <span className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide">
+                        Déposer
+                      </span>
+                    </div>
+                  </div>
 
-            <div
-              className="relative w-full h-full flex items-center justify-center pointer-events-none"
-              style={{
-                perspective: STAGE_PERSPECTIVE,
-                perspectiveOrigin: 'center center'
-              }}
-            >
-              <div
-                className="relative w-full h-full flex items-center justify-center pointer-events-none"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {videos.map((video, idx) => {
-                  const n = videos.length;
-                  let diff = idx - currentIndex;
-                  if (n >= 3) {
-                    const rawDiff = (idx - currentIndex) % n;
-                    diff = rawDiff > n / 2 ? rawDiff - n : rawDiff < -n / 2 ? rawDiff + n : rawDiff;
-                  }
-                  if (Math.abs(diff) > 2) return null;
+                  <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto px-2 space-y-2.5">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#A2482B] text-white border border-white/25 shadow-xl flex items-center justify-center">
+                      <Plus className="w-6 h-6 sm:w-7 sm:h-7" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-editorial text-sm sm:text-base font-bold text-white leading-snug">
+                        Ajouter une vidéo
+                      </p>
+                      <p className="text-[10.5px] sm:text-xs text-white/80 leading-relaxed max-w-[180px]">
+                        Choisissez la catégorie et déposez votre récit.
+                      </p>
+                    </div>
+                  </div>
 
-                  const isCenter = diff === 0;
-                  let transformStyle = '';
-                  let zIndex = 10;
-                  let opacity = 0;
-
-                  if (diff === 0) {
-                    transformStyle = `translateX(${dragOffset}px) translateZ(${STAGE_CENTER_TRANSLATE_Z}px) rotateY(${dragOffset * -0.15}deg) scale(1)`;
-                    zIndex = 30;
-                    opacity = 1;
-                  } else if (diff === 1) {
-                    transformStyle = `translateX(calc(55% + ${dragOffset}px)) translateZ(-60px) rotateY(-26deg) scale(0.86)`;
-                    zIndex = 20;
-                    opacity = 0.75;
-                  } else if (diff === -1) {
-                    transformStyle = `translateX(calc(-55% + ${dragOffset}px)) translateZ(-60px) rotateY(26deg) scale(0.86)`;
-                    zIndex = 20;
-                    opacity = 0.75;
-                  } else if (diff === 2) {
-                    transformStyle = `translateX(calc(100% + ${dragOffset}px)) translateZ(-140px) rotateY(-40deg) scale(0.72)`;
-                    zIndex = 10;
-                    opacity = 0.35;
-                  } else if (diff === -2) {
-                    transformStyle = `translateX(calc(-100% + ${dragOffset}px)) translateZ(-140px) rotateY(40deg) scale(0.72)`;
-                    zIndex = 10;
-                    opacity = 0.35;
-                  }
-
-                  const statusMeta = STATUS_BADGE_MAP[video.status] || STATUS_BADGE_MAP.PENDING;
-
-                  return (
-                    <div
-                      key={video.id}
-                      onClick={() => {
-                        if (didDragRef.current) {
-                          didDragRef.current = false;
-                          return;
-                        }
+                  <div
+                    className="relative z-10 w-full flex items-center justify-end pt-2"
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onTouchStart={(e) => e.stopPropagation()}
+                  >
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         if (!isCenter) {
                           setCurrentIndex(idx);
+                          return;
                         }
+                        openAddModal();
                       }}
-                      style={{
-                        transform: transformStyle,
-                        zIndex,
-                        opacity,
-                        pointerEvents: 'auto',
-                        transition: isDraggingRef.current
-                          ? 'none'
-                          : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
-                      }}
-                      className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-3.5 select-none bg-[#151513] text-white border transition-colors ${
-                        isCenter ? 'border-stone-200/90 ring-1 ring-white/30' : 'border-white/15 cursor-pointer'
-                      }`}
+                      className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] text-white font-medium text-xs shadow-md flex items-center gap-1.5 transition-all cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
                     >
-                      {/* Grande photo de couverture choisie par l'utilisateur */}
-                      <img
-                        src={video.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
-                        alt={video.title}
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          target.onerror = null;
-                          target.src = '/assets/images/selfie_video_story.jpg';
-                        }}
-                        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                      />
+                      <DoorOpen className="w-3.5 h-3.5 text-white/90" />
+                      <span>Déposer</span>
+                    </button>
+                  </div>
+                </div>
+              );
+            }
 
-                      {/* Voile cinématographique */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/90 pointer-events-none" />
+            const { video } = slot;
+            const statusMeta = STATUS_BADGE_MAP[video.status] || STATUS_BADGE_MAP.PENDING;
+            const isPlaying = isCenter && playingVideoId === video.id;
 
-                      {/* HAUT : Badge pilule titre en haut à gauche + Badge statut court en haut à droite */}
-                      <div className="relative z-10 flex items-center justify-between gap-1.5 w-full min-w-0">
-                        <div className="inline-flex w-fit max-w-[calc(100%-88px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
-                          <span
-                            className="font-editorial text-[9.5px] sm:text-[10.5px] font-semibold text-white leading-tight tracking-wide block w-full min-w-0"
-                            style={{
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis'
-                            }}
-                            title={video.title}
-                          >
-                            {video.title}
-                          </span>
-                        </div>
-
-                        <span
-                          className={`shrink-0 inline-flex items-center rounded-full px-2 py-0.5 text-[9px] sm:text-[10px] font-bold border shadow-sm whitespace-nowrap ${statusMeta.className}`}
-                        >
-                          {statusMeta.label}
-                        </span>
-                      </div>
-
-                      {/* BAS : Actions (Changer la couverture, Modifier le titre, Supprimer) */}
-                      <div
-                        className="relative z-10 w-full space-y-1.5 pt-2"
-                        onMouseDown={(e) => e.stopPropagation()}
-                        onTouchStart={(e) => e.stopPropagation()}
-                      >
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (!isCenter) {
-                              setCurrentIndex(idx);
-                              return;
-                            }
-                            openCoverModal(video);
-                          }}
-                          className="w-full py-1.5 sm:py-2 px-2.5 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/25 hover:border-[#A2482B] text-white text-[10px] sm:text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                        >
-                          <ImageIcon className="w-3.5 h-3.5 shrink-0" />
-                          <span className="truncate">Changer la couverture</span>
-                        </button>
-
-                        <div className="flex items-center gap-1.5 w-full">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (!isCenter) {
-                                setCurrentIndex(idx);
-                                return;
-                              }
-                              openTitleModal(video);
-                            }}
-                            className="flex-1 min-w-0 py-1.5 sm:py-2 px-2 rounded-xl bg-black/75 hover:bg-white/20 border border-white/20 text-white text-[10px] sm:text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors cursor-pointer"
-                          >
-                            <Edit3 className="w-3 h-3 shrink-0" />
-                            <span className="truncate">Modifier le titre</span>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (!isCenter) {
-                                setCurrentIndex(idx);
-                                return;
-                              }
-                              setDeleteConfirmVideo(video);
-                            }}
-                            className="shrink-0 py-1.5 sm:py-2 px-2.5 rounded-xl bg-rose-950/80 hover:bg-rose-700 border border-rose-400/35 text-rose-100 text-[10px] sm:text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors cursor-pointer"
-                          >
-                            <Trash2 className="w-3 h-3 shrink-0" />
-                            <span>Supprimer</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {videos.length > 1 && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNext();
-                }}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                className="hidden sm:flex absolute right-2 md:right-6 z-40 w-10 h-10 rounded-full bg-white/90 hover:bg-white border border-stone-200 text-stone-800 items-center justify-center shadow-md cursor-pointer transition-transform hover:scale-105 active:scale-95"
-                aria-label="Vidéo suivante"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            )}
-          </div>
-
-          {/* Indicateurs à points + petites flèches */}
-          {videos.length > 1 && (
-            <div
-              className="shrink-0 mt-2 mb-2 flex items-center justify-center gap-3"
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="w-7 h-7 rounded-full border border-stone-200 bg-white text-stone-700 flex items-center justify-center cursor-pointer hover:bg-stone-50"
-                aria-label="Vidéo précédente"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" />
-              </button>
-
-              <div className="flex items-center gap-1.5">
-                {videos.map((v, idx) => (
-                  <button
-                    key={v.id}
-                    type="button"
-                    onClick={() => setCurrentIndex(idx)}
-                    aria-label={`Afficher ${v.title}`}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${
-                      idx === currentIndex ? 'w-6 bg-[#A2482B]' : 'w-2 bg-stone-300 hover:bg-stone-400'
-                    }`}
+            return (
+              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
+                {isPlaying ? (
+                  <video
+                    src={video.videoUrl || '/sample.mp4'}
+                    poster={video.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
+                    autoPlay
+                    loop
+                    playsInline
+                    muted={isMuted}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                ))}
+                ) : (
+                  <img
+                    src={video.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
+                    alt={video.title}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = '/assets/images/selfie_video_story.jpg';
+                    }}
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  />
+                )}
+
+                <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/90 pointer-events-none" />
+
+                {/* HAUT : Pastille titre en haut à gauche + TvPlayerIcon en haut à droite */}
+                <div className="relative z-10 flex items-center justify-between gap-1.5 w-full min-w-0">
+                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                    <span
+                      className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide block w-full min-w-0 truncate"
+                      title={video.title}
+                    >
+                      {video.title}
+                    </span>
+                  </div>
+
+                  <div
+                    className="flex items-center gap-1 shrink-0"
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onTouchStart={(e) => e.stopPropagation()}
+                  >
+                    {isPlaying && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsMuted((prev) => !prev);
+                        }}
+                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                        title={isMuted ? 'Activer le son' : 'Couper le son'}
+                        aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
+                      >
+                        {isMuted ? (
+                          <VolumeX className="w-3.5 h-3.5" />
+                        ) : (
+                          <Volume2 className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (!isCenter) {
+                          setCurrentIndex(idx);
+                          return;
+                        }
+                        setPlayingVideoId((prev) => (prev === video.id ? null : video.id));
+                      }}
+                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
+                        isPlaying
+                          ? 'bg-[#A2482B] border-[#F3C677]/60'
+                          : 'bg-black/75 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
+                      }`}
+                      title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
+                      aria-label={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
+                    >
+                      {isPlaying ? (
+                        <Pause className="w-3.5 h-3.5 fill-white" />
+                      ) : (
+                        <TvPlayerIcon className="w-4 h-4 text-white" strokeWidth={1.7} />
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* MILIEU DROITE : Icônes seules avec texte au survol */}
+                <div
+                  className="absolute right-2.5 sm:right-3.5 top-[56%] sm:top-[58%] -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 sm:gap-2 pointer-events-auto"
+                  onClick={(e) => e.stopPropagation()}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onTouchStart={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (!isCenter) {
+                        setCurrentIndex(idx);
+                        return;
+                      }
+                      openCoverModal(video);
+                    }}
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    aria-label="Changer la couverture"
+                  >
+                    <ImageIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-black/85 border border-white/15 text-[10px] font-medium tracking-wide text-white shadow-lg">
+                      Changer la couverture
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (!isCenter) {
+                        setCurrentIndex(idx);
+                        return;
+                      }
+                      openTitleModal(video);
+                    }}
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    aria-label="Modifier le titre"
+                  >
+                    <Edit3 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-black/85 border border-white/15 text-[10px] font-medium tracking-wide text-white shadow-lg">
+                      Modifier le titre
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (!isCenter) {
+                        setCurrentIndex(idx);
+                        return;
+                      }
+                      setDeleteConfirmVideo(video);
+                    }}
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-rose-700 border border-white/20 hover:border-rose-400/70 text-white/90 hover:text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    aria-label="Supprimer"
+                  >
+                    <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-black/85 border border-white/15 text-[10px] font-medium tracking-wide text-white shadow-lg">
+                      Supprimer
+                    </span>
+                  </button>
+                </div>
+
+                {/* BAS GAUCHE : Statut discret et élégant */}
+                <div className="relative z-10 w-full flex items-end justify-start pt-2 pointer-events-none">
+                  <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 bg-black/55 border border-white/15 text-[9px] sm:text-[9.5px] font-medium tracking-wide text-white/90 shadow-xs whitespace-nowrap">
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusMeta.dotClassName}`} />
+                    <span>{statusMeta.label}</span>
+                  </span>
+                </div>
               </div>
-
-              <button
-                type="button"
-                onClick={handleNext}
-                className="w-7 h-7 rounded-full border border-stone-200 bg-white text-stone-700 flex items-center justify-center cursor-pointer hover:bg-stone-50"
-                aria-label="Vidéo suivante"
-              >
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          )}
-        </main>
-      )}
+            );
+          }}
+        />
+      </div>
 
       {/* ===================================================================== */}
-      {/* MODALE 1 : SÉLECTEUR D'IMAGE DANS LA VIDÉO (CHANGER LA COUVERTURE)    */}
+      {/* MODALE 1 : CHANGER LA COUVERTURE (STRICTEMENT LARGEUR CARTE)          */}
       {/* ===================================================================== */}
-      {coverModalVideo && (
-        <div
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs flex items-center justify-center p-4"
-          onClick={() => setCoverModalVideo(null)}
-        >
-          <div
-            className="w-full max-w-sm bg-white rounded-3xl border border-stone-200 shadow-2xl overflow-hidden flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="px-5 py-3.5 border-b border-stone-100 flex items-center justify-between">
-              <h2 className="text-sm font-bold text-stone-900">Changer la couverture</h2>
+      <CardWidthModal
+        isOpen={Boolean(coverModalVideo)}
+        onClose={() => setCoverModalVideo(null)}
+        ariaLabel="Changer la couverture"
+        className="overflow-hidden flex flex-col"
+      >
+        {coverModalVideo && (
+          <>
+            <div className="px-3.5 py-2.5 border-b border-stone-200/80 flex items-center justify-between gap-2">
+              <h2 className="font-editorial text-xs sm:text-sm font-bold text-stone-900 truncate">
+                Changer la couverture
+              </h2>
               <button
                 type="button"
                 onClick={() => setCoverModalVideo(null)}
-                className="w-8 h-8 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center cursor-pointer"
+                className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center cursor-pointer shrink-0"
                 aria-label="Fermer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            <div className="p-4 space-y-3.5">
-              <div className="relative w-full aspect-[9/12] max-h-[280px] rounded-2xl overflow-hidden bg-black border border-stone-200 flex items-center justify-center">
+            <div className="p-3 sm:p-3.5 space-y-2.5">
+              <div className="relative w-full aspect-[9/11] max-h-[210px] sm:max-h-[235px] rounded-2xl overflow-hidden bg-black border border-stone-200 flex items-center justify-center">
                 <video
                   ref={videoPreviewRef}
                   src={coverModalVideo.videoUrl || '/sample.mp4'}
@@ -670,19 +626,19 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 <button
                   type="button"
                   onClick={handleTogglePreviewPlay}
-                  className="absolute bottom-3 left-3 w-9 h-9 rounded-full bg-black/75 hover:bg-[#A2482B] text-white border border-white/25 flex items-center justify-center cursor-pointer transition-colors"
+                  className="absolute bottom-2.5 left-2.5 w-8 h-8 rounded-full bg-black/75 hover:bg-[#A2482B] text-white border border-white/25 flex items-center justify-center cursor-pointer transition-colors"
                   aria-label={isPreviewPlaying ? 'Pause' : 'Lecture'}
                 >
                   {isPreviewPlaying ? (
-                    <Pause className="w-4 h-4 fill-white" />
+                    <Pause className="w-3.5 h-3.5 fill-white" />
                   ) : (
-                    <Play className="w-4 h-4 fill-white ml-0.5" />
+                    <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
                   )}
                 </button>
               </div>
 
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[11px] text-stone-500 font-mono">
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-[10.5px] text-stone-500 font-mono tabular-nums">
                   <span>{formatTime(videoTime)}</span>
                   <span>{formatTime(videoDuration)}</span>
                 </div>
@@ -699,16 +655,18 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
               </div>
 
               {captureError && (
-                <p className="text-[11px] text-rose-600 font-medium">{captureError}</p>
+                <p className="text-[10.5px] text-rose-600 font-medium leading-snug">
+                  {captureError}
+                </p>
               )}
 
-              <div className="flex flex-col gap-2 pt-1">
+              <div className="flex flex-col gap-1.5 pt-0.5">
                 <button
                   type="button"
                   onClick={handleCaptureFrameAsCover}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
+                  className="w-full py-2 px-3 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
                 >
-                  <Check className="w-4 h-4" />
+                  <Check className="w-3.5 h-3.5" />
                   <span>Utiliser cette image</span>
                 </button>
 
@@ -722,50 +680,49 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 <button
                   type="button"
                   onClick={() => coverImageUploadRef.current?.click()}
-                  className="w-full py-2 px-4 rounded-xl border border-stone-200 hover:bg-stone-50 text-stone-700 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
+                  className="w-full py-2 px-3 rounded-xl border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 text-[11px] sm:text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
                 >
                   <Upload className="w-3.5 h-3.5" />
                   <span>Importer une image</span>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </CardWidthModal>
 
       {/* ===================================================================== */}
-      {/* MODALE 2 : MODIFIER LE TITRE (28 CARACTÈRES MAX + COMPTEUR VISIBLE)   */}
+      {/* MODALE 2 : MODIFIER LE TITRE (STRICTEMENT LARGEUR CARTE)              */}
       {/* ===================================================================== */}
-      {titleModalVideo && (
-        <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4"
-          onClick={() => setTitleModalVideo(null)}
-        >
-          <form
-            onSubmit={handleSaveTitle}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-sm bg-white rounded-3xl border border-stone-200 shadow-2xl overflow-hidden"
-          >
-            <div className="px-5 py-3.5 border-b border-stone-100 flex items-center justify-between">
-              <h2 className="text-sm font-bold text-stone-900">Modifier le titre</h2>
+      <CardWidthModal
+        isOpen={Boolean(titleModalVideo)}
+        onClose={() => setTitleModalVideo(null)}
+        ariaLabel="Modifier le titre"
+      >
+        {titleModalVideo && (
+          <form onSubmit={handleSaveTitle} className="flex flex-col">
+            <div className="px-3.5 py-2.5 border-b border-stone-200/80 flex items-center justify-between gap-2">
+              <h2 className="font-editorial text-xs sm:text-sm font-bold text-stone-900 truncate">
+                Modifier le titre
+              </h2>
               <button
                 type="button"
                 onClick={() => setTitleModalVideo(null)}
-                className="w-8 h-8 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center cursor-pointer"
+                className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center cursor-pointer shrink-0"
                 aria-label="Fermer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            <div className="p-5 space-y-4">
+            <div className="p-3.5 space-y-3">
               <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-semibold text-stone-700">
-                    Titre de la vidéo
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-[11px] font-semibold text-stone-700">
+                    Titre court
                   </label>
                   <span
-                    className={`text-xs font-mono font-bold ${
+                    className={`text-[10.5px] font-mono font-bold tabular-nums ${
                       titleDraft.length >= MAX_VIDEO_TITLE_LENGTH
                         ? 'text-[#A2482B]'
                         : 'text-stone-400'
@@ -782,70 +739,259 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                   onChange={(e) => setTitleDraft(e.target.value.slice(0, MAX_VIDEO_TITLE_LENGTH))}
                   autoFocus
                   required
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-300 text-sm text-stone-900 focus:bg-white focus:outline-none focus:border-[#A2482B]"
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B]"
                   placeholder="Titre court"
                 />
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => setTitleModalVideo(null)}
-                  className="flex-1 py-2.5 rounded-xl border border-stone-200 text-stone-700 text-xs font-semibold hover:bg-stone-50 cursor-pointer"
+                  className="flex-1 py-2 rounded-xl border border-stone-200 bg-white text-stone-700 text-[11px] font-semibold hover:bg-stone-50 cursor-pointer"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
                   disabled={!titleDraft.trim()}
-                  className="flex-1 py-2.5 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] disabled:opacity-40 text-white text-xs font-bold cursor-pointer"
+                  className="flex-1 py-2 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] disabled:opacity-40 text-white text-[11px] font-bold cursor-pointer"
                 >
                   Enregistrer
                 </button>
               </div>
             </div>
           </form>
-        </div>
-      )}
+        )}
+      </CardWidthModal>
 
       {/* ===================================================================== */}
-      {/* MODALE 3 : CONFIRMATION DE SUPPRESSION                                */}
+      {/* MODALE 3 : SUPPRESSION (STRICTEMENT LARGEUR CARTE)                    */}
       {/* ===================================================================== */}
-      {deleteConfirmVideo && (
-        <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4"
-          onClick={() => setDeleteConfirmVideo(null)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-xs bg-white rounded-3xl border border-stone-200 shadow-2xl p-5 space-y-4"
-          >
-            <div className="space-y-1.5">
-              <h2 className="text-sm font-bold text-stone-900">Supprimer cette vidéo ?</h2>
-              <p className="text-xs text-stone-500 leading-relaxed">
-                « {deleteConfirmVideo.title} » sera supprimée définitivement de votre espace.
+      <CardWidthModal
+        isOpen={Boolean(deleteConfirmVideo)}
+        onClose={() => setDeleteConfirmVideo(null)}
+        ariaLabel="Supprimer cette vidéo"
+        className="p-4 space-y-3"
+      >
+        {deleteConfirmVideo && (
+          <>
+            <div className="space-y-1">
+              <h2 className="font-editorial text-xs sm:text-sm font-bold text-stone-900">
+                Supprimer cette vidéo ?
+              </h2>
+              <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
+                « {deleteConfirmVideo.title} » sera retirée de votre espace.
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => setDeleteConfirmVideo(null)}
-                className="flex-1 py-2.5 rounded-xl border border-stone-200 text-stone-700 text-xs font-semibold hover:bg-stone-50 cursor-pointer"
+                className="flex-1 py-2 rounded-xl border border-stone-200 bg-white text-stone-700 text-[11px] font-semibold hover:bg-stone-50 cursor-pointer"
               >
                 Annuler
               </button>
               <button
                 type="button"
                 onClick={handleConfirmDelete}
-                className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold cursor-pointer"
+                className="flex-1 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold cursor-pointer"
               >
                 Supprimer
               </button>
             </div>
+          </>
+        )}
+      </CardWidthModal>
+
+      {/* ===================================================================== */}
+      {/* MODALE 4 : AJOUTER UNE VIDÉO + CHOIX CATÉGORIE (LARGEUR CARTE)        */}
+      {/* ===================================================================== */}
+      <CardWidthModal
+        isOpen={addModalOpen}
+        onClose={() => setAddModalOpen(false)}
+        ariaLabel="Ajouter une vidéo"
+      >
+        <div className="px-3.5 py-2.5 border-b border-stone-200/80 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 min-w-0">
+            {addStep === 'form' && (
+              <button
+                type="button"
+                onClick={() => {
+                  setAddStep('category');
+                  setAddError(null);
+                }}
+                className="w-6 h-6 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-900 flex items-center justify-center cursor-pointer shrink-0"
+                aria-label="Changer de catégorie"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+            )}
+            <h2 className="font-editorial text-xs sm:text-sm font-bold text-stone-900 truncate">
+              {addStep === 'category' ? 'Quelle catégorie ?' : PROFILE_TAB_LABELS[selectedCategory]}
+            </h2>
           </div>
+          <button
+            type="button"
+            onClick={() => setAddModalOpen(false)}
+            className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center cursor-pointer shrink-0"
+            aria-label="Fermer"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
         </div>
-      )}
+
+        {addStep === 'category' ? (
+          <div className="p-3.5 space-y-2">
+            <p className="text-[11px] text-stone-500 leading-snug">
+              Choisissez où classer cette vidéo :
+            </p>
+
+            <button
+              type="button"
+              onClick={() => handleSelectCategory('parcours')}
+              className="w-full p-2.5 rounded-2xl border border-stone-200 bg-white hover:border-[#A2482B] text-left flex items-center justify-between gap-2 transition-colors cursor-pointer"
+            >
+              <div className="min-w-0">
+                <p className="text-xs font-bold text-stone-900 truncate">Parcours de vie</p>
+                <p className="text-[10px] text-stone-500 truncate">
+                  Itinéraire & étapes personnelles
+                </p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-[#A2482B] shrink-0" />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleSelectCategory('projets')}
+              className="w-full p-2.5 rounded-2xl border border-stone-200 bg-white hover:border-[#A2482B] text-left flex items-center justify-between gap-2 transition-colors cursor-pointer"
+            >
+              <div className="min-w-0">
+                <p className="text-xs font-bold text-stone-900 truncate">Initiative personnelle</p>
+                <p className="text-[10px] text-stone-500 truncate">
+                  Atelier, projet ou action
+                </p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-[#A2482B] shrink-0" />
+            </button>
+
+            <div className="pt-1 border-t border-stone-200/70">
+              <button
+                type="button"
+                onClick={() => {
+                  setAddModalOpen(false);
+                  onOpenStudioSubmit();
+                }}
+                className="w-full p-2.5 rounded-2xl bg-[#1C1917] hover:bg-[#A2482B] text-white text-left flex items-center justify-between gap-2 transition-colors cursor-pointer"
+              >
+                <div className="min-w-0">
+                  <p className="text-xs font-bold truncate">Répondre à une série</p>
+                  <p className="text-[10px] text-white/75 truncate">
+                    Passer par le Studio complet
+                  </p>
+                </div>
+                <DoorOpen className="w-3.5 h-3.5 shrink-0" />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmitNewVideo} className="p-3.5 space-y-2.5">
+            {addError && (
+              <div
+                role="alert"
+                className="p-2 rounded-xl bg-amber-50 border border-amber-300 text-[#8A3B22] text-[10.5px] font-semibold flex items-start gap-1.5 leading-snug"
+              >
+                <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-[#A2482B]" />
+                <span>{addError}</span>
+              </div>
+            )}
+
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-[11px] font-semibold text-stone-700">Titre</label>
+                <span className="text-[10px] font-mono text-stone-400 tabular-nums">
+                  {newTitle.length}/{MAX_VIDEO_TITLE_LENGTH}
+                </span>
+              </div>
+              <input
+                type="text"
+                value={newTitle}
+                maxLength={MAX_VIDEO_TITLE_LENGTH}
+                onChange={(e) => {
+                  setNewTitle(e.target.value.slice(0, MAX_VIDEO_TITLE_LENGTH));
+                  if (addError) setAddError(null);
+                }}
+                placeholder="Ex : Retour aux sources"
+                required
+                className="w-full px-2.5 py-1.5 rounded-xl bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-semibold text-stone-700 mb-1">
+                Fichier vidéo
+              </label>
+              <label className="relative border border-dashed border-stone-300 hover:border-[#A2482B] rounded-xl px-2.5 py-2 bg-white flex items-center justify-between gap-2 cursor-pointer">
+                <input
+                  type="file"
+                  accept="video/mp4,video/quicktime,video/webm"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setNewVideoFileName(file.name);
+                      try {
+                        setNewVideoPreviewUrl(URL.createObjectURL(file));
+                      } catch {
+                        setNewVideoPreviewUrl('/sample.mp4');
+                      }
+                      if (!newTitle.trim()) {
+                        setNewTitle(
+                          file.name.replace(/\.[^/.]+$/, '').slice(0, MAX_VIDEO_TITLE_LENGTH)
+                        );
+                      }
+                    }
+                  }}
+                  className="sr-only"
+                />
+                <span className="text-[11px] text-stone-600 truncate">
+                  {newVideoFileName || 'Choisir MP4 / MOV'}
+                </span>
+                <Upload className="w-3.5 h-3.5 text-[#A2482B] shrink-0" />
+              </label>
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-semibold text-stone-700 mb-1">
+                Synopsis court
+              </label>
+              <textarea
+                rows={2}
+                value={newSynopsis}
+                onChange={(e) => setNewSynopsis(e.target.value)}
+                placeholder="En quelques mots…"
+                className="w-full px-2.5 py-1.5 rounded-xl bg-white border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#A2482B] resize-none"
+              />
+            </div>
+
+            <div className="flex items-center gap-1.5 pt-1">
+              <button
+                type="button"
+                onClick={() => setAddModalOpen(false)}
+                className="flex-1 py-2 rounded-xl border border-stone-200 bg-white text-stone-700 text-[11px] font-semibold hover:bg-stone-50 cursor-pointer"
+              >
+                Annuler
+              </button>
+              <button
+                type="submit"
+                className="flex-1 py-2 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] text-white text-[11px] font-bold cursor-pointer"
+              >
+                Déposer
+              </button>
+            </div>
+          </form>
+        )}
+      </CardWidthModal>
     </div>
   );
 };
