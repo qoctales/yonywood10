@@ -297,7 +297,7 @@ export function StageCarousel3D<T>({
                 }}
                 className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border transition-colors ${
                   dragDisabled && isCenter ? 'select-text' : 'select-none'
-                } ${customCls}`}
+                } ${!isCenter ? '[&_*]:!pointer-events-none' : ''} ${customCls}`}
               >
                 {renderCard(item, idx, {
                   isCenter,

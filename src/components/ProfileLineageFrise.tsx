@@ -1069,7 +1069,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
             onClose={() => setIsCreditsModalOpen(false)}
             title={videoModalMember.name}
             seriesTitle="Lignée & Transmission"
-            credits={getSeriesCredits(videoModalMember.seriesId || 'vodun-rays-autre-foi', videoModalMember.name)}
+            credits={getSeriesCredits(videoModalMember.seriesId || 'amin-amen-legba', videoModalMember.name)}
             onNavigateToProfile={(protagonistId) => {
               setIsCreditsModalOpen(false);
               setVideoModalMember(null);

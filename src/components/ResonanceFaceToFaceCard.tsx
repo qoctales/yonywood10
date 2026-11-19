@@ -62,9 +62,14 @@ function renderCleanQuestion(rawQuestion?: string) {
   return text;
 }
 
-function getProtagonistDisplayName(fullName: string): string {
+function getProtagonistDisplayName(protagonist: Protagonist): string {
+  if (protagonist.firstName?.trim()) return protagonist.firstName.trim();
+  const fullName = protagonist.name || '';
   if (!fullName) return '';
   const trimmed = fullName.trim();
+  if (/^Chef\s+/i.test(trimmed)) {
+    return trimmed.replace(/^Chef\s+/i, '').split(/\s+/)[0] || trimmed;
+  }
   if (/^(Père|Soeur|Frère|Dr|Dre|Coach|Maître|Dah)\b/i.test(trimmed)) {
     const parts = trimmed.split(/\s+/);
     return parts.slice(0, 2).join(' ');
@@ -148,8 +153,8 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
     return () => clearInterval(timer);
   }, [cleanQuestion, activeTab, isActive, duoId]);
 
-  const displayNameA = getProtagonistDisplayName(protagonistA.name);
-  const displayNameB = getProtagonistDisplayName(protagonistB.name);
+  const displayNameA = getProtagonistDisplayName(protagonistA);
+  const displayNameB = getProtagonistDisplayName(protagonistB);
 
   const handleSliderChange = (criterionId: keyof CriteriaValues, value: number) => {
     setCriteria(prev => {
@@ -193,7 +198,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
         </div>
 
         {/* 2. Face-à-face centré verticalement : vignettes généreuses et affirmées */}
-        <div className="flex-1 flex items-center justify-around w-full px-1 sm:px-2 my-auto min-h-0">
+        <div className="flex-1 flex items-center justify-around w-full px-1 sm:px-2 my-auto min-h-0 pt-0.5 sm:pt-1">
           
           {/* Protagoniste A (Gauche) */}
           <div 
@@ -205,19 +210,20 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
               <img 
                 src={protagonistA.photoUrl} 
                 alt={displayNameA}
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover pointer-events-none"
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            {/* Prénom entier affiché en police lisible et nette */}
-            <span className="mt-1.5 text-[11px] sm:text-xs md:text-[12.5px] font-semibold text-white/95 tracking-tight text-center whitespace-nowrap drop-shadow-xs px-0.5">
+            {/* Prénom entier abaissé légèrement pour un meilleur équilibre visuel */}
+            <span className="mt-2.5 sm:mt-3 text-[11px] sm:text-xs md:text-[12.5px] font-semibold text-white/95 tracking-tight text-center whitespace-nowrap drop-shadow-xs px-0.5">
               {displayNameA}
             </span>
           </div>
 
           {/* SYMBOLES ‹ › ÉPURÉS */}
-          <div className="flex items-center justify-center px-1 shrink-0">
+          <div className="flex items-center justify-center px-1 shrink-0 pb-4 sm:pb-5">
             <span className="font-editorial text-lg sm:text-xl md:text-2xl text-white/75 tracking-widest pointer-events-none select-none">
               ‹ ›
             </span>
@@ -233,13 +239,14 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
               <img 
                 src={protagonistB.photoUrl} 
                 alt={displayNameB}
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover pointer-events-none"
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            {/* Prénom entier affiché en police lisible et nette */}
-            <span className="mt-1.5 text-[11px] sm:text-xs md:text-[12.5px] font-semibold text-white/95 tracking-tight text-center whitespace-nowrap drop-shadow-xs px-0.5">
+            {/* Prénom entier abaissé légèrement pour un meilleur équilibre visuel */}
+            <span className="mt-2.5 sm:mt-3 text-[11px] sm:text-xs md:text-[12.5px] font-semibold text-white/95 tracking-tight text-center whitespace-nowrap drop-shadow-xs px-0.5">
               {displayNameB}
             </span>
           </div>
@@ -351,17 +358,17 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
 
                 return (
                   <div key={crit.id} className="space-y-1 sm:space-y-1.5">
-                    {/* Ligne d'en-tête du critère : police fine et discrète */}
-                    <div className="flex items-center justify-between text-xs sm:text-[13px] leading-none">
-                      <span className="font-ui text-[11px] sm:text-xs text-stone-400 font-normal">
+                    {/* Ligne d'en-tête du critère : police plus fine et plus subtile que les prénoms */}
+                    <div className="flex items-center justify-between leading-none">
+                      <span className="font-ui text-[10px] sm:text-[10.5px] text-stone-400 font-normal tabular-nums">
                         {pctA}%
                       </span>
                       
-                      <span className="font-ui text-xs sm:text-[12.5px] text-stone-600 tracking-normal font-normal">
+                      <span className="font-ui text-[10.5px] sm:text-[11px] text-stone-500 tracking-wide font-normal">
                         {crit.label}
                       </span>
 
-                      <span className="font-ui text-[11px] sm:text-xs text-stone-400 font-normal">
+                      <span className="font-ui text-[10px] sm:text-[10.5px] text-stone-400 font-normal tabular-nums">
                         {pctB}%
                       </span>
                     </div>

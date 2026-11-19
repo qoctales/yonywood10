@@ -7,7 +7,10 @@ import { AuthModal } from './components/AuthModal';
 import { ChunkErrorBoundary } from './components/ChunkErrorBoundary';
 import { lazyWithRetry } from './utils/lazyWithRetry';
 import { SHOW_FINANCIAL_SCREENS, SHOW_FOCUS, SHOW_PORTRAIT_IN_BAR } from './config/flags';
-import { SERIES_REGISTRY, resolveCanonicalSeriesId } from './data/seriesRegistry';
+import {
+  normalizeSelectedSeriesList,
+  migratePersistedScreenSeriesId
+} from './data/legacySeriesIds';
 import { io } from 'socket.io-client';
 
 const loadMatrixExplorer = () => import('./components/MatrixExplorer').then(m => ({ default: m.MatrixExplorer }));
@@ -158,7 +161,11 @@ export default function App() {
     try {
       const savedScreen = localStorage.getItem('yonywood_last_screen');
       if (savedScreen) {
-        const parsed = JSON.parse(savedScreen);
+        const rawParsed = JSON.parse(savedScreen);
+        const { screen: parsed, changed } = migratePersistedScreenSeriesId(rawParsed);
+        if (changed) {
+          localStorage.setItem('yonywood_last_screen', JSON.stringify(parsed));
+        }
         if (parsed && parsed.type && parsed.type !== 'landing') {
           if (!SHOW_FOCUS && (parsed.type === 'focus' || parsed.type === 'enterprise')) {
             return { type: 'duo_feed' };
@@ -190,32 +197,23 @@ export default function App() {
 
   // User preferences & series filter state with localStorage persistence
   const [selectedSeriesFilter, setSelectedSeriesFilter] = useState<string[]>(() => {
-    const validIds = SERIES_REGISTRY.map((s) => s.id);
     try {
       const saved = localStorage.getItem('yonywood_selected_series');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          const normalized = Array.from(
-            new Set(
-              parsed
-                .map((id: string) => resolveCanonicalSeriesId(id))
-                .filter((id): id is string => Boolean(id) && validIds.includes(id))
-            )
-          );
-          if (normalized.length > 0) {
-            if (JSON.stringify(normalized) !== JSON.stringify(parsed)) {
-              localStorage.setItem('yonywood_selected_series', JSON.stringify(normalized));
-            }
-            return normalized;
-          }
+        const { ids, changed } = normalizeSelectedSeriesList(parsed);
+        if (changed) {
+          localStorage.setItem('yonywood_selected_series', JSON.stringify(ids));
         }
+        return ids;
       }
-      localStorage.setItem('yonywood_selected_series', JSON.stringify(validIds));
+      const { ids } = normalizeSelectedSeriesList(null);
+      localStorage.setItem('yonywood_selected_series', JSON.stringify(ids));
+      return ids;
     } catch {
-      // fallback
+      const { ids } = normalizeSelectedSeriesList(null);
+      return ids;
     }
-    return validIds;
   });
   const [language, setLanguage] = useState<string>('fr');
   const [hideQuestionByDefault, setHideQuestionByDefault] = useState<boolean>(true);

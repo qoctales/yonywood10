@@ -388,8 +388,8 @@ export const INITIAL_SUBMITTED_STORIES: HeritageSubmittedStory[] = [
 
 export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
-    seriesId: 'vodun-rays-autre-foi',
-    seriesTitle: 'Vodun Rays <> Autre Foi',
+    seriesId: 'amin-amen-legba',
+    seriesTitle: 'Amin Amen ‹ › Legba',
     coverImage: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
     totalRaised: 18500,
     distributableEnvelope: 11100,
@@ -421,9 +421,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     ]
   },
   {
-    seriesId: 'investors-builders',
-    seriesTitle: 'Diasporas < > Makers',
-    coverImage: '/assets/posters/Diasporas < > Makers.jpg',
+    seriesId: 'builders-akwe',
+    seriesTitle: 'Builders ‹ › Àkwè',
+    coverImage: encodeURI('/Posters/Performers ‹ › Builders.png'),
     totalRaised: 24000,
     distributableEnvelope: 14400,
     distributedAmount: 5200,
@@ -443,9 +443,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'finagnon-qosqorico',
-    seriesTitle: 'Benin < > ...',
-    coverImage: '/assets/posters/Benin < >.jpg',
+    seriesId: 'horizons-finagnon',
+    seriesTitle: 'Horizons ‹ › Finagnon',
+    coverImage: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
     totalRaised: 14200,
     distributableEnvelope: 8520,
     distributedAmount: 2650,
@@ -465,9 +465,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'blacks-one-beyond-eve',
-    seriesTitle: 'Blacks One < > Beyond Eve',
-    coverImage: '/assets/posters/Blacks One < > Beyond Eve.png',
+    seriesId: 'blacks-one-nyonoukpo',
+    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
+    coverImage: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
     totalRaised: 29500,
     distributableEnvelope: 17700,
     distributedAmount: 6420,
@@ -487,9 +487,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'dixeat-fiat-luxe',
-    seriesTitle: 'Fiat Luxe < > Sweet Street',
-    coverImage: '/assets/posters/Fiat Luxe < > Street.jpg',
+    seriesId: 'fiat-luxe-irokos',
+    seriesTitle: 'Fiat Luxe ‹ › Irokos',
+    coverImage: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
     totalRaised: 16800,
     distributableEnvelope: 10080,
     distributedAmount: 3100,
@@ -509,9 +509,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'other-eyes-sixth-sense',
-    seriesTitle: 'Other Eyes < > Third Eye',
-    coverImage: '/assets/posters/Other Eyes < > Third Eye.png',
+    seriesId: 'phd-azovi',
+    seriesTitle: 'PhD ‹ › Azovi',
+    coverImage: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
     totalRaised: 12200,
     distributableEnvelope: 7320,
     distributedAmount: 1800,
@@ -526,14 +526,14 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
       creatorsPoolPercent: 26,
       effectiveDate: '2026-03-15',
       updatedBy: 'Romeo Nonvide',
-      changeNotes: 'Configuration initiale pour la série Perception et Invisible.'
+      changeNotes: 'Configuration initiale pour la série Recherche et Apprentissage.'
     },
     configHistory: []
   },
   {
-    seriesId: 'builders-seekers',
-    seriesTitle: 'Builders < > Seekers',
-    coverImage: '/assets/posters/Builders < > Seekers.png',
+    seriesId: 'remedes-e-vivi',
+    seriesTitle: 'Remèdes ‹ › E Vivi',
+    coverImage: encodeURI('/Posters/Care ‹ › Feed.png'),
     totalRaised: 11500,
     distributableEnvelope: 6900,
     distributedAmount: 1450,
@@ -548,14 +548,14 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
       creatorsPoolPercent: 26,
       effectiveDate: '2026-04-01',
       updatedBy: 'Romeo Nonvide',
-      changeNotes: 'Initialisation de la série Performance et Dépassement.'
+      changeNotes: 'Initialisation de la série Soin et Alimentation.'
     },
     configHistory: []
   },
   {
-    seriesId: 'focus-phd',
-    seriesTitle: 'Focus < >  PhD',
-    coverImage: '/assets/posters/Focus < >  PhD.jpg',
+    seriesId: 'regards-gbe',
+    seriesTitle: 'Regards ‹ › Gbé',
+    coverImage: encodeURI('/Posters/Paroles ‹ › Regards.png'),
     totalRaised: 13800,
     distributableEnvelope: 8280,
     distributedAmount: 1980,
@@ -570,7 +570,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
       creatorsPoolPercent: 26,
       effectiveDate: '2026-04-01',
       updatedBy: 'Romeo Nonvide',
-      changeNotes: 'Initialisation de la série Science, Photographie et Recherche.'
+      changeNotes: 'Initialisation de la série Regards et Parole.'
     },
     configHistory: []
   }
@@ -592,8 +592,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-02-18',
     supportedSeries: [
       {
-        seriesId: 'investors-builders',
-        seriesTitle: 'Diasporas < > Makers',
+        seriesId: 'builders-akwe',
+        seriesTitle: 'Builders ‹ › Àkwè',
         proposedAmount: 12000,
         committedAmount: 10000,
         receivedAmount: 10000,
@@ -603,8 +603,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         rightsClauseAcknowledged: true
       },
       {
-        seriesId: 'dixeat-fiat-luxe',
-        seriesTitle: 'Fiat Luxe < > Sweet Street',
+        seriesId: 'fiat-luxe-irokos',
+        seriesTitle: 'Fiat Luxe ‹ › Irokos',
         proposedAmount: 13000,
         committedAmount: 10000,
         receivedAmount: 8000,
@@ -619,7 +619,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-1',
         date: '2026-03-22',
         amount: 1450,
-        seriesTitle: 'Diasporas < > Makers',
+        seriesTitle: 'Builders ‹ › Àkwè',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-882194'
       },
@@ -627,7 +627,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-2',
         date: '2026-03-25',
         amount: 800,
-        seriesTitle: 'Fiat Luxe < > Sweet Street',
+        seriesTitle: 'Fiat Luxe ‹ › Irokos',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-882201'
       },
@@ -635,7 +635,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-3',
         date: '2026-10-15',
         amount: 2000,
-        seriesTitle: 'Diasporas < > Makers',
+        seriesTitle: 'Builders ‹ › Àkwè',
         status: 'EN_ATTENTE',
         bankRef: 'EN_ATTENTE_ORDRE'
       }
@@ -656,8 +656,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-01-28',
     supportedSeries: [
       {
-        seriesId: 'vodun-rays-autre-foi',
-        seriesTitle: 'Vodun Rays <> Autre Foi',
+        seriesId: 'amin-amen-legba',
+        seriesTitle: 'Amin Amen ‹ › Legba',
         proposedAmount: 8000,
         committedAmount: 8000,
         receivedAmount: 8000,
@@ -667,8 +667,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         rightsClauseAcknowledged: true
       },
       {
-        seriesId: 'blacks-one-beyond-eve',
-        seriesTitle: 'Blacks One < > Beyond Eve',
+        seriesId: 'blacks-one-nyonoukpo',
+        seriesTitle: 'Blacks One ‹ › Nyonoukpo',
         proposedAmount: 7000,
         committedAmount: 7000,
         receivedAmount: 7000,
@@ -683,7 +683,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-4',
         date: '2026-03-15',
         amount: 1250,
-        seriesTitle: 'Vodun Rays <> Autre Foi',
+        seriesTitle: 'Amin Amen ‹ › Legba',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-881903'
       }
@@ -704,8 +704,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-03-12',
     supportedSeries: [
       {
-        seriesId: 'finagnon-qosqorico',
-        seriesTitle: 'Benin < > ...',
+        seriesId: 'horizons-finagnon',
+        seriesTitle: 'Horizons ‹ › Finagnon',
         proposedAmount: 10000,
         committedAmount: 7500,
         receivedAmount: 5000,
@@ -722,8 +722,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
 export const INITIAL_COOPTATIONS: CooptationItem[] = [
   {
     id: 'coopt-1',
-    seriesId: 'vodun-rays-autre-foi',
-    seriesTitle: 'Vodun Rays <> Autre Foi',
+    seriesId: 'amin-amen-legba',
+    seriesTitle: 'Amin Amen ‹ › Legba',
     referentId: 'usr-admin-romeo',
     referentName: 'Romeo Nonvide',
     referentRole: 'Directeur éditorial & Référent',
@@ -740,8 +740,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-2',
-    seriesId: 'finagnon-qosqorico',
-    seriesTitle: 'Benin < > ...',
+    seriesId: 'horizons-finagnon',
+    seriesTitle: 'Horizons ‹ › Finagnon',
     referentId: 'usr-creator-amina',
     referentName: 'Amina Traoré',
     referentRole: 'Égérie Référente',
@@ -758,8 +758,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-3',
-    seriesId: 'blacks-one-beyond-eve',
-    seriesTitle: 'Blacks One < > Beyond Eve',
+    seriesId: 'blacks-one-nyonoukpo',
+    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
     referentId: 'usr-creator-koffi',
     referentName: 'Koffi Mensah',
     referentRole: 'Égérie Forgeron',
@@ -775,8 +775,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-4',
-    seriesId: 'investors-builders',
-    seriesTitle: 'Diasporas < > Makers',
+    seriesId: 'builders-akwe',
+    seriesTitle: 'Builders ‹ › Àkwè',
     referentId: 'usr-coopt-malik',
     referentName: 'Malik Diop',
     referentRole: 'Membre Coopté Saint-Louis',
@@ -793,14 +793,14 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-5',
-    seriesId: 'builders-seekers',
-    seriesTitle: 'Builders < > Seekers',
+    seriesId: 'phd-azovi',
+    seriesTitle: 'PhD ‹ › Azovi',
     referentId: 'usr-admin-romeo',
     referentName: 'Romeo Nonvide',
     referentRole: 'Référent de Cooptation',
     recommendedPersonName: 'Yannick Agbé',
     recommendedPersonEmail: 'yannick.agbe@athletic-bj.org',
-    recommendedPersonProfile: 'Athlète olympique haies et préparateur mental des jeunes espoirs',
+    recommendedPersonProfile: 'Chercheur en sciences du sport et formateur des jeunes espoirs',
     recommendedDate: '2026-10-08',
     status: 'EN_ATTENTE',
     filiationPercent: 2.0,
@@ -817,8 +817,8 @@ export const INITIAL_ADVERTISING_CAMPAIGNS: AdvertisingCampaign[] = [
     brandLogo: '/yonywoodlogo.jpg',
     targetThematiqueId: 'th-competences',
     targetThematiqueTitle: 'Compétences & Métiers d\'Art',
-    targetSeriesId: 'dixeat-fiat-luxe',
-    targetSeriesTitle: 'Fiat Luxe < > Sweet Street',
+    targetSeriesId: 'fiat-luxe-irokos',
+    targetSeriesTitle: 'Fiat Luxe ‹ › Irokos',
     format: 'HABILLAGE_THEME',
     budgetCommitted: 12500,
     budgetConsumed: 7800,
@@ -849,8 +849,8 @@ export const INITIAL_ADVERTISING_CAMPAIGNS: AdvertisingCampaign[] = [
     id: 'camp-3',
     title: 'Campagne Agroécologie Transatlantique',
     brandName: 'BioTerroirs International',
-    targetSeriesId: 'finagnon-qosqorico',
-    targetSeriesTitle: 'Benin < > ...',
+    targetSeriesId: 'horizons-finagnon',
+    targetSeriesTitle: 'Horizons ‹ › Finagnon',
     format: 'SPOT_PRE_ROLL',
     budgetCommitted: 6000,
     budgetConsumed: 1200,
@@ -926,7 +926,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
     action: 'Validation de versement de dividendes',
     targetId: 'payout-1',
     targetTitle: 'Versement 1 450 € — Culture Invest',
-    justification: 'Palier d\'audience 90k dépassé sur Diasporas < > Makers, ordre de virement SEPA émis.'
+    justification: 'Palier d\'audience 90k dépassé sur Builders ‹ › Àkwè, ordre de virement SEPA émis.'
   },
   {
     id: 'log-5',
@@ -938,7 +938,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
     action: 'Approbation de cooptation et activation de filiation',
     targetId: 'coopt-2',
     targetTitle: 'Sayri Quispe (Parrainé par Amina Traoré)',
-    justification: 'Filiation 2% activée sur la série Benin < > ... après contrôle d\'identité.'
+    justification: 'Filiation 2% activée sur la série Horizons ‹ › Finagnon après contrôle d\'identité.'
   }
 ];
 

@@ -1,3 +1,5 @@
+import { LEGACY_SERIES_MAPPING, SERIES_POSTER_FILES } from './legacySeriesIds';
+
 export interface Dimension {
   id: string; // 'series', 'sagesses', etc.
   ordre: number; // 1 à 8
@@ -175,129 +177,129 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
   // 01. SÉRIES (LES 8 SÉRIES FONDATRICES)
   // -----------------------------------------------------------------------
   {
-    id: 'series/vodun-rays-autre-foi',
+    id: 'series/remedes-e-vivi',
     dimensionId: 'series',
-    slug: 'vodun-rays-autre-foi',
+    slug: 'remedes-e-vivi',
     ordre: 1,
-    label: 'Vodun Rays <> Autre Foi',
-    icone: '16-series/vodun-rays-autre-foi',
-    question: 'Comment votre foi ou votre rapport au sacré vous aide-t-il à traverser le deuil ou l’épreuve ?',
-    tagline: 'Vodun Rays face aux autres croyances, religions et quêtes spirituelles',
-    description: 'Mise en miroir des traditions du Vodun et des autres croyances — religions révélées, spiritualités ou ordres mystiques — face à l’appel, au doute et à la transmission.',
-    badge: 'Série spirituelle',
-    photoUrl: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
-    accentColor: '#D97706',
-    glowColor: 'rgba(217, 119, 6, 0.6)',
-    bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
-  },
-  {
-    id: 'series/roots-routes',
-    dimensionId: 'series',
-    slug: 'roots-routes',
-    ordre: 2,
-    label: 'Roots ‹ › Routes',
-    icone: '16-series/roots-routes',
-    question: 'L’ancrage dans ses racines ou l’envol sur les routes : où se forge votre véritable identité ?',
-    tagline: 'L’enracinement ancestral face aux horizons du monde',
-    description: 'Une rencontre sensible entre l’ancrage profond dans les racines mémorielles et le souffle d’exploration qui pousse à traverser les frontières.',
-    badge: 'Série mémoires & horizons',
-    photoUrl: '/assets/posters/roots-routes.jpg',
-    accentColor: '#3B82F6',
-    glowColor: 'rgba(59, 130, 246, 0.6)',
-    bgGradient: 'from-blue-600 via-indigo-700 to-stone-900'
-  },
-  {
-    id: 'series/coaching-phd',
-    dimensionId: 'series',
-    slug: 'coaching-phd',
-    ordre: 3,
-    label: 'Coaching ‹ › PhD',
-    icone: '16-series/builders-seekers',
-    question: 'L’instinct pratique du terrain ou la rigueur de la thèse : comment transformez-vous le monde ?',
-    tagline: 'L’énergie du mentorat et la profondeur de la recherche',
-    description: 'L’action immédiate et le pragmatisme des mentors confrontés à la patience méthodologique et à la profondeur des thèses académiques.',
-    badge: 'Série action & pensée',
-    photoUrl: '/assets/posters/coaching-phd.png',
-    accentColor: '#F59E0B',
-    glowColor: 'rgba(245, 158, 11, 0.6)',
-    bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
-  },
-  {
-    id: 'series/fiat-luxe-builders',
-    dimensionId: 'series',
-    slug: 'fiat-luxe-builders',
-    ordre: 4,
-    label: 'Fiat Luxe ‹ › Builders',
-    icone: '16-series/dixeat-fiat-luxe',
-    question: 'L’orfèvrerie du millimètre ou la force des fondations : que construisez-vous qui résiste au temps ?',
-    tagline: 'Artisans d’art et architectes des grands ouvrages',
-    description: 'La précision millimétrée de la haute joaillerie face à la puissance bâtisseuse des architectes érigeant les fondations de demain.',
-    badge: 'Série orfèvrerie & matière',
-    photoUrl: '/assets/posters/fiat-luxe-builders.png',
-    accentColor: '#EAB308',
-    glowColor: 'rgba(234, 179, 8, 0.6)',
-    bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
-  },
-  {
-    id: 'series/blacks-one-amazones',
-    dimensionId: 'series',
-    slug: 'blacks-one-amazones',
-    ordre: 5,
-    label: 'Blacks One ‹ › Amazones',
-    icone: '16-series/blacks-one-beyond-eve',
-    question: 'Comment affirmez-vous votre dignité et votre souveraineté intime face aux tempêtes de l’Histoire ?',
-    tagline: 'Mémoire masculine noire et puissance des Amazones',
-    description: 'Entre éloquence civique et courage des guerrières, deux voix d’une rare élégance s’unissent pour affirmer nos souverainetés.',
-    badge: 'Série mémoire & dignité',
-    photoUrl: '/assets/posters/blacks-one-amazones.png',
-    accentColor: '#EC4899',
-    glowColor: 'rgba(236, 72, 153, 0.6)',
-    bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
-  },
-  {
-    id: 'series/benin-monde',
-    dimensionId: 'series',
-    slug: 'benin-monde',
-    ordre: 6,
-    label: 'Bénin ‹ › Le Monde',
-    icone: '16-series/finagnon-qosqorico',
-    question: 'Quel est votre lien intime avec la terre ou l’eau qui nourrit votre communauté ?',
-    tagline: 'Défenseurs du terroir et cultures du monde en miroir',
-    description: 'Des cités lacustres de Ganvié aux terrasses sacrées des Andes péruviennes. Le dialogue de deux gardiens des mémoires vivantes.',
-    badge: 'Série terroirs & eau',
-    photoUrl: '/assets/posters/benin-monde.jpg',
+    label: 'Remèdes ‹ › E Vivi',
+    icone: '16-series/remedes-e-vivi',
+    question: 'Racontez le moment où vous avez compris que votre métier serait de vous occuper des autres.',
+    tagline: 'Celles et ceux qui soignent face à celles et ceux qui nourrissent',
+    description: "Deux façons de veiller sur les autres : celles et ceux qui soignent, de toutes les médecines, et celles et ceux qui font que l'on mange et que l'on boit, du champ à l'assiette jusqu'au verre que l'on partage.",
+    badge: 'Série soin & nourricier',
+    photoUrl: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
     bgGradient: 'from-emerald-600 via-teal-700 to-stone-900'
   },
   {
-    id: 'series/baobab-bambou',
+    id: 'series/amin-amen-legba',
     dimensionId: 'series',
-    slug: 'baobab-bambou',
+    slug: 'amin-amen-legba',
+    ordre: 2,
+    label: 'Amin Amen ‹ › Legba',
+    icone: '16-series/amin-amen-legba',
+    question: "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
+    tagline: 'Amin Amen face au Vodun et aux traditions liées à Legba',
+    description: "Au Bénin, le Vodun occupe une place à part : une tradition d'origine, à laquelle d'autres croyances viennent faire face. D'un côté Amin Amen, de l'autre Legba.",
+    badge: 'Série foi & traditions',
+    photoUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
+    accentColor: '#D97706',
+    glowColor: 'rgba(217, 119, 6, 0.6)',
+    bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
+  },
+  {
+    id: 'series/phd-azovi',
+    dimensionId: 'series',
+    slug: 'phd-azovi',
+    ordre: 3,
+    label: 'PhD ‹ › Azovi',
+    icone: '16-series/phd-azovi',
+    question: 'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
+    tagline: 'Docteurs et chercheurs face aux apprentis et stagiaires de terrain',
+    description: "Deux façons d'apprendre, que l'on met rarement face à face : par les livres et la recherche, ou par la main, sous le regard d'un maître.",
+    badge: 'Série savoir & apprentissage',
+    photoUrl: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.6)',
+    bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
+  },
+  {
+    id: 'series/blacks-one-nyonoukpo',
+    dimensionId: 'series',
+    slug: 'blacks-one-nyonoukpo',
+    ordre: 4,
+    label: 'Blacks One ‹ › Nyonoukpo',
+    icone: '16-series/blacks-one-nyonoukpo',
+    question: 'Racontez le moment où vous avez appris à être fier de qui vous êtes.',
+    tagline: 'Identités noires et unité face à la force et la beauté des femmes',
+    description: "Deux manières de dire « voilà ce qui compte pour moi » : défendre des identités noires dans leur diversité, et dire son admiration pour Nyonoukpo, la « femme panthère ».",
+    badge: 'Série fierté & dignité',
+    photoUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
+    accentColor: '#EC4899',
+    glowColor: 'rgba(236, 72, 153, 0.6)',
+    bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
+  },
+  {
+    id: 'series/fiat-luxe-irokos',
+    dimensionId: 'series',
+    slug: 'fiat-luxe-irokos',
+    ordre: 5,
+    label: 'Fiat Luxe ‹ › Irokos',
+    icone: '16-series/fiat-luxe-irokos',
+    question: 'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
+    tagline: 'Artisans d’art et créateurs du rare face à la sagesse des aînés',
+    description: "Deux maîtrises que seul le temps permet d'acquérir : celle du geste, qui fait un objet d'une beauté rare, et celle de la vie, qui fait d'une personne un repère.",
+    badge: 'Série maîtrise & aînés',
+    photoUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
+    accentColor: '#EAB308',
+    glowColor: 'rgba(234, 179, 8, 0.6)',
+    bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
+  },
+  {
+    id: 'series/horizons-finagnon',
+    dimensionId: 'series',
+    slug: 'horizons-finagnon',
+    ordre: 6,
+    label: 'Horizons ‹ › Finagnon',
+    icone: '16-series/horizons-finagnon',
+    question: 'Racontez le moment où vous avez senti que vous étiez enfin chez vous.',
+    tagline: 'D’autres nations face aux Béninois du pays et de la diaspora',
+    description: "Chacun a un endroit auquel il se sent profondément lié. D'un côté Horizons rassemble d'autres nations ; de l'autre Finagnon rassemble les Béninois du pays et du monde.",
+    badge: 'Série lieux & racines',
+    photoUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
+    accentColor: '#3B82F6',
+    glowColor: 'rgba(59, 130, 246, 0.6)',
+    bgGradient: 'from-blue-600 via-indigo-700 to-stone-900'
+  },
+  {
+    id: 'series/builders-akwe',
+    dimensionId: 'series',
+    slug: 'builders-akwe',
     ordre: 7,
-    label: 'Baobab ‹ › Bambou',
-    icone: '16-series/other-eyes-sixth-sense',
-    question: 'La solidité des racines centenaires ou la souplesse du vent nouveau : quelle sagesse guide vos pas ?',
-    tagline: 'Mémoire des aînés et agilité de la jeunesse',
-    description: 'Quand la patience séculaire des aînés transmet son souffle à la vivacité et à l’audace des jeunes pousses.',
-    badge: 'Série âges & transmission',
-    photoUrl: '/assets/posters/baobab-bambou.jpg',
+    label: 'Builders ‹ › Àkwè',
+    icone: '16-series/builders-akwe',
+    question: 'Racontez le pari le plus risqué que vous avez pris, et ce qui vous a poussé à le prendre.',
+    tagline: 'Celles et ceux qui bâtissent face à celles et ceux qui portent l’argent',
+    description: "Deux mondes qui ont besoin l'un de l'autre pour que les choses existent : Builders qui entreprennent et bâtissent, et Àkwè qui gèrent et financent.",
+    badge: 'Série risques & moyens',
+    photoUrl: SERIES_POSTER_FILES['builders-akwe'].mainPosterUrl,
     accentColor: '#84CC16',
     glowColor: 'rgba(132, 204, 22, 0.6)',
     bgGradient: 'from-lime-600 via-green-700 to-stone-900'
   },
   {
-    id: 'series/pictures-words',
+    id: 'series/regards-gbe',
     dimensionId: 'series',
-    slug: 'pictures-words',
+    slug: 'regards-gbe',
     ordre: 8,
-    label: 'Pictures ‹ › Words',
-    icone: '16-series/focus-phd',
-    question: 'L’image qui fige l’instant ou le mot qui réveille la conscience : comment racontez-vous la vérité ?',
-    tagline: 'L’œil de l’image et la flamme du verbe',
-    description: 'Une traversée poétique entre l’instinct visuel d’une photographe traquant la vérité et le slam vibrant d’un poète éveillant les consciences.',
-    badge: 'Série regard & verbe',
-    photoUrl: '/assets/posters/pictures-words.jpg',
+    label: 'Regards ‹ › Gbé',
+    icone: '16-series/regards-gbe',
+    question: 'Racontez le moment où vous avez compris que si vous ne le disiez pas, personne ne le dirait à votre place.',
+    tagline: 'L’œil de l’image face aux maîtres de la parole et du verbe',
+    description: "Deux façons de faire entendre une histoire : par les regards ou par la voix. Regards réunit les artistes visuels ; Gbé réunit écrivains, poètes, slameurs, conteurs et orateurs.",
+    badge: 'Série regard & voix',
+    photoUrl: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
     bgGradient: 'from-purple-600 via-violet-700 to-stone-900'
@@ -1262,27 +1264,24 @@ export const LEGACY_CATEGORY_MAP: Record<string, string> = {
   'moments-de-vie': 'sagesses'
 };
 
+const LEGACY_SERIES_SUBCATEGORY_ENTRIES: Record<string, string> = Object.fromEntries(
+  Object.values(LEGACY_SERIES_MAPPING).flatMap((entry) => {
+    const resolved =
+      entry.targetSeriesId ||
+      entry.splitSides?.sideBTarget?.seriesId ||
+      entry.splitSides?.sideATarget?.seriesId;
+    if (!resolved) return [];
+    return [
+      [`series/${entry.legacyId}`, `series/${resolved}`],
+      [entry.legacyId, resolved]
+    ];
+  })
+);
+
 // Correspondances d'anciennes sous-catégories
 export const LEGACY_SUBCATEGORY_SLUG_MAP: Record<string, string> = {
-  // Séries anciennes -> nouvelles
-  'series/safer-healer': 'series/pictures-words',
-  'safer-healer': 'pictures-words',
-  'series/focus-phd': 'series/pictures-words',
-  'focus-phd': 'pictures-words',
-  'series/builders-seekers': 'series/coaching-phd',
-  'builders-seekers': 'coaching-phd',
-  'series/coaching-unlimited': 'series/coaching-phd',
-  'coaching-unlimited': 'coaching-phd',
-  'series/other-eyes-sixth-sense': 'series/baobab-bambou',
-  'other-eyes-sixth-sense': 'baobab-bambou',
-  'series/finagnon-qosqorico': 'series/benin-monde',
-  'finagnon-qosqorico': 'benin-monde',
-  'series/blacks-one-beyond-eve': 'series/blacks-one-amazones',
-  'blacks-one-beyond-eve': 'blacks-one-amazones',
-  'series/dixeat-fiat-luxe': 'series/fiat-luxe-builders',
-  'dixeat-fiat-luxe': 'fiat-luxe-builders',
-  'series/investors-builders': 'series/roots-routes',
-  'investors-builders': 'roots-routes',
+  // Séries anciennes -> nouvelles (résolues via la table unique d'alias)
+  ...LEGACY_SERIES_SUBCATEGORY_ENTRIES,
 
   // Sagesses anciennes -> nouvelles
   'sagesses/epreuves': 'sagesses/resilience',

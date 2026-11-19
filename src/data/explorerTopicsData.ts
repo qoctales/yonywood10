@@ -1,6 +1,7 @@
 import { AffiliationPerson, ExplorerCategory } from '../types';
 import { NOMENCLATURE } from './nomenclature';
 import { DIMENSIONS, SOUS_CATEGORIES, getSubcategoriesForDimension } from './dimensionsData';
+import { SERIES_REGISTRY } from './seriesRegistry';
 
 export type ExplorerCategoryType = ExplorerCategory;
 
@@ -56,96 +57,28 @@ export interface ExplorerCatalogItem {
 }
 
 // 1. SÉRIES DOCUMENTAIRES (8 séries officielles)
-const seriesList: ExplorerCatalogItem[] = [
-  {
-    "id": "vodun-rays-autre-foi",
-    "category": "series",
-    "title": "Vodun Rays <> Autre Foi",
-    "subtitle": "Pratiquants du Vodun vs Autres confessions & spiritualités",
-    "question": "Qu’est-ce qui dans votre foi la plus intime vous relie à ce qui vous dépasse et vous rapproche des autres ?",
-    "photoUrl": encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
-    "badge": "32 protagonistes",
-    "accentColor": "#D97706",
-    "iconName": "16-series/vodun-rays-autre-foi"
-  },
-  {
-    "id": "roots-routes",
-    "category": "series",
-    "title": "Roots ‹ › Routes",
-    "subtitle": "Ancrés au pays vs Rentrés de la diaspora",
-    "question": "L’ancrage dans ses racines ou l’envol sur les routes : où se forge votre véritable identité ?",
-    "photoUrl": "/assets/posters/roots-routes.jpg",
-    "badge": "32 protagonistes",
-    "accentColor": "#0284C7",
-    "iconName": "16-series/roots-routes"
-  },
-  {
-    "id": "coaching-phd",
-    "category": "series",
-    "title": "Coaching ‹ › PhD",
-    "subtitle": "Coachs & gens d'action vs Docteurs & universitaires",
-    "question": "L’instinct pratique du terrain ou la rigueur de la thèse : comment transformez-vous le monde ?",
-    "photoUrl": "/assets/posters/coaching-phd.png",
-    "badge": "32 protagonistes",
-    "accentColor": "#F59E0B",
-    "iconName": "16-series/coaching-phd"
-  },
-  {
-    "id": "fiat-luxe-builders",
-    "category": "series",
-    "title": "Fiat Luxe ‹ › Builders",
-    "subtitle": "Créateurs d'art & bijoutiers vs Architectes & entrepreneurs",
-    "question": "L’orfèvrerie du millimètre ou la force des fondations : que construisez-vous qui résiste au temps ?",
-    "photoUrl": "/assets/posters/fiat-luxe-builders.png",
-    "badge": "32 protagonistes",
-    "accentColor": "#EAB308",
-    "iconName": "16-series/fiat-luxe-builders"
-  },
-  {
-    "id": "blacks-one-amazones",
-    "category": "series",
-    "title": "Blacks One ‹ › Amazones",
-    "subtitle": "Mémoire masculine noire vs Puissance et souveraineté des femmes",
-    "question": "Comment affirmez-vous votre dignité et votre souveraineté intime face aux tempêtes de l’Histoire ?",
-    "photoUrl": "/assets/posters/blacks-one-amazones.png",
-    "badge": "32 protagonistes",
-    "accentColor": "#EC4899",
-    "iconName": "16-series/blacks-one-amazones"
-  },
-  {
-    "id": "finagnon-qosqorico",
-    "category": "series",
-    "title": "Bénin ‹ › Le Monde",
-    "subtitle": "Défenseurs du terroir/culture béninoise vs Porteurs d'identités du monde",
-    "question": "Quel est ce lien invisible et indestructible qui vous unit charnellement à votre terre et votre terroir ?",
-    "photoUrl": "/assets/posters/benin-monde.jpg",
-    "badge": "32 protagonistes",
-    "accentColor": "#10B981",
-    "iconName": "16-series/finagnon-qosqorico"
-  },
-  {
-    "id": "baobab-bambou",
-    "category": "series",
-    "title": "Baobab ‹ › Bambou",
-    "subtitle": "Mémoire & enracinement des aînés vs Agilité & audace de la jeunesse",
-    "question": "La solidité des racines centenaires ou la souplesse du vent nouveau : quelle sagesse guide vos pas ?",
-    "photoUrl": "/assets/posters/baobab-bambou.jpg",
-    "badge": "32 protagonistes",
-    "accentColor": "#84CC16",
-    "iconName": "16-series/baobab-bambou"
-  },
-  {
-    "id": "pictures-words",
-    "category": "series",
-    "title": "Pictures ‹ › Words",
-    "subtitle": "Créateurs d'arts visuels vs Maîtres du verbe et de la parole",
-    "question": "L’image qui fige le mystère ou la parole scandée qui réveille les consciences : comment touchez-vous l’âme ?",
-    "photoUrl": "/assets/posters/pictures-words.jpg",
-    "badge": "32 protagonistes",
-    "accentColor": "#8B5CF6",
-    "iconName": "16-series/pictures-words"
-  }
-];
+const SERIES_ACCENT_COLORS: Record<string, string> = {
+  'remedes-e-vivi': '#10B981',
+  'amin-amen-legba': '#D97706',
+  'phd-azovi': '#F59E0B',
+  'blacks-one-nyonoukpo': '#EC4899',
+  'fiat-luxe-irokos': '#EAB308',
+  'horizons-finagnon': '#0284C7',
+  'builders-akwe': '#84CC16',
+  'regards-gbe': '#8B5CF6'
+};
+
+const seriesList: ExplorerCatalogItem[] = SERIES_REGISTRY.map((series) => ({
+  id: series.id,
+  category: 'series',
+  title: series.title,
+  subtitle: `${series.partA.name} vs ${series.partB.name}`,
+  question: series.episodes[0].question,
+  photoUrl: series.posterUrl,
+  badge: '32 protagonistes',
+  accentColor: SERIES_ACCENT_COLORS[series.id] || '#C89B3C',
+  iconName: `16-series/${series.id}`
+}));
 
 // 2. SAGESSES (16 entrées issues de nomenclature.json)
 const sagessesList: ExplorerCatalogItem[] = [
@@ -1609,12 +1542,12 @@ const STOCK_VIDEOS = [
 ];
 
 const PEOPLE_PHOTOS = [
-  '/assets/protagonists/sika-dossou.jpg',
+  '/assets/images/sika_tisserande_1792933605542.jpg',
   '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
-  '/assets/protagonists/senan-agossa.jpg',
-  '/assets/protagonists/tobi-houndegla.jpg',
-  '/assets/protagonists/adjovi-blandine.jpg',
-  '/assets/protagonists/armel-hounkpatin.jpg',
+  '/assets/images/senan_innovatrice_1792933679487.jpg',
+  '/assets/duos/tobi-houndegla.jpg',
+  '/assets/images/amara_andine_1792933642777.jpg',
+  '/assets/duos/paroles-armel.jpg',
   '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
   '/assets/duos/tobi-ganvie.jpg',
   '/assets/duos/chef-koffi.jpg',

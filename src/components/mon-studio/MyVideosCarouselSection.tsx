@@ -456,14 +456,14 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                           e.stopPropagation();
                           setIsMuted((prev) => !prev);
                         }}
-                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
                         title={isMuted ? 'Activer le son' : 'Couper le son'}
                         aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                       >
                         {isMuted ? (
-                          <VolumeX className="w-3.5 h-3.5" />
+                          <VolumeX className="w-4 h-4" />
                         ) : (
-                          <Volume2 className="w-3.5 h-3.5" />
+                          <Volume2 className="w-4 h-4" />
                         )}
                       </button>
                     )}
@@ -479,7 +479,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                         }
                         setPlayingVideoId((prev) => (prev === video.id ? null : video.id));
                       }}
-                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
+                      className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
                         isPlaying
                           ? 'bg-[#A2482B] border-[#F3C677]/60'
                           : 'bg-black/75 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
@@ -488,9 +488,9 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       aria-label={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
                     >
                       {isPlaying ? (
-                        <Pause className="w-3.5 h-3.5 fill-white" />
+                        <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white" />
                       ) : (
-                        <TvPlayerIcon className="w-4 h-4 text-white" strokeWidth={1.7} />
+                        <TvPlayerIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" strokeWidth={1.7} />
                       )}
                     </button>
                   </div>
@@ -554,7 +554,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       }
                       setDeleteConfirmVideo(video);
                     }}
-                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-rose-700 border border-white/20 hover:border-rose-400/70 text-white/90 hover:text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                     aria-label="Supprimer"
                   >
                     <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />

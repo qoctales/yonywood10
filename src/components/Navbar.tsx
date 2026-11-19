@@ -264,7 +264,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           {series.title}
                         </p>
                         <p className="text-[11px] text-stone-500 truncate mt-0.5">
-                          {doc?.subtitle || `${series.partA.name} <> ${series.partB.name}`}
+                          {doc?.subtitle || `${series.partA.name} ‹ › ${series.partB.name}`}
                         </p>
                       </div>
                     </div>

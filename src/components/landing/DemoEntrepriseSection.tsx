@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  Play,
   Pause,
   Volume2,
   VolumeX,
@@ -39,7 +38,7 @@ const AFRIKA_FUN_CARDS: CompanyCard[] = [
     companyName: 'Africafun',
     firstName: 'Amina',
     role: 'Monteuse & Réalisatrice',
-    photoUrl: '/assets/protagonists/adjovi-blandine.jpg',
+    photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     quote: '« Chez Africafun, chaque montage préserve la vérité des regards et le rythme noble de nos récits. »'
   },
@@ -59,7 +58,7 @@ const AFRIKA_FUN_CARDS: CompanyCard[] = [
     companyName: 'Africafun',
     firstName: 'Armel',
     role: 'Producteur délégué',
-    photoUrl: '/assets/protagonists/armel-hounkpatin.jpg',
+    photoUrl: '/assets/duos/paroles-armel.jpg',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
     quote: '« Transmettre une mémoire vivante et offrir à l’entreprise une empreinte culturelle durable. »'
   }
@@ -209,22 +208,14 @@ export const DemoEntrepriseSection: React.FC = () => {
                 )}
               </div>
 
-              {/* Centre : Play pour les vidéos des collaborateurs, ou icône élégante pour la carte intro */}
-              <div className="relative z-10 flex items-center justify-center my-auto">
-                {currentCard.type === 'member' ? (
-                  <button
-                    onClick={() => setIsPlaying(true)}
-                    className="w-14 h-14 rounded-full bg-black/65 border border-white/30 flex items-center justify-center text-white hover:scale-110 transition-transform cursor-pointer shadow-lg"
-                    title={`Écouter le mot de ${currentCard.firstName}`}
-                  >
-                    <Play className="w-6 h-6 fill-white text-white translate-x-0.5" />
-                  </button>
-                ) : (
+              {/* Centre : Icône élégante uniquement pour la carte intro */}
+              {currentCard.type !== 'member' && (
+                <div className="relative z-10 flex items-center justify-center my-auto">
                   <div className="w-14 h-14 rounded-full bg-[#A2482B]/80 border border-white/30 flex items-center justify-center text-white shadow-lg">
                     <Film className="w-7 h-7 text-white" />
                   </div>
-                )}
-              </div>
+                </div>
+              )}
 
               {/* Bas de carte bien aéré : Prénom, rôle sobre et citation concise */}
               <div className="relative z-10 space-y-2.5 pb-1">

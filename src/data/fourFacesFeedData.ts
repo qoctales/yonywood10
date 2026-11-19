@@ -138,7 +138,7 @@ export const FOUR_FACES_PUBLICATIONS: FourFacesPublication[] = [
         id: 'ff-p10',
         name: 'Hélène Saint-Amand',
         firstName: 'Hélène',
-        avatarUrl: '/assets/protagonists/helene-saint-amand.jpg',
+        avatarUrl: '/assets/duos/eleonore-vance.jpg',
         videoUrl: '/sample.mp4',
         durationSeconds: 8,
         role: 'Réalisatrice',

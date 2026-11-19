@@ -499,16 +499,16 @@ export const TvPlayerIcon: React.FC<IconProps> = ({
       className={className}
       aria-hidden="true"
     >
-      {/* Boîtier écran télévision compact */}
-      <rect x="6.25" y="8" width="11.5" height="10.5" rx="2.4" />
+      {/* Boîtier écran télévision vintage généreux */}
+      <rect x="3.5" y="7.5" width="17" height="13" rx="3" />
 
       {/* Regard / points de mire de l'écran */}
-      <circle cx="10.3" cy="13.25" r="0.9" fill="currentColor" stroke="none" />
-      <circle cx="13.7" cy="13.25" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="9.2" cy="14" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="14.8" cy="14" r="1.2" fill="currentColor" stroke="none" />
 
       {/* Deux antennes rétro orientées vers le haut et l'extérieur */}
-      <path d="M 9.2 8 L 7.4 4.2" />
-      <path d="M 14.8 8 L 16.6 4.2" />
+      <path d="M 9.2 7.5 L 6.6 2.8" />
+      <path d="M 14.8 7.5 L 17.4 2.8" />
     </svg>
   );
 };

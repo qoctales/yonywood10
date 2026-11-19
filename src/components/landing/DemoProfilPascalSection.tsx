@@ -395,7 +395,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   {/* Niveau 2 : Cécile */}
                   <div className="p-2.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-center gap-3 ml-3">
                     <img
-                      src="/assets/protagonists/adjovi-blandine.jpg"
+                      src="/assets/images/amara_andine_1792933642777.jpg"
                       alt="Cécile"
                       className="w-10 h-10 rounded-xl object-cover border border-stone-200 shrink-0"
                       loading="lazy"

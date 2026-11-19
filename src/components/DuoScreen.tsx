@@ -20,8 +20,7 @@ interface DuoScreenProps {
 
 export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
   const duo = DUOS.find(d => d.id === duoId) || DUOS[0];
-  const isBeninSeries = duo.documentaryId === 'finagnon-qosqorico' || duo.documentaryTitle?.toLowerCase().includes('benin');
-  const displaySeriesTitle = isBeninSeries ? 'Bénin < > Le Monde' : duo.documentaryTitle;
+  const displaySeriesTitle = duo.documentaryTitle;
 
   return (
     <div className="min-h-screen bg-[#F3E9D2]/40 pb-20">
@@ -46,15 +45,11 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
               onChange={(e) => onNavigate({ type: 'duo_detail', duoId: e.target.value })}
               className="text-xs bg-[#FFFFFF] border border-[#E7E5E4] rounded-lg px-2.5 py-1.5 text-[#1C1917]"
             >
-              {DUOS.map(item => {
-                const itemIsBenin = item.documentaryId === 'finagnon-qosqorico' || item.documentaryTitle?.toLowerCase().includes('benin');
-                const itemTitle = itemIsBenin ? 'Bénin < > Le Monde' : item.documentaryTitle;
-                return (
+              {DUOS.map(item => (
                   <option key={item.id} value={item.id}>
-                    {itemTitle} — {item.protagonistA.name.split(' ')[0]} × {item.protagonistB.name.split(' ')[0]}
+                    {item.documentaryTitle} — {item.protagonistA.name.split(' ')[0]} × {item.protagonistB.name.split(' ')[0]}
                   </option>
-                );
-              })}
+              ))}
             </select>
           </div>
         </div>

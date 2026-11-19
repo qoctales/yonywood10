@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  Play,
   Coins,
   TrendingUp,
   RefreshCw,
@@ -23,96 +22,25 @@ interface ProductionItem {
   goalAmount: number;
 }
 
-const ALL_8_PRODUCTIONS: ProductionItem[] = [
-  {
-    id: 'jesus-legba',
-    title: 'Vodun Rays ‹ › Autre Foi',
-    posterImage: '/assets/posters/vodun-autre-foi.png',
+import { SERIES_REGISTRY } from '../../data/seriesRegistry';
+
+const DEMO_SHARES_SEED = [77, 75, 79, 72, 80, 74, 77, 76];
+
+const ALL_8_PRODUCTIONS: ProductionItem[] = SERIES_REGISTRY.map((series, index) => {
+  const remaining = DEMO_SHARES_SEED[index] ?? 76;
+  const subscribed = 256 - remaining;
+  return {
+    id: series.id,
+    title: series.title,
+    posterImage: series.posterUrl,
     sharePrice: 50,
     totalShares: 256,
-    remainingShares: 77,
-    subscribedShares: 179,
-    collectedAmount: 8950,
+    remainingShares: remaining,
+    subscribedShares: subscribed,
+    collectedAmount: subscribed * 50,
     goalAmount: 12800
-  },
-  {
-    id: 'roots-routes',
-    title: 'Roots ‹ › Routes',
-    posterImage: '/assets/posters/roots-routes.jpg',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 75,
-    subscribedShares: 181,
-    collectedAmount: 9050,
-    goalAmount: 12800
-  },
-  {
-    id: 'coaching-phd',
-    title: 'Coaching ‹ › PhD',
-    posterImage: '/assets/posters/coaching-phd.png',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 79,
-    subscribedShares: 177,
-    collectedAmount: 8850,
-    goalAmount: 12800
-  },
-  {
-    id: 'fiat-luxe-builders',
-    title: 'Fiat Luxe ‹ › Builders',
-    posterImage: '/assets/posters/fiat-luxe-builders.png',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 72,
-    subscribedShares: 184,
-    collectedAmount: 9200,
-    goalAmount: 12800
-  },
-  {
-    id: 'blacks-one-amazones',
-    title: 'Blacks One ‹ › Amazones',
-    posterImage: '/assets/posters/blacks-one-amazones.png',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 80,
-    subscribedShares: 176,
-    collectedAmount: 8800,
-    goalAmount: 12800
-  },
-  {
-    id: 'benin-monde',
-    title: 'Bénin ‹ › Le Monde',
-    posterImage: '/assets/posters/benin-monde.jpg',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 74,
-    subscribedShares: 182,
-    collectedAmount: 9100,
-    goalAmount: 12800
-  },
-  {
-    id: 'baobab-bambou',
-    title: 'Baobab ‹ › Bambou',
-    posterImage: '/assets/posters/baobab-bambou.jpg',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 77,
-    subscribedShares: 179,
-    collectedAmount: 8950,
-    goalAmount: 12800
-  },
-  {
-    id: 'pictures-words',
-    title: 'Pictures ‹ › Words',
-    posterImage: '/assets/posters/pictures-words.jpg',
-    sharePrice: 50,
-    totalShares: 256,
-    remainingShares: 76,
-    subscribedShares: 180,
-    collectedAmount: 9000,
-    goalAmount: 12800
-  }
-];
+  };
+});
 
 export const DemoProductionsSection: React.FC = () => {
   const [tab, setTab] = useState<'a_l_affiche' | 'marche'>('a_l_affiche');
@@ -202,13 +130,6 @@ export const DemoProductionsSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Centre : Play */}
-            <div className="relative z-10 flex items-center justify-center my-auto">
-              <div className="w-14 h-14 rounded-full bg-black/65 border border-white/30 flex items-center justify-center text-white shadow-lg">
-                <Play className="w-6 h-6 fill-white text-white translate-x-0.5" />
-              </div>
-            </div>
-
             {/* Bas : Bloc de coproduction semi-transparent (identique Capture 4) */}
             <div className="relative z-10 bg-black/65 rounded-2xl p-3.5 border border-white/15 space-y-2.5">
 
@@ -267,9 +188,9 @@ export const DemoProductionsSection: React.FC = () => {
           </div>
 
           {[
-            { id: 'off-1', seller: 'Pascal Cossi', shares: 10, series: 'Other Sights <> Third Eye', price: 50, photo: '/assets/duos/codjo-blind.jpg' },
-            { id: 'off-2', seller: 'Koffi', shares: 5, series: 'Fiat Luxe <> Sweet Street', price: 52, photo: '/assets/duos/chef-koffi.jpg' },
-            { id: 'off-3', seller: 'Fatou Diallo', shares: 8, series: 'Roots <> Routes', price: 50, photo: '/assets/duos/fatou-diallo.jpg' },
+            { id: 'off-1', seller: 'Pascal Cossi', shares: 10, series: 'PhD ‹ › Azovi', price: 50, photo: '/assets/duos/codjo-blind.jpg' },
+            { id: 'off-2', seller: 'Koffi', shares: 5, series: 'Remèdes ‹ › E Vivi', price: 52, photo: '/assets/duos/chef-koffi.jpg' },
+            { id: 'off-3', seller: 'Fatou Diallo', shares: 8, series: 'Builders ‹ › Àkwè', price: 50, photo: '/assets/duos/fatou-diallo.jpg' },
           ].map((offer) => (
             <div
               key={offer.id}

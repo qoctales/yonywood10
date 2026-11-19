@@ -10,6 +10,7 @@ import { TvPlayerIcon } from '../YonywoodBrandIcons';
 import { StageCarousel3D } from '../shared/StageCarousel3D';
 import { StageBreadcrumb } from '../shared/StageBreadcrumb';
 import { CardWidthModal } from '../shared/CardWidthModal';
+import { SERIES_FEED_SECTION_LABEL } from '../../constants/profileOnboardingContent';
 
 interface SeriesSelectionSectionProps {
   selectedDocFilter: string[];
@@ -60,7 +61,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
         <StageBreadcrumb
           items={[
             { label: 'Profil', onClick: onBack },
-            { label: 'Mes Séries' }
+            { label: SERIES_FEED_SECTION_LABEL }
           ]}
         />
 
@@ -135,14 +136,14 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                             e.stopPropagation();
                             setIsMuted((prev) => !prev);
                           }}
-                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                           aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
                           {isMuted ? (
-                            <VolumeX className="w-3.5 h-3.5" />
+                            <VolumeX className="w-4 h-4" />
                           ) : (
-                            <Volume2 className="w-3.5 h-3.5" />
+                            <Volume2 className="w-4 h-4" />
                           )}
                         </button>
                       )}
@@ -160,7 +161,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                             prev === series.id ? null : series.id
                           );
                         }}
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
+                        className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
                           isPlaying
                             ? 'bg-[#A2482B] border-[#F3C677]/60'
                             : 'bg-black/75 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
@@ -169,9 +170,9 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                         aria-label={isPlaying ? 'Mettre en pause' : `Aperçu de ${series.title}`}
                       >
                         {isPlaying ? (
-                          <Pause className="w-3.5 h-3.5 fill-white" />
+                          <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white" />
                         ) : (
-                          <TvPlayerIcon className="w-4 h-4 text-white" strokeWidth={1.7} />
+                          <TvPlayerIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" strokeWidth={1.7} />
                         )}
                       </button>
                     </div>

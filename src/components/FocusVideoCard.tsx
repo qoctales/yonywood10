@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Play, ArrowLeft } from 'lucide-react';
+import { Volume2, VolumeX, ArrowLeft, Pause } from 'lucide-react';
 import { ProfileSoloIcon, TvPlayerIcon, ActionClapperboardIcon, BriefcaseIcon } from './YonywoodBrandIcons';
 import { ShareIcon } from './ShareIcon';
 import { STAGE_CARD_DIMENSIONS_CLASS, STAGE_CENTER_TRANSLATE_Z } from '../config/cardLayout';
@@ -162,21 +162,25 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
                 e.stopPropagation();
                 onTogglePlay();
               }}
-              className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
+              className={`w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
                 isPlaying
                   ? 'bg-[#A2482B] text-white border border-[#8A3B22]'
-                  : 'bg-black/75 text-white border border-white/20 hover:bg-black/85'
+                  : 'bg-black/75 text-white border border-white/20 hover:bg-[#A2482B]'
               }`}
               title={isPlaying ? 'Mettre en pause' : 'Lancer la vidéo'}
             >
-              <TvPlayerIcon className="w-4.5 h-4.5 text-current" />
+              {isPlaying ? (
+                <Pause className="w-4 h-4 fill-white text-white" />
+              ) : (
+                <TvPlayerIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-current" strokeWidth={1.7} />
+              )}
             </button>
           </div>
         )}
       </div>
 
       {/* LECTEUR VIDÉO OU PHOTO PLEIN CADRE */}
-      {hasVideo && isActive ? (
+      {hasVideo && isActive && (isPlaying || !photoUrl) ? (
         <div
           onClick={onTogglePlay}
           className="absolute inset-0 overflow-hidden cursor-pointer"
@@ -196,17 +200,12 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
             className="w-full h-full object-cover pointer-events-none"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35 pointer-events-none" />
-
-          {!isPlaying && (
-            <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-              <div className="w-14 h-14 rounded-full bg-black/65 border border-white/25 text-white flex items-center justify-center shadow-2xl transition-transform hover:scale-110">
-                <Play className="w-6 h-6 ml-0.5 fill-white text-white opacity-90" />
-              </div>
-            </div>
-          )}
         </div>
       ) : (
-        <div className="absolute inset-0 overflow-hidden">
+        <div
+          onClick={hasVideo && isActive ? onTogglePlay : undefined}
+          className={`absolute inset-0 overflow-hidden ${hasVideo && isActive ? 'cursor-pointer' : ''}`}
+        >
           {photoUrl ? (
             <img
               src={photoUrl}

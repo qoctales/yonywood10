@@ -38,7 +38,7 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
 }) => {
   const [cardIndex, setCardIndex] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [videoProgress, setVideoProgress] = useState<number>(0);
   const [shareItem, setShareItem] = useState<{ title: string; id: string } | null>(null);
@@ -51,7 +51,7 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
   const handleSelectCard = useCallback((nextIdx: number) => {
     setCardIndex(nextIdx);
     setVideoProgress(0);
-    setIsPlaying(true);
+    setIsPlaying(false);
     celestialAudio.playOrbSelect();
   }, []);
 

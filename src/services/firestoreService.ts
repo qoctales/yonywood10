@@ -11,6 +11,23 @@ import {
   serverTimestamp 
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { resolveCanonicalSeriesId, SERIES_REGISTRY_BY_ID } from '../data/seriesRegistry';
+
+const normalizeSubmittedVideo = (video: VideoSubmission): { normalized: VideoSubmission; changed: boolean } => {
+  const canonicalId = resolveCanonicalSeriesId(video.seriesId);
+  if (!canonicalId || canonicalId === video.seriesId) {
+    return { normalized: video, changed: false };
+  }
+  const canonicalTitle = SERIES_REGISTRY_BY_ID[canonicalId]?.title;
+  return {
+    normalized: {
+      ...video,
+      seriesId: canonicalId,
+      seriesTitle: canonicalTitle || video.seriesTitle
+    },
+    changed: true
+  };
+};
 
 export interface VideoSubmission {
   id?: string;
@@ -126,7 +143,7 @@ export async function getAllSeriesRemainingShares(defaultTakenMap: Record<string
     const purchasesBySeries: Record<string, number> = {};
     snapshot.forEach(doc => {
       const data = doc.data();
-      const sId = data.seriesId;
+      const sId = resolveCanonicalSeriesId(data.seriesId) || data.seriesId;
       if (sId) {
         purchasesBySeries[sId] = (purchasesBySeries[sId] || 0) + Number(data.sharesCount || 0);
       }
@@ -134,8 +151,9 @@ export async function getAllSeriesRemainingShares(defaultTakenMap: Record<string
 
     const localPurchases = JSON.parse(localStorage.getItem('yonywood_local_share_purchases') || '[]');
     localPurchases.forEach((p: any) => {
-      if (p.seriesId) {
-        purchasesBySeries[p.seriesId] = (purchasesBySeries[p.seriesId] || 0) + Number(p.sharesCount || 0);
+      const sId = resolveCanonicalSeriesId(p.seriesId) || p.seriesId;
+      if (sId) {
+        purchasesBySeries[sId] = (purchasesBySeries[sId] || 0) + Number(p.sharesCount || 0);
       }
     });
 
@@ -150,8 +168,9 @@ export async function getAllSeriesRemainingShares(defaultTakenMap: Record<string
     const localPurchases = JSON.parse(localStorage.getItem('yonywood_local_share_purchases') || '[]');
     const purchasesBySeries: Record<string, number> = {};
     localPurchases.forEach((p: any) => {
-      if (p.seriesId) {
-        purchasesBySeries[p.seriesId] = (purchasesBySeries[p.seriesId] || 0) + Number(p.sharesCount || 0);
+      const sId = resolveCanonicalSeriesId(p.seriesId) || p.seriesId;
+      if (sId) {
+        purchasesBySeries[sId] = (purchasesBySeries[sId] || 0) + Number(p.sharesCount || 0);
       }
     });
 
@@ -197,12 +216,21 @@ export async function fetchSubmittedVideos(): Promise<VideoSubmission[]> {
     const snapshot = await withTimeout(getDocs(q));
     const results: VideoSubmission[] = [];
     snapshot.forEach(d => {
-      results.push({ id: d.id, ...d.data() } as VideoSubmission);
+      results.push(normalizeSubmittedVideo({ id: d.id, ...d.data() } as VideoSubmission).normalized);
     });
     return results;
   } catch (err) {
-    const localVideos = JSON.parse(localStorage.getItem('yonywood_local_submitted_videos') || '[]');
-    return localVideos;
+    const localVideos: VideoSubmission[] = JSON.parse(localStorage.getItem('yonywood_local_submitted_videos') || '[]');
+    let anyChanged = false;
+    const normalized = localVideos.map(v => {
+      const res = normalizeSubmittedVideo(v);
+      if (res.changed) anyChanged = true;
+      return res.normalized;
+    });
+    if (anyChanged) {
+      localStorage.setItem('yonywood_local_submitted_videos', JSON.stringify(normalized));
+    }
+    return normalized;
   }
 }
 
@@ -218,9 +246,9 @@ export async function fetchUserSubmittedVideos(userId?: string, userEmail?: stri
       userId: userId || 'usr-creator',
       userName: 'Sika Dossou',
       userEmail: userEmail || 'createur@yonywood.com',
-      seriesId: 'vodun-rays-autre-foi',
-      seriesTitle: 'Vodun Rays <> Autre Foi',
-      question: 'Ce qui vous a fait ressentir quelque chose de plus grand que vous',
+      seriesId: 'amin-amen-legba',
+      seriesTitle: 'Amin Amen ‹ › Legba',
+      question: "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
       videoUrl: '/sample.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
       protagonistName: 'Sika Dossou',
@@ -238,16 +266,16 @@ export async function fetchUserSubmittedVideos(userId?: string, userEmail?: stri
       userId: userId || 'usr-creator',
       userName: 'Mahougnon Zounon',
       userEmail: userEmail || 'createur@yonywood.com',
-      seriesId: 'vodun-rays-autre-foi',
-      seriesTitle: 'Vodun Rays <> Autre Foi',
-      question: 'La première fois que vous avez compris que le monde ne pensait pas comme vous',
+      seriesId: 'amin-amen-legba',
+      seriesTitle: 'Amin Amen ‹ › Legba',
+      question: 'Racontez un moment où ce qui vous tenait debout a vacillé.',
       videoUrl: '/sample.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
       protagonistName: 'Mahougnon Zounon',
       protagonistRole: 'Gardien des rythmes de Ouidah',
       territory: 'Bénin (Ouidah)',
       country: 'Bénin',
-      pitch: 'Dialogue fraternel entre cloches de paroisse et roulements du tambour sacrifié au carrefour.',
+      pitch: 'Dialogue fraternel entre cloches de paroisse et roulements du tambour sacré au carrefour.',
       viewsCount: 890,
       completionRate: 74,
       status: 'pending',
@@ -261,7 +289,16 @@ export async function fetchUserSubmittedVideos(userId?: string, userEmail?: stri
     localStorage.setItem(localKey, JSON.stringify(localVideos));
   } else {
     try {
-      localVideos = JSON.parse(rawLocal);
+      const parsed: VideoSubmission[] = JSON.parse(rawLocal);
+      let anyChanged = false;
+      localVideos = parsed.map(v => {
+        const res = normalizeSubmittedVideo(v);
+        if (res.changed) anyChanged = true;
+        return res.normalized;
+      });
+      if (anyChanged) {
+        localStorage.setItem(localKey, JSON.stringify(localVideos));
+      }
     } catch {
       localVideos = DEFAULT_CREATOR_VIDEOS;
     }
@@ -275,7 +312,7 @@ export async function fetchUserSubmittedVideos(userId?: string, userEmail?: stri
       const data = d.data() as VideoSubmission;
       // Filtrer pour l'utilisateur courant si spécifié
       if (!userId || data.userId === userId || data.userEmail === userEmail) {
-        remoteList.push({ id: d.id, ...data });
+        remoteList.push(normalizeSubmittedVideo({ id: d.id, ...data }).normalized);
       }
     });
 

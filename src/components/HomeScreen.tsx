@@ -28,7 +28,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
 
   // Selected Series for the Affiliation Tree
   const [selectedSeriesId, setSelectedSeriesId] = useState<string>(
-    () => SERIES_AFFILIATION_TREES[0]?.seriesId || DOCUMENTARIES[0]?.id || 'vodun-rays-autre-foi'
+    () => SERIES_AFFILIATION_TREES[0]?.seriesId || DOCUMENTARIES[0]?.id || 'remedes-e-vivi'
   );
 
   // Selected Person in tree for detail inspection drawer/modal

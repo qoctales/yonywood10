@@ -9,35 +9,35 @@ export interface ActionShareholderProfile {
 }
 
 /**
- * Fichier unique et simple (modifiable à la main) pour les profils affichés sur la page Action.
- * - video : optionnel (si absent, la carte affiche la photo, le nom et la phrase).
- * - series : une ou plusieurs séries dans lesquelles la personne a des actions.
+ * 3 profils de démo de coproducteurs affichés sur la page Coproductions.
+ * Chacun dispose de son portrait, de sa vidéo et des séries dans lesquelles il a investi.
  */
 export const ACTION_SHAREHOLDERS: ActionShareholderProfile[] = [
   {
-    id: 'action-exemple-1',
-    name: 'Kora Lemaire (EXEMPLE)',
-    photo: '/assets/protagonists/amara-tisserande.jpg',
+    id: 'coprod-demo-1',
+    name: 'Nadia Kossi',
+    photo: '/assets/duos/fatou-diallo.jpg',
     video: '/sample.mp4',
-    phrase: 'Passionnée par la mémoire des savoir-faire et des artisans de terrain.',
-    series: ['Benin ‹ › Le Monde'],
-    protagonistId: 'exemple-kora-lemaire',
+    phrase: 'Soutenir les bâtisseurs et les initiatives locales qui transforment nos territoires.',
+    series: ['Builders ‹ › Àkwè', 'Remèdes ‹ › E Vivi'],
+    protagonistId: 'coprod-nadia-kossi',
   },
   {
-    id: 'action-exemple-2',
-    name: 'Nilo Sarr (EXEMPLE)',
-    photo: '/assets/protagonists/armel-hounkpatin.jpg',
+    id: 'coprod-demo-2',
+    name: 'Armel Sarr',
+    photo: '/assets/duos/coach-office.jpg',
     video: '/sample.mp4',
-    phrase: 'Soutien des récits documentaires qui relient les générations.',
-    series: ['Blacks One ‹ › Amazones', 'Roots < > Routes'],
-    protagonistId: 'exemple-nilo-sarr',
+    phrase: 'Faire dialoguer la recherche, l’artisanat d’art et la mémoire vivante.',
+    series: ['Fiat Luxe ‹ › Irokos', 'Regards ‹ › Gbé'],
+    protagonistId: 'coprod-armel-sarr',
   },
   {
-    id: 'action-exemple-3',
-    name: 'Tavi Boka (EXEMPLE)',
-    photo: '/assets/protagonists/koffi-tisserand.jpg',
-    phrase: 'Faire vivre nos récits patrimoniaux pour que chacun retrouve ses repères.',
-    series: ['Vodun Rays ‹ › Autre Foi'],
-    protagonistId: 'exemple-tavi-boka',
+    id: 'coprod-demo-3',
+    name: 'Amara Kouyaté',
+    photo: '/assets/images/amara-kouyate-illus.jpg',
+    video: '/sample.mp4',
+    phrase: 'Propulser les créatrices et les récits africains qui inspirent les nouvelles générations.',
+    series: ['Blacks One ‹ › Nyonoukpo', 'Horizons ‹ › Finagnon'],
+    protagonistId: 'coprod-amara-kouyate',
   },
 ];

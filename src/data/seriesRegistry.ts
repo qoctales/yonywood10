@@ -1,3 +1,20 @@
+import {
+  LEGACY_SERIES_MAPPING,
+  SERIES_POSTER_FILES,
+  extractBaseSeriesId,
+  resolveCanonicalSeriesId,
+  isHiddenLegacySeriesId,
+  type LegacySeriesMappingEntry
+} from './legacySeriesIds';
+
+export type { LegacySeriesMappingEntry };
+export {
+  LEGACY_SERIES_MAPPING,
+  extractBaseSeriesId,
+  resolveCanonicalSeriesId,
+  isHiddenLegacySeriesId
+};
+
 export type SeriesEpisodeStatus = 'coming_soon' | 'published';
 
 export interface SeriesEpisode {
@@ -25,44 +42,30 @@ export interface SeriesRegistryEntry {
   episodes: [SeriesEpisode, SeriesEpisode, SeriesEpisode, SeriesEpisode];
 }
 
-export interface LegacySeriesMappingEntry {
-  legacyId: string;
-  status: 'mapped' | 'hidden' | 'split_hidden';
-  targetSeriesId: string | null;
-  note: string;
-  splitSides?: {
-    sideALabel: string;
-    sideATarget: { seriesId: string; partId: 'part-a' | 'part-b' } | null;
-    sideBLabel: string;
-    sideBTarget: { seriesId: string; partId: 'part-a' | 'part-b' } | null;
-  };
-}
-
 /**
- * Registre officiel des 8 séries Duocumentaires (v2), dans l'ordre définitif.
- * Note interne : l'identifiant est strictement "care-feed" (jamais "feed" seul).
+ * Registre officiel des 8 séries Duocumentaires, dans l'ordre définitif.
  */
 export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
   {
-    id: 'care-feed',
-    title: 'Care <> Feed',
+    id: 'remedes-e-vivi',
+    title: 'Remèdes ‹ › E Vivi',
     partA: {
       id: 'part-a',
-      name: 'Care',
+      name: 'Remèdes',
       description:
         "Médecins, infirmiers, sages-femmes, pharmaciens, aides-soignants, tradipraticiens, herboristes, praticiens de médecine douce, et ceux qu'ils ont soignés. Un monde de gestes, de gardes de nuit et de confiance, où toutes les médecines se retrouvent.",
-      posterUrl: encodeURI('/Posters/Sides/Care.png')
+      posterUrl: SERIES_POSTER_FILES['remedes-e-vivi'].partAPosterUrl
     },
     partB: {
       id: 'part-b',
-      name: 'Feed',
+      name: 'E Vivi',
       description:
-        "Agriculteurs, maraîchers, pêcheurs, cuisiniers, vendeuses de street food, marchandes de marché : tous ceux qui font que d'autres mangent. Un monde de levers à l'aube, de terre, de feu et de marchés.",
-      posterUrl: encodeURI('/Posters/Sides/Feed.png')
+        "Agriculteurs, maraîchers, pêcheurs, cuisiniers, vendeuses de street food, marchandes de marché, brasseurs et producteurs de boissons : tous ceux qui font que d'autres mangent et boivent. Un monde de levers à l'aube, de terre, de feu, de marchés et de tables partagées.",
+      posterUrl: SERIES_POSTER_FILES['remedes-e-vivi'].partBPosterUrl
     },
     synopsis:
-      "Deux façons de veiller sur les autres : celles et ceux qui prennent soin, de toutes les médecines, et celles et ceux qui nourrissent, du champ à l'assiette. Ils se lèvent tôt, rentrent fatigués, et tiennent les autres debout sans qu'on le remarque. La série leur pose les mêmes questions : le moment où ce métier est devenu une évidence, la nuit ou le matin où il a fallu continuer, la personne dont ils se souviennent, ce qu'ils ramènent chez eux le soir.",
-    posterUrl: encodeURI('/Posters/Care ‹ › Feed.png'),
+      "Deux façons de veiller sur les autres : celles et ceux qui soignent, de toutes les médecines, et celles et ceux qui font que l'on mange et que l'on boit, du champ à l'assiette jusqu'au verre que l'on partage. D'un côté le remède, de l'autre le « E Vivi » : ce que l'on dit en fongbé quand une chose est douce et bonne. Ils se lèvent tôt, rentrent fatigués, et tiennent les autres debout sans qu'on le remarque. La série leur pose les mêmes questions : le moment où ce métier est devenu une évidence, la nuit ou le matin où il a fallu continuer, la personne dont ils se souviennent, ce qu'ils ramènent chez eux le soir.",
+    posterUrl: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
@@ -99,25 +102,25 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
     ]
   },
   {
-    id: 'vodun-rays-autre-foi',
-    title: 'Vodun Rays <> Autre Foi',
+    id: 'amin-amen-legba',
+    title: 'Amin Amen ‹ › Legba',
     partA: {
       id: 'part-a',
-      name: 'Vodun Rays',
+      name: 'Amin Amen',
       description:
-        "Pratiquants du Vodun et des traditions qui lui sont liées : prêtres et prêtresses, initiés, adeptes, familles qui entretiennent un culte, et aussi des descendants de la diaspora (Brésil, Cuba, Haïti) qui retrouvent ces racines.",
-      posterUrl: encodeURI('/Posters/Sides/Vodun Rays.png')
+        "Chrétiens de toutes confessions (catholiques, protestants, évangéliques, christianistes célestes et autres Églises) et musulmans, fidèles comme responsables de communauté. Un monde de prière, de communauté et d'engagement, où l'on dit « amen » ou « amin » à la fin de ce que l'on croit.",
+      posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].partAPosterUrl
     },
     partB: {
       id: 'part-b',
-      name: 'Autre Foi',
+      name: 'Legba',
       description:
-        "Toute personne ayant embrassé une croyance autre que le Vodun : chrétiens de toutes confessions, musulmans, bouddhistes, membres d'ordres mystiques ou ésotériques (rosicruciens, francs-maçons...), et toute autre foi qui a du sens pour eux. Un monde de quête intérieure, de prière ou de pratique, et d'engagement.",
-      posterUrl: encodeURI('/Posters/Sides/Autre Foi.png')
+        "Pratiquants du Vodun et des traditions qui lui sont liées : prêtres et prêtresses, initiés, adeptes, familles qui entretiennent un culte, et aussi des descendants de la diaspora (Brésil, Cuba, Haïti) qui retrouvent ces racines. Un monde de rites, de mémoire et de transmission.",
+      posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].partBPosterUrl
     },
     synopsis:
-      "Au Bénin, le Vodun occupe une place à part : une tradition d'origine, à laquelle beaucoup d'autres croyances viennent faire face. D'un côté, Vodun Rays, qui rassemble les pratiquants du Vodun et des traditions qui lui sont liées. De l'autre, Autre Foi, qui rassemble tous ceux qui ont embrassé une autre croyance — catholiques, musulmans, bouddhistes, rosicruciens, francs-maçons, et bien d'autres spiritualités, religions ou ordres mystiques, connus ou plus discrets. Le Vodun est au centre, comme point de départ. La série ne demande pas qui a raison. Elle demande à chacun de raconter à quel moment il s'est senti appelé, a douté, a eu besoin de courage, et ce qu'il veut transmettre.",
-    posterUrl: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
+      "Au Bénin, le Vodun occupe une place à part : une tradition d'origine, à laquelle d'autres croyances viennent faire face. D'un côté, Amin Amen : les deux mots qui ferment une prière, celui des musulmans et celui des chrétiens, pour rassembler ceux qui ont embrassé l'une de ces deux religions. De l'autre, Legba, qui rassemble les pratiquants du Vodun et des traditions qui lui sont liées. Le Vodun est au centre, comme point de départ. La série ne demande pas qui a raison. Elle demande à chacun de raconter à quel moment il s'est senti appelé, a douté, a eu besoin de courage, et ce qu'il veut transmettre.",
+    posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
@@ -153,79 +156,79 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
     ]
   },
   {
-    id: 'baobabs-bambous',
-    title: 'Baobabs <> Bambous',
+    id: 'phd-azovi',
+    title: 'PhD ‹ › Azovi',
     partA: {
       id: 'part-a',
-      name: 'Baobabs',
+      name: 'PhD',
       description:
-        "Les aînés, dépositaires de mémoire : grands-parents, retraités, anciens du village ou du quartier, dignitaires. Un monde où l'on transmet par le récit.",
-      posterUrl: encodeURI('/Posters/Sides/Baobabs.png')
+        "Docteurs, doctorants, chercheurs, enseignants-chercheurs, ceux qui vivent de la recherche. Un monde de questions longues, d'évaluations et de bibliothèques.",
+      posterUrl: SERIES_POSTER_FILES['phd-azovi'].partAPosterUrl
     },
     partB: {
       id: 'part-b',
-      name: 'Bambous',
+      name: 'Azovi',
       description:
-        'Les jeunes adultes (18 ans minimum) qui construisent leur vie : étudiants, apprentis, jeunes créateurs, jeunes actifs. Un monde de projets, de doutes et d\'impatience.',
-      posterUrl: encodeURI('/Posters/Sides/Bambous.png')
+        "Apprentis et stagiaires de tous les métiers (18 ans minimum) : couture, mécanique, coiffure, menuiserie, soudure, électricité, restauration et tant d'autres, jeunes formés sur le tas auprès d'un patron ou d'un maître. Un monde d'ateliers, de gestes répétés et de patience, où l'on apprend en regardant et en faisant.",
+      posterUrl: SERIES_POSTER_FILES['phd-azovi'].partBPosterUrl
     },
     synopsis:
-      "Un baobab pousse lentement et vit des siècles ; un bambou grandit à vue d'œil et plie sans casser. Deux générations, deux rythmes, rarement invitées à se parler sans hiérarchie. La série les met face à la même question : un souvenir d'enfance, une surprise venue d'un autre âge, une erreur dont on a appris, ce qu'on voudrait laisser derrière soi.",
-    posterUrl: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
+      "Deux façons d'apprendre, que l'on met rarement face à face : par les livres et la recherche, ou par la main, sous le regard d'un maître. D'un côté, des docteurs et des chercheurs qui cherchent parfois pendant des années une réponse que personne n'a encore trouvée. De l'autre, Azovi, qui signifie « apprentis » : des apprentis et des stagiaires qui apprennent un métier en le faisant, à l'atelier, au garage ou sur le chantier. Au Bénin, l'apprentissage est un chemin que beaucoup de jeunes empruntent. La série leur pose les mêmes questions : le premier jour, ce qu'on apprend en faisant, l'erreur qui a tout appris, la personne qui les a formés.",
+    posterUrl: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: "L'enfance",
-        question: "Racontez l'instant de votre enfance que vous voudriez revivre une dernière fois.",
+        title: 'Le premier jour',
+        question:
+          'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: "D'un autre âge",
+        title: 'Apprendre en faisant',
         question:
-          "Racontez ce que quelqu'un d'une autre génération vous a fait comprendre sans le vouloir.",
+          "Racontez ce que vous avez appris par la pratique, et qu'aucun livre ni aucun cours ne vous avait dit.",
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
         title: "L'erreur",
-        question:
-          "Racontez une erreur que vous ne voudriez pas effacer, ou que vous n'avez pas fini de regretter.",
+        question: 'Racontez une erreur qui vous a appris plus qu\'une réussite.',
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: 'Ce qui reste',
+        title: 'Celui ou celle qui vous a formé',
         question:
-          "Qu'aimeriez-vous qu'il reste de vous dans la vie des autres, quand vous ne serez plus là ?",
+          'Racontez la personne qui vous a marqué dans votre apprentissage, et ce que vous en avez retenu.',
         status: 'coming_soon'
       }
     ]
   },
   {
-    id: 'blacks-one-wowmen',
-    title: 'Blacks One <> Wowmen',
+    id: 'blacks-one-nyonoukpo',
+    title: 'Blacks One ‹ › Nyonoukpo',
     partA: {
       id: 'part-a',
       name: 'Blacks One',
       description:
         "Personnes engagées pour l'identité noire et l'unité : militants et associations panafricanistes, artistes, enseignants, jeunes diplômés, membres de la diaspora (Afrique, Amériques, Caraïbes, Europe). Un monde d'histoire, de mémoire et de fierté.",
-      posterUrl: encodeURI('/Posters/Sides/Blacks One.png')
+      posterUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].partAPosterUrl
     },
     partB: {
       id: 'part-b',
-      name: 'Wowmen',
+      name: 'Nyonoukpo',
       description:
         "Des femmes et des hommes qui viennent dire ce que les femmes représentent pour eux et pourquoi elles méritent d'être défendues : mères, filles, épouses, collègues, bâtisseuses. Un monde d'admiration, de reconnaissance et de combats du quotidien.",
-      posterUrl: encodeURI('/Posters/Sides/Wowmen.png')
+      posterUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].partBPosterUrl
     },
     synopsis:
-      "Deux manières de dire « voilà ce qui compte pour moi ». D'un côté, des gens qui viennent défendre des identités noires, dans toute leur diversité, avec en toile de fond l'idée d'unité. De l'autre, des gens qui viennent dire leur admiration pour les femmes : leur beauté, leur puissance, ce qu'elles apportent, et pourquoi il faut les défendre. Le titre joue sur le double W de « Wowmen ».",
-    posterUrl: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
+      "Deux manières de dire « voilà ce qui compte pour moi ». D'un côté, des gens qui viennent défendre des identités noires, dans toute leur diversité, avec en toile de fond l'idée d'unité. De l'autre, Nyonoukpo, la « femme panthère » : des gens qui viennent dire leur admiration pour les femmes, leur beauté, leur puissance, ce qu'elles apportent, et pourquoi il faut les défendre.",
+    posterUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
@@ -260,40 +263,40 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
     ]
   },
   {
-    id: 'fiat-luxe-phd',
-    title: 'Fiat Luxe <> PhD',
+    id: 'fiat-luxe-irokos',
+    title: 'Fiat Luxe ‹ › Irokos',
     partA: {
       id: 'part-a',
       name: 'Fiat Luxe',
       description:
         "Créateurs, artisans d'art, couturiers, bijoutiers, tisserands, maisons de luxe, hôtellerie haut de gamme : tous ceux dont le travail vise la rareté et la perfection. Un monde de matières, de gestes et de patience.",
-      posterUrl: encodeURI('/Posters/Sides/Fiat Luxe.png')
+      posterUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].partAPosterUrl
     },
     partB: {
       id: 'part-b',
-      name: 'PhD',
+      name: 'Irokos',
       description:
-        "Docteurs, doctorants, chercheurs, enseignants-chercheurs, ceux qui vivent de la recherche. Un monde de questions longues, d'évaluations et de bibliothèques.",
-      posterUrl: encodeURI('/Posters/Sides/PhD.png')
+        "Les aînés : grands-parents, retraités, anciens du village ou du quartier, dignitaires, toutes celles et tous ceux qui ont vécu longtemps et que l'on vient écouter. Un monde de sagesse, de mémoire et de transmission par la parole.",
+      posterUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].partBPosterUrl
     },
     synopsis:
-      "Deux excellences que l'on met rarement face à face : celle du geste, qui fait un objet d'une beauté rare, et celle de la pensée, qui cherche pendant des années une réponse que personne n'a encore trouvée. Au Bénin, le luxe existe, de l'artisanat d'art à la couture, du bijou au tissage. Les docteurs et chercheurs, eux, produisent un savoir qu'on voit peu.",
-    posterUrl: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
+      "Deux maîtrises que seul le temps permet d'acquérir : celle du geste, qui fait un objet d'une beauté rare, et celle de la vie, qui fait d'une personne un repère. Au Bénin, le luxe existe, de l'artisanat d'art à la couture, du bijou au tissage. Les aînés, eux, portent une sagesse qu'on prend rarement le temps d'écouter longuement. L'iroko est un arbre immense, qui vit des siècles : la série lui emprunte son nom pour rendre hommage aux aînés. Elle leur pose les mêmes questions : ce qu'ils ont mis des années à apprendre, ce que le temps leur a appris, la personne qui les a exigés, à qui ils transmettent.",
+    posterUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Donner sa vie',
+        title: "Ce qui ne s'explique pas",
         question:
-          'Racontez le moment où vous avez su que vous donneriez des années de votre vie à une seule chose.',
+          'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: 'Le renoncement',
+        title: 'Ce que le temps apprend',
         question:
-          'Racontez ce à quoi vous avez renoncé pour aller au bout de quelque chose qui comptait pour vous.',
+          "Racontez ce que les années vous ont appris, et que personne n'aurait pu vous dire au début.",
         status: 'coming_soon'
       },
       {
@@ -307,33 +310,33 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       {
         id: 'ep4',
         number: '04',
-        title: 'Le jour de vérité',
+        title: 'La main tendue',
         question:
-          'Racontez le jour où vous avez su que tout ce que cela vous avait coûté en valait la peine.',
+          'Racontez la personne à qui vous avez transmis ce que vous savez, ou celle à qui vous aimeriez le transmettre.',
         status: 'coming_soon'
       }
     ]
   },
   {
-    id: 'finagnon-horizons',
-    title: 'Finagnon <> Horizons',
+    id: 'horizons-finagnon',
+    title: 'Horizons ‹ › Finagnon',
     partA: {
       id: 'part-a',
-      name: 'Finagnon',
-      description:
-        "Les Béninois du pays et de la diaspora, et les personnes d'origine béninoise nées ailleurs, qui parlent du Bénin. Un monde de fierté, d'engagement et de projets pour le pays.",
-      posterUrl: encodeURI('/Posters/Sides/Finagnon.png')
-    },
-    partB: {
-      id: 'part-b',
       name: 'Horizons',
       description:
         "Des personnes d'autres nations, qui parlent de leur propre pays ou territoire. Un monde de lieux, d'accents et de souvenirs.",
-      posterUrl: encodeURI('/Posters/Sides/Horizons.png')
+      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].partAPosterUrl
+    },
+    partB: {
+      id: 'part-b',
+      name: 'Finagnon',
+      description:
+        "Les Béninois du pays et de la diaspora, et les personnes d'origine béninoise nées ailleurs, qui parlent du Bénin, y compris celles et ceux qui accueillent les visiteurs : guides, hôtes, passeurs de mémoire. Un monde de fierté, d'engagement et de projets pour le pays.",
+      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].partBPosterUrl
     },
     synopsis:
-      "Chacun a un endroit auquel il se sent profondément lié. D'un côté, Finagnon rassemble les Béninois du pays et du monde, qui viennent parler du Bénin : ce qu'ils y ont vécu, ce qu'ils aiment, leur envie de le servir. De l'autre, Horizons rassemble des personnes d'autres nations, qui parlent de leur propre pays ou territoire avec le même attachement. Le Bénin est au centre, comme point de départ. Les personnes métissées choisissent leur côté, et c'est voulu.",
-    posterUrl: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
+      "Chacun a un endroit auquel il se sent profondément lié. D'un côté, Horizons rassemble des personnes d'autres nations, qui parlent de leur propre pays ou territoire avec le même attachement. De l'autre, Finagnon rassemble les Béninois du pays et du monde, qui viennent parler du Bénin : ce qu'ils y ont vécu, ce qu'ils aiment, leur envie de le servir, et aussi celles et ceux qui accueillent ceux qui viennent le découvrir. Le Bénin est au centre, comme point de départ. Les personnes métissées choisissent leur côté, et c'est voulu.",
+    posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
@@ -363,46 +366,46 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
         number: '04',
         title: 'Bâtir chez soi',
         question:
-          'Racontez ce que vous faites, ou voudriez faire, pour qu\'il fasse bon vivre chez vous.',
+          "Racontez ce que vous faites, ou voudriez faire, pour qu'il fasse bon vivre chez vous.",
         status: 'coming_soon'
       }
     ]
   },
   {
-    id: 'performers-builders',
-    title: 'Performers <> Builders',
+    id: 'builders-akwe',
+    title: 'Builders ‹ › Àkwè',
     partA: {
       id: 'part-a',
-      name: 'Performers',
-      description:
-        "Danseurs et chorégraphes, musiciens et chanteurs, comédiens, humoristes, gamers, créateurs de contenus et autres artistes de la scène ou de l'écran. Un monde de performance, d'expression, de création et de divertissement.",
-      posterUrl: encodeURI('/Posters/Sides/Performers.png')
-    },
-    partB: {
-      id: 'part-b',
       name: 'Builders',
       description:
         "Chefs d'entreprise et entrepreneurs, fondateurs de startups, architectes, artisans qui ont monté leur propre atelier ou entreprise, bâtisseurs de lieux ou de projets. Un monde de risques, de rencontres et de paris.",
-      posterUrl: encodeURI('/Posters/Sides/Builders.png')
+      posterUrl: SERIES_POSTER_FILES['builders-akwe'].partAPosterUrl
+    },
+    partB: {
+      id: 'part-b',
+      name: 'Àkwè',
+      description:
+        "Banquiers, comptables, gestionnaires financiers, investisseurs, business angels, traders, tontiniers, et toute personne qui dispose de moyens et choisit d'en faire quelque chose. Un monde de chiffres, d'arbitrages et de confiance.",
+      posterUrl: SERIES_POSTER_FILES['builders-akwe'].partBPosterUrl
     },
     synopsis:
-      "Performers rassemble celles et ceux qui font vivre une expérience au public : danseurs, musiciens, comédiens, humoristes, gamers et autres artistes de la scène ou de l'écran. Builders réunit celles et ceux qui entreprennent, conçoivent, organisent et développent des projets, des lieux ou des entreprises : chefs d'entreprise, architectes, artisans qui montent leur atelier, fondateurs de startups. La série explore leur envie de donner vie à quelque chose, les moments de doute, les personnes qui ont cru en eux et l'impact de ce qu'ils font sur les autres.",
-    posterUrl: encodeURI('/Posters/Performers ‹ › Builders.png'),
+      "Deux mondes qui ont besoin l'un de l'autre pour que les choses existent : celles et ceux qui bâtissent, et celles et ceux qui portent l'argent. Builders réunit celles et ceux qui entreprennent, conçoivent, organisent et développent des projets, des lieux ou des entreprises. Àkwè, « l'argent » en fongbé, réunit celles et ceux qui le gèrent, le financent ou en disposent. La série explore le pari, la peur, la confiance accordée ou reçue, et l'impact de ce que l'on fait sur les autres.",
+    posterUrl: SERIES_POSTER_FILES['builders-akwe'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Donner vie',
+        title: 'Le pari',
         question:
-          "Racontez le moment où vous avez décidé de donner vie à quelque chose qui n'existait pas encore.",
+          'Racontez le pari le plus risqué que vous avez pris, et ce qui vous a poussé à le prendre.',
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: 'Au bord du renoncement',
+        title: "L'argent en jeu",
         question:
-          'Racontez un moment où vous avez été tout près de renoncer, et ce qui vous a finalement poussé à continuer.',
+          'Racontez un moment où l\'argent, par sa présence ou son absence, a changé le cours de quelque chose que vous vouliez faire.',
         status: 'coming_soon'
       },
       {
@@ -424,25 +427,25 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
     ]
   },
   {
-    id: 'paroles-regards',
-    title: 'Paroles <> Regards',
+    id: 'regards-gbe',
+    title: 'Regards ‹ › Gbé',
     partA: {
       id: 'part-a',
-      name: 'Paroles',
-      description:
-        'Tous ceux qui travaillent par le verbe : écrivains, poètes, slameurs, conteurs, orateurs, avocats, auteurs de discours. Un monde de voix, de plaidoiries et de textes.',
-      posterUrl: encodeURI('/Posters/Sides/Paroles.png')
-    },
-    partB: {
-      id: 'part-b',
       name: 'Regards',
       description:
         "Photographes, vidéastes, cinéastes, peintres, plasticiens, graffeurs, illustrateurs. Un monde d'images, de lumière et de regards.",
-      posterUrl: encodeURI('/Posters/Sides/Regards.png')
+      posterUrl: SERIES_POSTER_FILES['regards-gbe'].partAPosterUrl
+    },
+    partB: {
+      id: 'part-b',
+      name: 'Gbé',
+      description:
+        'Tous ceux qui travaillent par le verbe : écrivains, poètes, slameurs, conteurs, orateurs, avocats, auteurs de discours. Un monde de voix, de plaidoiries et de textes.',
+      posterUrl: SERIES_POSTER_FILES['regards-gbe'].partBPosterUrl
     },
     synopsis:
-      'Deux façons de faire entendre une histoire : par les paroles ou par les regards. Paroles rassemble écrivains, poètes, slameurs, conteurs et orateurs ; Regards réunit photographes, vidéastes, cinéastes et artistes visuels. Les uns donnent forme au monde par les mots, les autres par les images.',
-    posterUrl: encodeURI('/Posters/Paroles ‹ › Regards.png'),
+      "Deux façons de faire entendre une histoire : par les regards ou par la voix. Regards réunit photographes, vidéastes, cinéastes et artistes visuels ; Gbé réunit écrivains, poètes, slameurs, conteurs et orateurs. Les uns donnent forme au monde par les images, les autres par les mots.",
+    posterUrl: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
@@ -480,242 +483,14 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
   }
 ];
 
-/**
- * Table complète de correspondance anciens -> nouveaux identifiants.
- * Les anciens IDs sans équivalent ou scindés sont marqués masqués (targetSeriesId = null).
- */
-export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
-  // Équivalents directs
-  'blacks-one-amazones': {
-    legacyId: 'blacks-one-amazones',
-    status: 'mapped',
-    targetSeriesId: 'blacks-one-wowmen',
-    note: 'Correspondance directe vers Blacks One <> Wowmen'
-  },
-  'blacks-one-beyond-eve': {
-    legacyId: 'blacks-one-beyond-eve',
-    status: 'mapped',
-    targetSeriesId: 'blacks-one-wowmen',
-    note: 'Correspondance directe vers Blacks One <> Wowmen'
-  },
-  'baobab-bambou': {
-    legacyId: 'baobab-bambou',
-    status: 'mapped',
-    targetSeriesId: 'baobabs-bambous',
-    note: 'Correspondance directe vers Baobabs <> Bambous'
-  },
-  'esu-jesus': {
-    legacyId: 'esu-jesus',
-    status: 'mapped',
-    targetSeriesId: 'vodun-rays-autre-foi',
-    note: 'Ancien identifiant de Vodun Rays <> Autre Foi (ex Èṣù <> Jésus)'
-  },
-  'jesus-legba': {
-    legacyId: 'jesus-legba',
-    status: 'mapped',
-    targetSeriesId: 'vodun-rays-autre-foi',
-    note: 'Correspondance directe vers Vodun Rays <> Autre Foi'
-  },
-  'pictures-words': {
-    legacyId: 'pictures-words',
-    status: 'mapped',
-    targetSeriesId: 'paroles-regards',
-    note: 'Correspondance directe vers Paroles <> Regards'
-  },
-  'benin-monde': {
-    legacyId: 'benin-monde',
-    status: 'mapped',
-    targetSeriesId: 'finagnon-horizons',
-    note: 'Correspondance directe vers Finagnon <> Horizons'
-  },
-  'benin-world': {
-    legacyId: 'benin-world',
-    status: 'mapped',
-    targetSeriesId: 'finagnon-horizons',
-    note: 'Correspondance directe vers Finagnon <> Horizons'
-  },
-
-  // Anciennes séries sans équivalent (masquées)
-  'roots-routes': {
-    legacyId: 'roots-routes',
-    status: 'hidden',
-    targetSeriesId: null,
-    note: 'Aucun équivalent dans la v2, série masquée'
-  },
-  'other-eyes-sixth-sense': {
-    legacyId: 'other-eyes-sixth-sense',
-    status: 'hidden',
-    targetSeriesId: null,
-    note: 'Aucun équivalent dans la v2, série masquée'
-  },
-  'safer-healer': {
-    legacyId: 'safer-healer',
-    status: 'hidden',
-    targetSeriesId: null,
-    note: 'Ancienne série disparue, masquée'
-  },
-  'coaching-unlimited': {
-    legacyId: 'coaching-unlimited',
-    status: 'hidden',
-    targetSeriesId: null,
-    note: 'Ancienne série disparue, masquée'
-  },
-  'coaching-tradipraticiens': {
-    legacyId: 'coaching-tradipraticiens',
-    status: 'hidden',
-    targetSeriesId: null,
-    note: 'Ancienne série disparue (aucune correspondance forcée), masquée'
-  },
-
-  // Séries scindées : chaque ancien ID est masqué dans son ensemble ; ses côtés sont réaffectés
-  'coaching-phd': {
-    legacyId: 'coaching-phd',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : côté Coaching masqué, côté PhD -> fiat-luxe-phd (part-b)',
-    splitSides: {
-      sideALabel: 'Coaching',
-      sideATarget: null,
-      sideBLabel: 'PhD',
-      sideBTarget: { seriesId: 'fiat-luxe-phd', partId: 'part-b' }
-    }
-  },
-  'fiat-luxe-builders': {
-    legacyId: 'fiat-luxe-builders',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Fiat Luxe -> fiat-luxe-phd (part-a), Builders -> performers-builders (part-b)',
-    splitSides: {
-      sideALabel: 'Fiat Luxe',
-      sideATarget: { seriesId: 'fiat-luxe-phd', partId: 'part-a' },
-      sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'performers-builders', partId: 'part-b' }
-    }
-  },
-  'finagnon-qosqorico': {
-    legacyId: 'finagnon-qosqorico',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Finagnon -> finagnon-horizons (part-a), Qosqorico masqué',
-    splitSides: {
-      sideALabel: 'Finagnon',
-      sideATarget: { seriesId: 'finagnon-horizons', partId: 'part-a' },
-      sideBLabel: 'Qosqorico',
-      sideBTarget: null
-    }
-  },
-  'dixeat-fiat-luxe': {
-    legacyId: 'dixeat-fiat-luxe',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Dixeat masqué, Fiat Luxe -> fiat-luxe-phd (part-a)',
-    splitSides: {
-      sideALabel: 'Dixeat',
-      sideATarget: null,
-      sideBLabel: 'Fiat Luxe',
-      sideBTarget: { seriesId: 'fiat-luxe-phd', partId: 'part-a' }
-    }
-  },
-  'investors-builders': {
-    legacyId: 'investors-builders',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Investors masqué, Builders -> performers-builders (part-b)',
-    splitSides: {
-      sideALabel: 'Investors',
-      sideATarget: null,
-      sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'performers-builders', partId: 'part-b' }
-    }
-  },
-  'builders-seekers': {
-    legacyId: 'builders-seekers',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Builders -> performers-builders (part-b), Seekers masqué',
-    splitSides: {
-      sideALabel: 'Builders',
-      sideATarget: { seriesId: 'performers-builders', partId: 'part-b' },
-      sideBLabel: 'Seekers',
-      sideBTarget: null
-    }
-  },
-  'focus-phd': {
-    legacyId: 'focus-phd',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Focus masqué, PhD -> fiat-luxe-phd (part-b)',
-    splitSides: {
-      sideALabel: 'Focus',
-      sideATarget: null,
-      sideBLabel: 'PhD',
-      sideBTarget: { seriesId: 'fiat-luxe-phd', partId: 'part-b' }
-    }
-  },
-  'dixeat-builders': {
-    legacyId: 'dixeat-builders',
-    status: 'split_hidden',
-    targetSeriesId: null,
-    note: 'Scindée : Dixeat masqué, Builders -> performers-builders (part-b)',
-    splitSides: {
-      sideALabel: 'Dixeat',
-      sideATarget: null,
-      sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'performers-builders', partId: 'part-b' }
-    }
-  }
-};
-
 export const SERIES_REGISTRY_BY_ID: Record<string, SeriesRegistryEntry> = Object.fromEntries(
   SERIES_REGISTRY.map((series) => [series.id, series])
 );
 
 /**
- * Normalise un identifiant brut (gère aussi les IDs d'épisodes sous la forme "<seriesId>__ep1").
- */
-export function extractBaseSeriesId(rawId?: string | null): string | null {
-  if (!rawId) return null;
-  const trimmed = rawId.trim();
-  if (!trimmed) return null;
-  const sepIndex = trimmed.indexOf('__');
-  return sepIndex >= 0 ? trimmed.slice(0, sepIndex) : trimmed;
-}
-
-/**
- * Résout un identifiant de série (actuel ou ancien) vers son identifiant canonique v2.
- * Retourne null si la série est masquée ou scindée sans équivalent direct.
- */
-export function resolveCanonicalSeriesId(rawId?: string | null): string | null {
-  const baseId = extractBaseSeriesId(rawId);
-  if (!baseId) return null;
-
-  if (SERIES_REGISTRY_BY_ID[baseId]) {
-    return baseId;
-  }
-
-  const mapping = LEGACY_SERIES_MAPPING[baseId];
-  if (mapping && mapping.status === 'mapped' && mapping.targetSeriesId) {
-    return mapping.targetSeriesId;
-  }
-
-  return null;
-}
-
-/**
- * Retourne l'entrée complète du registre v2 pour un identifiant actuel, d'épisode ou mappé.
+ * Retourne l'entrée complète du registre pour un identifiant actuel, d'épisode ou ancien mappé.
  */
 export function resolveSeriesById(rawId?: string | null): SeriesRegistryEntry | undefined {
   const canonicalId = resolveCanonicalSeriesId(rawId);
   return canonicalId ? SERIES_REGISTRY_BY_ID[canonicalId] : undefined;
-}
-
-/**
- * Indique si un identifiant correspond à une ancienne série masquée ou scindée.
- */
-export function isHiddenLegacySeriesId(rawId?: string | null): boolean {
-  const baseId = extractBaseSeriesId(rawId);
-  if (!baseId) return false;
-  if (SERIES_REGISTRY_BY_ID[baseId]) return false;
-  const mapping = LEGACY_SERIES_MAPPING[baseId];
-  return Boolean(mapping && mapping.targetSeriesId === null);
 }

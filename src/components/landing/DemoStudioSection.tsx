@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  Play,
   Pause,
   UploadCloud,
   Camera,
@@ -131,16 +130,6 @@ export const DemoStudioSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Centre : Bouton de lecture */}
-            <div className="relative z-10 flex items-center justify-center my-auto">
-              <button
-                onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                className="w-14 h-14 rounded-full bg-black/65 border border-white/30 flex items-center justify-center text-white hover:scale-110 transition-transform cursor-pointer shadow-lg"
-              >
-                <Play className="w-6 h-6 fill-white text-white translate-x-0.5" />
-              </button>
-            </div>
-
             {/* Bas : Boutons Avantages & Choisir cette porte */}
             <div className="relative z-10">
               <div className="flex items-center gap-2">
@@ -217,7 +206,7 @@ export const DemoStudioSection: React.FC = () => {
           <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
 
             <img
-              src={currentSeries.coverImage || currentSeries.posterUrl || '/assets/posters/Benin < >.jpg'}
+              src={currentSeries.coverImage || currentSeries.posterUrl || encodeURI('/Posters/Finagnon ‹ › Horizons.png')}
               alt={currentSeries.title}
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             loading="lazy"
@@ -245,16 +234,6 @@ export const DemoStudioSection: React.FC = () => {
                 ) : (
                   <TvPlayerIcon className="w-5 h-5 text-white transition-transform" strokeWidth={1.6} />
                 )}
-              </button>
-            </div>
-
-            {/* Centre : Bouton de lecture */}
-            <div className="relative z-10 flex items-center justify-center my-auto">
-              <button
-                onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                className="w-14 h-14 rounded-full bg-black/65 border border-white/30 flex items-center justify-center text-white hover:scale-110 transition-transform cursor-pointer shadow-lg"
-              >
-                <Play className="w-6 h-6 fill-white text-white translate-x-0.5" />
               </button>
             </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { DimensionIcon } from '../components/DimensionIcon';
 import { DIMENSIONS, getSubcategoriesForDimension } from './dimensionsData';
+import { SERIES_REGISTRY } from './seriesRegistry';
 
 export interface ProposeSubject {
   id: string;
@@ -40,129 +41,68 @@ const STOCK_VIDEOS = [
   '/sample.mp4'
 ];
 
-// Les 8 séries documentaires fondatrices
-const SERIES_SUBJECTS: ProposeSubject[] = [
-  {
-    id: 'vodun-rays-autre-foi',
-    title: 'Vodun Rays <> Autre Foi',
-    subtitle: 'Pratiquants du Vodun face aux croyants d’autres confessions et quêtes spirituelles.',
-    synopsis: 'Mise en miroir des traditions du Vodun et des autres croyances — religions révélées, spiritualités ou ordres mystiques — face à l’appel, au doute, au courage et à la transmission.',
-    question: 'Comment votre foi ou votre rapport au sacré vous aide-t-il à traverser le deuil ou l’épreuve ?',
-    videoUrl: STOCK_VIDEOS[0],
-    posterUrl: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/vodun-rays-autre-foi',
-    accentColor: '#D97706',
-    glowColor: 'rgba(217, 119, 6, 0.65)',
-    bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
-  },
-  {
-    id: 'roots-routes',
-    title: 'Roots ‹ › Routes',
-    subtitle: 'Ancrés sur la terre natale face aux voyageurs de la diaspora.',
-    synopsis: 'La confrontation sensible entre l’enracinement profond dans la mémoire des terroirs et l’élan d’aller à la rencontre du vaste monde et d’en revenir.',
-    question: 'L’ancrage dans ses racines ou l’envol sur les routes : où se forge votre véritable identité ?',
-    videoUrl: STOCK_VIDEOS[2],
-    posterUrl: '/assets/posters/roots-routes.jpg',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/roots-routes',
-    accentColor: '#0284C7',
-    glowColor: 'rgba(2, 132, 199, 0.65)',
-    bgGradient: 'from-sky-600 via-blue-800 to-stone-900'
-  },
-  {
-    id: 'coaching-phd',
-    title: 'Coaching ‹ › PhD',
-    subtitle: 'Coachs, mentors & gens d’action face aux chercheurs, docteurs & universitaires.',
-    synopsis: 'L’action immédiate et le pragmatisme des mentors confrontés à la patience méthodologique et à la profondeur des thèses académiques.',
-    question: 'L’instinct pratique du terrain ou la rigueur de la thèse : comment transformez-vous le monde ?',
-    videoUrl: STOCK_VIDEOS[3],
-    posterUrl: '/assets/posters/coaching-phd.png',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/builders-seekers',
-    accentColor: '#F59E0B',
-    glowColor: 'rgba(245, 158, 11, 0.65)',
-    bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
-  },
-  {
-    id: 'fiat-luxe-builders',
-    title: 'Fiat Luxe ‹ › Builders',
-    subtitle: 'Artisans d’art, joailliers & esthètes du détail face aux architectes & bâtisseurs.',
-    synopsis: 'La précision millimétrée de la haute joaillerie face à la puissance bâtisseuse des architectes érigeant les fondations durables de demain.',
-    question: 'L’orfèvrerie du millimètre ou la force des fondations : que construisez-vous qui résiste au temps ?',
-    videoUrl: STOCK_VIDEOS[1],
-    posterUrl: '/assets/posters/fiat-luxe-builders.png',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/dixeat-fiat-luxe',
-    accentColor: '#EAB308',
-    glowColor: 'rgba(234, 179, 8, 0.65)',
-    bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
-  },
-  {
-    id: 'blacks-one-amazones',
-    title: 'Blacks One ‹ › Amazones',
-    subtitle: 'Mémoire & souveraineté masculine noire face à la puissance & au courage des femmes.',
-    synopsis: 'Entre éloquence civique et bravoure des Amazones, deux voix d’une rare élégance s’unissent pour affirmer nos souverainetés et notre dignité.',
-    question: 'Comment affirmez-vous votre dignité et votre souveraineté intime face aux tempêtes de l’Histoire ?',
-    videoUrl: STOCK_VIDEOS[0],
-    posterUrl: '/assets/posters/blacks-one-amazones.png',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/blacks-one-beyond-eve',
-    accentColor: '#EC4899',
-    glowColor: 'rgba(236, 72, 153, 0.65)',
-    bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
-  },
-  {
-    id: 'benin-monde',
-    title: 'Bénin ‹ › Le Monde',
-    subtitle: 'Défenseurs du terroir et de la culture béninoise face aux cultures du monde.',
-    synopsis: 'Des cités lacustres de Ganvié aux terrasses sacrées des Andes péruviennes. Le dialogue sensible entre gardiens des mémoires vivantes et terroirs ancestraux.',
-    question: 'Quel est votre lien intime avec la terre ou l’eau qui nourrit votre communauté ?',
-    videoUrl: STOCK_VIDEOS[1],
-    posterUrl: '/assets/posters/benin-monde.jpg',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/finagnon-qosqorico',
+const SERIES_STYLES: Record<string, { accentColor: string; glowColor: string; bgGradient: string }> = {
+  'remedes-e-vivi': {
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.65)',
     bgGradient: 'from-emerald-600 via-teal-700 to-stone-900'
   },
-  {
-    id: 'baobab-bambou',
-    title: 'Baobab ‹ › Bambou',
-    subtitle: 'Mémoire & enracinement des aînés face à l’agilité & l’audace de la jeunesse.',
-    synopsis: 'Quand la patience séculaire des aînés transmet son souffle à la vivacité et à l’inventivité des jeunes pousses pour affronter l’avenir.',
-    question: 'La solidité des racines centenaires ou la souplesse du vent nouveau : quelle sagesse guide vos pas ?',
-    videoUrl: STOCK_VIDEOS[2],
-    posterUrl: '/assets/posters/baobab-bambou.jpg',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/other-eyes-sixth-sense',
+  'amin-amen-legba': {
+    accentColor: '#D97706',
+    glowColor: 'rgba(217, 119, 6, 0.65)',
+    bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
+  },
+  'phd-azovi': {
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.65)',
+    bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
+  },
+  'blacks-one-nyonoukpo': {
+    accentColor: '#EC4899',
+    glowColor: 'rgba(236, 72, 153, 0.65)',
+    bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
+  },
+  'fiat-luxe-irokos': {
+    accentColor: '#EAB308',
+    glowColor: 'rgba(234, 179, 8, 0.65)',
+    bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
+  },
+  'horizons-finagnon': {
+    accentColor: '#0284C7',
+    glowColor: 'rgba(2, 132, 199, 0.65)',
+    bgGradient: 'from-sky-600 via-blue-800 to-stone-900'
+  },
+  'builders-akwe': {
     accentColor: '#84CC16',
     glowColor: 'rgba(132, 204, 22, 0.65)',
     bgGradient: 'from-lime-600 via-green-700 to-stone-900'
   },
-  {
-    id: 'pictures-words',
-    title: 'Pictures ‹ › Words',
-    subtitle: 'Créateurs du regard visuel face aux maîtres du verbe, de l’écriture et du slam.',
-    synopsis: 'Une traversée poétique entre l’instinct visuel d’une photographe traquant la vérité et le slam vibrant d’un poète éveillant les consciences.',
-    question: 'L’image qui fige l’instant ou le mot qui réveille la conscience : comment racontez-vous la vérité ?',
-    videoUrl: STOCK_VIDEOS[3],
-    posterUrl: '/assets/posters/pictures-words.jpg',
-    actionLabel: 'Choisir cette série',
-    doorId: 'series',
-    iconName: '16-series/focus-phd',
+  'regards-gbe': {
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.65)',
     bgGradient: 'from-purple-600 via-violet-700 to-stone-900'
   }
-];
+};
+
+// Les 8 séries documentaires fondatrices
+const SERIES_SUBJECTS: ProposeSubject[] = SERIES_REGISTRY.map((series, index) => {
+  const style = SERIES_STYLES[series.id] || SERIES_STYLES['remedes-e-vivi'];
+  return {
+    id: series.id,
+    title: series.title,
+    subtitle: `${series.partA.name} face à ${series.partB.name}.`,
+    synopsis: series.synopsis,
+    question: series.episodes[0].question,
+    videoUrl: STOCK_VIDEOS[index % STOCK_VIDEOS.length],
+    posterUrl: series.posterUrl,
+    actionLabel: 'Choisir cette série',
+    doorId: 'series',
+    iconName: `16-series/${series.id}`,
+    accentColor: style.accentColor,
+    glowColor: style.glowColor,
+    bgGradient: style.bgGradient
+  };
+});
 
 // Helper pour créer l'icône dynamique d'une porte
 function createDoorIcon(iconeName: string): React.FC<{ className?: string }> {

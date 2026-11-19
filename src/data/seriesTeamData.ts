@@ -7,7 +7,7 @@ import {
   SeriesSponsor,
   SequenceCredits
 } from '../types';
-import { resolveCanonicalSeriesId } from './seriesRegistry';
+import { resolveCanonicalSeriesId } from './legacySeriesIds';
 
 export interface SeriesTeamBundle {
   author: SeriesAuthor;
@@ -19,16 +19,57 @@ export interface SeriesTeamBundle {
 }
 
 export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
-  'vodun-rays-autre-foi': {
+  'remedes-e-vivi': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'dah-zounon'
+      protagonistId: 'mireille-akplogan'
+    },
+    screenwriter: {
+      name: 'Dre. Mireille Akplogan',
+      avatarUrl: '/assets/duos/care-mireille.jpg',
+      bio: 'Médecin urgentiste & chroniqueuse du soin au quotidien',
+      protagonistId: 'mireille-akplogan'
+    },
+    director: {
+      name: 'Koffi Mensah',
+      avatarUrl: '/assets/duos/chef-koffi.jpg',
+      bio: 'Artisan cuisinier & réalisateur de proximité',
+      protagonistId: 'chef-koffi'
+    },
+    producers: [
+      {
+        id: 'prod-eleonore-8',
+        name: 'Dre. Éléonore Kaboré',
+        avatarUrl: '/assets/duos/researcher-phd.jpg',
+        roleTitle: 'Productrice déléguée',
+        pledgeAmount: 32000,
+        joinedAt: '02 Janvier 2026',
+        bio: 'Fondatrice de collectifs de valorisation des métiers du soin et du terroir.'
+      }
+    ],
+    distributors: [
+      {
+        id: 'dist-nadege',
+        name: 'Nadège Tèko',
+        avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
+        roleOrChannel: 'Réseaux Santé, Maraîchers & Marchés Vivants'
+      }
+    ],
+    sponsors: []
+  },
+
+  'amin-amen-legba': {
+    author: {
+      name: 'Romeo Nonvide',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      protagonistId: 'pere-matthieu'
     },
     screenwriter: {
       name: 'Dieudonné Dossou',
-      avatarUrl: '/assets/duos/pere-matthieu.jpg',
+      avatarUrl: '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
       bio: 'Chercheur en anthropologie des mémoires et traditions croisées',
       protagonistId: 'pere-matthieu'
     },
@@ -112,95 +153,71 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'finagnon-qosqorico': {
+  'phd-azovi': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'chef-aime'
+      protagonistId: 'researcher-eleonore'
     },
     screenwriter: {
-      name: 'Chef Paul Tossou',
-      avatarUrl: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=200&q=80',
-      bio: 'Maître cuisinier des terroirs béninois et chercheur en fermentations oubliées',
-      protagonistId: 'chef-aime'
+      name: 'Dre. Nadège Zinsou',
+      avatarUrl: '/assets/duos/researcher-phd.jpg',
+      bio: 'Docteure en sciences cognitives et chercheuse associée',
+      protagonistId: 'researcher-eleonore'
     },
     director: {
-      name: 'Carlos Yupanqui',
-      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-      bio: 'Cinéaste andin spécialiste des cultures de montagne et de marché',
-      protagonistId: 'dona-clara'
+      name: 'Lionel Degboe',
+      avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
+      bio: 'Cinéaste du geste technique et de la transmission'
     },
     producers: [
       {
-        id: 'prod-malik-2',
-        name: 'Malik Touré',
-        avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-        roleTitle: 'Producteur délégué',
-        pledgeAmount: 14000,
-        joinedAt: '18 Janvier 2026',
-        bio: 'Passionné de gastronomie africaine et circuits paysans courts.'
-      },
-      {
-        id: 'prod-mariama',
+        id: 'prod-mariama-6',
         name: 'Mariama Ba',
         avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-        roleTitle: 'Coproductrice associée',
-        pledgeAmount: 8500,
-        joinedAt: '04 Février 2026',
-        bio: 'Fondatrice de marchés de semences paysannes.'
-      },
-      {
-        id: 'prod-jean-luc-2',
-        name: 'Jean-Luc Agbo',
-        avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
-        roleTitle: 'Producteur citoyen',
-        pledgeAmount: 4000,
-        joinedAt: '20 Février 2026',
-        bio: 'Mécène culturel soutenant les terroirs en transition.'
+        roleTitle: 'Productrice déléguée',
+        pledgeAmount: 11000,
+        joinedAt: '25 Janvier 2026',
+        bio: 'Porteuse de projets autour de l\'apprentissage et des savoirs universitaires.'
       }
     ],
     distributors: [
       {
-        id: 'dist-ines',
-        name: 'Inès Adjovi',
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Réseaux Gastronomie & Tables Vivantes'
-      },
-      {
-        id: 'dist-pedro',
-        name: 'Pedro Mamani',
-        avatarUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Ambassadeur Pérou & Andes'
+        id: 'dist-nadege-3',
+        name: 'Nadège Tèko',
+        avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
+        roleOrChannel: 'Réseaux Ateliers, Apprentissage & Universités'
       }
     ],
     sponsors: [
       {
-        id: 'spons-terroirs',
-        companyName: 'Terroirs & Épices Andines',
-        partnershipType: 'Partenaire Produits',
-        description: 'Valorisation des filières de semences paysannes.'
+        id: 'spons-savoirs',
+        companyName: 'Ateliers & Laboratoires du Bénin',
+        partnershipType: 'Partenaire Transmission',
+        description: 'Valorisation des savoir-faire d’atelier et de la recherche fondamentale.'
       }
     ]
   },
 
-  'blacks-one-beyond-eve': {
+  'blacks-one-nyonoukpo': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'dr-fatou'
+      protagonistId: 'malik-diop'
     },
     screenwriter: {
       name: 'Prof. Théophile Dossou',
       avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
       bio: 'Généalogiste et historien des lignées afro-descendantes',
-      protagonistId: 'dr-fatou'
+      protagonistId: 'malik-diop'
     },
     director: {
       name: 'Aïcha Benali',
       avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
-      bio: 'Réalisatrice documentaire internationale'
+      bio: 'Réalisatrice documentaire internationale',
+      protagonistId: 'eleonore-vance'
     },
     producers: [
       {
@@ -210,7 +227,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         roleTitle: 'Productrice déléguée',
         pledgeAmount: 22000,
         joinedAt: '10 Janvier 2026',
-        bio: 'Chercheuse engagée pour la reconnaissance de la mémoire matricielle.'
+        bio: 'Chercheuse engagée pour la reconnaissance des identités et des femmes bâtisseuses.'
       },
       {
         id: 'prod-jean-luc-3',
@@ -234,29 +251,29 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
       {
         id: 'spons-racines',
         companyName: 'Institut des Racines Vivantes',
-        partnershipType: 'Mécénat Scientifique',
-        description: 'Soutien aux expéditions généalogiques en Afrique de l\'Est.'
+        partnershipType: 'Mécénat Historique',
+        description: 'Soutien aux initiatives culturelles et citoyennes en Afrique et diaspora.'
       }
     ]
   },
 
-  'dixeat-fiat-luxe': {
+  'fiat-luxe-irokos': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'maman-charlotte'
+      protagonistId: 'kpedetin-houndegla'
     },
     screenwriter: {
       name: 'Élodie Vignon',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-      bio: 'Critique d\'art et scénographe d\'expériences gastronomiques',
-      protagonistId: 'victoria-luxe'
+      bio: 'Critique d\'art et archiviste des savoir-faire d\'exception',
+      protagonistId: 'kiki-alapini'
     },
     director: {
       name: 'Samuel Lawson',
       avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Directeur photo et cadreur mode & street culture'
+      bio: 'Directeur photo & cadreur métiers d\'art et mémoire des aînés'
     },
     producers: [
       {
@@ -266,7 +283,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         roleTitle: 'Productrice déléguée',
         pledgeAmount: 16000,
         joinedAt: '12 Janvier 2026',
-        bio: 'Productrice d\'émissions culturelles et d\'art de vivre.'
+        bio: 'Productrice d\'émissions culturelles et de portraits d\'artisans.'
       },
       {
         id: 'prod-malik-4',
@@ -275,7 +292,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         roleTitle: 'Producteur citoyen',
         pledgeAmount: 5000,
         joinedAt: '01 Mars 2026',
-        bio: 'Restaurateur et collectionneur d\'art de la table.'
+        bio: 'Collectionneur de pièces d’orfèvrerie et défenseur de la parole des anciens.'
       }
     ],
     distributors: [
@@ -283,36 +300,108 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         id: 'dist-chloe',
         name: 'Chloé Mensah',
         avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Diffusion Médias & Événements Culinaires'
+        roleOrChannel: 'Diffusion Médias, Maisons d\'Art & Fondations Culturelles'
       }
     ],
     sponsors: [
       {
         id: 'spons-ebene',
-        companyName: 'Maison Ébène Art de Table',
-        partnershipType: 'Partenaire Scénographie',
-        description: 'Fourniture de pièces uniques d\'orfèvrerie et céramique.'
+        companyName: 'Maison Ébène & Métiers d\'Art',
+        partnershipType: 'Partenaire Savoir-Faire',
+        description: 'Valorisation de la haute joaillerie, du tissage et de la mémoire des aînés.'
       }
     ]
   },
 
-  'investors-builders': {
+  'horizons-finagnon': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'koffi-invest'
+      protagonistId: 'awa-ndiaye'
+    },
+    screenwriter: {
+      name: 'Awa Ndiaye',
+      avatarUrl: '/assets/duos/horizons-awa.jpg',
+      bio: 'Conteuse et médiatrice culturelle entre nations et diasporas',
+      protagonistId: 'awa-ndiaye'
+    },
+    director: {
+      name: 'Carlos Yupanqui',
+      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
+      bio: 'Cinéaste spécialiste des terroirs et des récits de territoire',
+      protagonistId: 'tobi-houndegla'
+    },
+    producers: [
+      {
+        id: 'prod-malik-2',
+        name: 'Malik Touré',
+        avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
+        roleTitle: 'Producteur délégué',
+        pledgeAmount: 14000,
+        joinedAt: '18 Janvier 2026',
+        bio: 'Passionné des ponts entre le Bénin, sa diaspora et les autres nations.'
+      },
+      {
+        id: 'prod-mariama',
+        name: 'Mariama Ba',
+        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+        roleTitle: 'Coproductrice associée',
+        pledgeAmount: 8500,
+        joinedAt: '04 Février 2026',
+        bio: 'Fondatrice d\'initiatives d\'accueil et de tourisme communautaire.'
+      },
+      {
+        id: 'prod-jean-luc-2',
+        name: 'Jean-Luc Agbo',
+        avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
+        roleTitle: 'Producteur citoyen',
+        pledgeAmount: 4000,
+        joinedAt: '20 Février 2026',
+        bio: 'Mécène culturel soutenant les terroirs en transition.'
+      }
+    ],
+    distributors: [
+      {
+        id: 'dist-ines',
+        name: 'Inès Adjovi',
+        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+        roleOrChannel: 'Réseaux Diaspora & Passeurs de Mémoire'
+      },
+      {
+        id: 'dist-pedro',
+        name: 'Pedro Mamani',
+        avatarUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=200&q=80',
+        roleOrChannel: 'Ambassadeur Territoires du Monde'
+      }
+    ],
+    sponsors: [
+      {
+        id: 'spons-terroirs',
+        companyName: 'Terroirs & Accueil Bénin',
+        partnershipType: 'Partenaire Hospitalité',
+        description: 'Valorisation des guides, hôtes et passeurs de territoire.'
+      }
+    ]
+  },
+
+  'builders-akwe': {
+    author: {
+      name: 'Romeo Nonvide',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      protagonistId: 'senami-houndete'
     },
     screenwriter: {
       name: 'Koffi Mensah',
       avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
       bio: 'Économiste et artisan de l\'investissement productif en Afrique',
-      protagonistId: 'koffi-invest'
+      protagonistId: 'senami-houndete'
     },
     director: {
       name: 'Stéphane Hounkpatin',
       avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Réalisateur spécialisé dans l\'industrie et les bâtisseurs de terrain'
+      bio: 'Réalisateur spécialisé dans l\'industrie, l\'entrepreneuriat et la finance'
     },
     producers: [
       {
@@ -339,7 +428,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         id: 'dist-brice',
         name: 'Brice Agossou',
         avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Réseaux Entrepreneurs & Business Angels'
+        roleOrChannel: 'Réseaux Entrepreneurs, Tontines & Business Angels'
       }
     ],
     sponsors: [
@@ -347,140 +436,39 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         id: 'spons-fonds',
         companyName: 'Fonds Bâtisseurs d’Avenir',
         partnershipType: 'Partenaire Financement',
-        description: 'Mécénat de transmission aux jeunes constructeurs.'
+        description: 'Mécénat de transmission entre entrepreneurs et financeurs.'
       }
     ]
   },
 
-  'other-eyes-sixth-sense': {
-    author: {
-      name: 'Romeo Nonvide',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood'
-    },
-    screenwriter: {
-      name: 'Dr. Nadine Kiki',
-      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
-      bio: 'Psychologue et anthropologue des médecines traditionnelles'
-    },
-    director: {
-      name: 'Lionel Degboe',
-      avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Cinéaste du sensible et du regard intérieur'
-    },
-    producers: [
-      {
-        id: 'prod-mariama-6',
-        name: 'Mariama Ba',
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-        roleTitle: 'Productrice déléguée',
-        pledgeAmount: 11000,
-        joinedAt: '25 Janvier 2026',
-        bio: 'Porteuse de projets autour des médecines par les plantes.'
-      }
-    ],
-    distributors: [
-      {
-        id: 'dist-nadege',
-        name: 'Nadège Tèko',
-        avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Réseaux Thérapeutes & Soins Holistiques'
-      }
-    ],
-    sponsors: [
-      {
-        id: 'spons-plantes',
-        companyName: 'Plantes & Baumes Béninois',
-        partnershipType: 'Partenaire Botanique',
-        description: 'Préservation des essences médicinales traditionnelles.'
-      }
-    ]
-  },
-
-  'coaching-unlimited': {
+  'regards-gbe': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'coach-marcus'
+      protagonistId: 'photographer-chancelle'
     },
     screenwriter: {
-      name: 'Marcus K.',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Préparateur mental d\'athlètes olympiques et coach exécutif',
-      protagonistId: 'coach-marcus'
+      name: 'Armel Hounkpatin',
+      avatarUrl: '/assets/duos/paroles-armel.jpg',
+      bio: 'Slameur, poète et auteur de la scène béninoise',
+      protagonistId: 'poet-armel'
     },
     director: {
-      name: 'David Houngbo',
-      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-      bio: 'Réalisateur sport & cinéma d\'action'
-    },
-    producers: [
-      {
-        id: 'prod-jean-luc-7',
-        name: 'Jean-Luc Agbo',
-        avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
-        roleTitle: 'Producteur délégué',
-        pledgeAmount: 17500,
-        joinedAt: '01 Février 2026',
-        bio: 'Mentor d\'athlètes et entrepreneur dans l\'éducation sportive.'
-      },
-      {
-        id: 'prod-malik-7',
-        name: 'Malik Touré',
-        avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-        roleTitle: 'Producteur citoyen',
-        pledgeAmount: 6000,
-        joinedAt: '19 Février 2026',
-        bio: 'Passionné de haute performance et dépassement mental.'
-      }
-    ],
-    distributors: [
-      {
-        id: 'dist-yannick',
-        name: 'Yannick B.',
-        avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Fédérations Sportives & Académies de Jeunes'
-      }
-    ],
-    sponsors: [
-      {
-        id: 'spons-perf',
-        companyName: 'Performance & Esprit Club',
-        partnershipType: 'Partenaire Sport & Santé',
-        description: 'Équipements et bourses pour les jeunes espoirs d\'athlétisme.'
-      }
-    ]
-  },
-
-  'focus-phd': {
-    author: {
-      name: 'Romeo Nonvide',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'photographer-clara'
-    },
-    screenwriter: {
-      name: 'Dre. Éléonore Kaboré',
-      avatarUrl: '/assets/duos/researcher-phd.jpg',
-      bio: 'Docteure en sciences cognitives et chercheuse associée',
-      protagonistId: 'researcher-eleonore'
-    },
-    director: {
-      name: 'Clara Valmont',
+      name: 'Chancelle Agbo',
       avatarUrl: '/assets/duos/photographer-focus.jpg',
       bio: 'Photographe d’auteur et documentariste de terrain',
-      protagonistId: 'photographer-clara'
+      protagonistId: 'photographer-chancelle'
     },
     producers: [
       {
-        id: 'prod-eleonore-8',
-        name: 'Dre. Éléonore Kaboré',
-        avatarUrl: '/assets/duos/researcher-phd.jpg',
+        id: 'prod-eleonore-8b',
+        name: 'Chancelle Agbo',
+        avatarUrl: '/assets/duos/photographer-focus.jpg',
         roleTitle: 'Productrice déléguée',
         pledgeAmount: 32000,
         joinedAt: '02 Janvier 2026',
-        bio: 'Fondatrice de collectifs de valorisation de la recherche panafricaine.'
+        bio: 'Fondatrice de collectifs de valorisation des arts visuels et oratoires.'
       },
       {
         id: 'prod-marc-8',
@@ -497,75 +485,23 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
         id: 'dist-focus',
         name: 'Éditions & Galeries Documentaires Associées',
         avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
-        roleOrChannel: 'Festivals du Film Scientifique & Musées de la Photographie'
+        roleOrChannel: 'Festivals du Film, Scènes de Slam & Musées de la Photographie'
       }
     ],
     sponsors: [
       {
         id: 'spons-focus',
-        companyName: 'Fondation pour la Recherche Fondamentale & l’Image',
-        partnershipType: 'Partenaire Culture & Savoirs',
-        description: 'Bourses de recherche doctorale et résidences de création photographique.'
+        companyName: 'Fondation pour le Verbe & l’Image',
+        partnershipType: 'Partenaire Culture & Création',
+        description: 'Résidences de création photographique, littéraire et oratoire.'
       }
     ]
-  },
-  'safer-healer': {
-    author: {
-      name: 'Romeo Nonvide',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
-      protagonistId: 'photographer-clara'
-    },
-    screenwriter: {
-      name: 'Dre. Éléonore Kaboré',
-      avatarUrl: '/assets/duos/researcher-phd.jpg',
-      bio: 'Docteure en sciences cognitives et chercheuse associée',
-      protagonistId: 'researcher-eleonore'
-    },
-    director: {
-      name: 'Clara Valmont',
-      avatarUrl: '/assets/duos/photographer-focus.jpg',
-      bio: 'Photographe d’auteur et documentariste de terrain',
-      protagonistId: 'photographer-clara'
-    },
-    producers: [
-      {
-        id: 'prod-eleonore-8',
-        name: 'Dre. Éléonore Kaboré',
-        avatarUrl: '/assets/duos/researcher-phd.jpg',
-        roleTitle: 'Productrice déléguée',
-        pledgeAmount: 32000,
-        joinedAt: '02 Janvier 2026',
-        bio: 'Fondatrice de collectifs de valorisation de la recherche panafricaine.'
-      }
-    ],
-    distributors: [],
-    sponsors: []
   }
 };
 
-ALL_SERIES_TEAMS['care-feed'] = ALL_SERIES_TEAMS['safer-healer'];
-ALL_SERIES_TEAMS['esu-jesus'] = ALL_SERIES_TEAMS['vodun-rays-autre-foi'];
-ALL_SERIES_TEAMS['jesus-legba'] = ALL_SERIES_TEAMS['vodun-rays-autre-foi'];
-ALL_SERIES_TEAMS['baobabs-bambous'] = ALL_SERIES_TEAMS['other-eyes-sixth-sense'];
-ALL_SERIES_TEAMS['blacks-one-wowmen'] = ALL_SERIES_TEAMS['blacks-one-beyond-eve'];
-ALL_SERIES_TEAMS['fiat-luxe-phd'] = ALL_SERIES_TEAMS['dixeat-fiat-luxe'];
-ALL_SERIES_TEAMS['finagnon-horizons'] = ALL_SERIES_TEAMS['finagnon-qosqorico'];
-ALL_SERIES_TEAMS['performers-builders'] = ALL_SERIES_TEAMS['investors-builders'];
-ALL_SERIES_TEAMS['paroles-regards'] = ALL_SERIES_TEAMS['focus-phd'];
-
-ALL_SERIES_TEAMS['builders-seekers'] = ALL_SERIES_TEAMS['coaching-unlimited'];
-ALL_SERIES_TEAMS['roots-routes'] = ALL_SERIES_TEAMS['investors-builders'];
-ALL_SERIES_TEAMS['benin-monde'] = ALL_SERIES_TEAMS['finagnon-qosqorico'];
-ALL_SERIES_TEAMS['blacks-one-amazones'] = ALL_SERIES_TEAMS['blacks-one-beyond-eve'];
-ALL_SERIES_TEAMS['fiat-luxe-builders'] = ALL_SERIES_TEAMS['dixeat-fiat-luxe'];
-ALL_SERIES_TEAMS['coaching-phd'] = ALL_SERIES_TEAMS['coaching-unlimited'];
-ALL_SERIES_TEAMS['baobab-bambou'] = ALL_SERIES_TEAMS['other-eyes-sixth-sense'];
-ALL_SERIES_TEAMS['pictures-words'] = ALL_SERIES_TEAMS['focus-phd'];
-
 export const getSeriesCredits = (seriesId: string, duoTitle?: string): SequenceCredits => {
-  const canonicalId = resolveCanonicalSeriesId(seriesId) || seriesId;
-  const team = ALL_SERIES_TEAMS[canonicalId] || ALL_SERIES_TEAMS[seriesId] || ALL_SERIES_TEAMS['vodun-rays-autre-foi'];
+  const canonicalId = resolveCanonicalSeriesId(seriesId) || 'remedes-e-vivi';
+  const team = ALL_SERIES_TEAMS[canonicalId] || ALL_SERIES_TEAMS['remedes-e-vivi'];
 
   return {
     casting: [

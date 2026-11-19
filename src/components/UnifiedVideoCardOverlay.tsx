@@ -201,13 +201,13 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
           }}
           onMouseDown={(e) => e.stopPropagation()}
           onTouchStart={(e) => e.stopPropagation()}
-          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+          className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
           title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
         >
           {isPlaying ? (
             <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white" />
           ) : (
-            <TvPlayerIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white transition-transform" strokeWidth={1.7} />
+            <TvPlayerIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white transition-transform" strokeWidth={1.7} />
           )}
         </button>
       </div>

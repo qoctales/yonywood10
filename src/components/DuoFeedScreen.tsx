@@ -3,8 +3,7 @@ import {
   ChevronLeft, 
   ChevronRight, 
   X, 
-  Film,
-  Play
+  Film
 } from 'lucide-react';
 import { celestialAudio } from '../utils/celestialAudio';
 import { apiService } from '../services/api';
@@ -645,7 +644,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                         ? idx === 1
                           ? 'border-[#C86747] shadow-2xl ring-1 ring-[#E27857]/40'
                           : 'border-stone-200/90 shadow-2xl ring-1 ring-white/20' 
-                        : 'border-white/15 shadow-lg cursor-pointer hover:border-white/30'
+                        : 'border-white/15 shadow-lg cursor-pointer hover:border-white/30 [&_*]:!pointer-events-none'
                     }`}
                   >
                     {idx === 1 ? (
@@ -667,8 +666,8 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                         const otherProtagonist = idx === 0 ? pB : pA;
                         const otherSlideTarget = idx === 0 ? 2 : 0;
                         const videoUrl = idx === 0 ? videoUrlA : videoUrlB;
-                        const pFirstName = protagonist.name.split(' ')[0];
-                        const otherFirstName = otherProtagonist.name.split(' ')[0];
+                        const pFirstName = protagonist.firstName || protagonist.name.split(' ')[0];
+                        const otherFirstName = otherProtagonist.firstName || otherProtagonist.name.split(' ')[0];
                         const isThisVideoPlaying = isCenter && isPlaying;
 
                         return (
@@ -695,7 +694,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                 }`}
                                 title={isThisVideoPlaying ? 'Mettre en pause' : 'Lancer la vidéo'}
                               >
-                                <TvPlayerIcon className="w-4.5 h-4.5 text-current" />
+                                <TvPlayerIcon className="w-5 h-5 text-current" />
                               </button>
                             </div>
 
@@ -717,6 +716,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                 <img
                                   src={protagonist.photoUrl}
                                   alt={protagonist.name}
+                                  referrerPolicy="no-referrer"
                                   loading={Math.abs(diff) <= 1 ? 'eager' : 'lazy'}
                                   decoding="async"
                                   className="w-full h-full object-cover pointer-events-none"
@@ -724,16 +724,6 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                               )}
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
                             </div>
-
-                            {/* BOUTON PLAY AU CENTRE QUAND EN PAUSE SUR LA CARTE ACTIVE */}
-                            {!isThisVideoPlaying && isCenter && (
-                              <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                                <div className="w-14 h-14 rounded-full bg-black/65 border border-white/25 text-white flex items-center justify-center shadow-2xl transition-transform hover:scale-110">
-                                  <Play className="w-6 h-6 ml-0.5 fill-white text-white opacity-90" />
-                                </div>
-                              </div>
-                            )}
-
 
                             {/* COLONNE D'ACTIONS LATÉRALE DROITE (ÉPURÉE : MUTE, PROTAGONISTE MIROIR, PORTRAIT, PARTAGE) */}
                             <div className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-2.5 pointer-events-auto">
@@ -765,6 +755,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                 <img 
                                   src={otherProtagonist.photoUrl} 
                                   alt={otherFirstName}
+                                  referrerPolicy="no-referrer"
                                   loading="lazy"
                                   decoding="async"
                                   className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform pointer-events-none"

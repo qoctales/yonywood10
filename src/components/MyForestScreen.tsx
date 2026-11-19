@@ -142,7 +142,7 @@ export const MyForestScreen: React.FC<MyForestScreenProps> = ({ onNavigate }) =>
                 « Racontez-nous un moment où vous avez réellement rencontré votre foi. »
               </p>
               <button
-                onClick={() => onNavigate({ type: 'duo_detail', duoId: 'duo-jesus-legba-01' })}
+                onClick={() => onNavigate({ type: 'duo_detail', duoId: 'duo-amin-amen-legba-01' })}
                 className="w-full py-2.5 rounded-xl bg-[#C89B3C] text-white text-xs font-semibold hover:bg-[#B78A2E] transition-colors"
               >
                 Ouvrir la clairière du duo

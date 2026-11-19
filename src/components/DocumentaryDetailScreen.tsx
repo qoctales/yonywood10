@@ -135,7 +135,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png');
+              (e.target as HTMLImageElement).src = encodeURI('/Posters/Care ‹ › Feed.png');
             }}
           loading="lazy"
           decoding="async"

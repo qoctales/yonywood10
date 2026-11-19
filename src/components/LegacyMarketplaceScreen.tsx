@@ -16,6 +16,7 @@ import { useAuth } from '../services/authContext';
 import { recordSharePurchase, getAllSeriesRemainingShares } from '../services/firestoreService';
 import { TvPlayerIcon } from './YonywoodBrandIcons';
 import { celestialAudio } from '../utils/celestialAudio';
+import { SERIES_REGISTRY } from '../data/seriesRegistry';
 import type { MarketplaceScreenProps } from './MarketplaceScreen';
 
 interface ProductionPoster {
@@ -43,116 +44,67 @@ const PRODUCTIONS: ProductionPoster[] = [
   {
     id: 'topic-marche-dantokpa',
     title: 'Marché Dantokpa',
-    posterImage: encodeURI('/assets/posters/Focus/Marche Dantokpa.png'),
+    posterImage: '/assets/images/territoires_traditions_1792085253556.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-baccalaureat',
     title: 'Baccalauréat',
-    posterImage: encodeURI('/assets/posters/Focus/Baccalaureat.png'),
+    posterImage: '/assets/images/studio_orga_valeurs_1792608959843.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-lycees-behanzin-toffa',
     title: 'Lycées Béhanzin et Toffa',
-    posterImage: encodeURI('/assets/posters/Focus/Lycees Behanzin et Toffa.png'),
+    posterImage: '/assets/images/studio_orga_origines_1792608957920.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-apprentis',
     title: 'Apprentis',
-    posterImage: encodeURI('/assets/posters/Focus/Apprentis.png'),
+    posterImage: '/assets/images/expertises_artisanat_1792085293909.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-sodabi',
     title: 'Sodabi',
-    posterImage: encodeURI('/assets/posters/Focus/Sodabi.png'),
+    posterImage: '/assets/images/marques_alimentation_1792086435220.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-ganvie',
     title: 'Ganvié',
-    posterImage: encodeURI('/assets/posters/Focus/Ganvie.png'),
+    posterImage: '/assets/images/beninois_pecheur_tobi_1792165042006.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-angelique-kidjo',
     title: 'Angélique Kidjo',
-    posterImage: encodeURI('/assets/posters/Focus/Angelique Kidjo.png'),
+    posterImage: '/assets/images/pers_arts_1792086472940.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-danialou-sagbohan',
     title: 'Danialou Sagbohan',
-    posterImage: encodeURI('/assets/posters/Focus/Danialou Sagbohan.png'),
+    posterImage: '/assets/images/beninois_sage_dossou_1792165004493.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
-  // Séries documentaires miroirs
-  {
-    id: 'blacks-one-amazones',
-    title: 'Blacks One ‹ › Amazones',
-    posterImage: encodeURI('/assets/posters/Blacks One ‹ › Amazones.png'),
+  // Séries documentaires miroirs (8 séries officielles)
+  ...SERIES_REGISTRY.map((series) => ({
+    id: series.id,
+    title: series.title,
+    posterImage: series.posterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
-  },
-  {
-    id: 'baobab-bambou',
-    title: 'Baobabs ‹ › Bambous',
-    posterImage: encodeURI('/assets/posters/Baobabs ‹ › Bambous.jpg'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'coaching-phd',
-    title: 'Coaching ‹ › PhD',
-    posterImage: encodeURI('/assets/posters/Coaching ‹ › PhD.jpg'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'jesus-legba',
-    title: 'Vodun Rays ‹ › Autre Foi',
-    posterImage: encodeURI('/assets/posters/Vodun Rays ‹ › Autre Foi.png'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'roots-routes',
-    title: 'Roots < > Routes',
-    posterImage: encodeURI('/assets/posters/Roots < > Routes.png'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'fiat-luxe-builders',
-    title: 'Fiat Luxe ‹ › Builders',
-    posterImage: encodeURI('/assets/posters/Fiat Luxe ‹ › Builders.jpg'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'pictures-words',
-    title: 'Pictures ‹ › Words',
-    posterImage: encodeURI('/assets/posters/Pictures ‹ › Words.jpg'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'benin-monde',
-    title: 'Benin ‹ › Le Monde',
-    posterImage: encodeURI('/assets/posters/Benin ‹ › Le Monde.jpg'),
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  }
+  }))
 ];
 
 const INITIAL_PEER_OFFERS: PeerOffer[] = [
@@ -160,9 +112,9 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     id: 'peer-1',
     sellerId: 'koffi-tisserand',
     sellerName: 'Koffi',
-    sellerPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-    seriesTitle: 'Vodun Rays ‹ › Autre Foi',
-    posterImage: '/assets/posters/vodun-autre-foi.png',
+    sellerPhoto: '/assets/images/koffi_tisserand_1792933625628.jpg',
+    seriesTitle: 'Amin Amen ‹ › Legba',
+    posterImage: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 3,
     unitPrice: 55
@@ -170,10 +122,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-2',
     sellerId: 'nadia-artist',
-    sellerName: 'Nadia',
-    sellerPhoto: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
-    seriesTitle: 'Bénin ‹ › Le Monde',
-    posterImage: '/assets/posters/benin-monde.jpg',
+    sellerName: 'Mireille',
+    sellerPhoto: '/assets/duos/care-mireille.jpg',
+    seriesTitle: 'Remèdes ‹ › E Vivi',
+    posterImage: encodeURI('/Posters/Care ‹ › Feed.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 5,
     unitPrice: 52
@@ -181,10 +133,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-3',
     sellerId: 'marcel-speaker',
-    sellerName: 'Marcel',
-    sellerPhoto: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
-    seriesTitle: 'Blacks One ‹ › Amazones',
-    posterImage: '/assets/posters/blacks-one-amazones.png',
+    sellerName: 'Malik',
+    sellerPhoto: '/assets/duos/malik-diop.jpg',
+    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
+    posterImage: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 2,
     unitPrice: 72
@@ -192,10 +144,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-4',
     sellerId: 'amina-cook',
-    sellerName: 'Amina',
-    sellerPhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-    seriesTitle: 'Fiat Luxe ‹ › Builders',
-    posterImage: '/assets/posters/fiat-luxe-builders.png',
+    sellerName: 'Sènami',
+    sellerPhoto: '/assets/images/senami_architecte_1792933801804.jpg',
+    seriesTitle: 'Builders ‹ › Àkwè',
+    posterImage: encodeURI('/Posters/Performers ‹ › Builders.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 4,
     unitPrice: 62
@@ -203,10 +155,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-5',
     sellerId: 'benoit-builder',
-    sellerName: 'Benoît',
-    sellerPhoto: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
-    seriesTitle: 'Roots ‹ › Routes',
-    posterImage: '/assets/posters/roots-routes.jpg',
+    sellerName: 'Tobi',
+    sellerPhoto: '/assets/duos/tobi-houndegla.jpg',
+    seriesTitle: 'Horizons ‹ › Finagnon',
+    posterImage: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 3,
     unitPrice: 68
@@ -214,10 +166,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-6',
     sellerId: 'codjo-voyant',
-    sellerName: 'Dossou & Sénan',
-    sellerPhoto: '/assets/duos/codjo-blind.jpg',
-    seriesTitle: 'Baobab ‹ › Bambou',
-    posterImage: '/assets/posters/baobab-bambou.jpg',
+    sellerName: 'Kiki & Kpèdétin',
+    sellerPhoto: '/assets/images/kiki_passeur_1792933820505.jpg',
+    seriesTitle: 'Fiat Luxe ‹ › Irokos',
+    posterImage: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 4,
     unitPrice: 59
@@ -225,10 +177,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-7',
     sellerId: 'builder-kwame-seller',
-    sellerName: 'Coach Marc',
-    sellerPhoto: '/assets/duos/coach-office.jpg',
-    seriesTitle: 'Coaching ‹ › PhD',
-    posterImage: '/assets/posters/coaching-phd.png',
+    sellerName: 'Nadège & Sénan',
+    sellerPhoto: '/assets/duos/researcher-phd.jpg',
+    seriesTitle: 'PhD ‹ › Azovi',
+    posterImage: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 6,
     unitPrice: 65
@@ -236,10 +188,10 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
   {
     id: 'peer-8',
     sellerId: 'clara-focus-seller',
-    sellerName: 'Clara & Armel',
+    sellerName: 'Chancelle & Armel',
     sellerPhoto: '/assets/duos/photographer-focus.jpg',
-    seriesTitle: 'Pictures ‹ › Words',
-    posterImage: '/assets/posters/pictures-words.jpg',
+    seriesTitle: 'Regards ‹ › Gbé',
+    posterImage: encodeURI('/Posters/Paroles ‹ › Regards.png'),
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 5,
     unitPrice: 58
@@ -294,24 +246,15 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
     'topic-ganvie': 73,          // 183 souscrites (71% — 73 restantes)
     'topic-angelique-kidjo': 64, // 192 souscrites (75% — 64 restantes)
     'topic-danialou-sagbohan': 70, // 186 souscrites (73% — 70 restantes)
-    // Séries documentaires originales
-    'jesus-legba': 77, // 179 souscrites (70% — 77 restantes)
-    'roots-routes': 75, // 181 souscrites (71%)
-    'coaching-phd': 79, // 177 souscrites (69%)
-    'fiat-luxe-builders': 72, // 184 souscrites (72%)
-    'blacks-one-amazones': 80, // 176 souscrites (69%)
-    'benin-monde': 74, // 182 souscrites (71%)
-    'baobab-bambou': 77, // 179 souscrites (70%)
-    'pictures-words': 76, // 180 souscrites (70%)
-    // Compatibilité
-    'finagnon-qosqorico': 74,
-    'blacks-one-beyond-eve': 80,
-    'dixeat-fiat-luxe': 72,
-    'investors-builders': 75,
-    'other-eyes-sixth-sense': 77,
-    'builders-seekers': 79,
-    'coaching-unlimited': 79,
-    'focus-phd': 76
+    // Les 8 séries documentaires officielles
+    'remedes-e-vivi': 74, // 182 souscrites (71%)
+    'amin-amen-legba': 77, // 179 souscrites (70%)
+    'phd-azovi': 77, // 179 souscrites (70%)
+    'blacks-one-nyonoukpo': 80, // 176 souscrites (69%)
+    'fiat-luxe-irokos': 79, // 177 souscrites (69%)
+    'horizons-finagnon': 75, // 181 souscrites (71%)
+    'builders-akwe': 72, // 184 souscrites (72%)
+    'regards-gbe': 76 // 180 souscrites (70%)
   });
 
   // Chargement en temps réel des parts restantes depuis Firestore (requête unique optimisée)
@@ -716,7 +659,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                   }}
                   className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#151513] text-white border transition-colors ${
-                    isCenter ? 'border-stone-200/90 ring-1 ring-white/30 cursor-pointer shadow-2xl' : 'border-white/15 cursor-pointer'
+                    isCenter ? 'border-stone-200/90 ring-1 ring-white/30 cursor-pointer shadow-2xl' : 'border-white/15 cursor-pointer [&_*]:!pointer-events-none'
                   }`}
                   id={`card-coproduire-${prod.id}`}
                 >
@@ -908,7 +851,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                   }}
                   className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#151513] text-white border transition-colors ${
-                    isCenter ? 'border-stone-200/90 ring-1 ring-white/30 cursor-pointer shadow-2xl' : 'border-white/15 cursor-pointer'
+                    isCenter ? 'border-stone-200/90 ring-1 ring-white/30 cursor-pointer shadow-2xl' : 'border-white/15 cursor-pointer [&_*]:!pointer-events-none'
                   }`}
                   id={`card-marche-${offer.id}`}
                 >

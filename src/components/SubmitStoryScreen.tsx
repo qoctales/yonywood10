@@ -68,11 +68,11 @@ export const PLATFORM_MEMBERS: PlatformMember[] = [
   { id: 'v-kwame', name: 'Kwame Mensah', handle: '@kwame_m', role: 'Réalisateur & Chef opérateur', avatarUrl: '/assets/duos/kwame-mensah.jpg', category: 'realisation' },
   { id: 'v-koffi', name: 'Koffi Badou', handle: '@koffi_b', role: 'Chef opérateur & Cadreur', avatarUrl: '/assets/duos/chef-koffi.jpg', category: 'realisation' },
   { id: 'v-sarah', name: 'Sarah Lawson', handle: '@sarah_l', role: 'Cadreuse & Documentariste nomade', avatarUrl: '/assets/images/senami_architecte_1792933801804.jpg', category: 'realisation' },
-  { id: 'v-helene', name: 'Hélène Saint-Amand', handle: '@helene_sa', role: 'Réalisatrice de création', avatarUrl: '/assets/protagonists/helene-saint-amand.jpg', category: 'realisation' },
+  { id: 'v-helene', name: 'Hélène Saint-Amand', handle: '@helene_sa', role: 'Réalisatrice de création', avatarUrl: '/assets/duos/eleonore-vance.jpg', category: 'realisation' },
 
   // Protagonistes inscrits
-  { id: 'p-mahougnon', name: 'Mahougnon Zounon', handle: '@mahougnon_z', role: 'Gardien Vodun Rays', avatarUrl: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg', category: 'protagoniste' },
-  { id: 'p-dieudonne', name: 'Dieudonné Dossou', handle: '@dieudonne_d', role: 'Prêtre & Théologien Autre Foi', avatarUrl: '/assets/duos/duo_pere_matthieu_1791655226601.jpg', category: 'protagoniste' },
+  { id: 'p-mahougnon', name: 'Mahougnon Zounon', handle: '@mahougnon_z', role: 'Gardien Legba', avatarUrl: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg', category: 'protagoniste' },
+  { id: 'p-dieudonne', name: 'Dieudonné Dossou', handle: '@dieudonne_d', role: 'Prêtre & Théologien Amin Amen', avatarUrl: '/assets/duos/duo_pere_matthieu_1791655226601.jpg', category: 'protagoniste' },
   { id: 'p-tobi', name: 'Tobi Houndégla', handle: '@tobi_h', role: 'Pêcheur Toffinou (Ganvié)', avatarUrl: '/assets/duos/tobi-houndegla.jpg', category: 'protagoniste' },
   { id: 'p-sika', name: 'Sika Dossou', handle: '@sika_d', role: 'Maître tisserande d’Abomey', avatarUrl: '/assets/images/sika_tisserande_1792933605542.jpg', category: 'protagoniste' },
   { id: 'p-senan', name: 'Sénan Agossa', handle: '@senan_a', role: 'Entrepreneure & Innovatrice Aura Tech', avatarUrl: '/assets/images/senan_innovatrice_1792933679487.jpg', category: 'protagoniste' },
@@ -2117,7 +2117,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                     }}
                     className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 cursor-pointer select-none bg-[#151513] text-white border transition-colors ${
-                      isCenter ? 'border-stone-200/90 ring-1 ring-white/30' : 'border-white/15'
+                      isCenter ? 'border-stone-200/90 ring-1 ring-white/30' : 'border-white/15 [&_*]:!pointer-events-none'
                     }`}
                   >
                     {/* Image d'illustration cinéma OU Vidéo si lecture activée (affiche animée en zoom/dézoom pour cartes audio) */}

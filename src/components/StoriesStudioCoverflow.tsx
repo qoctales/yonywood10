@@ -5,7 +5,6 @@ import {
   ChevronRight, 
   Volume2, 
   VolumeX,
-  Play,
   Pause
 } from 'lucide-react';
 import { ThematicStory } from '../data/thematicStoriesData';
@@ -325,7 +324,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                     transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                   }}
                   className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-3 sm:p-4 cursor-pointer select-none bg-[#151513] text-white shadow-2xl transition-all ${
-                    isCenter ? 'border-none ring-0 shadow-[0_12px_40px_rgba(0,0,0,0.85)]' : 'border-none ring-0 opacity-55'
+                    isCenter ? 'border-none ring-0 shadow-[0_12px_40px_rgba(0,0,0,0.85)]' : 'border-none ring-0 opacity-55 [&_*]:!pointer-events-none'
                   }`}
                 >
                   
@@ -355,15 +354,6 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                     {/* Voile subtil pour la lisibilité */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/40 pointer-events-none" />
                   </div>
-
-                  {/* Bouton Play au centre si en pause */}
-                  {!isPlaying && isCenter && (
-                    <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 rounded-full bg-black/65 border border-white/25 text-white flex items-center justify-center shadow-2xl transition-transform hover:scale-110">
-                        <Play className="w-6 h-6 ml-0.5 fill-white text-white opacity-90" />
-                      </div>
-                    </div>
-                  )}
 
                   {/* ========================================================================= */}
                   {/* EN-TÊTE DE CARTE : TITRE DE LA THÉMATIQUE À GAUCHE & ICÔNE LECTURE À DROITE */}

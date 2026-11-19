@@ -343,7 +343,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         return ROMEO_SIMULATION_DATA[cat] || [];
       }
 
-      const pPhoto = targetProtagonist?.photoUrl || '/assets/protagonists/amara-tisserande.jpg';
+      const pPhoto = targetProtagonist?.photoUrl || '/assets/images/amara_andine_1792933642777.jpg';
       const pVideo = targetProtagonist?.teaserVideoUrl || '/sample.mp4';
       const pName = targetProtagonist?.name || 'Artisan';
 
@@ -965,15 +965,23 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                     onToggleMute={isCenter ? toggleMute : () => {}}
                     questionText={getQuestionText()}
                     factText={item.description}
-                    onShare={handleShareProfile}
-                    onReportVideo={() => {
-                      setShareToast("Vidéo signalée à la modération.");
-                      setTimeout(() => setShareToast(null), 2500);
-                    }}
-                    onBlockVideo={() => {
-                      setShareToast("Cette vidéo a été masquée.");
-                      setTimeout(() => setShareToast(null), 2500);
-                    }}
+                    onShare={isCenter ? handleShareProfile : undefined}
+                    onReportVideo={
+                      isCenter
+                        ? () => {
+                            setShareToast("Vidéo signalée à la modération.");
+                            setTimeout(() => setShareToast(null), 2500);
+                          }
+                        : undefined
+                    }
+                    onBlockVideo={
+                      isCenter
+                        ? () => {
+                            setShareToast("Cette vidéo a été masquée.");
+                            setTimeout(() => setShareToast(null), 2500);
+                          }
+                        : undefined
+                    }
                     customActionButtons={isCenter ? profileCategoryActionButtons : undefined}
                   />
                 </div>

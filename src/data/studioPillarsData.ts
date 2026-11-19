@@ -864,7 +864,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
     durationBadge: "Jusqu'à 2 minutes 56",
     subtitle: 'Chaque thématique est un sujet précis et unique. On partage son histoire, son souvenir ou sa voix pour enrichir le récit collectif.',
     question: 'Sur quelle thématique souhaitez-vous partager votre histoire ou votre souvenir personnel ?',
-    posterUrl: encodeURI('/assets/posters/Focus/Marche Dantokpa.png'),
+    posterUrl: '/assets/images/territoires_traditions_1792085253556.jpg',
     videoUrl: STOCK_VIDEOS[4],
     items: [
       {
@@ -872,7 +872,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Marché Dantokpa',
         subtitle: "Au petit matin, avant l'ouverture des étals, le marché s'éveille. Des commerçantes, des porteurs et des clients de toujours racontent ce lieu où l'on vient pour acheter, flâner, marchander et partager. De génération en génération, le marché est devenu une grande famille, et chaque témoin explique pourquoi ce lieu est unique.",
         question: "Quelle histoire, quelle rencontre ou quelle scène du marché Dantokpa raconteriez-vous pour faire comprendre à quelqu'un d'ailleurs ce qui rend ce lieu unique ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Marche Dantokpa.png'),
+        posterUrl: '/assets/images/territoires_traditions_1792085253556.jpg',
         videoUrl: STOCK_VIDEOS[0]
       },
       {
@@ -880,7 +880,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Baccalauréat',
         subtitle: "La veille de l'épreuve, les révisions à la lueur d'une lampe, le centre d'examen, l'attente des résultats, puis la liste affichée et la joie de toute une famille. Anciens bacheliers d'hier et d'aujourd'hui racontent le jour où tout a basculé.",
         question: "Le jour où vous avez appris que vous étiez bachelier(ère), qu'est-ce que cela a représenté pour vous, pour votre famille, et quelle fierté en avez-vous tirée ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Baccalaureat.png'),
+        posterUrl: '/assets/images/studio_orga_valeurs_1792608959843.jpg',
         videoUrl: STOCK_VIDEOS[1]
       },
       {
@@ -888,7 +888,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Lycées Béhanzin et Toffa',
         subtitle: "Un lycée de garçons, un lycée de filles, des histoires parallèles qui se croisent. Anciens et anciennes évoquent leurs professeurs, leurs bêtises et les amitiés nées dans la cour. Garçons et filles, ils se répondent et montrent ce que ces murs leur ont donné pour la vie.",
         question: "Un souvenir du lycée Béhanzin ou du lycée Toffa vous fait encore sourire aujourd'hui : lequel raconteriez-vous à vos enfants ou à vos petits-enfants ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Lycees Behanzin et Toffa.png'),
+        posterUrl: '/assets/images/studio_orga_origines_1792608957920.jpg',
         videoUrl: STOCK_VIDEOS[2]
       },
       {
@@ -896,7 +896,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Apprentis',
         subtitle: "Couturiers, coiffeuses, menuisiers, mécaniciens, frigoristes : des apprentis, des patrons et des anciens apprentis devenus patrons racontent comment un métier se transmet, du premier jour à l'ouverture de son propre atelier. Patience, fierté et geste qu'on apprend en regardant les autres.",
         question: "De tout votre apprentissage, quelle histoire vous rend le plus fier, celle du moment où vous avez compris que vous aviez appris quelque chose pour la vie ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Apprentis.png'),
+        posterUrl: '/assets/images/expertises_artisanat_1792085293909.jpg',
         videoUrl: STOCK_VIDEOS[3]
       },
       {
@@ -904,7 +904,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Sodabi',
         subtitle: "Entre les palmiers, la fermentation et la distillation artisanale, le sodabi voit le jour. Producteurs, familles et amateurs racontent les libations, les cérémonies et les souvenirs qui entourent cette boisson. Le sodabi devient le fil d'une culture où l'on partage, on honore les ancêtres et on se retrouve.",
         question: "Pour faire comprendre à quelqu'un d'ailleurs ce que représente le sodabi pour les Béninois, quelle histoire choisiriez-vous (une fabrication, une cérémonie, une libation, un souvenir de famille) ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Sodabi.png'),
+        posterUrl: '/assets/images/marques_alimentation_1792086435220.jpg',
         videoUrl: STOCK_VIDEOS[4]
       },
       {
@@ -912,7 +912,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Ganvié',
         subtitle: "Sur le lac Nokoué, un village entier vit sur pilotis. Pêcheurs, commerçantes sur pirogue et enfants qui apprennent à ramer racontent leur quotidien et leur lien à l'eau. Un village qui a fait de son environnement une force et qui transmet un art de vivre unique.",
         question: "Vivre sur l'eau, ça ne se devine pas quand on n'y est jamais allé : quelle histoire de Ganvié raconteriez-vous pour le faire comprendre ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Ganvie.png'),
+        posterUrl: '/assets/images/beninois_pecheur_tobi_1792165042006.jpg',
         videoUrl: STOCK_VIDEOS[1]
       },
       {
@@ -920,7 +920,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Angélique Kidjo',
         subtitle: "Cinq Grammy Awards, une étoile sur le Hollywood Walk of Fame, une voix portée sur toutes les scènes du monde : Angélique Kidjo est l'une des plus grandes ambassadrices du Bénin. Fans, proches, musiciens, jeunes artistes et anonymes racontent le moment où sa musique, sa voix ou son parcours a compté pour eux. Le portrait d'une femme, né de ceux qu'elle a touchés.",
         question: "Une chanson, un concert, une rencontre, un mot d'elle : quel moment lié à Angélique Kidjo a changé quelque chose en vous, et qu'est-ce qu'il vous a donné ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Angelique Kidjo.png'),
+        posterUrl: '/assets/images/pers_arts_1792086472940.jpg',
         videoUrl: STOCK_VIDEOS[2]
       },
       {
@@ -928,7 +928,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         title: 'Danialou Sagbohan',
         subtitle: "Surnommé « l'homme-orchestre », Danialou Sagbohan est l'une des grandes figures de la musique béninoise. Admirateurs, proches et musiciens racontent ce qu'il a représenté pour eux. Des souvenirs de concerts, de chansons entendues en famille ou dans la rue dessinent peu à peu le portrait d'un homme et de la fierté qu'il inspire.",
         question: "Quand vous pensez à Danialou Sagbohan, quel souvenir vous revient en premier, et en quoi a-t-il marqué votre vie ou celle de votre entourage ?",
-        posterUrl: encodeURI('/assets/posters/Focus/Danialou Sagbohan.png'),
+        posterUrl: '/assets/images/beninois_sage_dossou_1792165004493.jpg',
         videoUrl: STOCK_VIDEOS[3]
       }
     ]

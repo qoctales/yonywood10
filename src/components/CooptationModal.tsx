@@ -16,7 +16,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
   defaultSeriesId,
   onSuccess
 }) => {
-  const initialSeriesId = (defaultSeriesId ? (resolveCanonicalSeriesId(defaultSeriesId) || defaultSeriesId) : null) || DOCUMENTARIES[0]?.id || 'vodun-rays-autre-foi';
+  const initialSeriesId = (defaultSeriesId ? (resolveCanonicalSeriesId(defaultSeriesId) || defaultSeriesId) : null) || DOCUMENTARIES[0]?.id || 'remedes-e-vivi';
   const [selectedSeriesId, setSelectedSeriesId] = useState(initialSeriesId);
   const [candidateName, setCandidateName] = useState('');
   const [candidateEmail, setCandidateEmail] = useState('');
