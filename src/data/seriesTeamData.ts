@@ -385,7 +385,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'builders-akwe': {
+  'builders-mi-do-kpo': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',

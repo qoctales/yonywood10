@@ -13,7 +13,7 @@ export const CANONICAL_SERIES_IDS = [
   'blacks-one-nyonoukpo',
   'fiat-luxe-irokos',
   'horizons-finagnon',
-  'builders-akwe',
+  'builders-mi-do-kpo',
   'regards-gbe'
 ] as const;
 
@@ -44,44 +44,44 @@ export interface SeriesPosterFilesEntry {
  */
 export const SERIES_POSTER_FILES: Record<CanonicalSeriesId, SeriesPosterFilesEntry> = {
   'remedes-e-vivi': {
-    mainPosterUrl: encodeURI('/Posters/Care ‹ › Feed.png'),
-    partAPosterUrl: encodeURI('/Posters/Sides/Care.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Feed.png')
+    mainPosterUrl: encodeURI('/Posters/Remedes ‹ › E Vivi.png'),
+    partAPosterUrl: encodeURI('/Posters/Sides/Remedes.png'),
+    partBPosterUrl: encodeURI('/Posters/Sides/E Vivi.png')
   },
   'amin-amen-legba': {
-    mainPosterUrl: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
-    partAPosterUrl: encodeURI('/Posters/Sides/Autre Foi.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Vodun Rays.png')
+    mainPosterUrl: encodeURI('/Posters/Amin Amen ‹ › Legba.png'),
+    partAPosterUrl: encodeURI('/Posters/Sides/Amin Amen.png'),
+    partBPosterUrl: encodeURI('/Posters/Sides/Legba.png')
   },
   'phd-azovi': {
-    mainPosterUrl: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
+    mainPosterUrl: encodeURI('/Posters/PhD <> Azovi.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/PhD.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Bambous.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Azovi.png')
   },
   'blacks-one-nyonoukpo': {
-    mainPosterUrl: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
+    mainPosterUrl: encodeURI('/Posters/Blacks One ‹ › Nyonu\u0300.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Blacks One.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Wowmen.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Nyonu\u0300.png')
   },
   'fiat-luxe-irokos': {
-    mainPosterUrl: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
+    mainPosterUrl: encodeURI('/Posters/Fiat Luxe <> Irokos.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Fiat Luxe.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Baobabs.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Irokos.png')
   },
   'horizons-finagnon': {
-    mainPosterUrl: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
+    mainPosterUrl: encodeURI('/Posters/Horizons ‹ › Finagnon.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Horizons.png'),
     partBPosterUrl: encodeURI('/Posters/Sides/Finagnon.png')
   },
-  'builders-akwe': {
-    mainPosterUrl: encodeURI('/Posters/Performers ‹ › Builders.png'),
+  'builders-mi-do-kpo': {
+    mainPosterUrl: encodeURI('/Posters/Builders <> Mi do kpo\u0302.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Builders.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Performers.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Mi do kpo.png')
   },
   'regards-gbe': {
-    mainPosterUrl: encodeURI('/Posters/Paroles ‹ › Regards.png'),
+    mainPosterUrl: encodeURI('/Posters/Regards ‹ › Gbe.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Regards.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Paroles.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Gbe\u0301.png')
   }
 };
 
@@ -132,8 +132,14 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
   'performers-builders': {
     legacyId: 'performers-builders',
     status: 'mapped',
-    targetSeriesId: 'builders-akwe',
-    note: 'Performers <> Builders -> Builders ‹ › Àkwè'
+    targetSeriesId: 'builders-mi-do-kpo',
+    note: 'Performers <> Builders -> Builders ‹ › Mi do kpô'
+  },
+  'builders-akwe': {
+    legacyId: 'builders-akwe',
+    status: 'mapped',
+    targetSeriesId: 'builders-mi-do-kpo',
+    note: 'Builders ‹ › Àkwè -> Builders ‹ › Mi do kpô'
   },
   'paroles-regards': {
     legacyId: 'paroles-regards',
@@ -241,12 +247,12 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
     legacyId: 'fiat-luxe-builders',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Fiat Luxe -> fiat-luxe-irokos (part-a), Builders -> builders-akwe (part-a)',
+    note: 'Scindée : Fiat Luxe -> fiat-luxe-irokos (part-a), Builders -> builders-mi-do-kpo (part-a)',
     splitSides: {
       sideALabel: 'Fiat Luxe',
       sideATarget: { seriesId: 'fiat-luxe-irokos', partId: 'part-a' },
       sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'builders-akwe', partId: 'part-a' }
+      sideBTarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' }
     }
   },
   'finagnon-qosqorico': {
@@ -277,22 +283,22 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
     legacyId: 'investors-builders',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Investors masqué, Builders -> builders-akwe (part-a)',
+    note: 'Scindée : Investors masqué, Builders -> builders-mi-do-kpo (part-a)',
     splitSides: {
       sideALabel: 'Investors',
       sideATarget: null,
       sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'builders-akwe', partId: 'part-a' }
+      sideBTarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' }
     }
   },
   'builders-seekers': {
     legacyId: 'builders-seekers',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Builders -> builders-akwe (part-a), Seekers masqué',
+    note: 'Scindée : Builders -> builders-mi-do-kpo (part-a), Seekers masqué',
     splitSides: {
       sideALabel: 'Builders',
-      sideATarget: { seriesId: 'builders-akwe', partId: 'part-a' },
+      sideATarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' },
       sideBLabel: 'Seekers',
       sideBTarget: null
     }
@@ -313,12 +319,12 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
     legacyId: 'dixeat-builders',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Dixeat masqué, Builders -> builders-akwe (part-a)',
+    note: 'Scindée : Dixeat masqué, Builders -> builders-mi-do-kpo (part-a)',
     splitSides: {
       sideALabel: 'Dixeat',
       sideATarget: null,
       sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'builders-akwe', partId: 'part-a' }
+      sideBTarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' }
     }
   }
 };
@@ -414,7 +420,7 @@ export function migratePersistedScreenSeriesId(screenObj: unknown): {
   const clone: Record<string, any> = { ...(screenObj as Record<string, any>) };
   let changed = false;
 
-  for (const field of ['documentaryId', 'seriesId', 'returnToDocId', 'returnFinalChoiceId'] as const) {
+  for (const field of ['documentaryId', 'seriesId', 'selectedDocId', 'returnToDocId', 'returnFinalChoiceId'] as const) {
     const val = clone[field];
     if (typeof val === 'string' && val.trim()) {
       const base = extractBaseSeriesId(val);

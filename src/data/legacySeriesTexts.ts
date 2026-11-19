@@ -487,6 +487,57 @@ export const ARCHIVED_SERIES_V3_RENAMED_TEXTS: ArchivedSeriesEntry[] = [
           'Racontez la personne qui vous a marqué dans votre apprentissage, et ce que vous en avez retenu.'
       }
     ]
+  },
+  {
+    id: 'builders-akwe',
+    title: 'Builders ‹ › Àkwè',
+    partA: {
+      id: 'part-a',
+      name: 'Builders',
+      description:
+        "Chefs d'entreprise et entrepreneurs, fondateurs de startups, architectes, artisans qui ont monté leur propre atelier ou entreprise, bâtisseurs de lieux ou de projets. Un monde de risques, de rencontres et de paris.",
+      posterUrl: '/Posters/Sides/Builders.png'
+    },
+    partB: {
+      id: 'part-b',
+      name: 'Àkwè',
+      description:
+        "Banquiers, comptables, gestionnaires financiers, investisseurs, business angels, traders, tontiniers, et toute personne qui dispose de moyens et choisit d'en faire quelque chose. Un monde de chiffres, d'arbitrages et de confiance.",
+      posterUrl: '/Posters/Sides/Performers.png'
+    },
+    synopsis:
+      "Deux mondes qui ont besoin l'un de l'autre pour que les choses existent : celles et ceux qui bâtissent, et celles et ceux qui portent l'argent. Builders réunit celles et ceux qui entreprennent, conçoivent, organisent et développent des projets, des lieux ou des entreprises. Àkwè, « l'argent » en fongbé, réunit celles et ceux qui le gèrent, le financent ou en disposent. La série explore le pari, la peur, la confiance accordée ou reçue, et l'impact de ce que l'on fait sur les autres.",
+    posterUrl: '/Posters/Performers ‹ › Builders.png',
+    episodes: [
+      {
+        id: 'ep1',
+        number: '01',
+        title: 'Le pari',
+        question:
+          'Racontez le pari le plus risqué que vous avez pris, et ce qui vous a poussé à le prendre.'
+      },
+      {
+        id: 'ep2',
+        number: '02',
+        title: "L'argent en jeu",
+        question:
+          "Racontez un moment où l'argent, par sa présence ou son absence, a changé le cours de quelque chose que vous vouliez faire."
+      },
+      {
+        id: 'ep3',
+        number: '03',
+        title: "La confiance d'un autre",
+        question:
+          'Racontez la personne qui a cru en vous, en votre talent ou en votre projet, à un moment où vous-même doutiez encore.'
+      },
+      {
+        id: 'ep4',
+        number: '04',
+        title: "Compter pour quelqu'un",
+        question:
+          "Racontez le moment où vous avez compris que ce que vous faisiez avait réellement compté pour quelqu'un d'autre."
+      }
+    ]
   }
 ];
 

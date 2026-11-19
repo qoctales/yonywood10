@@ -1,10 +1,8 @@
 import React from 'react';
 import { ViewScreen } from '../types';
-import { SHOW_FOCUS, SHOW_PORTRAIT_IN_BAR } from '../config/flags';
+import { SHOW_PORTRAIT_IN_BAR } from '../config/flags';
 import { 
-  DirectorChairIcon,
   CameraLensFocusIcon,
-  EntrepriseFilmDuoIcon,
   DuocumentairesTvIcon,
   ActionClapperboardIcon,
   ProfileSoloIcon
@@ -20,7 +18,6 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
   const isStudioActive = currentScreen.type === 'submit_story' || currentScreen.type === 'request_videographer';
   const isFocusActive = currentScreen.type === 'focus' || currentScreen.type === 'enterprise';
   const isDialogueActive = currentScreen.type === 'duo_feed' || currentScreen.type === 'duo_detail' || currentScreen.type === 'landing' || currentScreen.type === 'home';
-  const isActionActive = currentScreen.type === 'marketplace';
   const isPortraitActive = 
     currentScreen.type === 'profile' || 
     currentScreen.type === 'settings' || 
@@ -36,25 +33,15 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
     return null;
   }
 
-  // Rubriques selon la structure YonyWood (Focus et Portrait masqués dans la barre via flags : Studio · Duocumentaires · Coproductions)
+  // Rubriques principales de la barre : Studio · Duocumentaires · Focus (Portrait est dans le header)
   const allMenuItems = [
     {
       id: 'studio',
       label: 'Studio',
-      icon: ActionClapperboardIcon, // Claquette de cinéma partagée avec la modale Coproduction
+      icon: ActionClapperboardIcon, // Claquette de cinéma
       isActive: isStudioActive,
       onClick: () => onNavigate({ type: 'submit_story' }),
       screenId: 'menu-item-studio',
-      iconClassName: 'w-5 h-5 sm:w-5 sm:h-5 shrink-0',
-      strokeWidth: 1.75
-    },
-    {
-      id: 'focus',
-      label: 'Focus',
-      icon: CameraLensFocusIcon, // Viseur optique avec cible terracotta au repos
-      isActive: isFocusActive,
-      onClick: () => onNavigate({ type: 'focus' }),
-      screenId: 'menu-item-focus',
       iconClassName: 'w-5 h-5 sm:w-5 sm:h-5 shrink-0',
       strokeWidth: 1.75
     },
@@ -79,19 +66,18 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
       strokeWidth: 1.75
     },
     {
-      id: 'action',
-      label: 'Coproductions',
-      icon: CameraLensFocusIcon, // Cadre à quatre coins avec point central (ancienne icône Focus)
-      isActive: isActionActive,
-      onClick: () => onNavigate({ type: 'marketplace' }),
-      screenId: 'menu-item-action',
+      id: 'focus',
+      label: 'Focus',
+      icon: CameraLensFocusIcon, // Viseur optique avec point central terracotta au repos
+      isActive: isFocusActive,
+      onClick: () => onNavigate({ type: 'focus' }),
+      screenId: 'menu-item-focus',
       iconClassName: 'w-5 h-5 sm:w-5 sm:h-5 shrink-0',
       strokeWidth: 1.75
     }
   ];
 
   const menuItems = allMenuItems.filter((item) => {
-    if (!SHOW_FOCUS && item.id === 'focus') return false;
     if (!SHOW_PORTRAIT_IN_BAR && item.id === 'portrait') return false;
     return true;
   });

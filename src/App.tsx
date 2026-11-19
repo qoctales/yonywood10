@@ -6,7 +6,7 @@ import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
 import { ChunkErrorBoundary } from './components/ChunkErrorBoundary';
 import { lazyWithRetry } from './utils/lazyWithRetry';
-import { SHOW_FINANCIAL_SCREENS, SHOW_FOCUS, SHOW_PORTRAIT_IN_BAR } from './config/flags';
+import { SHOW_FINANCIAL_SCREENS, SHOW_PORTRAIT_IN_BAR } from './config/flags';
 import {
   normalizeSelectedSeriesList,
   migratePersistedScreenSeriesId
@@ -64,9 +64,7 @@ const resolveScreenFromPath = (): { screen: ViewScreen | null; redirectFrom?: st
   
   // Redirections permanentes des anciennes adresses vers les nouvelles
   if (path === '/portraits' || path === '/lumiere' || path === '/lumieres' || path === '/entreprises' || path === '/entreprise') {
-    return SHOW_FOCUS
-      ? { screen: { type: 'focus' }, redirectFrom: path, redirectTo: '/focus' }
-      : { screen: { type: 'duo_feed' }, redirectFrom: path, redirectTo: '/dialogue' };
+    return { screen: { type: 'focus' }, redirectFrom: path, redirectTo: '/focus' };
   }
   if (path === '/perspectives' || path === '/duo') {
     return { screen: { type: 'duo_feed' }, redirectFrom: path, redirectTo: '/duos' };
@@ -77,8 +75,16 @@ const resolveScreenFromPath = (): { screen: ViewScreen | null; redirectFrom?: st
   if (path === '/portfolio' || path === '/portefeuille' || path === '/transactions' || path === '/commandes' || path === '/contributions') {
     return { screen: { type: 'profile' }, redirectFrom: path, redirectTo: '/portrait' };
   }
-  if (path === '/production' || path === '/marche' || path === '/marché') {
-    return { screen: { type: 'marketplace' }, redirectFrom: path, redirectTo: '/action' };
+  if (
+    path === '/production' ||
+    path === '/marche' ||
+    path === '/marché' ||
+    path === '/action' ||
+    path === '/actions' ||
+    path === '/productions' ||
+    path === '/coproductions'
+  ) {
+    return { screen: { type: 'focus' }, redirectFrom: path, redirectTo: '/focus' };
   }
   if (path === '/profil') {
     return { screen: { type: 'profile' }, redirectFrom: '/profil', redirectTo: '/portrait' };
@@ -86,9 +92,6 @@ const resolveScreenFromPath = (): { screen: ViewScreen | null; redirectFrom?: st
 
   // Nouvelles adresses officielles
   if (path === '/focus') {
-    if (!SHOW_FOCUS) {
-      return { screen: { type: 'duo_feed' }, redirectFrom: '/focus', redirectTo: '/dialogue' };
-    }
     const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
     const topic = params?.get('topic') || params?.get('company') || undefined;
     return { screen: { type: 'focus', selectedTopicId: topic } };
@@ -98,9 +101,6 @@ const resolveScreenFromPath = (): { screen: ViewScreen | null; redirectFrom?: st
   }
   if (path === '/studio') {
     return { screen: { type: 'submit_story' } };
-  }
-  if (path === '/action' || path === '/actions' || path === '/productions') {
-    return { screen: { type: 'marketplace' } };
   }
   if (path === '/portrait') {
     return { screen: { type: 'profile' } };
@@ -124,14 +124,11 @@ const getScreenRouteInfo = (screen: ViewScreen): { path: string; title: string }
       return { path: '/dialogue', title: 'Duocumentaires — YonyWood' };
     case 'focus':
     case 'enterprise':
-      return SHOW_FOCUS
-        ? { path: '/focus', title: 'Focus — YonyWood' }
-        : { path: '/dialogue', title: 'Duocumentaires — YonyWood' };
+    case 'marketplace':
+      return { path: '/focus', title: 'Focus — YonyWood' };
     case 'submit_story':
     case 'request_videographer':
       return { path: '/studio', title: 'Studio — YonyWood' };
-    case 'marketplace':
-      return { path: '/action', title: 'Coproductions — YonyWood' };
     case 'profile':
     case 'settings':
     case 'portfolio':
@@ -167,8 +164,8 @@ export default function App() {
           localStorage.setItem('yonywood_last_screen', JSON.stringify(parsed));
         }
         if (parsed && parsed.type && parsed.type !== 'landing') {
-          if (!SHOW_FOCUS && (parsed.type === 'focus' || parsed.type === 'enterprise')) {
-            return { type: 'duo_feed' };
+          if (parsed.type === 'marketplace') {
+            return { type: 'focus' };
           }
           if (!SHOW_FINANCIAL_SCREENS) {
             if (parsed.type === 'portfolio' || parsed.type === 'transactions') {
@@ -177,9 +174,6 @@ export default function App() {
             if (parsed.type === 'profile') {
               const { initialModal: _im, ...restProfile } = parsed;
               return restProfile as ViewScreen;
-            }
-            if (parsed.type === 'marketplace') {
-              return { type: 'marketplace' };
             }
           }
           return parsed;
@@ -297,7 +291,7 @@ export default function App() {
       void loadSubmitStoryScreen().catch(() => {});
       void loadDuoFeedScreen().catch(() => {});
       void loadProfileSettingsScreen().catch(() => {});
-      void loadMarketplaceScreen().catch(() => {});
+      void loadFocusScreen().catch(() => {});
     };
 
     const win = window as Window & {
@@ -318,23 +312,19 @@ export default function App() {
     return () => window.clearTimeout(timerId);
   }, []);
 
-  // Swipe horizontal entre les rubriques principales de la barre (Studio ⇄ Duocumentaires ⇄ Coproductions)
+  // Swipe horizontal entre les rubriques principales de la barre (Studio ⇄ Duocumentaires ⇄ Focus)
   const appTouchStartRef = React.useRef<{ x: number; y: number } | null>(null);
 
   const PRIMARY_TABS: ViewScreen[] = [
     { type: 'submit_story' },
-    ...(SHOW_FOCUS ? [{ type: 'focus' } as ViewScreen] : []),
     { type: 'duo_feed' },
     ...(SHOW_PORTRAIT_IN_BAR ? [{ type: 'profile' } as ViewScreen] : []),
-    { type: 'marketplace' },
+    { type: 'focus' },
   ];
 
   const getPrimaryTabIndex = (screen: ViewScreen): number => {
     if (screen.type === 'submit_story' || screen.type === 'request_videographer') {
       return PRIMARY_TABS.findIndex(t => t.type === 'submit_story');
-    }
-    if (SHOW_FOCUS && (screen.type === 'focus' || screen.type === 'enterprise')) {
-      return PRIMARY_TABS.findIndex(t => t.type === 'focus');
     }
     if (screen.type === 'duo_feed' || screen.type === 'landing' || screen.type === 'home' || screen.type === 'matrix_view') {
       return PRIMARY_TABS.findIndex(t => t.type === 'duo_feed');
@@ -351,16 +341,16 @@ export default function App() {
     ) {
       return PRIMARY_TABS.findIndex(t => t.type === 'profile');
     }
-    if (screen.type === 'marketplace') {
-      return PRIMARY_TABS.findIndex(t => t.type === 'marketplace');
+    if (screen.type === 'focus' || screen.type === 'enterprise') {
+      return PRIMARY_TABS.findIndex(t => t.type === 'focus');
     }
     return -1;
   };
 
-  // Redirection si un écran masqué (Focus ou financier) ou un contexte financier (initialModal, legacy marketplace) est demandé
+  // Redirection si un écran financier ou legacy marketplace est demandé
   useEffect(() => {
-    if (!SHOW_FOCUS && (currentScreen.type === 'focus' || currentScreen.type === 'enterprise')) {
-      setCurrentScreen({ type: 'duo_feed' });
+    if (currentScreen.type === 'marketplace') {
+      setCurrentScreen({ type: 'focus' });
       return;
     }
     if (!SHOW_FINANCIAL_SCREENS) {
@@ -372,11 +362,6 @@ export default function App() {
       ) {
         const { initialModal: _im, ...rest } = currentScreen;
         setCurrentScreen(rest);
-      } else if (
-        currentScreen.type === 'marketplace' &&
-        (currentScreen.initialPeerOfferId || currentScreen.initialTab || currentScreen.restoreContext)
-      ) {
-        setCurrentScreen({ type: 'marketplace' });
       }
     }
   }, [currentScreen]);
@@ -493,7 +478,7 @@ export default function App() {
           />
         )}
 
-        {SHOW_FOCUS && (currentScreen.type === 'focus' || currentScreen.type === 'enterprise') && (
+        {(currentScreen.type === 'focus' || currentScreen.type === 'enterprise') && (
           <FocusScreen 
             onNavigate={setCurrentScreen} 
             initialTopicId={currentScreen.type === 'focus' ? currentScreen.selectedTopicId : currentScreen.selectedCompanyId}

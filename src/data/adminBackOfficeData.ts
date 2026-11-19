@@ -9,6 +9,7 @@ import {
   AdvertisingCampaign,
   AdminAuditLog
 } from '../types/adminBackOffice';
+import { SERIES_POSTER_FILES } from './legacySeriesIds';
 
 export const INITIAL_ADMIN_USERS: AdminUserAccount[] = [
   {
@@ -390,7 +391,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'amin-amen-legba',
     seriesTitle: 'Amin Amen ‹ › Legba',
-    coverImage: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
+    coverImage: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
     totalRaised: 18500,
     distributableEnvelope: 11100,
     distributedAmount: 3840,
@@ -421,9 +422,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     ]
   },
   {
-    seriesId: 'builders-akwe',
-    seriesTitle: 'Builders ‹ › Àkwè',
-    coverImage: encodeURI('/Posters/Performers ‹ › Builders.png'),
+    seriesId: 'builders-mi-do-kpo',
+    seriesTitle: 'Builders ‹ › Mi do kpô',
+    coverImage: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
     totalRaised: 24000,
     distributableEnvelope: 14400,
     distributedAmount: 5200,
@@ -445,7 +446,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'horizons-finagnon',
     seriesTitle: 'Horizons ‹ › Finagnon',
-    coverImage: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
+    coverImage: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
     totalRaised: 14200,
     distributableEnvelope: 8520,
     distributedAmount: 2650,
@@ -467,7 +468,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'blacks-one-nyonoukpo',
     seriesTitle: 'Blacks One ‹ › Nyonoukpo',
-    coverImage: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
+    coverImage: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
     totalRaised: 29500,
     distributableEnvelope: 17700,
     distributedAmount: 6420,
@@ -489,7 +490,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'fiat-luxe-irokos',
     seriesTitle: 'Fiat Luxe ‹ › Irokos',
-    coverImage: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
+    coverImage: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
     totalRaised: 16800,
     distributableEnvelope: 10080,
     distributedAmount: 3100,
@@ -511,7 +512,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'phd-azovi',
     seriesTitle: 'PhD ‹ › Azovi',
-    coverImage: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
+    coverImage: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
     totalRaised: 12200,
     distributableEnvelope: 7320,
     distributedAmount: 1800,
@@ -533,7 +534,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'remedes-e-vivi',
     seriesTitle: 'Remèdes ‹ › E Vivi',
-    coverImage: encodeURI('/Posters/Care ‹ › Feed.png'),
+    coverImage: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
     totalRaised: 11500,
     distributableEnvelope: 6900,
     distributedAmount: 1450,
@@ -555,7 +556,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
     seriesId: 'regards-gbe',
     seriesTitle: 'Regards ‹ › Gbé',
-    coverImage: encodeURI('/Posters/Paroles ‹ › Regards.png'),
+    coverImage: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
     totalRaised: 13800,
     distributableEnvelope: 8280,
     distributedAmount: 1980,
@@ -592,8 +593,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-02-18',
     supportedSeries: [
       {
-        seriesId: 'builders-akwe',
-        seriesTitle: 'Builders ‹ › Àkwè',
+        seriesId: 'builders-mi-do-kpo',
+        seriesTitle: 'Builders ‹ › Mi do kpô',
         proposedAmount: 12000,
         committedAmount: 10000,
         receivedAmount: 10000,
@@ -619,7 +620,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-1',
         date: '2026-03-22',
         amount: 1450,
-        seriesTitle: 'Builders ‹ › Àkwè',
+        seriesTitle: 'Builders ‹ › Mi do kpô',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-882194'
       },
@@ -635,7 +636,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-3',
         date: '2026-10-15',
         amount: 2000,
-        seriesTitle: 'Builders ‹ › Àkwè',
+        seriesTitle: 'Builders ‹ › Mi do kpô',
         status: 'EN_ATTENTE',
         bankRef: 'EN_ATTENTE_ORDRE'
       }
@@ -775,8 +776,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-4',
-    seriesId: 'builders-akwe',
-    seriesTitle: 'Builders ‹ › Àkwè',
+    seriesId: 'builders-mi-do-kpo',
+    seriesTitle: 'Builders ‹ › Mi do kpô',
     referentId: 'usr-coopt-malik',
     referentName: 'Malik Diop',
     referentRole: 'Membre Coopté Saint-Louis',
@@ -926,7 +927,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
     action: 'Validation de versement de dividendes',
     targetId: 'payout-1',
     targetTitle: 'Versement 1 450 € — Culture Invest',
-    justification: 'Palier d\'audience 90k dépassé sur Builders ‹ › Àkwè, ordre de virement SEPA émis.'
+    justification: 'Palier d\'audience 90k dépassé sur Builders ‹ › Mi do kpô, ordre de virement SEPA émis.'
   },
   {
     id: 'log-5',

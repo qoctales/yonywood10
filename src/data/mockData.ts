@@ -12,6 +12,7 @@ import {
 import { ALL_SERIES_TEAMS, getSeriesCredits } from './seriesTeamData';
 import {
   SERIES_REGISTRY,
+  SERIES_POSTER_FILES,
   SeriesRegistryEntry,
   resolveCanonicalSeriesId,
   resolveSeriesById,
@@ -153,7 +154,7 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 6,
     territories: ['Saint-Louis', 'Ganvié', 'Porto-Novo', 'Grand-Popo'],
   },
-  'builders-akwe': {
+  'builders-mi-do-kpo': {
     effigies: [
       {
         id: 'eff-build-2',
@@ -1495,8 +1496,8 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇸🇳',
     bio: 'Pionnière de l’investissement à impact, Fatou finance des ateliers artisanaux, des coopératives agricoles et des infrastructures régénératrices à travers l’Afrique de l’Ouest.',
     photoUrl: '/assets/duos/fatou-diallo.jpg',
-    documentaryId: 'builders-akwe',
-    universeTag: 'Àkwè',
+    documentaryId: 'builders-mi-do-kpo',
+    universeTag: 'Mi do kpô',
     quote: '« Investir, ce n’est pas acheter l’avenir, c’est donner les moyens au présent de s’enraciner. »',
     tree: {
       passeurs: [
@@ -1531,7 +1532,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Kwame',
           partnerRole: 'Éco-constructeur & bâtisseur de terre',
           partnerPhoto: '/assets/duos/kwame-mensah.jpg',
-          duoId: 'duo-builders-akwe-01',
+          duoId: 'duo-builders-mi-do-kpo-01',
           question: '« Que vaut le capital sans la sueur de celui qui bâtit ? »'
         }
       ],
@@ -1595,7 +1596,7 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇧🇯',
     bio: 'Ingénieur et artisan de la terre crue, Kwame réinvente les techniques ancestrales de construction pour bâtir des cités fraîches, durables et accessibles à tous.',
     photoUrl: '/assets/duos/kwame-mensah.jpg',
-    documentaryId: 'builders-akwe',
+    documentaryId: 'builders-mi-do-kpo',
     universeTag: 'Builders',
     quote: '« La terre ne ment pas. Elle ne demande qu’un toit pour la protéger et une main pour la tasser. »',
     tree: {
@@ -1631,7 +1632,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Fatou',
           partnerRole: 'Investisseuse à impact & mécène',
           partnerPhoto: '/assets/duos/fatou-diallo.jpg',
-          duoId: 'duo-builders-akwe-01',
+          duoId: 'duo-builders-mi-do-kpo-01',
           question: '« Que vaut le capital sans la sueur de celui qui bâtit ? »'
         }
       ],
@@ -2331,11 +2332,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'builders-akwe',
+    documentaryId: 'builders-mi-do-kpo',
     quote: '« Bâtir en terre comprimée et en bois local sous le soleil de Cotonou, c’est prouver que notre architecture ancestrale est déjà futuriste. »',
     bio: 'Fondatrice d’un cabinet d’architecture bioclimatique à Cotonou, Sènami conçoit des écoles, des ateliers et des lieux culturels frais, durables et ancrés dans la terre béninoise.',
     universeTag: 'Builders',
-    centralQuestion: 'Racontez le pari le plus risqué que vous avez pris, et ce qui vous a poussé à le prendre.',
+    centralQuestion: "Racontez le moment où vous avez choisi cette voie, avec ce qu'elle comportait de risque ou de renoncement.",
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 5,
@@ -2409,7 +2410,7 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: 'Racontez le moment où vous avez compris que votre métier serait de vous occuper des autres.',
     quoteA: '« À trois heures du matin aux urgences de Cotonou, quand la main d’un patient serre la vôtre, vous savez que vous êtes exactement à votre place. »',
     quoteB: '« Dès l’aube à Dantokpa, quand la fumée de la marmite réchauffe les visages fatigués, nourrir devient une façon silencieuse de soigner. »',
-    coverImage: encodeURI('/Posters/Care ‹ › Feed.png'),
+    coverImage: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
     storyA: findProtagonist('mireille-akplogan').stories[0],
     storyB: findProtagonist('chef-koffi').stories[0],
     editorialReflection: 'Entre la blouse blanche du CNHU et les braises vivantes de Dantokpa, soigner et nourrir obéissent au même serment béninois : tenir les autres debout.'
@@ -2427,7 +2428,7 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
     quoteA: '« Je suis entré dans la nef déserte de Ouidah pour fuir la brûlure du soleil. Ce n’est pas un miracle qui m’a retenu : c’était la certitude d’être attendu. »',
     quoteB: '« Ce n’était pas un coup de tonnerre. C’était la chaleur d’une poignée de terre d’Allada, un jour où je croyais que le monde était mort. »',
-    coverImage: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
+    coverImage: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
     storyA: findProtagonist('pere-matthieu').stories[0],
     storyB: findProtagonist('dah-zounon').stories[0],
     editorialReflection: 'Deux traditions spirituelles du Bénin se découvrent ici une racine commune : l’humilité devant l’invisible et la nécessité de ne pas traverser l’obscurité seul.'
@@ -2445,7 +2446,7 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: 'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
     quoteA: '« Le premier jour devant mon tableau noir à Abomey-Calavi, j’ai juré de prouver la rigueur mathématique cachée dans nos savoirs oraux. »',
     quoteB: '« Le premier matin à l’atelier de Fidjrossè, quand mon patron m’a posé une radio ouverte entre les mains, j’ai compris qu’apprendre commence par oser toucher. »',
-    coverImage: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
+    coverImage: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
     storyA: findProtagonist('researcher-eleonore').stories[0],
     storyB: findProtagonist('senan-agossa').stories[0],
     editorialReflection: 'De la bibliothèque d’Abomey-Calavi à l’établi de Fidjrossè, la recherche et l’apprentissage révèlent la même ferveur du commencement.'
@@ -2463,7 +2464,7 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: 'Racontez le moment où vous avez appris à être fier de qui vous êtes.',
     quoteA: '« L’émancipation commence le jour où l’on refuse de regarder son histoire avec les yeux de ceux qui l’ont confisquée. »',
     quoteB: '« En ouvrant la malle des pagnes de ma mère, j’ai compris que la force et la dignité des femmes portent nos sociétés entières. »',
-    coverImage: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
+    coverImage: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
     storyA: findProtagonist('malik-diop').stories[0],
     storyB: findProtagonist('eleonore-vance').stories[0],
     editorialReflection: 'Entre la fierté panafricaine et l’hommage vibrant aux femmes bâtisseuses, ce face-à-face célèbre une dignité libre et solaire.'
@@ -2481,7 +2482,7 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: 'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
     quoteA: '« Reconnaître à l’œil nu l’instant précis où le bronze en fusion d’Abomey devient docile demande dix ans de flamme et zéro manuel. »',
     quoteB: '« Sur la lagune de Ganvié, savoir quand se taire et quand parler à celui qui doute vient avec les années, jamais d’un livre. »',
-    coverImage: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
+    coverImage: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
     storyA: findProtagonist('kpedetin-houndegla').stories[0],
     storyB: findProtagonist('kiki-alapini').stories[0],
     editorialReflection: 'L’excellence du geste joaillier béninois rencontre la sagesse patiente des aînés de Ganvié : deux maîtrises sculptées uniquement par le temps.'
@@ -2499,28 +2500,28 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: 'Racontez le moment où vous avez senti que vous étiez enfin chez vous.',
     quoteA: '« En retrouvant les façades ocres de Saint-Louis face au fleuve, j’ai senti que ma voix n’avait jamais quitté cette île. »',
     quoteB: '« Le jour où ma pirogue a glissé dans la brume de Ganvié sans que j’aie besoin de regarder le rivage : cette lagune est dans mon sang. »',
-    coverImage: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
+    coverImage: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
     storyA: findProtagonist('awa-ndiaye').stories[0],
     storyB: findProtagonist('tobi-houndegla').stories[0],
     editorialReflection: 'Des berges de Saint-Louis à la cité lacustre de Ganvié, le chez-soi se reconnaît à l’accord immédiat entre l’être et son élément.'
   },
   {
-    id: 'duo-builders-akwe-01',
-    slug: 'duo-builders-akwe-01',
-    documentaryId: 'builders-akwe',
-    documentaryTitle: 'Builders ‹ › Àkwè',
+    id: 'duo-builders-mi-do-kpo-01',
+    slug: 'duo-builders-mi-do-kpo-01',
+    documentaryId: 'builders-mi-do-kpo',
+    documentaryTitle: 'Builders ‹ › Mi do kpô',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('senami-houndete'),
     protagonistB: findProtagonist('fatou-diallo'),
     questionNumber: '01',
-    questionTitle: 'Le pari',
-    centralQuestion: 'Racontez le pari le plus risqué que vous avez pris, et ce qui vous a poussé à le prendre.',
-    quoteA: '« Tout le monde me disait que bâtir une école en terre comprimée à Cotonou était fou : c’est ce pari qui a prouvé que nos matériaux peuvent tout porter. »',
+    questionTitle: 'Le choix',
+    centralQuestion: "Racontez le moment où vous avez choisi cette voie, avec ce qu'elle comportait de risque ou de renoncement.",
+    quoteA: '« Tout le monde me disait que bâtir une école en terre comprimée à Cotonou était fou : c’est ce choix qui a prouvé que nos matériaux peuvent tout porter. »',
     quoteB: '« Investir mes premières économies dans un atelier dont les banques ne voulaient pas m’a appris que la confiance est le vrai capital. »',
-    coverImage: encodeURI('/Posters/Performers ‹ › Builders.png'),
+    coverImage: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
     storyA: findProtagonist('senami-houndete').stories[0],
     storyB: findProtagonist('fatou-diallo').stories[0],
-    editorialReflection: 'L’architecte béninoise bâtit dans la matière durable, l’investisseuse engage son àkwè sans filet : deux audaces qui se répondent pour faire exister le réel.'
+    editorialReflection: 'Entre celles et ceux qui entreprennent et celles et ceux qui tiennent le bien commun, bâtir commence toujours par un choix assumé.'
   },
   {
     id: 'duo-regards-gbe-01',
@@ -2535,7 +2536,7 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: 'Racontez le moment où vous avez compris que si vous ne le disiez pas, personne ne le dirait à votre place.',
     quoteA: '« À Ouidah, lorsque je cadre un visage avant l’aube, l’image dit exactement ce que les discours officiels ont oublié. »',
     quoteB: '« Le mot claque comme un tambour dans la nuit : si nous n’écrivons pas nos propres récits de Cotonou, d’autres les effaceront. »',
-    coverImage: encodeURI('/Posters/Paroles ‹ › Regards.png'),
+    coverImage: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
     storyA: findProtagonist('photographer-chancelle').stories[0],
     storyB: findProtagonist('poet-armel').stories[0],
     editorialReflection: 'Quand l’objectif patient de la photographe de Ouidah répond au verbe du slameur béninois, la vérité du réel trouve enfin sa double voix.'
@@ -3511,11 +3512,11 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     ]
   },
   {
-    seriesId: 'builders-akwe',
-    seriesTitle: 'Builders ‹ › Àkwè',
-    subtitle: 'Ceux qui bâtissent ‹ › ceux qui portent l’argent.',
-    description: 'Une alliance entre ceux qui entreprennent et bâtissent dans le réel et ceux qui gèrent, arbitrent et financent les projets.',
-    centralQuestion: 'Le pari & la confiance',
+    seriesId: 'builders-mi-do-kpo',
+    seriesTitle: 'Builders ‹ › Mi do kpô',
+    subtitle: 'Bâtir pour soi ‹ › bâtir pour tous.',
+    description: 'Deux façons de bâtir : celles et ceux qui entreprennent dans le réel et celles et ceux qui tiennent l’intérêt général et la vie commune.',
+    centralQuestion: 'Le choix & la confiance',
     totalAffiliatedCount: 14,
     generationsCount: 3,
     pioneers: [
@@ -3527,15 +3528,15 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         territory: 'Dakar & Paris',
         country: 'Sénégal',
         flag: '🇸🇳',
-        universeTag: 'Àkwè',
+        universeTag: 'Mi do kpô',
         photoUrl: '/assets/duos/fatou-diallo.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Pionnière du pôle Àkwè, engagée à prouver que l’argent investi avec discernement nourrit la souveraineté.',
+        invitationStory: 'Pionnière du soutien aux ateliers et services locaux, engagée à prouver que les moyens investis avec discernement nourrissent le bien commun.',
         duoPartnerName: 'Sènami Houndété',
         duoPartnerPhoto: '/assets/images/senami_architecte_1792933801804.jpg',
-        duoId: 'duo-builders-akwe-01',
-        episodeQuestion: '01 — Le pari le plus risqué que vous avez pris.',
+        duoId: 'duo-builders-mi-do-kpo-01',
+        episodeQuestion: '01 — Le choix de cette voie.',
         protagonistIdRef: 'fatou-diallo',
         invitedPeople: [
           {
@@ -3546,15 +3547,15 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Saint-Louis',
             country: 'Sénégal',
             flag: '🇸🇳',
-            universeTag: 'Àkwè',
+            universeTag: 'Mi do kpô',
             photoUrl: '/assets/duos/tobi-houndegla.jpg',
             badge: 'Invité(e)',
             invitedById: 'fatou-diallo',
             invitedByName: 'Fatou Diallo',
             invitationStory: 'Mentor de Fatou, pionnier des caisses de crédit mutuel rurale en Casamance.',
             duoPartnerName: 'Maître Kofi Annan',
-            duoId: 'duo-builders-akwe-01',
-            episodeQuestion: '02 — L’argent en jeu.',
+            duoId: 'duo-builders-mi-do-kpo-01',
+            episodeQuestion: '02 — Quand tout a failli tomber.',
             protagonistIdRef: 'fatou-diallo',
             invitedPeople: []
           }
@@ -3575,8 +3576,8 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         invitationStory: 'Bâtisseur de terre crue et concepteur d’éco-matériaux, il matérialise les visions d’infrastructures durables.',
         duoPartnerName: 'Fatou Diallo',
         duoPartnerPhoto: '/assets/duos/fatou-diallo.jpg',
-        duoId: 'duo-builders-akwe-01',
-        episodeQuestion: '01 — Le pari le plus risqué que vous avez pris.',
+        duoId: 'duo-builders-mi-do-kpo-01',
+        episodeQuestion: '01 — Le choix de cette voie.',
         protagonistIdRef: 'kwame-mensah',
         invitedPeople: [
           {
@@ -3594,7 +3595,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitedByName: 'Kwame Mensah',
             invitationStory: 'Apprentie formée sur les chantiers de voûtes nubiennes, devenue conceptrice de campus zéro-carbone.',
             duoPartnerName: 'Mariama Fall',
-            duoId: 'duo-builders-akwe-01',
+            duoId: 'duo-builders-mi-do-kpo-01',
             episodeQuestion: '03 — La confiance d’un autre.',
             protagonistIdRef: 'kwame-mensah',
             invitedPeople: []

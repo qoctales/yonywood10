@@ -21,7 +21,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { DOCUMENTARIES, getCustomDocumentaries } from '../data/mockData';
-import { resolveCanonicalSeriesId } from '../data/seriesRegistry';
+import { resolveCanonicalSeriesId, SERIES_POSTER_FILES } from '../data/seriesRegistry';
 import { ViewScreen, Documentary, SeriesProducerUser } from '../types';
 import { CooptationModal } from './CooptationModal';
 import { TvPlayerIcon } from './YonywoodBrandIcons';
@@ -135,7 +135,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = encodeURI('/Posters/Care ‹ › Feed.png');
+              (e.target as HTMLImageElement).src = SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl;
             }}
           loading="lazy"
           decoding="async"

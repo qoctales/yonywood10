@@ -19,7 +19,7 @@ export const ACTION_SHAREHOLDERS: ActionShareholderProfile[] = [
     photo: '/assets/duos/fatou-diallo.jpg',
     video: '/sample.mp4',
     phrase: 'Soutenir les bâtisseurs et les initiatives locales qui transforment nos territoires.',
-    series: ['Builders ‹ › Àkwè', 'Remèdes ‹ › E Vivi'],
+    series: ['Builders ‹ › Mi do kpô', 'Remèdes ‹ › E Vivi'],
     protagonistId: 'coprod-nadia-kossi',
   },
   {

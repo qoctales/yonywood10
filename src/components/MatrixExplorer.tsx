@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { SERIES_POSTER_FILES } from '../data/seriesRegistry';
 import { 
   Tv, 
   Globe,
@@ -1832,7 +1833,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
           activeFlagUrl={activeCategory === 'countries' ? getCountryFlagUrl(activeTopicId) : undefined}
           activeCoverImage={
             activeCategory === 'series'
-              ? (activeTopicItem?.photoUrl || encodeURI('/Posters/Care ‹ › Feed.png'))
+              ? (activeTopicItem?.photoUrl || SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl)
               : (activeCategory !== 'countries' ? activeTopicItem?.photoUrl : undefined)
           }
           hoveredCoverImage={hoveredTopic?.photoUrl}

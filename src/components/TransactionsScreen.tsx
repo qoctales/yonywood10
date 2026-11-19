@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { ViewScreen, UserPurchaseOrder, UserProjectContribution, OrderStatus } from '../types';
 import { transactionService } from '../utils/transactionService';
+import { SERIES_POSTER_FILES } from '../data/seriesRegistry';
 
 interface TransactionsScreenProps {
   onNavigate: (screen: ViewScreen) => void;
@@ -121,7 +122,7 @@ export const TransactionsScreen: React.FC<TransactionsScreenProps> = ({
       acquiredPrice: 35,
       currentValue: 42,
       lastDividend: 4.80,
-      posterUrl: encodeURI('/Posters/Finagnon ‹ › Horizons.png')
+      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl
     },
     {
       id: 'share-2',

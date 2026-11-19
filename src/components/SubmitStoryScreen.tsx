@@ -13,13 +13,23 @@ import {
   ArrowLeft,
   Check,
   AtSign,
-  Loader2
+  Loader2,
+  Eye,
+  Users,
+  Film
 } from 'lucide-react';
 import { ViewScreen } from '../types';
 import { STUDIO_PILLARS, StudioPillar, StudioPillarItem } from '../data/studioPillarsData';
 import { DOCUMENTARIES } from '../data/mockData';
 import { resolveCanonicalSeriesId, resolveSeriesById, SeriesSide } from '../data/seriesRegistry';
-import { TvPlayerIcon } from './YonywoodBrandIcons';
+import { TvPlayerIcon, ProductionTokenIcon } from './YonywoodBrandIcons';
+import { CardWidthModal } from './shared/CardWidthModal';
+import {
+  addUserCoproduction,
+  getSeriesStats,
+  formatViewsCompact,
+  DEMO_SHARE_UNIT_EUR
+} from '../utils/coproductionService';
 import { celestialAudio } from '../utils/celestialAudio';
 import { episodeVoiceReader } from '../utils/episodeVoiceReader';
 import { useAuth } from '../services/authContext';
@@ -488,6 +498,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
   // 6. Modale Synopsis (Papyrus) - largeur ajustée à la carte vidéo
   const [synopsisModalItem, setSynopsisModalItem] = useState<StudioPillar | StudioPillarItem | null>(null);
+  const [coproduceModalSeriesId, setCoproduceModalSeriesId] = useState<string | null>(null);
+  const [coproduceShares, setCoproduceShares] = useState<number>(1);
 
   // 7. Écran direct sur la plateforme : Télécharger sa vidéo (NON MODAL)
   const [isUploadScreenActive, setIsUploadScreenActive] = useState(false);
@@ -2331,7 +2343,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       onMouseDown={(e) => e.stopPropagation()}
                       onTouchStart={(e) => e.stopPropagation()}
                     >
-                      {/* GROUPE GAUCHE : Uniquement le Papyrus pour le synopsis */}
+                      {/* GROUPE GAUCHE : Papyrus pour le synopsis (+ Coproduire sur les cartes séries) */}
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
                           type="button"
@@ -2346,6 +2358,28 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                         >
                           <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                         </button>
+
+                        {isSeriesAudioCard && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (!isCenter) {
+                                setCurrentIndex(idx);
+                                return;
+                              }
+                              setCoproduceShares(1);
+                              setCoproduceModalSeriesId(castingItem.seriesId || castingItem.id);
+                              celestialAudio?.playOrbSelect?.();
+                            }}
+                            className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                            title="Coproduire"
+                            aria-label={`Coproduire ${item.title}`}
+                          >
+                            <ProductionTokenIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" strokeWidth={1.75} />
+                          </button>
+                        )}
                       </div>
 
                       {/* GROUPE DROIT : Bouton discret « Choisir » avec icône porte */}
@@ -2497,6 +2531,108 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
           </div>
         </div>
       )}
+
+      {/* ========================================================================= */}
+      {/* 4b. MODALE COPRODUCTION SÉRIE (SIMULATION DÉMO)                         */}
+      {/* ========================================================================= */}
+      <CardWidthModal
+        isOpen={Boolean(coproduceModalSeriesId)}
+        onClose={() => setCoproduceModalSeriesId(null)}
+        ariaLabel="Coproduire une série"
+        className="p-4 sm:p-5 space-y-3 text-stone-800"
+      >
+        {coproduceModalSeriesId && (() => {
+          const stats = getSeriesStats(coproduceModalSeriesId);
+          const totalAmount = coproduceShares * DEMO_SHARE_UNIT_EUR;
+
+          return (
+            <>
+              <div className="flex items-center gap-2 border-b border-stone-200/80 pb-2.5">
+                <div className="w-7 h-7 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
+                  <ProductionTokenIcon className="w-3.5 h-3.5" strokeWidth={1.8} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-editorial text-xs sm:text-sm font-semibold text-stone-900 leading-tight truncate">
+                    {stats.seriesTitle}
+                  </h3>
+                  <span className="text-[10px] font-semibold text-[#A2482B]">
+                    Coproduction · mode démo
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setCoproduceModalSeriesId(null)}
+                  className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                  title="Fermer"
+                  aria-label="Fermer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <div className="rounded-xl bg-white border border-stone-200 p-2 text-center">
+                  <Eye className="w-3.5 h-3.5 text-[#A2482B] mx-auto mb-0.5" />
+                  <div className="text-xs font-bold text-stone-900">
+                    {formatViewsCompact(stats.viewsCount)}
+                  </div>
+                  <div className="text-[9.5px] text-stone-500">Vues</div>
+                </div>
+                <div className="rounded-xl bg-white border border-stone-200 p-2 text-center">
+                  <Users className="w-3.5 h-3.5 text-[#A2482B] mx-auto mb-0.5" />
+                  <div className="text-xs font-bold text-stone-900">{stats.duosCount}</div>
+                  <div className="text-[9.5px] text-stone-500">Duos</div>
+                </div>
+                <div className="rounded-xl bg-white border border-stone-200 p-2 text-center">
+                  <Film className="w-3.5 h-3.5 text-[#A2482B] mx-auto mb-0.5" />
+                  <div className="text-xs font-bold text-stone-900">{stats.videosCount}</div>
+                  <div className="text-[9.5px] text-stone-500">Vidéos</div>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] text-stone-600">
+                  <span>Parts simulées ({DEMO_SHARE_UNIT_EUR} € / part)</span>
+                  <span className="font-bold text-stone-900">{totalAmount} € (démo)</span>
+                </div>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {[1, 2, 5].map((count) => (
+                    <button
+                      key={count}
+                      type="button"
+                      onClick={() => setCoproduceShares(count)}
+                      className={`py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
+                        coproduceShares === count
+                          ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-sm'
+                          : 'bg-white border-stone-200 text-stone-700 hover:border-stone-400'
+                      }`}
+                    >
+                      {count} {count > 1 ? 'parts' : 'part'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <p className="text-[10px] text-stone-500 leading-snug">
+                Simulation enregistrée sur cet appareil (démo). Aucun paiement réel n&apos;est effectué.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => {
+                  addUserCoproduction(stats.seriesId, coproduceShares);
+                  setCoproduceModalSeriesId(null);
+                  celestialAudio?.playOrbSelect?.();
+                  showToast(`Coproduction (démo) ajoutée : ${stats.seriesTitle}`);
+                }}
+                className="w-full py-2.5 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] active:bg-[#7A321B] text-white text-xs font-semibold shadow-md transition-all cursor-pointer active:scale-[0.98]"
+              >
+                Coproduire (démo)
+              </button>
+            </>
+          );
+        })()}
+      </CardWidthModal>
 
       {/* Toast de succès téléversement */}
       {uploadSuccessToast && (

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { ViewScreen, UserProductionShare } from '../types';
 import { ProductionTokenIcon } from './YonywoodBrandIcons';
+import { SERIES_POSTER_FILES } from '../data/seriesRegistry';
 
 export interface PortfolioTransactionItem {
   id: string;
@@ -67,7 +68,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 24.5,
       liquidityScore: 'Élevée',
       status: 'En diffusion',
-      posterUrl: encodeURI('/Posters/Finagnon ‹ › Horizons.png')
+      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl
     },
     {
       id: 'prod-2',
@@ -86,7 +87,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 15.2,
       liquidityScore: 'Moyenne',
       status: 'En post-production',
-      posterUrl: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png')
+      posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl
     },
     {
       id: 'prod-3',
@@ -105,7 +106,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 18.0,
       liquidityScore: 'Élevée',
       status: 'En diffusion',
-      posterUrl: encodeURI('/Posters/Blacks One ‹ › Wowmen.png')
+      posterUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl
     },
     {
       id: 'prod-4',
@@ -124,12 +125,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 11.8,
       liquidityScore: 'Moyenne',
       status: 'En tournage',
-      posterUrl: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png')
+      posterUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl
     },
     {
       id: 'prod-5',
-      seriesId: 'builders-akwe',
-      seriesTitle: 'Builders ‹ › Àkwè',
+      seriesId: 'builders-mi-do-kpo',
+      seriesTitle: 'Builders ‹ › Mi do kpô',
       sharesCount: 12,
       sharesOnSale: 4,
       startPrice: 50,
@@ -143,7 +144,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 29.0,
       liquidityScore: 'Élevée',
       status: 'En production',
-      posterUrl: encodeURI('/Posters/Performers ‹ › Builders.png')
+      posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl
     },
     {
       id: 'prod-6',
@@ -162,7 +163,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 32.5,
       liquidityScore: 'Élevée',
       status: 'En tournage',
-      posterUrl: encodeURI('/Posters/Baobabs ‹ › Bambous.png')
+      posterUrl: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl
     }
   ]);
 
@@ -183,7 +184,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       buyerPhoto: '/assets/duos/sayri-quispe.jpg',
       buyerProtagonistId: 'sayri-quispe',
       buyerRole: 'Cultivateur & tisseur andin (Cusco)',
-      posterUrl: encodeURI('/Posters/Finagnon ‹ › Horizons.png')
+      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl
     },
     {
       id: 'tx-2',
@@ -200,12 +201,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       buyerPhoto: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
       buyerProtagonistId: 'dah-zounon',
       buyerRole: 'Dignitaire Legba (Porto-Novo)',
-      posterUrl: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png')
+      posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl
     },
     {
       id: 'tx-3',
-      seriesId: 'builders-akwe',
-      seriesTitle: 'Builders ‹ › Àkwè',
+      seriesId: 'builders-mi-do-kpo',
+      seriesTitle: 'Builders ‹ › Mi do kpô',
       sharesSold: 3,
       boughtPriceUnit: 50,
       soldPriceUnit: 64,
@@ -217,7 +218,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       buyerPhoto: '/assets/images/koffi_tisserand_1792933625628.jpg',
       buyerProtagonistId: 'koffi-tisserand',
       buyerRole: 'Tisserand traditionnel (Porto-Novo)',
-      posterUrl: encodeURI('/Posters/Performers ‹ › Builders.png')
+      posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl
     }
   ]);
 

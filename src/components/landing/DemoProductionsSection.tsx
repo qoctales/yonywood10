@@ -190,7 +190,7 @@ export const DemoProductionsSection: React.FC = () => {
           {[
             { id: 'off-1', seller: 'Pascal Cossi', shares: 10, series: 'PhD ‹ › Azovi', price: 50, photo: '/assets/duos/codjo-blind.jpg' },
             { id: 'off-2', seller: 'Koffi', shares: 5, series: 'Remèdes ‹ › E Vivi', price: 52, photo: '/assets/duos/chef-koffi.jpg' },
-            { id: 'off-3', seller: 'Fatou Diallo', shares: 8, series: 'Builders ‹ › Àkwè', price: 50, photo: '/assets/duos/fatou-diallo.jpg' },
+            { id: 'off-3', seller: 'Fatou Diallo', shares: 8, series: 'Builders ‹ › Mi do kpô', price: 50, photo: '/assets/duos/fatou-diallo.jpg' },
           ].map((offer) => (
             <div
               key={offer.id}

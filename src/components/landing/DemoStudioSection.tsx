@@ -15,6 +15,7 @@ import {
 import { TvPlayerIcon } from '../YonywoodBrandIcons';
 import { PROPOSE_DOORS } from '../../data/proposeDoorsData';
 import { DOCUMENTARIES } from '../../data/mockData';
+import { SERIES_POSTER_FILES } from '../../data/seriesRegistry';
 
 export const DemoStudioSection: React.FC = () => {
   // Étape 1 : Choisir la Porte
@@ -206,7 +207,7 @@ export const DemoStudioSection: React.FC = () => {
           <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
 
             <img
-              src={currentSeries.coverImage || currentSeries.posterUrl || encodeURI('/Posters/Finagnon ‹ › Horizons.png')}
+              src={currentSeries.coverImage || currentSeries.posterUrl || SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl}
               alt={currentSeries.title}
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             loading="lazy"

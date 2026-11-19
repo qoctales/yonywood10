@@ -72,7 +72,7 @@ const SERIES_STYLES: Record<string, { accentColor: string; glowColor: string; bg
     glowColor: 'rgba(2, 132, 199, 0.65)',
     bgGradient: 'from-sky-600 via-blue-800 to-stone-900'
   },
-  'builders-akwe': {
+  'builders-mi-do-kpo': {
     accentColor: '#84CC16',
     glowColor: 'rgba(132, 204, 22, 0.65)',
     bgGradient: 'from-lime-600 via-green-700 to-stone-900'

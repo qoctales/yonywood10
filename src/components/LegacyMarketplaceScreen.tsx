@@ -16,7 +16,7 @@ import { useAuth } from '../services/authContext';
 import { recordSharePurchase, getAllSeriesRemainingShares } from '../services/firestoreService';
 import { TvPlayerIcon } from './YonywoodBrandIcons';
 import { celestialAudio } from '../utils/celestialAudio';
-import { SERIES_REGISTRY } from '../data/seriesRegistry';
+import { SERIES_REGISTRY, SERIES_POSTER_FILES } from '../data/seriesRegistry';
 import type { MarketplaceScreenProps } from './MarketplaceScreen';
 
 interface ProductionPoster {
@@ -114,7 +114,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Koffi',
     sellerPhoto: '/assets/images/koffi_tisserand_1792933625628.jpg',
     seriesTitle: 'Amin Amen ‹ › Legba',
-    posterImage: encodeURI('/Posters/Vodun Rays ‹ › Autre Foi.png'),
+    posterImage: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 3,
     unitPrice: 55
@@ -125,7 +125,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Mireille',
     sellerPhoto: '/assets/duos/care-mireille.jpg',
     seriesTitle: 'Remèdes ‹ › E Vivi',
-    posterImage: encodeURI('/Posters/Care ‹ › Feed.png'),
+    posterImage: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 5,
     unitPrice: 52
@@ -136,7 +136,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Malik',
     sellerPhoto: '/assets/duos/malik-diop.jpg',
     seriesTitle: 'Blacks One ‹ › Nyonoukpo',
-    posterImage: encodeURI('/Posters/Blacks One ‹ › Wowmen.png'),
+    posterImage: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 2,
     unitPrice: 72
@@ -146,8 +146,8 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerId: 'amina-cook',
     sellerName: 'Sènami',
     sellerPhoto: '/assets/images/senami_architecte_1792933801804.jpg',
-    seriesTitle: 'Builders ‹ › Àkwè',
-    posterImage: encodeURI('/Posters/Performers ‹ › Builders.png'),
+    seriesTitle: 'Builders ‹ › Mi do kpô',
+    posterImage: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 4,
     unitPrice: 62
@@ -158,7 +158,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Tobi',
     sellerPhoto: '/assets/duos/tobi-houndegla.jpg',
     seriesTitle: 'Horizons ‹ › Finagnon',
-    posterImage: encodeURI('/Posters/Finagnon ‹ › Horizons.png'),
+    posterImage: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 3,
     unitPrice: 68
@@ -169,7 +169,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Kiki & Kpèdétin',
     sellerPhoto: '/assets/images/kiki_passeur_1792933820505.jpg',
     seriesTitle: 'Fiat Luxe ‹ › Irokos',
-    posterImage: encodeURI('/Posters/Fiat Luxe ‹ › PhD.png'),
+    posterImage: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 4,
     unitPrice: 59
@@ -180,7 +180,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Nadège & Sénan',
     sellerPhoto: '/assets/duos/researcher-phd.jpg',
     seriesTitle: 'PhD ‹ › Azovi',
-    posterImage: encodeURI('/Posters/Baobabs ‹ › Bambous.png'),
+    posterImage: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 6,
     unitPrice: 65
@@ -191,7 +191,7 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerName: 'Chancelle & Armel',
     sellerPhoto: '/assets/duos/photographer-focus.jpg',
     seriesTitle: 'Regards ‹ › Gbé',
-    posterImage: encodeURI('/Posters/Paroles ‹ › Regards.png'),
+    posterImage: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 5,
     unitPrice: 58
@@ -253,7 +253,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
     'blacks-one-nyonoukpo': 80, // 176 souscrites (69%)
     'fiat-luxe-irokos': 79, // 177 souscrites (69%)
     'horizons-finagnon': 75, // 181 souscrites (71%)
-    'builders-akwe': 72, // 184 souscrites (72%)
+    'builders-mi-do-kpo': 72, // 184 souscrites (72%)
     'regards-gbe': 76 // 180 souscrites (70%)
   });
 

@@ -64,7 +64,7 @@ const SERIES_ACCENT_COLORS: Record<string, string> = {
   'blacks-one-nyonoukpo': '#EC4899',
   'fiat-luxe-irokos': '#EAB308',
   'horizons-finagnon': '#0284C7',
-  'builders-akwe': '#84CC16',
+  'builders-mi-do-kpo': '#84CC16',
   'regards-gbe': '#8B5CF6'
 };
 

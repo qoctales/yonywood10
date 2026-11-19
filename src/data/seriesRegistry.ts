@@ -10,6 +10,7 @@ import {
 export type { LegacySeriesMappingEntry };
 export {
   LEGACY_SERIES_MAPPING,
+  SERIES_POSTER_FILES,
   extractBaseSeriesId,
   resolveCanonicalSeriesId,
   isHiddenLegacySeriesId
@@ -372,40 +373,40 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
     ]
   },
   {
-    id: 'builders-akwe',
-    title: 'Builders ‹ › Àkwè',
+    id: 'builders-mi-do-kpo',
+    title: 'Builders ‹ › Mi do kpô',
     partA: {
       id: 'part-a',
       name: 'Builders',
       description:
         "Chefs d'entreprise et entrepreneurs, fondateurs de startups, architectes, artisans qui ont monté leur propre atelier ou entreprise, bâtisseurs de lieux ou de projets. Un monde de risques, de rencontres et de paris.",
-      posterUrl: SERIES_POSTER_FILES['builders-akwe'].partAPosterUrl
+      posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].partAPosterUrl
     },
     partB: {
       id: 'part-b',
-      name: 'Àkwè',
+      name: 'Mi do kpô',
       description:
-        "Banquiers, comptables, gestionnaires financiers, investisseurs, business angels, traders, tontiniers, et toute personne qui dispose de moyens et choisit d'en faire quelque chose. Un monde de chiffres, d'arbitrages et de confiance.",
-      posterUrl: SERIES_POSTER_FILES['builders-akwe'].partBPosterUrl
+        "Enseignants, fonctionnaires, magistrats, policiers, gendarmes, pompiers, militaires, travailleurs sociaux, agents communaux, et toutes celles et tous ceux qui servent l'intérêt général. Un monde de service, de devoir et de patience.",
+      posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].partBPosterUrl
     },
     synopsis:
-      "Deux mondes qui ont besoin l'un de l'autre pour que les choses existent : celles et ceux qui bâtissent, et celles et ceux qui portent l'argent. Builders réunit celles et ceux qui entreprennent, conçoivent, organisent et développent des projets, des lieux ou des entreprises. Àkwè, « l'argent » en fongbé, réunit celles et ceux qui le gèrent, le financent ou en disposent. La série explore le pari, la peur, la confiance accordée ou reçue, et l'impact de ce que l'on fait sur les autres.",
-    posterUrl: SERIES_POSTER_FILES['builders-akwe'].mainPosterUrl,
+      "Deux façons de bâtir : pour soi, ou pour tous. Builders réunit celles et ceux qui ont monté une entreprise, un atelier ou un projet, et qui savent faire exister des choses. Mi do kpô, « nous sommes ensemble » en fongbé, réunit celles et ceux qui font tenir la vie commune : l'école, la justice, la sécurité, les services publics. Les uns prennent un risque pour créer, les autres tiennent un devoir pour que tout le monde puisse vivre et bâtir. La série leur pose les mêmes questions : le choix de cette voie, l'épreuve où tout a failli tomber, la confiance reçue, ce que leur travail a changé pour quelqu'un.",
+    posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Le pari',
+        title: 'Le choix',
         question:
-          'Racontez le pari le plus risqué que vous avez pris, et ce qui vous a poussé à le prendre.',
+          "Racontez le moment où vous avez choisi cette voie, avec ce qu'elle comportait de risque ou de renoncement.",
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: "L'argent en jeu",
+        title: 'Quand tout a failli tomber',
         question:
-          'Racontez un moment où l\'argent, par sa présence ou son absence, a changé le cours de quelque chose que vous vouliez faire.',
+          'Racontez une épreuve où ce que vous aviez bâti, ou ce que vous serviez, a failli ne pas tenir.',
         status: 'coming_soon'
       },
       {

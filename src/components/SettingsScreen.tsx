@@ -15,6 +15,7 @@ import {
 import { SecuritySwipeSection } from './mon-studio/SecuritySwipeSection';
 import { MyVideosCarouselSection } from './mon-studio/MyVideosCarouselSection';
 import { SeriesSelectionSection } from './mon-studio/SeriesSelectionSection';
+import { CoproductionsSection } from './mon-studio/CoproductionsSection';
 import { StageCarousel3D } from './shared/StageCarousel3D';
 import { CardWidthModal } from './shared/CardWidthModal';
 
@@ -32,7 +33,7 @@ interface SettingsScreenProps {
   onUpdateLanguage: (lang: string) => void;
 }
 
-type MonStudioSection = 'home' | 'security' | 'videos' | 'series';
+type MonStudioSection = 'home' | 'security' | 'videos' | 'series' | 'coproductions';
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   onNavigate,
@@ -256,6 +257,14 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
         <SeriesSelectionSection
           selectedDocFilter={selectedDocFilter}
           onUpdateDocFilter={onUpdateDocFilter}
+          onBack={() => setActiveSection('home')}
+          onShowToast={showToast}
+        />
+      )}
+
+      {activeSection === 'coproductions' && (
+        <CoproductionsSection
+          onOpenStudio={() => onNavigate({ type: 'submit_story' })}
           onBack={() => setActiveSection('home')}
           onShowToast={showToast}
         />
