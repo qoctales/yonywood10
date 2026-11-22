@@ -40,6 +40,6 @@ export const PROFILE_ONBOARDING_CARDS: ProfileOnboardingCardEntry[] = [
     title: 'Coproductions',
     posterUrl: '/Posters/Onboardings/coproductions.png',
     papyrusText:
-      'Tes séries soutenues, au même endroit. Retrouve les séries que tu as choisi de coproduire en mode démo, leurs vues, leurs duos et le nombre de parts simulées.'
+      'Tes séries soutenues, au même endroit. Retrouve les séries que tu as choisi de coproduire, leurs vues, leurs duos et ton nombre de parts.'
   }
 ];

@@ -115,14 +115,14 @@ export const TransactionsScreen: React.FC<TransactionsScreenProps> = ({
   const sharesList = [
     {
       id: 'share-1',
-      seriesId: 'horizons-finagnon',
-      seriesTitle: 'Horizons ‹ › Finagnon',
+      seriesId: 'horizons-benin',
+      seriesTitle: 'Horizons ‹ › Benin',
       sharesCount: 10,
       sharesOnSale: 2,
       acquiredPrice: 35,
       currentValue: 42,
       lastDividend: 4.80,
-      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl
     },
     {
       id: 'share-2',

@@ -135,7 +135,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl;
+              (e.target as HTMLImageElement).src = SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl;
             }}
           loading="lazy"
           decoding="async"

@@ -19,7 +19,7 @@ export interface SeriesTeamBundle {
 }
 
 export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
-  'remedes-e-vivi': {
+  'modernite-tradition': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -60,7 +60,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     sponsors: []
   },
 
-  'amin-amen-legba': {
+  'jesus-legba': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -153,7 +153,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'phd-azovi': {
+  'phd-apprentis': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -200,7 +200,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'blacks-one-nyonoukpo': {
+  'blacks-one-wowmen': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -257,7 +257,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'fiat-luxe-irokos': {
+  'bambous-irokos': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -313,7 +313,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'horizons-finagnon': {
+  'horizons-benin': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -385,7 +385,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'builders-mi-do-kpo': {
+  'builders-coachs': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -441,7 +441,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     ]
   },
 
-  'regards-gbe': {
+  'regards-paroles': {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
@@ -500,8 +500,8 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
 };
 
 export const getSeriesCredits = (seriesId: string, duoTitle?: string): SequenceCredits => {
-  const canonicalId = resolveCanonicalSeriesId(seriesId) || 'remedes-e-vivi';
-  const team = ALL_SERIES_TEAMS[canonicalId] || ALL_SERIES_TEAMS['remedes-e-vivi'];
+  const canonicalId = resolveCanonicalSeriesId(seriesId) || 'modernite-tradition';
+  const team = ALL_SERIES_TEAMS[canonicalId] || ALL_SERIES_TEAMS['modernite-tradition'];
 
   return {
     casting: [

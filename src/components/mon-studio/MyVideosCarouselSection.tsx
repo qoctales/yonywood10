@@ -295,7 +295,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
       userId: profile.id,
       userType: profile.accountType || 'INDIVIDUAL',
       authorName: profile.name || 'Roméo Nonvide',
-      authorAvatarUrl: profile.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg',
+      authorAvatarUrl: profile.avatarUrl || '/assets/duos/paroles-armel.jpg',
       title: cleanTitle,
       synopsis:
         newSynopsis.trim() ||
@@ -303,7 +303,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
       universe: selectedCategory,
       profileTab: selectedCategory,
       videoUrl: newVideoPreviewUrl || '/sample.mp4',
-      thumbnailUrl: profile.avatarUrl || '/assets/images/selfie_video_story.jpg'
+      thumbnailUrl: profile.avatarUrl || '/Posters/Onboardings/mesvideos.png'
     });
 
     if ('error' in result) {
@@ -318,7 +318,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
   };
 
   return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
         <StageBreadcrumb
           items={[
@@ -347,7 +347,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
               return (
                 <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513] cursor-pointer">
                   <img
-                    src="/assets/images/selfie_video_story.jpg"
+                    src="/Posters/Onboardings/mesvideos.png"
                     alt="Ajouter une vidéo"
                     className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
                   />
@@ -410,7 +410,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 {isPlaying ? (
                   <video
                     src={video.videoUrl || '/sample.mp4'}
-                    poster={video.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
+                    poster={video.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
                     autoPlay
                     loop
                     playsInline
@@ -419,12 +419,12 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                   />
                 ) : (
                   <img
-                    src={video.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
+                    src={video.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
                     alt={video.title}
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.onerror = null;
-                      target.src = '/assets/images/selfie_video_story.jpg';
+                      target.src = '/Posters/Onboardings/mesvideos.png';
                     }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
@@ -607,7 +607,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 <video
                   ref={videoPreviewRef}
                   src={coverModalVideo.videoUrl || '/sample.mp4'}
-                  poster={coverModalVideo.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
+                  poster={coverModalVideo.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
                   crossOrigin="anonymous"
                   playsInline
                   muted

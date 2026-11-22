@@ -22,7 +22,7 @@ const SERIES_EXTRAS_BY_ID: Record<
   string,
   Pick<Documentary, 'effigies' | 'territories' | 'protagonistsCount'>
 > = {
-  'remedes-e-vivi': {
+  'modernite-tradition': {
     effigies: [
       {
         id: 'eff-care-1',
@@ -35,7 +35,7 @@ const SERIES_EXTRAS_BY_ID: Record<
       {
         id: 'eff-feed-2',
         name: 'Koffi Mensah',
-        role: 'Artisan cuisinier de rue au marché Dantokpa',
+        role: 'Cuisinier traditionnel & artisan au marché Dantokpa',
         photoUrl: '/assets/duos/chef-koffi.jpg',
         videoUrl: '/sample.mp4',
         status: 'EFFIGIE_SERIE',
@@ -44,7 +44,7 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 8,
     territories: ['Cotonou', 'Porto-Novo', 'Parakou', 'Bohicon'],
   },
-  'amin-amen-legba': {
+  'jesus-legba': {
     effigies: [
       {
         id: 'eff-2',
@@ -66,7 +66,7 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 8,
     territories: ['Ouidah', 'Allada', 'Cotonou', 'Abomey'],
   },
-  'phd-azovi': {
+  'phd-apprentis': {
     effigies: [
       {
         id: 'eff-phd-2',
@@ -79,8 +79,8 @@ const SERIES_EXTRAS_BY_ID: Record<
       {
         id: 'eff-bambou-2',
         name: 'Sénan Agossa',
-        role: 'Jeune innovatrice & ingénieure (Cotonou & Abomey-Calavi)',
-        photoUrl: '/assets/images/senan_innovatrice_1792933679487.jpg',
+        role: 'Apprentie électrotechnicienne & technicienne solaire (Cotonou)',
+        photoUrl: '/assets/duos/athlete-hurdle.jpg',
         videoUrl: '/sample.mp4',
         status: 'EFFIGIE_SERIE',
       },
@@ -88,7 +88,7 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 6,
     territories: ['Abomey-Calavi', 'Cotonou', 'Porto-Novo', 'Ouidah'],
   },
-  'blacks-one-nyonoukpo': {
+  'blacks-one-wowmen': {
     effigies: [
       {
         id: 'eff-bo-1',
@@ -110,13 +110,13 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 6,
     territories: ['Cotonou', 'Porto-Novo', 'Dakar', 'Abidjan'],
   },
-  'fiat-luxe-irokos': {
+  'bambous-irokos': {
     effigies: [
       {
-        id: 'eff-fl-1',
-        name: 'Kpèdétin Houndégla',
-        role: 'Joaillière & créatrice de parures royales (Cotonou & Abomey)',
-        photoUrl: '/assets/images/kpedetin_joailliere_1792933718361.jpg',
+        id: 'eff-bambous-1',
+        name: 'Yédê Dossa',
+        role: 'Jeune chorégraphe & créateur culturel (Cotonou)',
+        photoUrl: '/assets/duos/performers-yede.jpg',
         videoUrl: '/sample.mp4',
         status: 'EFFIGIE_PRINCIPALE',
       },
@@ -124,7 +124,7 @@ const SERIES_EXTRAS_BY_ID: Record<
         id: 'eff-baobab-1',
         name: 'Kiki Alapini',
         role: 'Doyen des récits lacustres & passeur de mémoires (Ganvié)',
-        photoUrl: '/assets/images/kiki_passeur_1792933820505.jpg',
+        photoUrl: '/assets/duos/kiki-alapini.jpg',
         videoUrl: '/sample.mp4',
         status: 'EFFIGIE_SERIE',
       },
@@ -132,7 +132,7 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 6,
     territories: ['Abomey', 'Ganvié', 'Cotonou', 'Ouidah'],
   },
-  'horizons-finagnon': {
+  'horizons-benin': {
     effigies: [
       {
         id: 'eff-hor-2',
@@ -154,21 +154,21 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 6,
     territories: ['Saint-Louis', 'Ganvié', 'Porto-Novo', 'Grand-Popo'],
   },
-  'builders-mi-do-kpo': {
+  'builders-coachs': {
     effigies: [
       {
         id: 'eff-build-2',
         name: 'Sènami Houndété',
         role: 'Architecte & bâtisseuse bioclimatique (Cotonou)',
-        photoUrl: '/assets/images/senami_architecte_1792933801804.jpg',
+        photoUrl: '/assets/duos/fatou-diallo.jpg',
         videoUrl: '/sample.mp4',
         status: 'EFFIGIE_PRINCIPALE',
       },
       {
         id: 'eff-akwe-2',
         name: 'Fatou Diallo',
-        role: 'Investisseuse à impact & mécène (Dakar & Cotonou)',
-        photoUrl: '/assets/duos/fatou-diallo.jpg',
+        role: 'Mentor & accompagnatrice d’entrepreneurs (Dakar & Cotonou)',
+        photoUrl: '/assets/duos/coach-office.jpg',
         videoUrl: '/sample.mp4',
         status: 'EFFIGIE_SERIE',
       },
@@ -176,7 +176,7 @@ const SERIES_EXTRAS_BY_ID: Record<
     protagonistsCount: 6,
     territories: ['Cotonou', 'Ouidah', 'Abomey', 'Dakar'],
   },
-  'regards-gbe': {
+  'regards-paroles': {
     effigies: [
       {
         id: 'eff-chancelle-regards',
@@ -380,7 +380,7 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     flag: '🇧🇯',
     bio: 'Jeune Béninois à lunettes de retour d’Europe, Roméo s’installe à Cotonou pour fonder son studio de création de récits, valoriser les savoirs ancestraux et connecter la diaspora à la jeunesse locale.',
-    photoUrl: '/assets/images/romeo_storyteller_1792933587573.jpg',
+    photoUrl: '/assets/duos/paroles-armel.jpg',
     universeTag: 'Bénin & Diaspora',
     quote: '« Revenir n’est pas recommencer à zéro, c’est apporter ce que le monde nous a appris pour faire grandir la terre de nos ancêtres. »',
     storiesCount: 4,
@@ -393,7 +393,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Kiki Alapini',
           role: 'Doyen des récits lacustres & Gardien de mémoire',
           country: 'Bénin',
-          photo: '/assets/images/kiki_passeur_1792933820505.jpg'
+          photo: '/assets/duos/kiki-alapini.jpg'
         },
         {
           id: 'anc-cheikh-amadou',
@@ -409,14 +409,14 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Fagnon Bio',
           role: 'Innovateur agroécologique & bâtisseur de terre',
           country: 'Bénin',
-          photo: '/assets/images/fagnon_agronome_1792933698985.jpg'
+          photo: '/assets/duos/kwame-mensah.jpg'
         },
         {
           id: 'coopt-senan-agossa',
           name: 'Sénan Agossa',
-          role: 'Pionnière de l’ingénierie et de l’image',
+          role: 'Apprentie électrotechnicienne & technicienne solaire',
           country: 'Bénin',
-          photo: '/assets/images/senan_innovatrice_1792933679487.jpg'
+          photo: '/assets/duos/athlete-hurdle.jpg'
         }
       ],
       transmissions: [
@@ -442,7 +442,7 @@ export const PROTAGONISTS: Protagonist[] = [
         duration: '06:40',
         videoDurationSeconds: 400,
         summary: 'Roméo foule à nouveau le sol béninois, valises en main sous le soleil de Cadjehoun, prêt à s’installer.',
-        videoCoverUrl: '/assets/images/romeo_storyteller_1792933587573.jpg',
+        videoCoverUrl: '/assets/duos/paroles-armel.jpg',
         credits: [
           { role: 'story_owner', label: 'Propriétaire du récit', name: 'Roméo Nonvide' }
         ]
@@ -459,9 +459,9 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     flag: '🇧🇯',
     bio: 'Héritière de cinq générations de femmes tisserandes de la cour royale d’Abomey, Sika crée des tentures aux motifs symboliques de courage et de dignité béninoise.',
-    photoUrl: '/assets/images/sika_tisserande_1792933605542.jpg',
-    documentaryId: 'horizons-finagnon',
-    universeTag: 'Finagnon',
+    photoUrl: '/assets/duos/care-mireille.jpg',
+    documentaryId: 'horizons-benin',
+    universeTag: 'Benin',
     quote: '« Chaque fil tendu sur le métier est une prière pour que la mémoire de nos reines ne s’efface jamais. »',
     tree: {
       passeurs: [
@@ -470,7 +470,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Maman Ayaba Houénou',
           role: 'Doyenne herboriste et teinturière',
           country: 'Bénin',
-          photo: '/assets/images/ayaba_nectar_1792933764727.jpg'
+          photo: '/assets/duos/mawuna-medium.jpg'
         }
       ],
       heritiers: [
@@ -479,7 +479,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Sènami Houndété',
           role: 'Architecte et dessinatrice textile',
           country: 'Bénin',
-          photo: '/assets/images/senami_architecte_1792933801804.jpg'
+          photo: '/assets/duos/fatou-diallo.jpg'
         }
       ],
       transmissions: [
@@ -495,8 +495,8 @@ export const PROTAGONISTS: Protagonist[] = [
           id: 'duo-sika-amara-ref',
           partnerName: 'Amara',
           partnerRole: 'Tisserande andine',
-          partnerPhoto: '/assets/images/amara_andine_1792933642777.jpg',
-          duoId: 'duo-horizons-finagnon-01',
+          partnerPhoto: '/assets/duos/horizons-awa.jpg',
+          duoId: 'duo-horizons-benin-01',
           question: '« Racontez un moment où vous avez compris ce qui rend votre pays unique. »'
         }
       ],
@@ -542,7 +542,7 @@ export const PROTAGONISTS: Protagonist[] = [
         duration: '08:15',
         videoDurationSeconds: 495,
         summary: 'Sika raconte le matin où elle a compris que tisser à Abomey n’était pas un métier ordinaire, mais la garde d’une souveraineté spirituelle que nul conquérant n’a pu éteindre.',
-        videoCoverUrl: '/assets/images/sika_tisserande_1792933605542.jpg',
+        videoCoverUrl: '/assets/duos/care-mireille.jpg',
         credits: [
           { role: 'story_owner', label: 'Propriétaire de l’histoire', name: 'Sika Dossou' },
           { role: 'director', label: 'Réalisateur', name: 'Ayaba Senou' }
@@ -560,9 +560,9 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     flag: '🇧🇯',
     bio: 'Tisserand à Porto-Novo, Koffi perpétue un savoir transmis de père en fils. Ses étoffes racontent les marchés et les rites de la côte.',
-    photoUrl: '/assets/images/koffi_portonovo_1792933660999.jpg',
-    documentaryId: 'horizons-finagnon',
-    universeTag: 'Finagnon',
+    photoUrl: '/assets/duos/chef-koffi.jpg',
+    documentaryId: 'horizons-benin',
+    universeTag: 'Benin',
     quote: '« Le tissage est une langue qu’on apprend sans parler. »',
     tree: {
       passeurs: [
@@ -571,14 +571,14 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Dossou Zounon',
           role: 'Maître charpentier de métiers',
           country: 'Bénin',
-          photo: '/assets/images/dossou_logistique_1792933781153.jpg'
+          photo: '/assets/duos/tobi-houndegla.jpg'
         },
         {
           id: 'p-ayaba-houenou',
           name: 'Ayaba Houénou',
           role: 'Herboriste des pigments',
           country: 'Bénin',
-          photo: '/assets/images/ayaba_nectar_1792933764727.jpg'
+          photo: '/assets/duos/mawuna-medium.jpg'
         }
       ],
       heritiers: [
@@ -587,14 +587,14 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Sénan Agossa',
           role: 'Apprentie dessinatrice textile',
           country: 'Bénin',
-          photo: '/assets/images/senan_innovatrice_1792933679487.jpg'
+          photo: '/assets/duos/athlete-hurdle.jpg'
         },
         {
           id: 'h-kpedetin',
           name: 'Kpèdétin Houndégla',
           role: 'Créatrice de parures',
           country: 'Bénin',
-          photo: '/assets/images/kpedetin_joailliere_1792933718361.jpg'
+          photo: '/assets/duos/eleonore-vance.jpg'
         }
       ],
       transmissions: [
@@ -617,8 +617,8 @@ export const PROTAGONISTS: Protagonist[] = [
           id: 'duo-koffi-amara-ref',
           partnerName: 'Amara',
           partnerRole: 'Tisserande andine',
-          partnerPhoto: '/assets/images/amara_andine_1792933642777.jpg',
-          duoId: 'duo-horizons-finagnon-01',
+          partnerPhoto: '/assets/duos/horizons-awa.jpg',
+          duoId: 'duo-horizons-benin-01',
           question: '« Que transmet une main qui tisse depuis toujours ? »'
         }
       ],
@@ -671,7 +671,7 @@ export const PROTAGONISTS: Protagonist[] = [
         duration: '08:40',
         videoDurationSeconds: 520,
         summary: 'Koffi raconte ce matin brumeux où son père l’a réveillé à 4 heures pour écouter la cadence de la navette sans allumer de lampe : comprendre que le tissu n’est pas fait par les yeux, mais par la pulsation du corps.',
-        videoCoverUrl: '/assets/images/koffi_portonovo_1792933660999.jpg',
+        videoCoverUrl: '/assets/duos/chef-koffi.jpg',
         credits: [
           { role: 'story_owner', label: 'Propriétaire de l’histoire', name: 'Koffi Mensah' },
           { role: 'director', label: 'Réalisateur', name: 'Ayaba Senou' }
@@ -689,8 +689,8 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Pérou',
     flag: '🇵🇪',
     bio: 'Tisserande des hauteurs de Cusco, Amara travaille la laine et les teintes végétales. Ses tissus portent les symboles de sa communauté.',
-    photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
-    documentaryId: 'horizons-finagnon',
+    photoUrl: '/assets/duos/horizons-awa.jpg',
+    documentaryId: 'horizons-benin',
     universeTag: 'Horizons',
     quote: '« Chaque fil garde la mémoire de la montagne. »',
     tree: {
@@ -700,14 +700,14 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Mama Asunta',
           role: 'Grand-mère tisseuse',
           country: 'Pérou',
-          photo: '/assets/images/kpedetin_joailliere_1792933718361.jpg'
+          photo: '/assets/duos/eleonore-vance.jpg'
         },
         {
           id: 'p-huaman',
           name: 'Don Huamán',
           role: 'Teinturier d’altitude',
           country: 'Pérou',
-          photo: '/assets/images/kiki_passeur_1792933820505.jpg'
+          photo: '/assets/duos/dah-zounon.jpg'
         }
       ],
       heritiers: [
@@ -716,7 +716,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Nayra',
           role: 'Apprentie fileuse',
           country: 'Pérou',
-          photo: '/assets/images/senami_architecte_1792933801804.jpg'
+          photo: '/assets/duos/fatou-diallo.jpg'
         }
       ],
       transmissions: [
@@ -733,8 +733,8 @@ export const PROTAGONISTS: Protagonist[] = [
           id: 'duo-amara-koffi-ref',
           partnerName: 'Koffi Mensah',
           partnerRole: 'Tisserand de Porto-Novo',
-          partnerPhoto: '/assets/images/koffi_portonovo_1792933660999.jpg',
-          duoId: 'duo-horizons-finagnon-01',
+          partnerPhoto: '/assets/duos/chef-koffi.jpg',
+          duoId: 'duo-horizons-benin-01',
           question: '« Que transmet une main qui tisse depuis toujours ? »'
         }
       ],
@@ -781,7 +781,7 @@ export const PROTAGONISTS: Protagonist[] = [
         duration: '09:15',
         videoDurationSeconds: 555,
         summary: 'Amara raconte comment sa grand-mère lui a attaché les mains au métier à l’âge de huit ans non pour la contraindre, mais pour qu’elle sente la tension invisible entre le cœur de la femme et les crêtes de la montagne.',
-        videoCoverUrl: '/assets/images/amara_andine_1792933642777.jpg',
+        videoCoverUrl: '/assets/duos/horizons-awa.jpg',
         credits: [
           { role: 'story_owner', label: 'Propriétaire de l’histoire', name: 'Amara' },
           { role: 'director', label: 'Réalisateur', name: 'Mateo Quispe Flores' }
@@ -800,7 +800,7 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇧🇯',
     bio: 'Héritier d\'une lignée de prêtres vodoun d’Allada, Mahougnon veille sur l’autel de Legba depuis quarante ans. Pour lui, la foi n’est pas une spéculation : c’est un pacte quotidien d’équilibre avec la nature, les carrefours de la vie et le respect de la parole donnée.',
     photoUrl: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
-    documentaryId: 'amin-amen-legba',
+    documentaryId: 'jesus-legba',
     universeTag: 'Legba',
     quote: '« Legba ne ferme jamais une porte sans avoir déjà placé la clé entre les mains de celui qui écoute. »',
     tree: {
@@ -825,7 +825,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Dieudonné Agonhossou',
           partnerRole: 'Prêtre catholique & enseignant',
           partnerPhoto: '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
-          duoId: 'duo-amin-amen-legba-01',
+          duoId: 'duo-jesus-legba-01',
           question: '01 — La Rencontre : Le jour où la foi a cessé d\'être un mot'
         }
       ],
@@ -905,8 +905,8 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇧🇯',
     bio: 'Né au bord de la lagune de Cotonou, ordonné à Ouidah, Dieudonné conjugue l’étude de saint Augustin avec une écoute attentive des traditions de son terroir. Il enseigne la philosophie aux jeunes lycéens et partage son temps entre l’oratoire et la rue.',
     photoUrl: '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
-    documentaryId: 'amin-amen-legba',
-    universeTag: 'Amin Amen',
+    documentaryId: 'jesus-legba',
+    universeTag: 'Jesus',
     quote: '« La foi n’est pas une citadelle contre l’autre, c’est une table basse dressée en plein vent où l’on attend celui qui a soif. »',
     tree: {
       transmissions: [
@@ -924,7 +924,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Mahougnon Zounon Gbegnon',
           partnerRole: 'Dignitaire Vodoun',
           partnerPhoto: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
-          duoId: 'duo-amin-amen-legba-01',
+          duoId: 'duo-jesus-legba-01',
           question: '01 — La Rencontre : L’éveil devant l’invisible'
         }
       ],
@@ -992,8 +992,8 @@ export const PROTAGONISTS: Protagonist[] = [
     bio: 'À Ganvié, on dit que Tobi connaît l’âge de chaque pieu d’acajou enfoncé sous la lagune Nokoué. Né sur l’eau, il taille les pirogues qui permettent aux enfants d’aller à l’école et aux marchandes d’atteindre le marché flottant.',
     photoUrl: '/assets/duos/tobi-houndegla.jpg',
     videoAvatarUrl: '/sample.mp4',
-    documentaryId: 'horizons-finagnon',
-    universeTag: 'Finagnon',
+    documentaryId: 'horizons-benin',
+    universeTag: 'Benin',
     quote: '« L’eau ne t’appartient pas : c’est toi qui deviens une goutte de son histoire. Si tu oublies le fond, la vague t’avale. »',
     tree: {
       transmissions: [
@@ -1010,7 +1010,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Awa Ndiaye',
           partnerRole: 'Conteuse & médiatrice culturelle (Saint-Louis)',
           partnerPhoto: '/assets/duos/horizons-awa.jpg',
-          duoId: 'duo-horizons-finagnon-01',
+          duoId: 'duo-horizons-benin-01',
           question: '01 — Chez Soi : Racontez le moment où vous avez senti que vous étiez enfin chez vous.'
         }
       ],
@@ -1075,7 +1075,7 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇵🇪',
     bio: 'Vivant à 3 600 mètres d’altitude sur les contreforts de la Vallée Sacrée des Incas, Sayri cultive plus de quarante variétés de maïs natif et tisse la laine d’alpaga selon les motifs cosmiques transmis par sa mère.',
     photoUrl: '/assets/duos/sayri-quispe.jpg',
-    documentaryId: 'horizons-finagnon',
+    documentaryId: 'horizons-benin',
     universeTag: 'Horizons',
     quote: '« La montagne ne parle pas avec des mots, elle parle avec le vent et la couleur des feuilles de maïs. Si tu es chez toi, tes pieds la comprennent avant ta tête. »',
     tree: {
@@ -1093,7 +1093,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Tobi Houndegla',
           partnerRole: 'Charpentier de pirogues de Ganvié',
           partnerPhoto: '/assets/duos/tobi-houndegla.jpg',
-          duoId: 'duo-horizons-finagnon-01',
+          duoId: 'duo-horizons-benin-01',
           question: '01 — Chez Soi : Deux mondes reliés par la fidélité à un élément'
         }
       ],
@@ -1160,7 +1160,7 @@ export const PROTAGONISTS: Protagonist[] = [
     bio: 'Entre Cotonou et Dakar, la parole habitée et le regard tourné vers l’avenir, Malik incarne la force de conviction du mouvement Blacks One. Un orateur engagé pour la fierté, la dignité et la souveraineté des récits africains.',
     photoUrl: '/assets/duos/malik-diop.jpg',
     videoAvatarUrl: '/sample.mp4',
-    documentaryId: 'blacks-one-nyonoukpo',
+    documentaryId: 'blacks-one-wowmen',
     universeTag: 'Blacks One',
     quote: '« L’émancipation commence le jour où l’on refuse de regarder son histoire avec les yeux de ceux qui l’ont confisquée. »',
     tree: {
@@ -1178,8 +1178,8 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Éléonore Vance',
           partnerRole: 'Oratrice & fondatrice de collectif féminin',
           partnerPhoto: '/assets/duos/eleonore-vance.jpg',
-          duoId: 'duo-blacks-one-nyonoukpo-01',
-          question: '01 — La fierté : Racontez le moment où vous avez appris à être fier de qui vous êtes.'
+          duoId: 'duo-blacks-one-wowmen-01',
+          question: "01 — Se redresser : Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé."
         }
       ],
       opportunities: [
@@ -1242,11 +1242,11 @@ export const PROTAGONISTS: Protagonist[] = [
     territory: 'Cotonou & Abidjan',
     country: 'Bénin & Côte d’Ivoire',
     flag: '🇧🇯',
-    bio: 'Entre Cotonou et Abidjan, Éléonore porte une parole ardente pour la dignité, l’admiration et les droits des femmes. À travers le mouvement Nyonoukpo, elle célèbre la puissance quotidienne des mères, des sœurs et des bâtisseuses africaines.',
+    bio: 'Entre Cotonou et Abidjan, Éléonore porte une parole ardente pour la dignité, l’admiration et les droits des femmes. À travers le collectif Wowmen, elle célèbre la puissance quotidienne des mères, des sœurs et des bâtisseuses africaines.',
     photoUrl: '/assets/duos/eleonore-vance.jpg',
     videoAvatarUrl: '/sample.mp4',
-    documentaryId: 'blacks-one-nyonoukpo',
-    universeTag: 'Nyonoukpo',
+    documentaryId: 'blacks-one-wowmen',
+    universeTag: 'Wowmen',
     quote: '« La liberté et la dignité des femmes n’attendent pas qu’on leur fasse de la place : elles éclairent toute la société. »',
     tree: {
       transmissions: [
@@ -1263,8 +1263,8 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Malik Diop',
           partnerRole: 'Orateur civique & penseur panafricain',
           partnerPhoto: '/assets/duos/malik-diop.jpg',
-          duoId: 'duo-blacks-one-nyonoukpo-01',
-          question: '01 — La fierté : Racontez le moment où vous avez appris à être fier de qui vous êtes.'
+          duoId: 'duo-blacks-one-wowmen-01',
+          question: "01 — Se redresser : Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé."
         }
       ],
       opportunities: [
@@ -1286,7 +1286,7 @@ export const PROTAGONISTS: Protagonist[] = [
       projects: [
         {
           id: 'p-6',
-          title: 'La Maison Nyonoukpo de Cotonou',
+          title: 'La Maison Wowmen de Cotonou',
           stage: 'Atelier actif',
           description: 'Un atelier partagé réunissant des artisanes et oratrices d’Afrique de l’Ouest.'
         }
@@ -1305,7 +1305,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-eleonore-01',
         title: 'La malle aux pagnes d’honneur',
         questionNumber: '01',
-        questionTitle: 'La fierté',
+        questionTitle: 'Se redresser',
         duration: '11:45',
         videoDurationSeconds: 705,
         summary: 'Éléonore raconte comment elle a ouvert l’ancienne malle familiale et découvert quarante ans de dignité et de courage silencieux transmis par sa mère.',
@@ -1330,8 +1330,8 @@ export const PROTAGONISTS: Protagonist[] = [
     bio: 'Au cœur du grand marché de Dantokpa à Cotonou, Koffi cuisine depuis l’aube sur des foyers en terre cuite. Il sublime l’igname pilée, les sauces gboman aux écrevisses fumées et les bouillons mijotés pour nourrir des centaines de travailleurs chaque jour.',
     photoUrl: '/assets/duos/chef-koffi.jpg',
     videoAvatarUrl: '/sample.mp4',
-    documentaryId: 'remedes-e-vivi',
-    universeTag: 'E Vivi',
+    documentaryId: 'modernite-tradition',
+    universeTag: 'Tradition',
     quote: '« La cuisine n’a pas besoin d’étoiles : elle a besoin de bras qui n’ont pas peur de la fumée et d’un cœur qui veut nourrir l’âme. »',
     tree: {
       transmissions: [
@@ -1348,8 +1348,8 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Mireille Akplogan',
           partnerRole: 'Médecin urgentiste au CNHU-HKM de Cotonou',
           partnerPhoto: '/assets/duos/care-mireille.jpg',
-          duoId: 'duo-remedes-e-vivi-01',
-          question: '01 — L’évidence : Racontez le moment où vous avez compris que votre métier serait de vous occuper des autres.'
+          duoId: 'duo-modernite-tradition-01',
+          question: '01 — L’évidence : Racontez le moment où vous avez compris que ce métier serait le vôtre.'
         }
       ],
       opportunities: [
@@ -1413,8 +1413,8 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇫🇷',
     bio: 'Passée par les palaces parisiens et les riads d’exception de Marrakech, Hélène conçoit l’hospitalité comme une dramaturgie invisible. Pour elle, la lumière d’une bougie, l’inclinaison d’un verre ou le silence d’un accueil constituent le véritable luxe.',
     photoUrl: '/assets/duos/eleonore-vance.jpg',
-    documentaryId: 'fiat-luxe-irokos',
-    universeTag: 'Fiat Luxe',
+    documentaryId: 'modernite-tradition',
+    universeTag: 'Tradition',
     quote: '« Le luxe n’est pas ce qui brille : c’est l’attention totale portée à l’instant où quelqu’un pose enfin son fardeau pour se laisser nourrir. »',
     tree: {
       transmissions: [
@@ -1431,7 +1431,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Koffi Mensah',
           partnerRole: 'Cuisinier de rue',
           partnerPhoto: '/assets/duos/chef-koffi.jpg',
-          duoId: 'duo-fiat-luxe-irokos-01',
+          duoId: 'duo-modernite-tradition-01',
           question: '01 — Le Goût : Deux artisans de l’instant précieux'
         }
       ],
@@ -1496,9 +1496,9 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇸🇳',
     bio: 'Pionnière de l’investissement à impact, Fatou finance des ateliers artisanaux, des coopératives agricoles et des infrastructures régénératrices à travers l’Afrique de l’Ouest.',
     photoUrl: '/assets/duos/fatou-diallo.jpg',
-    documentaryId: 'builders-mi-do-kpo',
-    universeTag: 'Mi do kpô',
-    quote: '« Investir, ce n’est pas acheter l’avenir, c’est donner les moyens au présent de s’enraciner. »',
+    documentaryId: 'builders-coachs',
+    universeTag: 'Coachs',
+    quote: '« Investir et accompagner, ce n’est pas acheter l’avenir, c’est donner confiance au présent pour qu’il s’enracine. »',
     tree: {
       passeurs: [
         {
@@ -1532,7 +1532,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Kwame',
           partnerRole: 'Éco-constructeur & bâtisseur de terre',
           partnerPhoto: '/assets/duos/kwame-mensah.jpg',
-          duoId: 'duo-builders-mi-do-kpo-01',
+          duoId: 'duo-builders-coachs-01',
           question: '« Que vaut le capital sans la sueur de celui qui bâtit ? »'
         }
       ],
@@ -1596,7 +1596,7 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇧🇯',
     bio: 'Ingénieur et artisan de la terre crue, Kwame réinvente les techniques ancestrales de construction pour bâtir des cités fraîches, durables et accessibles à tous.',
     photoUrl: '/assets/duos/kwame-mensah.jpg',
-    documentaryId: 'builders-mi-do-kpo',
+    documentaryId: 'builders-coachs',
     universeTag: 'Builders',
     quote: '« La terre ne ment pas. Elle ne demande qu’un toit pour la protéger et une main pour la tasser. »',
     tree: {
@@ -1606,7 +1606,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Maître Kofi Annan',
           role: 'Maçon traditionnel de voûtes nubiennes',
           country: 'Ghana',
-          photo: '/assets/images/dossou_logistique_1792933781153.jpg'
+          photo: '/assets/duos/tobi-houndegla.jpg'
         }
       ],
       heritiers: [
@@ -1615,7 +1615,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Sena Houndété',
           role: 'Apprenti maçon en terre battue',
           country: 'Bénin',
-          photo: '/assets/images/koffi_portonovo_1792933660999.jpg'
+          photo: '/assets/duos/chef-koffi.jpg'
         }
       ],
       transmissions: [
@@ -1630,9 +1630,9 @@ export const PROTAGONISTS: Protagonist[] = [
         {
           id: 'duo-kwame-fatou-ref',
           partnerName: 'Fatou',
-          partnerRole: 'Investisseuse à impact & mécène',
+          partnerRole: 'Mentor & accompagnatrice d’entrepreneurs',
           partnerPhoto: '/assets/duos/fatou-diallo.jpg',
-          duoId: 'duo-builders-mi-do-kpo-01',
+          duoId: 'duo-builders-coachs-01',
           question: '« Que vaut le capital sans la sueur de celui qui bâtit ? »'
         }
       ],
@@ -1697,7 +1697,7 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇧🇯',
     bio: 'Non-voyant depuis l’enfance, Pascal Cossy préside l’association « Voir Autrement », dédiée à l’émancipation, la formation et l’inclusion des personnes en situation de handicap à travers des ateliers d’artisanat. Prêtre du Fâ et maître d’écoute vibratoire, il éclaire les chemins de vie et révèle une perception du monde invisible aux yeux physiques.',
     photoUrl: '/assets/duos/codjo-blind.jpg',
-    documentaryId: 'amin-amen-legba',
+    documentaryId: 'jesus-legba',
     universeTag: 'Legba',
     quote: '« Vos yeux s’arrêtent aux formes. Mes oreilles, mon cœur et la sagesse du Fâ pénètrent l’épaisseur vivante de l’air et la cadence secrète du destin. »',
     tree: {
@@ -1716,14 +1716,14 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Cécile Kpadonou',
           role: 'Artisane maroquinière & créatrice de sacs en perles',
           country: 'Bénin',
-          photo: '/assets/images/kpedetin_joailliere_1792933718361.jpg'
+          photo: '/assets/duos/eleonore-vance.jpg'
         },
         {
           id: 'h-norbert',
           name: 'Norbert Houessou',
           role: 'Maître menuisier & sculpteur de tabourets traditionnels',
           country: 'Bénin',
-          photo: '/assets/images/dossou_logistique_1792933781153.jpg'
+          photo: '/assets/duos/tobi-houndegla.jpg'
         }
       ],
       transmissions: [
@@ -1740,7 +1740,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Mawuna',
           partnerRole: 'Voyante & guérisseuse d’âmes',
           partnerPhoto: '/assets/duos/mawuna-medium.jpg',
-          duoId: 'duo-amin-amen-legba-01',
+          duoId: 'duo-jesus-legba-01',
           question: '« Que voit-on quand le monde ferme les yeux ? »'
         }
       ],
@@ -1810,7 +1810,7 @@ export const PROTAGONISTS: Protagonist[] = [
     flag: '🇧🇯',
     bio: 'Sensible aux vibrations et aux mémoires invisibles depuis son initiation au bord de la lagune sacrée de Ouidah, Mawuna capte les auras et les résonances intimes. Elle aide à réconcilier les mémoires blessées et à discerner les carrefours du destin.',
     photoUrl: '/assets/duos/mawuna-medium.jpg',
-    documentaryId: 'amin-amen-legba',
+    documentaryId: 'jesus-legba',
     universeTag: 'Legba',
     quote: '« L’invisible n’est pas une absence, c’est une présence trop subtile pour le regard distrait. Le cœur doit apprendre à écouter ce que les yeux ne peuvent enfermer. »',
     tree: {
@@ -1820,7 +1820,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Prêtresse Na Agbessi',
           role: 'Matriarche guérisseuse de Ouidah',
           country: 'Bénin',
-          photo: '/assets/images/ayaba_nectar_1792933764727.jpg'
+          photo: '/assets/duos/mawuna-medium.jpg'
         }
       ],
       heritiers: [
@@ -1829,7 +1829,7 @@ export const PROTAGONISTS: Protagonist[] = [
           name: 'Kessi Houndété',
           role: 'Apprentie herboriste et voyante',
           country: 'Bénin',
-          photo: '/assets/images/senan_innovatrice_1792933679487.jpg'
+          photo: '/assets/duos/athlete-hurdle.jpg'
         }
       ],
       transmissions: [
@@ -1846,7 +1846,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Pascal',
           partnerRole: 'Navigateur sonore & sculpteur de sons',
           partnerPhoto: '/assets/duos/codjo-blind.jpg',
-          duoId: 'duo-amin-amen-legba-01',
+          duoId: 'duo-jesus-legba-01',
           question: '« Que voit-on quand le monde ferme les yeux ? »'
         }
       ],
@@ -1915,8 +1915,9 @@ export const PROTAGONISTS: Protagonist[] = [
     teaserVideoUrl: '/sample.mp4',
     quote: '« Chaque barrière mentale que l’on fait tomber dans le calme d’un bureau déverrouille dix victoires sur le terrain. »',
     bio: 'Ancien conseiller de dirigeants et d’athlètes de classe mondiale, Marc a consacré vingt ans à explorer la mécanique invisible de la confiance et du rebond psychologique.',
-    universeTag: 'Coaching',
-    centralQuestion: 'Comment forger une volonté inébranlable sans détruire la vulnérabilité qui fait notre humanité ?',
+    documentaryId: 'builders-coachs',
+    universeTag: 'Coachs',
+    centralQuestion: 'Racontez le conseil qui a changé votre trajectoire, reçu ou donné.',
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 2,
@@ -1938,7 +1939,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Aïcha Lagat',
           partnerRole: 'Athlète de saut de haies',
           partnerPhoto: '/assets/duos/athlete-hurdle.jpg',
-          duoId: 'duo-phd-azovi-01',
+          duoId: 'duo-builders-coachs-01',
           question: '« Quelle certitude silencieuse répétez-vous au moment de flancher ? »'
         }
       ],
@@ -1999,7 +2000,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerName: 'Marc Valmont',
           partnerRole: 'Mentor de performance',
           partnerPhoto: '/assets/duos/coach-office.jpg',
-          duoId: 'duo-phd-azovi-01',
+          duoId: 'duo-builders-coachs-01',
           question: '« Quelle certitude silencieuse répétez-vous au moment de flancher ? »'
         }
       ],
@@ -2037,11 +2038,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'regards-gbe',
+    documentaryId: 'regards-paroles',
     quote: '« Le cadre n’enferme pas le monde : il le révèle. Quand tu presses le déclencheur au marché de Ouidah, tu reçois une confidence. »',
     bio: 'Quinze ans de chroniques visuelles sur la côte béninoise, saisissant la beauté des marchés, des gestes quotidiens et de la lumière du golfe.',
-    universeTag: 'Regards',
-    centralQuestion: 'Racontez le moment où vous avez compris que si vous ne le disiez pas, personne ne le dirait à votre place.',
+    universeTag: 'Images',
+    centralQuestion: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
     storiesCount: 6,
     transmissionsCount: 4,
     projectsCount: 2,
@@ -2050,7 +2051,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-photographer-chancelle-01',
         title: 'L’aube dorée sur les étals de Ouidah',
         questionNumber: '01',
-        questionTitle: 'Prendre la parole',
+        questionTitle: 'Le déclic',
         duration: '09:10',
         videoDurationSeconds: 550,
         summary: 'Chancelle raconte l’attente patiente à la porte du marché de Ouidah pour capter sans un mot le regard souverain d’une tisseuse à l’ouverture du jour.',
@@ -2074,11 +2075,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'phd-azovi',
+    documentaryId: 'phd-apprentis',
     quote: '« Une thèse n’est pas un diplôme qu’on accroche : c’est une promesse faite à nos savoirs de ne jamais se contenter de l’à-peu-près. »',
     bio: 'Formée à l’Université d’Abomey-Calavi, Nadège consacre ses travaux de recherche aux modèles cognitifs de la transmission orale et de la mémoire collective au Bénin.',
     universeTag: 'PhD',
-    centralQuestion: 'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
+    centralQuestion: 'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
     storiesCount: 5,
     transmissionsCount: 3,
     projectsCount: 4,
@@ -2087,7 +2088,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-researcher-nadege-01',
         title: 'La nuit de soutenance à Abomey-Calavi',
         questionNumber: '01',
-        questionTitle: 'Le premier jour',
+        questionTitle: 'La question qui ne lâche pas',
         duration: '08:15',
         videoDurationSeconds: 495,
         summary: 'Nadège partage son tout premier jour au laboratoire d’Abomey-Calavi face à son tableau noir, décidée à démontrer que les contes oraux béninois obéissent à une architecture cognitive d’une précision mathématique.',
@@ -2111,11 +2112,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'remedes-e-vivi',
+    documentaryId: 'modernite-tradition',
     quote: '« Soigner à Cotonou, c’est tenir la main de quelqu’un à trois heures du matin jusqu’à ce que la fièvre recule devant la patience. »',
     bio: 'Médecin aux urgences du CNHU-HKM de Cotonou, Mireille veille chaque nuit sur les patients et tisse un pont bienveillant entre médecine hospitalière et écoute humaine.',
-    universeTag: 'Remèdes',
-    centralQuestion: 'Racontez le moment où vous avez compris que votre métier serait de vous occuper des autres.',
+    universeTag: 'Modernité',
+    centralQuestion: "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 2,
@@ -2124,7 +2125,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-mireille-01',
         title: 'La garde d’harmattan aux urgences de Cotonou',
         questionNumber: '01',
-        questionTitle: "L'évidence",
+        questionTitle: "Ce qu'on m'a transmis",
         duration: '09:05',
         videoDurationSeconds: 545,
         summary: 'Mireille raconte la première nuit où, encore jeune interne au CNHU, le sourire apaisé d’une mère après un accouchement difficile a scellé sa vocation.',
@@ -2143,16 +2144,16 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     territory: 'Ganvié',
     flag: '🇧🇯',
-    photo: '/assets/images/kiki_passeur_1792933820505.jpg',
-    photoUrl: '/assets/images/kiki_passeur_1792933820505.jpg',
+    photo: '/assets/duos/kiki-alapini.jpg',
+    photoUrl: '/assets/duos/kiki-alapini.jpg',
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'fiat-luxe-irokos',
+    documentaryId: 'bambous-irokos',
     quote: '« L’iroko n’est pas pressé : il offre son ombre à ceux qui viendront écouter bien après lui. »',
     bio: 'Figure respectée de la lagune Nokoué, Doyen Kiki Alapini rassemble les jeunes autour des pirogues pour transmettre la sagesse orale, la patience et la mémoire des aînés.',
     universeTag: 'Irokos',
-    centralQuestion: 'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
+    centralQuestion: "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
     storiesCount: 6,
     transmissionsCount: 7,
     projectsCount: 2,
@@ -2161,11 +2162,11 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-kiki-01',
         title: 'Les contes du soir sous le grand iroko',
         questionNumber: '01',
-        questionTitle: "Ce qui ne s'explique pas",
+        questionTitle: 'Être pris au sérieux',
         duration: '10:20',
         videoDurationSeconds: 620,
-        summary: 'À 72 ans, Kiki évoque cette écoute silencieuse de la lagune apprise auprès de son grand-père : une justesse de jugement qui s’acquiert avec les années sans jamais pouvoir se mettre en manuel.',
-        videoCoverUrl: '/assets/images/kiki_passeur_1792933820505.jpg',
+        summary: 'À 72 ans, Kiki évoque l’instant où un jeune venu de la ville l’a écouté pendant des heures sans l’interrompre, scellant un respect mutuel entre générations.',
+        videoCoverUrl: '/assets/duos/kiki-alapini.jpg',
         credits: [{ role: 'story_owner', label: 'Propriétaire', name: 'Kiki Alapini' }]
       }
     ]
@@ -2180,16 +2181,16 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     territory: 'Cotonou & Abomey-Calavi',
     flag: '🇧🇯',
-    photo: '/assets/images/senan_innovatrice_1792933679487.jpg',
-    photoUrl: '/assets/images/senan_innovatrice_1792933679487.jpg',
+    photo: '/assets/duos/athlete-hurdle.jpg',
+    photoUrl: '/assets/duos/athlete-hurdle.jpg',
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'phd-azovi',
+    documentaryId: 'phd-apprentis',
     quote: '« On peut lire dix manuels sur le courant, mais c’est le jour où l’on tient le fer à souder dans l’atelier de Cotonou que les mains comprennent. »',
     bio: 'Formée à l’atelier dès 18 ans aux côtés d’un maître électricien de Fidjrossè, Sénan assemble aujourd’hui des systèmes solaires autonomes en apprenant chaque geste sur le terrain.',
-    universeTag: 'Azovi',
-    centralQuestion: 'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
+    universeTag: 'Apprentis',
+    centralQuestion: 'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 3,
@@ -2198,11 +2199,11 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-senan-01',
         title: 'Le premier jour à l’atelier de Fidjrossè',
         questionNumber: '01',
-        questionTitle: 'Le premier jour',
+        questionTitle: 'La question qui ne lâche pas',
         duration: '07:15',
         videoDurationSeconds: 435,
         summary: 'Sénan évoque son tout premier matin à l’atelier de Fidjrossè où son patron lui a confié son premier multimètre et une radio en panne à réparer devant tout le monde.',
-        videoCoverUrl: '/assets/images/senan_innovatrice_1792933679487.jpg',
+        videoCoverUrl: '/assets/duos/athlete-hurdle.jpg',
         credits: [{ role: 'story_owner', label: 'Propriétaire', name: 'Sénan Agossa' }]
       }
     ]
@@ -2217,16 +2218,16 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     territory: 'Cotonou & Abomey',
     flag: '🇧🇯',
-    photo: '/assets/images/kpedetin_joailliere_1792933718361.jpg',
-    photoUrl: '/assets/images/kpedetin_joailliere_1792933718361.jpg',
+    photo: '/assets/duos/eleonore-vance.jpg',
+    photoUrl: '/assets/duos/eleonore-vance.jpg',
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'fiat-luxe-irokos',
-    quote: '« Le vrai luxe béninois ne se mesure pas au poids de l’or, mais au temps infini offert à chaque courbe ciselée à la main. »',
-    bio: 'Formée auprès des maîtres bronziers d’Abomey, Kpèdétin crée des parures d’or, de bronze et de pierres précieuses célébrant l’art royal du Danxomè.',
-    universeTag: 'Fiat Luxe',
-    centralQuestion: 'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
+    documentaryId: 'modernite-tradition',
+    quote: '« Le geste d’Abomey se transmet devant la flamme, dans la patience du bronze ciselé à la main. »',
+    bio: 'Formée auprès des maîtres bronziers d’Abomey, Kpèdétin crée des parures d’or, de bronze et de pierres célébrant le savoir-faire transmis du Danxomè.',
+    universeTag: 'Tradition',
+    centralQuestion: "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
     storiesCount: 5,
     transmissionsCount: 4,
     projectsCount: 2,
@@ -2235,11 +2236,11 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-kpedetin-01',
         title: 'La fonte du premier bracelet d’Abomey',
         questionNumber: '01',
-        questionTitle: "Ce qui ne s'explique pas",
+        questionTitle: "Ce qu'on m'a transmis",
         duration: '08:50',
         videoDurationSeconds: 530,
-        summary: 'Kpèdétin raconte comment ses doigts reconnaissent aujourd’hui la température exacte du bronze en fusion, un savoir du corps impossible à transmettre autrement qu’en restant des années devant la flamme.',
-        videoCoverUrl: '/assets/images/kpedetin_joailliere_1792933718361.jpg',
+        summary: 'Kpèdétin raconte comment ses doigts ont reconnu dès le premier moulage que l’artisanat du bronze d’Abomey serait sa vie.',
+        videoCoverUrl: '/assets/duos/eleonore-vance.jpg',
         credits: [{ role: 'story_owner', label: 'Propriétaire', name: 'Kpèdétin Houndégla' }]
       }
     ]
@@ -2259,11 +2260,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'horizons-finagnon',
+    documentaryId: 'horizons-benin',
     quote: '« Saint-Louis est une île entre le fleuve et l’océan : quand je reviens sur le pont Faidherbe au coucher du soleil, je sais exactement d’où je parle. »',
     bio: 'Passeuse d’histoires à Saint-Louis du Sénégal, Awa dialogue avec la mer et les façades ocres de son île natale pour relier les cultures côtières d’Afrique de l’Ouest.',
     universeTag: 'Horizons',
-    centralQuestion: 'Racontez le moment où vous avez senti que vous étiez enfin chez vous.',
+    centralQuestion: "Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec.",
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 2,
@@ -2272,7 +2273,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-awa-01',
         title: 'Les balcons ocres au bord du fleuve Sénégal',
         questionNumber: '01',
-        questionTitle: 'Chez soi',
+        questionTitle: 'Ce qui ramène chez soi',
         duration: '08:25',
         videoDurationSeconds: 505,
         summary: 'Awa évoque l’instant où le vent marin de la Langue de Barbarie lui a rappelé pourquoi elle avait choisi de revenir vivre et créer sur son île.',
@@ -2286,8 +2287,8 @@ export const PROTAGONISTS: Protagonist[] = [
     slug: 'yede-dossa',
     name: 'Yédê Dossa',
     firstName: 'Yédê',
-    age: 29,
-    role: 'Danseur chorégraphe & percussionniste',
+    age: 26,
+    role: 'Jeune chorégraphe & créateur culturel',
     country: 'Bénin',
     territory: 'Cotonou',
     flag: '🇧🇯',
@@ -2296,10 +2297,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    quote: '« Quand le tambour résonne dans la cour de Cotonou, ce n’est plus mon corps qui danse, c’est la joie de tout le quartier qui respire. »',
-    bio: 'Chorégraphe et maître des percussions contemporaines à Cotonou, Yédê fusionne les pas traditionnels du sud-Bénin avec la création scénique contemporaine.',
-    universeTag: 'Arts vivants (hors lancement)',
-    centralQuestion: "Racontez le moment où vous avez décidé de donner vie à quelque chose qui n'existait pas encore.",
+    documentaryId: 'bambous-irokos',
+    quote: '« Quand le tambour résonne dans la cour de Cotonou, les jeunes et les aînés se répondent sans un mot. »',
+    bio: 'Jeune chorégraphe et créateur à Cotonou, Yédê dialogue avec les anciens du quartier pour relier les rythmes contemporains aux mémoires vivantes.',
+    universeTag: 'Bambous',
+    centralQuestion: "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
     storiesCount: 5,
     transmissionsCount: 4,
     projectsCount: 3,
@@ -2308,10 +2310,10 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-yede-01',
         title: 'La première pulsation dans la cour d’Akpakpa',
         questionNumber: '01',
-        questionTitle: 'Donner vie',
+        questionTitle: 'Être pris au sérieux',
         duration: '07:55',
         videoDurationSeconds: 475,
-        summary: 'Yédê raconte la soirée d’inauguration de sa compagnie à Akpakpa où cinquante habitants sont montés improviser avec ses danseurs.',
+        summary: 'Yédê raconte le soir où le doyen des percussionnistes d’Akpakpa a posé son propre tambour devant lui et lui a demandé d’ouvrir la danse.',
         videoCoverUrl: '/assets/duos/performers-yede.jpg',
         credits: [{ role: 'story_owner', label: 'Propriétaire', name: 'Yédê Dossa' }]
       }
@@ -2327,16 +2329,16 @@ export const PROTAGONISTS: Protagonist[] = [
     country: 'Bénin',
     territory: 'Cotonou & Ouidah',
     flag: '🇧🇯',
-    photo: '/assets/images/senami_architecte_1792933801804.jpg',
-    photoUrl: '/assets/images/senami_architecte_1792933801804.jpg',
+    photo: '/assets/duos/fatou-diallo.jpg',
+    photoUrl: '/assets/duos/fatou-diallo.jpg',
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'builders-mi-do-kpo',
+    documentaryId: 'builders-coachs',
     quote: '« Bâtir en terre comprimée et en bois local sous le soleil de Cotonou, c’est prouver que notre architecture ancestrale est déjà futuriste. »',
     bio: 'Fondatrice d’un cabinet d’architecture bioclimatique à Cotonou, Sènami conçoit des écoles, des ateliers et des lieux culturels frais, durables et ancrés dans la terre béninoise.',
     universeTag: 'Builders',
-    centralQuestion: "Racontez le moment où vous avez choisi cette voie, avec ce qu'elle comportait de risque ou de renoncement.",
+    centralQuestion: "Racontez le conseil qui a changé la direction de votre vie, et la personne qui vous l'a donné.",
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 5,
@@ -2345,11 +2347,11 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-senami-01',
         title: 'Les plans tracés sous les palmiers de Cotonou',
         questionNumber: '01',
-        questionTitle: 'Le pari',
+        questionTitle: 'Le conseil',
         duration: '08:40',
         videoDurationSeconds: 520,
-        summary: 'Sènami se rappelle le pari risqué de construire tout un pavillon scolaire en briques de latérite alors que tout le monde lui conseillait le béton.',
-        videoCoverUrl: '/assets/images/senami_architecte_1792933801804.jpg',
+        summary: 'Sènami se rappelle le conseil d’un ancien ingénieur qui l’a décidée à bâtir tout un pavillon scolaire en briques de latérite malgré les doutes.',
+        videoCoverUrl: '/assets/duos/fatou-diallo.jpg',
         credits: [{ role: 'story_owner', label: 'Propriétaire', name: 'Sènami Houndété' }]
       }
     ]
@@ -2369,11 +2371,11 @@ export const PROTAGONISTS: Protagonist[] = [
     videoPreviewUrl: '/sample.mp4',
     videoAvatarUrl: '/sample.mp4',
     teaserVideoUrl: '/sample.mp4',
-    documentaryId: 'regards-gbe',
+    documentaryId: 'regards-paroles',
     quote: '« Le mot a le poids du feu et la douceur de la pluie. Quand je scande mes vers à Cotonou, je réveille nos mémoires. »',
     bio: 'Voix vibrante de la scène littéraire et slam de Cotonou, Armel mêle français, fòn et poésie contemporaine pour faire entendre les histoires tues.',
-    universeTag: 'Gbé',
-    centralQuestion: 'Racontez le moment où vous avez compris que si vous ne le disiez pas, personne ne le dirait à votre place.',
+    universeTag: 'Paroles',
+    centralQuestion: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
     storiesCount: 5,
     transmissionsCount: 3,
     projectsCount: 3,
@@ -2382,7 +2384,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-poet-armel-01',
         title: 'Le slam de l’Espace Culturel à Cotonou',
         questionNumber: '01',
-        questionTitle: 'Prendre la parole',
+        questionTitle: 'Le déclic',
         duration: '07:20',
         videoDurationSeconds: 440,
         summary: 'Armel raconte le soir où il a posé son carnet sur scène pour dire à voix haute ce que tout le quartier gardait enfoui.',
@@ -2398,28 +2400,28 @@ const findProtagonist = (id: string, fallbackIndex = 0): Protagonist =>
 
 const RAW_DUOS: Duo[] = [
   {
-    id: 'duo-remedes-e-vivi-01',
-    slug: 'duo-remedes-e-vivi-01',
-    documentaryId: 'remedes-e-vivi',
-    documentaryTitle: 'Remèdes ‹ › E Vivi',
+    id: 'duo-modernite-tradition-01',
+    slug: 'duo-modernite-tradition-01',
+    documentaryId: 'modernite-tradition',
+    documentaryTitle: 'Modernité ‹ › Tradition',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('mireille-akplogan'),
-    protagonistB: findProtagonist('chef-koffi'),
+    protagonistB: findProtagonist('kpedetin-houndegla'),
     questionNumber: '01',
-    questionTitle: "L'évidence",
-    centralQuestion: 'Racontez le moment où vous avez compris que votre métier serait de vous occuper des autres.',
+    questionTitle: "Ce qu'on m'a transmis",
+    centralQuestion: "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
     quoteA: '« À trois heures du matin aux urgences de Cotonou, quand la main d’un patient serre la vôtre, vous savez que vous êtes exactement à votre place. »',
-    quoteB: '« Dès l’aube à Dantokpa, quand la fumée de la marmite réchauffe les visages fatigués, nourrir devient une façon silencieuse de soigner. »',
-    coverImage: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
+    quoteB: '« À l’atelier d’Abomey, dès que j’ai senti le souffle du soufflet sur le bronze en fusion, j’ai compris que ce métier transmis était le mien. »',
+    coverImage: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
     storyA: findProtagonist('mireille-akplogan').stories[0],
-    storyB: findProtagonist('chef-koffi').stories[0],
-    editorialReflection: 'Entre la blouse blanche du CNHU et les braises vivantes de Dantokpa, soigner et nourrir obéissent au même serment béninois : tenir les autres debout.'
+    storyB: findProtagonist('kpedetin-houndegla').stories[0],
+    editorialReflection: 'Entre la blouse blanche du CNHU et les gestes ancestraux d’Abomey, méthodes modernes et savoirs transmis cohabitent chaque jour au service des autres.'
   },
   {
-    id: 'duo-amin-amen-legba-01',
-    slug: 'duo-amin-amen-legba-01',
-    documentaryId: 'amin-amen-legba',
-    documentaryTitle: 'Amin Amen ‹ › Legba',
+    id: 'duo-jesus-legba-01',
+    slug: 'duo-jesus-legba-01',
+    documentaryId: 'jesus-legba',
+    documentaryTitle: 'Jesus ‹ › Legba',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('pere-matthieu'),
     protagonistB: findProtagonist('dah-zounon'),
@@ -2428,115 +2430,115 @@ const RAW_DUOS: Duo[] = [
     centralQuestion: "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
     quoteA: '« Je suis entré dans la nef déserte de Ouidah pour fuir la brûlure du soleil. Ce n’est pas un miracle qui m’a retenu : c’était la certitude d’être attendu. »',
     quoteB: '« Ce n’était pas un coup de tonnerre. C’était la chaleur d’une poignée de terre d’Allada, un jour où je croyais que le monde était mort. »',
-    coverImage: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
+    coverImage: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
     storyA: findProtagonist('pere-matthieu').stories[0],
     storyB: findProtagonist('dah-zounon').stories[0],
     editorialReflection: 'Deux traditions spirituelles du Bénin se découvrent ici une racine commune : l’humilité devant l’invisible et la nécessité de ne pas traverser l’obscurité seul.'
   },
   {
-    id: 'duo-phd-azovi-01',
-    slug: 'duo-phd-azovi-01',
-    documentaryId: 'phd-azovi',
-    documentaryTitle: 'PhD ‹ › Azovi',
+    id: 'duo-phd-apprentis-01',
+    slug: 'duo-phd-apprentis-01',
+    documentaryId: 'phd-apprentis',
+    documentaryTitle: 'PhD ‹ › Apprentis',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('researcher-eleonore'),
     protagonistB: findProtagonist('senan-agossa'),
     questionNumber: '01',
-    questionTitle: 'Le premier jour',
-    centralQuestion: 'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
+    questionTitle: 'La question qui ne lâche pas',
+    centralQuestion: 'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
     quoteA: '« Le premier jour devant mon tableau noir à Abomey-Calavi, j’ai juré de prouver la rigueur mathématique cachée dans nos savoirs oraux. »',
     quoteB: '« Le premier matin à l’atelier de Fidjrossè, quand mon patron m’a posé une radio ouverte entre les mains, j’ai compris qu’apprendre commence par oser toucher. »',
-    coverImage: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
+    coverImage: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
     storyA: findProtagonist('researcher-eleonore').stories[0],
     storyB: findProtagonist('senan-agossa').stories[0],
     editorialReflection: 'De la bibliothèque d’Abomey-Calavi à l’établi de Fidjrossè, la recherche et l’apprentissage révèlent la même ferveur du commencement.'
   },
   {
-    id: 'duo-blacks-one-nyonoukpo-01',
-    slug: 'duo-blacks-one-nyonoukpo-01',
-    documentaryId: 'blacks-one-nyonoukpo',
-    documentaryTitle: 'Blacks One ‹ › Nyonoukpo',
+    id: 'duo-blacks-one-wowmen-01',
+    slug: 'duo-blacks-one-wowmen-01',
+    documentaryId: 'blacks-one-wowmen',
+    documentaryTitle: 'Blacks One ‹ › Wowmen',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('malik-diop'),
     protagonistB: findProtagonist('eleonore-vance'),
     questionNumber: '01',
-    questionTitle: 'La fierté',
-    centralQuestion: 'Racontez le moment où vous avez appris à être fier de qui vous êtes.',
+    questionTitle: 'Se redresser',
+    centralQuestion: "Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé.",
     quoteA: '« L’émancipation commence le jour où l’on refuse de regarder son histoire avec les yeux de ceux qui l’ont confisquée. »',
     quoteB: '« En ouvrant la malle des pagnes de ma mère, j’ai compris que la force et la dignité des femmes portent nos sociétés entières. »',
-    coverImage: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
+    coverImage: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
     storyA: findProtagonist('malik-diop').stories[0],
     storyB: findProtagonist('eleonore-vance').stories[0],
     editorialReflection: 'Entre la fierté panafricaine et l’hommage vibrant aux femmes bâtisseuses, ce face-à-face célèbre une dignité libre et solaire.'
   },
   {
-    id: 'duo-fiat-luxe-irokos-01',
-    slug: 'duo-fiat-luxe-irokos-01',
-    documentaryId: 'fiat-luxe-irokos',
-    documentaryTitle: 'Fiat Luxe ‹ › Irokos',
+    id: 'duo-bambous-irokos-01',
+    slug: 'duo-bambous-irokos-01',
+    documentaryId: 'bambous-irokos',
+    documentaryTitle: 'Bambous ‹ › Irokos',
     episodeNumber: 'ÉPISODE 01',
-    protagonistA: findProtagonist('kpedetin-houndegla'),
+    protagonistA: findProtagonist('yede-dossa'),
     protagonistB: findProtagonist('kiki-alapini'),
     questionNumber: '01',
-    questionTitle: "Ce qui ne s'explique pas",
-    centralQuestion: 'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
-    quoteA: '« Reconnaître à l’œil nu l’instant précis où le bronze en fusion d’Abomey devient docile demande dix ans de flamme et zéro manuel. »',
-    quoteB: '« Sur la lagune de Ganvié, savoir quand se taire et quand parler à celui qui doute vient avec les années, jamais d’un livre. »',
-    coverImage: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
-    storyA: findProtagonist('kpedetin-houndegla').stories[0],
+    questionTitle: 'Être pris au sérieux',
+    centralQuestion: "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
+    quoteA: '« Le soir où un ancien de Porto-Novo s’est assis au premier rang pour écouter mes premiers pas sur scène, j’ai senti le poids et la confiance de son regard. »',
+    quoteB: '« Sur la lagune de Ganvié, quand les jeunes charpentiers sont venus me demander d’observer leur plan de pirogue, le pont entre nos deux âges s’est ouvert. »',
+    coverImage: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
+    storyA: findProtagonist('yede-dossa').stories[0],
     storyB: findProtagonist('kiki-alapini').stories[0],
-    editorialReflection: 'L’excellence du geste joaillier béninois rencontre la sagesse patiente des aînés de Ganvié : deux maîtrises sculptées uniquement par le temps.'
+    editorialReflection: 'L’élan du bambou qui pousse vite rencontre la sagesse patiente de l’iroko : deux générations apprennent à s’écouter avec respect.'
   },
   {
-    id: 'duo-horizons-finagnon-01',
-    slug: 'duo-horizons-finagnon-01',
-    documentaryId: 'horizons-finagnon',
-    documentaryTitle: 'Horizons ‹ › Finagnon',
+    id: 'duo-horizons-benin-01',
+    slug: 'duo-horizons-benin-01',
+    documentaryId: 'horizons-benin',
+    documentaryTitle: 'Horizons ‹ › Benin',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('awa-ndiaye'),
     protagonistB: findProtagonist('tobi-houndegla'),
     questionNumber: '01',
-    questionTitle: 'Chez soi',
-    centralQuestion: 'Racontez le moment où vous avez senti que vous étiez enfin chez vous.',
+    questionTitle: 'Ce qui ramène chez soi',
+    centralQuestion: "Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec.",
     quoteA: '« En retrouvant les façades ocres de Saint-Louis face au fleuve, j’ai senti que ma voix n’avait jamais quitté cette île. »',
     quoteB: '« Le jour où ma pirogue a glissé dans la brume de Ganvié sans que j’aie besoin de regarder le rivage : cette lagune est dans mon sang. »',
-    coverImage: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
+    coverImage: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl,
     storyA: findProtagonist('awa-ndiaye').stories[0],
     storyB: findProtagonist('tobi-houndegla').stories[0],
     editorialReflection: 'Des berges de Saint-Louis à la cité lacustre de Ganvié, le chez-soi se reconnaît à l’accord immédiat entre l’être et son élément.'
   },
   {
-    id: 'duo-builders-mi-do-kpo-01',
-    slug: 'duo-builders-mi-do-kpo-01',
-    documentaryId: 'builders-mi-do-kpo',
-    documentaryTitle: 'Builders ‹ › Mi do kpô',
+    id: 'duo-builders-coachs-01',
+    slug: 'duo-builders-coachs-01',
+    documentaryId: 'builders-coachs',
+    documentaryTitle: 'Builders ‹ › Coachs',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('senami-houndete'),
-    protagonistB: findProtagonist('fatou-diallo'),
+    protagonistB: findProtagonist('coach-marc'),
     questionNumber: '01',
-    questionTitle: 'Le choix',
-    centralQuestion: "Racontez le moment où vous avez choisi cette voie, avec ce qu'elle comportait de risque ou de renoncement.",
-    quoteA: '« Tout le monde me disait que bâtir une école en terre comprimée à Cotonou était fou : c’est ce choix qui a prouvé que nos matériaux peuvent tout porter. »',
-    quoteB: '« Investir mes premières économies dans un atelier dont les banques ne voulaient pas m’a appris que la confiance est le vrai capital. »',
-    coverImage: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
+    questionTitle: 'Le conseil',
+    centralQuestion: "Racontez le conseil qui a changé la direction de votre vie, et la personne qui vous l'a donné.",
+    quoteA: '« Tout le monde me disait que bâtir une école en terre comprimée à Cotonou était fou : c’est un ancien ingénieur qui m’a dit d’oser poser la première brique. »',
+    quoteB: '« Le jour où j’ai dit à un jeune fondateur d’arrêter de tout porter seul et de déléguer sa première équipe, son projet a enfin décollé. »',
+    coverImage: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
     storyA: findProtagonist('senami-houndete').stories[0],
-    storyB: findProtagonist('fatou-diallo').stories[0],
-    editorialReflection: 'Entre celles et ceux qui entreprennent et celles et ceux qui tiennent le bien commun, bâtir commence toujours par un choix assumé.'
+    storyB: findProtagonist('coach-marc').stories[0],
+    editorialReflection: 'Entre celles et ceux qui bâtissent dans le réel et celles et ceux qui accompagnent le mouvement, un seul mot juste peut tout débloquer.'
   },
   {
-    id: 'duo-regards-gbe-01',
-    slug: 'duo-regards-gbe-01',
-    documentaryId: 'regards-gbe',
-    documentaryTitle: 'Regards ‹ › Gbé',
+    id: 'duo-regards-paroles-01',
+    slug: 'duo-regards-paroles-01',
+    documentaryId: 'regards-paroles',
+    documentaryTitle: 'Images ‹ › Paroles',
     episodeNumber: 'ÉPISODE 01',
     protagonistA: findProtagonist('photographer-chancelle'),
     protagonistB: findProtagonist('poet-armel'),
     questionNumber: '01',
-    questionTitle: 'Prendre la parole',
-    centralQuestion: 'Racontez le moment où vous avez compris que si vous ne le disiez pas, personne ne le dirait à votre place.',
+    questionTitle: 'Le déclic',
+    centralQuestion: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
     quoteA: '« À Ouidah, lorsque je cadre un visage avant l’aube, l’image dit exactement ce que les discours officiels ont oublié. »',
     quoteB: '« Le mot claque comme un tambour dans la nuit : si nous n’écrivons pas nos propres récits de Cotonou, d’autres les effaceront. »',
-    coverImage: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
+    coverImage: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
     storyA: findProtagonist('photographer-chancelle').stories[0],
     storyB: findProtagonist('poet-armel').stories[0],
     editorialReflection: 'Quand l’objectif patient de la photographe de Ouidah répond au verbe du slameur béninois, la vérité du réel trouve enfin sa double voix.'
@@ -2668,7 +2670,7 @@ export const PENDING_REVIEWS: ReviewCandidate[] = [
     id: 'rev-01',
     candidateName: 'Akouavi Gbedan',
     territory: 'Grand-Popo, Bénin',
-    documentaryTitle: 'FINAGNON × QOSQORICO',
+    documentaryTitle: 'Horizons ‹ › Benin',
     questionNumber: '02',
     questionTitle: 'Partir',
     storyTitle: 'La vague qui a emporté ma maison de sable',
@@ -2683,7 +2685,7 @@ export const PENDING_REVIEWS: ReviewCandidate[] = [
     id: 'rev-02',
     candidateName: 'Inti Champi',
     territory: 'Ollantaytambo, Pérou',
-    documentaryTitle: 'FINAGNON × QOSQORICO',
+    documentaryTitle: 'Horizons ‹ › Benin',
     questionNumber: '04',
     questionTitle: 'Ce qui Reste',
     storyTitle: 'Le secret des canaux de pierre d’Ollantaytambo',
@@ -2698,7 +2700,7 @@ export const PENDING_REVIEWS: ReviewCandidate[] = [
     id: 'rev-03',
     candidateName: 'Sœur Blandine Dossou',
     territory: 'Abomey, Bénin',
-    documentaryTitle: 'RÉVÉLATION × TRADITION',
+    documentaryTitle: 'Jesus ‹ › Legba',
     questionNumber: '04',
     questionTitle: 'La Personne qui vous a Changé',
     storyTitle: 'La rencontre avec la prêtresse de Sakpata',
@@ -2717,7 +2719,7 @@ export const COMMUNITY_REVIEWS: CommunityReviewItem[] = [
     candidateName: 'Akouavi Gbedan',
     candidatePhoto: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80',
     territory: 'Bénin (Grand-Popo)',
-    documentaryTitle: 'FINAGNON × QOSQORICO',
+    documentaryTitle: 'Horizons ‹ › Benin',
     questionNumber: '02',
     questionTitle: 'Partir',
     pitch: '« Quand l’érosion côtière a emporté la maison de sable de mon enfance à Grand-Popo, partir n’était pas un voyage : c’était laisser la moitié de mon ombre sur la plage. »',
@@ -2731,7 +2733,7 @@ export const COMMUNITY_REVIEWS: CommunityReviewItem[] = [
     candidateName: 'Inti Champi',
     candidatePhoto: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
     territory: 'Pérou (Ollantaytambo)',
-    documentaryTitle: 'FINAGNON × QOSQORICO',
+    documentaryTitle: 'Horizons ‹ › Benin',
     questionNumber: '04',
     questionTitle: 'Ce qui Reste',
     pitch: '« La façon dont les pierres de nos terrasses canalisent l’eau de fonte sans qu’une goutte ne se perde. C’est la sagesse que mon arrière-grand-père m’a laissée avant de s’éteindre. »',
@@ -2745,7 +2747,7 @@ export const COMMUNITY_REVIEWS: CommunityReviewItem[] = [
     candidateName: 'Sœur Blandine Dossou',
     candidatePhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80',
     territory: 'Bénin (Abomey)',
-    documentaryTitle: 'RÉVÉLATION × TRADITION',
+    documentaryTitle: 'Jesus ‹ › Legba',
     questionNumber: '04',
     questionTitle: 'La Personne qui vous a Changé',
     pitch: '« Je préparais mes vœux perpétuels quand j’ai rencontré une prêtresse de Sakpata qui soignait les lépreux avec une tendresse infinie. Sa foi a bouleversé la mienne. »',
@@ -2762,9 +2764,9 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
     candidateName: 'Akouavi Gbedan',
     candidatePhoto: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&q=80',
     territory: 'Bénin (Grand-Popo)',
-    documentaryId: 'horizons-finagnon',
-    documentaryTitle: 'Horizons ‹ › Finagnon',
-    universeGroup: 'Finagnon',
+    documentaryId: 'horizons-benin',
+    documentaryTitle: 'Horizons ‹ › Benin',
+    universeGroup: 'Benin',
     status: 'AVIS_FORET',
     submittedDate: '12 Septembre 2026',
     assignedReviewer: 'Comité Littoral',
@@ -2776,8 +2778,8 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
     candidateName: 'Inti Champi',
     candidatePhoto: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
     territory: 'Pérou (Ollantaytambo)',
-    documentaryId: 'horizons-finagnon',
-    documentaryTitle: 'Horizons ‹ › Finagnon',
+    documentaryId: 'horizons-benin',
+    documentaryTitle: 'Horizons ‹ › Benin',
     universeGroup: 'Horizons',
     status: 'COMITE',
     submittedDate: '09 Septembre 2026',
@@ -2790,8 +2792,8 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
     candidateName: 'Djimon Agassa',
     candidatePhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
     territory: 'Bénin (Porto-Novo)',
-    documentaryId: 'amin-amen-legba',
-    documentaryTitle: 'Amin Amen ‹ › Legba',
+    documentaryId: 'jesus-legba',
+    documentaryTitle: 'Jesus ‹ › Legba',
     universeGroup: 'Legba',
     status: 'CONTROLE_TECHNIQUE',
     submittedDate: '13 Septembre 2026',
@@ -2804,8 +2806,8 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
     candidateName: 'Nesta Touré',
     candidatePhoto: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
     territory: 'Sénégal (Dakar)',
-    documentaryId: 'blacks-one-nyonoukpo',
-    documentaryTitle: 'Blacks One ‹ › Nyonoukpo',
+    documentaryId: 'blacks-one-wowmen',
+    documentaryTitle: 'Blacks One ‹ › Wowmen',
     universeGroup: 'Blacks One',
     status: 'NOUVELLES',
     submittedDate: 'Hier',
@@ -2818,9 +2820,9 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
     candidateName: 'Clara Delorme',
     candidatePhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
     territory: 'France (Paris)',
-    documentaryId: 'fiat-luxe-irokos',
-    documentaryTitle: 'Fiat Luxe ‹ › Irokos',
-    universeGroup: 'Fiat Luxe',
+    documentaryId: 'bambous-irokos',
+    documentaryTitle: 'Bambous ‹ › Irokos',
+    universeGroup: 'Bambous',
     status: 'REVISIONS',
     submittedDate: '04 Septembre 2026',
     assignedReviewer: 'Équipe Son/Image',
@@ -2832,9 +2834,9 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
     candidateName: 'Sœur Blandine Dossou',
     candidatePhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     territory: 'Bénin (Abomey)',
-    documentaryId: 'amin-amen-legba',
-    documentaryTitle: 'Amin Amen ‹ › Legba',
-    universeGroup: 'Amin Amen',
+    documentaryId: 'jesus-legba',
+    documentaryTitle: 'Jesus ‹ › Legba',
+    universeGroup: 'Jesus',
     status: 'APPROUVEES',
     submittedDate: '28 Août 2026',
     assignedReviewer: 'Direction Éditoriale',
@@ -2845,8 +2847,8 @@ export const BACKOFFICE_APPLICATIONS: BackOfficeApplication[] = [
 
 const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
   {
-    seriesId: 'amin-amen-legba',
-    seriesTitle: 'Amin Amen ‹ › Legba',
+    seriesId: 'jesus-legba',
+    seriesTitle: 'Jesus ‹ › Legba',
     subtitle: 'Deux traditions. Une même question de foi.',
     description: 'Comment la rencontre de deux géants de la spiritualité béninoise a ouvert une chaîne vivante d\'initiations, tissant des liens inattendus entre couvents vodoun et monastères chrétiens.',
     centralQuestion: 'La foi',
@@ -2868,7 +2870,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         invitationStory: 'Pionnier fondateur de la série. A accepté d\'ouvrir le secret des seuils sacrés pour que la jeunesse comprenne la vraie nature protectrice de Legba.',
         duoPartnerName: 'Dieudonné',
         duoPartnerPhoto: '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
-        duoId: 'duo-amin-amen-legba-01',
+        duoId: 'duo-jesus-legba-01',
         episodeQuestion: '01 — Racontez-nous un moment où vous avez réellement rencontré votre foi.',
         protagonistIdRef: 'dah-zounon',
         invitedPeople: [
@@ -2880,14 +2882,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Abomey',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'Amin Amen',
-            photoUrl: '/assets/images/senan_innovatrice_1792933679487.jpg',
+            universeTag: 'Jesus',
+            photoUrl: '/assets/duos/athlete-hurdle.jpg',
             badge: 'Invité(e)',
             invitedById: 'dah-zounon',
             invitedByName: 'Mahougnon',
             invitationStory: 'Invitée par Mahougnon après qu\'ils ont soigné ensemble des enfants fébriles au dispensaire de Toffo, échangeant tisanes de racines et prières d\'oraison.',
             duoPartnerName: 'Hounon Gbaguidi',
-            duoId: 'duo-amin-amen-legba-01',
+            duoId: 'duo-jesus-legba-01',
             episodeQuestion: '02 — L’épreuve qui révèle le vrai dénuement de l’âme.',
             protagonistIdRef: 'dah-zounon',
             invitedPeople: [
@@ -2899,14 +2901,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 territory: 'Toffo',
                 country: 'Bénin',
                 flag: '🇧🇯',
-                universeTag: 'Amin Amen',
-                photoUrl: '/assets/images/sika_tisserande_1792933605542.jpg',
+                universeTag: 'Jesus',
+                photoUrl: '/assets/duos/care-mireille.jpg',
                 badge: 'Invité(e)',
                 invitedById: 'soeur-blandine',
                 invitedByName: 'Sœur Blandine',
                 invitationStory: 'Fait entrer dans la série par Sœur Blandine pour son témoignage sur le silence nocturne des ruches et la contemplation des psaumes.',
                 duoPartnerName: 'Marie-Noëlle',
-                duoId: 'duo-amin-amen-legba-01',
+                duoId: 'duo-jesus-legba-01',
                 episodeQuestion: '03 — Ce que l’on transmet sans un mot.',
                 protagonistIdRef: 'dah-zounon'
               }
@@ -2927,7 +2929,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitedByName: 'Mahougnon',
             invitationStory: 'Invité par Mahougnon pour son talent rare à forger les fers d\'Asen et à raconter le mystère du feu qui purifie la colère.',
             duoPartnerName: 'Pasteur Emmanuel',
-            duoId: 'duo-amin-amen-legba-01',
+            duoId: 'duo-jesus-legba-01',
             episodeQuestion: '04 — La personne qui a retourné votre regard sur l’invisible.',
             protagonistIdRef: 'dah-zounon'
           }
@@ -2941,14 +2943,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         territory: 'Cotonou',
         country: 'Bénin',
         flag: '🇧🇯',
-        universeTag: 'Amin Amen',
+        universeTag: 'Jesus',
         photoUrl: '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Pionnier fondateur représentant le pôle Amin Amen. A voulu témoigner d\'une foi dépouillée de tout mépris envers les traditions des ancêtres.',
+        invitationStory: 'Pionnier fondateur représentant le pôle Jesus. A voulu témoigner d\'une foi dépouillée de tout mépris envers les traditions des ancêtres.',
         duoPartnerName: 'Mahougnon',
         duoPartnerPhoto: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
-        duoId: 'duo-amin-amen-legba-01',
+        duoId: 'duo-jesus-legba-01',
         episodeQuestion: '01 — La rencontre intime avec la grâce.',
         protagonistIdRef: 'pere-matthieu',
         invitedPeople: [
@@ -2960,14 +2962,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Porto-Novo',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'Amin Amen',
+            universeTag: 'Jesus',
             photoUrl: '/assets/duos/tobi-houndegla.jpg',
             badge: 'Invité(e)',
             invitedById: 'pere-matthieu',
             invitedByName: 'Dieudonné',
             invitationStory: 'Fait entrer par Dieudonné après des nuits entières passées à apaiser les tensions entre jeunes convertis et anciens du village.',
             duoPartnerName: 'Hounon Gbaguidi',
-            duoId: 'duo-amin-amen-legba-01',
+            duoId: 'duo-jesus-legba-01',
             episodeQuestion: '04 — Le pardon aux portes de l’impossible.',
             protagonistIdRef: 'pere-matthieu',
             invitedPeople: [
@@ -2979,14 +2981,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 territory: 'Ouidah',
                 country: 'Bénin',
                 flag: '🇧🇯',
-                universeTag: 'Amin Amen',
-                photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
+                universeTag: 'Jesus',
+                photoUrl: '/assets/duos/horizons-awa.jpg',
                 badge: 'Invité(e)',
                 invitedById: 'pasteur-emmanuel',
                 invitedByName: 'Pasteur Emmanuel',
                 invitationStory: 'Invitée par le pasteur pour faire entendre la voix des femmes qui portent la foi quotidienne au marché et sous la pluie.',
                 duoPartnerName: 'Frère Jean-Baptiste',
-                duoId: 'duo-amin-amen-legba-01',
+                duoId: 'duo-jesus-legba-01',
                 episodeQuestion: '05 — Ce qu’on laisse aux générations futures.',
                 protagonistIdRef: 'pere-matthieu'
               }
@@ -3000,14 +3002,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Cotonou',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'Amin Amen',
-            photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
+            universeTag: 'Jesus',
+            photoUrl: '/assets/duos/horizons-awa.jpg',
             badge: 'Invité(e)',
             invitedById: 'pere-matthieu',
             invitedByName: 'Dieudonné',
             invitationStory: 'Invité par Dieudonné pour son engagement auprès des plus vulnérables à Dantokpa sans jamais juger personne.',
             duoPartnerName: 'Mahougnon',
-            duoId: 'duo-amin-amen-legba-01',
+            duoId: 'duo-jesus-legba-01',
             episodeQuestion: '02 — L’amour éprouvé par la nuit.',
             protagonistIdRef: 'pere-matthieu'
           }
@@ -3016,9 +3018,9 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     ]
   },
   {
-    seriesId: 'horizons-finagnon',
-    seriesTitle: 'Horizons ‹ › Finagnon',
-    subtitle: 'Horizons ‹ › Finagnon. Deux territoires. Une même réflexion sur ce qui nous relie à un lieu.',
+    seriesId: 'horizons-benin',
+    seriesTitle: 'Horizons ‹ › Benin',
+    subtitle: 'Horizons ‹ › Benin. Deux territoires. Une même réflexion sur ce qui nous relie à un lieu.',
     description: 'Comment l\'alliance entre des passeurs béninois et des voix d\'autres nations tisse une communauté vivante de piroguiers, conteuses et gardiens des mémoires.',
     centralQuestion: 'Le territoire',
     totalAffiliatedCount: 14,
@@ -3032,14 +3034,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         territory: 'Porto-Novo',
         country: 'Bénin',
         flag: '🇧🇯',
-        universeTag: 'Finagnon',
+        universeTag: 'Benin',
         photoUrl: '/assets/duos/paroles-armel.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Première effigie et initiateur du volet Finagnon. A posé la question originelle : « Que transmet une main qui tisse depuis l\'enfance ? »',
+        invitationStory: 'Première effigie et initiateur du volet Benin. A posé la question originelle : « Que transmet une main qui tisse depuis l\'enfance ? »',
         duoPartnerName: 'Amara',
-        duoPartnerPhoto: '/assets/images/amara_andine_1792933642777.jpg',
-        duoId: 'duo-horizons-finagnon-01',
+        duoPartnerPhoto: '/assets/duos/horizons-awa.jpg',
+        duoId: 'duo-horizons-benin-01',
         episodeQuestion: '02 — Le geste ancestral qui relie les générations.',
         protagonistIdRef: 'koffi-tisserand',
         invitedPeople: [
@@ -3051,15 +3053,15 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Ganvié',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'Finagnon',
+            universeTag: 'Benin',
             photoUrl: '/assets/duos/athlete-hurdle.jpg',
             badge: 'Invité(e)',
             invitedById: 'koffi-tisserand',
             invitedByName: 'Koffi',
             invitationStory: 'Fait entrer par Koffi : Tobi sculptait les bois de teck sur les pilotis de Ganvié exactement avec la même patience que Koffi tendait ses fils.',
             duoPartnerName: 'Sayri',
-            duoId: 'duo-horizons-finagnon-01',
-            episodeQuestion: '01 — Chez soi : Quand sait-on qu’on appartient à un lieu ?',
+            duoId: 'duo-horizons-benin-01',
+            episodeQuestion: '01 — Ce qui ramène chez soi : Quand sait-on qu’on appartient à un lieu ?',
             protagonistIdRef: 'koffi-tisserand',
             invitedPeople: [
               {
@@ -3070,14 +3072,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 territory: 'Ganvié',
                 country: 'Bénin',
                 flag: '🇧🇯',
-                universeTag: 'Finagnon',
+                universeTag: 'Benin',
                 photoUrl: '/assets/duos/chef-koffi.jpg',
                 badge: 'Invité(e)',
                 invitedById: 'tobi-ganvie',
                 invitedByName: 'Tobi',
                 invitationStory: 'Invitée par Tobi pour capturer le chant des rames frappant l\'eau avant l\'aube et les berceuses toffinou oubliées.',
                 duoPartnerName: 'Nayra',
-                duoId: 'duo-horizons-finagnon-01',
+                duoId: 'duo-horizons-benin-01',
                 episodeQuestion: '04 — Ce qui reste quand tout le reste change.',
                 protagonistIdRef: 'koffi-tisserand',
                 invitedPeople: [
@@ -3089,14 +3091,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                     territory: 'Ganvié',
                     country: 'Bénin',
                     flag: '🇧🇯',
-                    universeTag: 'Finagnon',
+                    universeTag: 'Benin',
                     photoUrl: '/assets/duos/coach-office.jpg',
                     badge: 'Invité(e)',
                     invitedById: 'amina-diallo',
                     invitedByName: 'Amina',
                     invitationStory: 'Initié par Amina après qu’il a créé la première harpe d’eau en roseaux de la lagune de Nokoué.',
                     duoPartnerName: 'Nayra',
-                    duoId: 'duo-horizons-finagnon-01',
+                    duoId: 'duo-horizons-benin-01',
                     episodeQuestion: '05 — Le chant de demain.',
                     protagonistIdRef: 'koffi-tisserand'
                   }
@@ -3112,14 +3114,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Grand-Popo',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'Finagnon',
+            universeTag: 'Benin',
             photoUrl: '/assets/duos/codjo-blind.jpg',
             badge: 'Invité(e)',
             invitedById: 'koffi-tisserand',
             invitedByName: 'Koffi',
             invitationStory: 'Invitée par Koffi pour sa mémoire des plantes tinctoriales sauvages du cordon littoral.',
             duoPartnerName: 'Don Huamán',
-            duoId: 'duo-horizons-finagnon-01',
+            duoId: 'duo-horizons-benin-01',
             episodeQuestion: '03 — Les couleurs qui naissent de la terre.',
             protagonistIdRef: 'koffi-tisserand'
           }
@@ -3139,8 +3141,8 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         badge: 'Première effigie',
         invitationStory: 'Première effigie du volet Horizons. A fait résonner la laine d\'alpaga avec le coton de Koffi par-delà l\'océan Pacifique et l\'Atlantique.',
         duoPartnerName: 'Koffi',
-        duoPartnerPhoto: '/assets/images/koffi_tisserand_1792933625628.jpg',
-        duoId: 'duo-horizons-finagnon-01',
+        duoPartnerPhoto: '/assets/duos/chef-koffi.jpg',
+        duoId: 'duo-horizons-benin-01',
         episodeQuestion: '02 — La mémoire que chaque fil garde de la montagne.',
         protagonistIdRef: 'amara-tisserande',
         invitedPeople: [
@@ -3159,7 +3161,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitedByName: 'Amara',
             invitationStory: 'Invité par Amara : ses champs en terrasses sont les parchemins vivants dont les motifs de ses tissages sont issus.',
             duoPartnerName: 'Tobi',
-            duoId: 'duo-horizons-finagnon-01',
+            duoId: 'duo-horizons-benin-01',
             episodeQuestion: '01 — Le premier souffle reçu de la terre.',
             protagonistIdRef: 'amara-tisserande',
             invitedPeople: [
@@ -3178,7 +3180,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 invitedByName: 'Sayri',
                 invitationStory: 'Inspirée par Sayri pour documenter le regard des jeunes filles quechuas face au tourisme de masse et préserver la dignité du geste.',
                 duoPartnerName: 'Amina',
-                duoId: 'duo-horizons-finagnon-01',
+                duoId: 'duo-horizons-benin-01',
                 episodeQuestion: '04 — Le courage de ne pas vendre son âme.',
                 protagonistIdRef: 'amara-tisserande'
               }
@@ -3199,7 +3201,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitedByName: 'Amara',
             invitationStory: 'Fait entrer par Amara car il est le seul à connaître le secret de la teinture rouge cochenille fixée à l\'eau de source volcanique.',
             duoPartnerName: 'Ayaba',
-            duoId: 'duo-horizons-finagnon-01',
+            duoId: 'duo-horizons-benin-01',
             episodeQuestion: '03 — Les secrets confiés par le vent des hauteurs.',
             protagonistIdRef: 'amara-tisserande'
           }
@@ -3208,8 +3210,8 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     ]
   },
   {
-    seriesId: 'blacks-one-nyonoukpo',
-    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
+    seriesId: 'blacks-one-wowmen',
+    seriesTitle: 'Blacks One ‹ › Wowmen',
     subtitle: 'Deux manières de dire ce qui compte. Identités noires et reconnaissance des femmes.',
     description: 'De la poussière des ronds-points de Dakar aux galeries militantes de Marseille et Abidjan : comment les deux côtés se sont cooptés pour réécrire les identités.',
     centralQuestion: 'L\'identité',
@@ -3231,7 +3233,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         invitationStory: 'Pionnier fondateur de Blacks One, orateur au poing levé et verbe habité, luttant pour l’émancipation civique et la souveraineté des mémoires.',
         duoPartnerName: 'Éléonore Vance',
         duoPartnerPhoto: '/assets/duos/eleonore-vance.jpg',
-        duoId: 'duo-blacks-one-nyonoukpo-01',
+        duoId: 'duo-blacks-one-wowmen-01',
         episodeQuestion: '03 — Ce que l’on porte : Ce que l’on a reçu et qu’on refuse de poser.',
         protagonistIdRef: 'malik-barou',
         invitedPeople: [
@@ -3244,13 +3246,13 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             country: 'Sénégal',
             flag: '🇸🇳',
             universeTag: 'Blacks One',
-            photoUrl: '/assets/images/koffi_tisserand_1792933625628.jpg',
+            photoUrl: '/assets/duos/chef-koffi.jpg',
             badge: 'Invité(e)',
             invitedById: 'malik-barou',
             invitedByName: 'Malik Diop',
             invitationStory: 'Invité par Malik après un duel de verbe sous un réverbère de la Médina : Malik a vu dans sa plume le miroir exact de ses pas de danse.',
             duoPartnerName: 'Fatou Bamba',
-            duoId: 'duo-blacks-one-nyonoukpo-01',
+            duoId: 'duo-blacks-one-wowmen-01',
             episodeQuestion: '01 — Qui suis-je quand la musique s’arrête ?',
             protagonistIdRef: 'malik-barou',
             invitedPeople: [
@@ -3269,7 +3271,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 invitedByName: 'Cheikh Fall',
                 invitationStory: 'Fait entrer par Cheikh pour enregistrer sur cassettes audio les percussions spontanées des vendeuses de poisson.',
                 duoPartnerName: 'Solène',
-                duoId: 'duo-blacks-one-nyonoukpo-01',
+                duoId: 'duo-blacks-one-wowmen-01',
                 episodeQuestion: '02 — Le regard des autres sur notre colère.',
                 protagonistIdRef: 'malik-barou'
               }
@@ -3290,7 +3292,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitedByName: 'Malik Diop',
             invitationStory: 'Invité par Malik pour avoir transformé un garage abandonné en conservatoire populaire pour 80 adolescents.',
             duoPartnerName: 'Aïcha',
-            duoId: 'duo-blacks-one-nyonoukpo-01',
+            duoId: 'duo-blacks-one-wowmen-01',
             episodeQuestion: '04 — Devenir quelqu’un d’autre sans trahir d’où l’on vient.',
             protagonistIdRef: 'malik-barou'
           }
@@ -3304,14 +3306,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         territory: 'Marseille / Abidjan',
         country: 'Côte d’Ivoire & France',
         flag: '🇨🇮',
-        universeTag: 'Nyonoukpo',
+        universeTag: 'Wowmen',
         photoUrl: '/assets/duos/eleonore-vance.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Première effigie de Nyonoukpo, oratrice portant à la tribune le combat vibrant pour la souveraineté, la dignité et les droits des femmes.',
+        invitationStory: 'Première effigie de Wowmen, oratrice portant à la tribune le combat vibrant pour la souveraineté, la dignité et les droits des femmes.',
         duoPartnerName: 'Malik Diop',
         duoPartnerPhoto: '/assets/duos/malik-diop.jpg',
-        duoId: 'duo-blacks-one-nyonoukpo-01',
+        duoId: 'duo-blacks-one-wowmen-01',
         episodeQuestion: '03 — Racontez-nous ce que vous portez encore de votre histoire.',
         protagonistIdRef: 'eleonore-saint-cloud',
         invitedPeople: [
@@ -3323,14 +3325,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Abidjan',
             country: 'Côte d’Ivoire',
             flag: '🇨🇮',
-            universeTag: 'Nyonoukpo',
+            universeTag: 'Wowmen',
             photoUrl: '/assets/duos/fatou-diallo.jpg',
             badge: 'Invité(e)',
             invitedById: 'eleonore-saint-cloud',
             invitedByName: 'Éléonore Vance',
             invitationStory: 'Invitée par Éléonore pour ses recherches pionnières sur la signification secrète des motifs kita féminins chez les Akan.',
             duoPartnerName: 'Cheikh Fall',
-            duoId: 'duo-blacks-one-nyonoukpo-01',
+            duoId: 'duo-blacks-one-wowmen-01',
             episodeQuestion: '01 — Qui nous nomme avant que nous ayons parlé ?',
             protagonistIdRef: 'eleonore-saint-cloud',
             invitedPeople: [
@@ -3342,14 +3344,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 territory: 'Marseille',
                 country: 'France',
                 flag: '🇫🇷',
-                universeTag: 'Nyonoukpo',
+                universeTag: 'Wowmen',
                 photoUrl: '/assets/duos/mawuna-medium.jpg',
                 badge: 'Invité(e)',
                 invitedById: 'fatou-bamba',
                 invitedByName: 'Fatou Bamba',
                 invitationStory: 'Fait entrer par Fatou pour immortaliser les mains des mères au travail à Noailles et Abobo sans aucun filtre exotisant.',
                 duoPartnerName: 'Ousmane',
-                duoId: 'duo-blacks-one-nyonoukpo-01',
+                duoId: 'duo-blacks-one-wowmen-01',
                 episodeQuestion: '05 — À celle qui viendra après nous.',
                 protagonistIdRef: 'eleonore-saint-cloud'
               }
@@ -3363,14 +3365,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Grand-Bassam',
             country: 'Côte d’Ivoire',
             flag: '🇨🇮',
-            universeTag: 'Nyonoukpo',
+            universeTag: 'Wowmen',
             photoUrl: '/assets/duos/pere-matthieu.jpg',
             badge: 'Invité(e)',
             invitedById: 'eleonore-saint-cloud',
             invitedByName: 'Éléonore Vance',
             invitationStory: 'Invitée par Éléonore pour son courage d’avoir conquis un métier réservé aux hommes depuis 400 ans dans la lagune Ébrié.',
             duoPartnerName: 'Ibrahima',
-            duoId: 'duo-blacks-one-nyonoukpo-01',
+            duoId: 'duo-blacks-one-wowmen-01',
             episodeQuestion: '04 — La mue : devenir qui l’on était destinée à être.',
             protagonistIdRef: 'eleonore-saint-cloud'
           }
@@ -3379,31 +3381,31 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     ]
   },
   {
-    seriesId: 'remedes-e-vivi',
-    seriesTitle: 'Remèdes ‹ › E Vivi',
-    subtitle: 'Ceux qui soignent ‹ › ceux qui nourrissent.',
-    description: 'Le pont entre les soignants de toutes les médecines et les artisans du champ, du feu et des marchés : comment chacun veille sur les autres dès l’aube.',
-    centralQuestion: 'Veiller sur les autres',
+    seriesId: 'modernite-tradition',
+    seriesTitle: 'Modernité ‹ › Tradition',
+    subtitle: 'Méthodes récentes ‹ › savoirs transmis.',
+    description: 'Le pont entre celles et ceux qui exercent avec des techniques récentes et les artisans et praticiens des savoirs transmis de génération en génération.',
+    centralQuestion: 'Le métier',
     totalAffiliatedCount: 10,
     generationsCount: 3,
     pioneers: [
       {
         id: 'chef-koffi',
-        name: 'Maman Henriette & Chef Koffi',
+        name: 'Maman Henriette & Koffi',
         age: 52,
         role: 'Maîtres cuisiniers du patrimoine vivant',
         territory: 'Cotonou',
         country: 'Bénin',
         flag: '🇧🇯',
-        universeTag: 'E Vivi',
+        universeTag: 'Tradition',
         photoUrl: '/assets/duos/photographer-focus.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Première effigie d’E Vivi. Ils préparent 400 repas chaque jour dès l\'aurore à Dantokpa avec une dignité royale et le respect absolu de chaque convive.',
+        invitationStory: 'Première effigie de Tradition. Ils perpétuent chaque jour dès l\'aurore à Dantokpa des recettes et gestes transmis depuis plusieurs générations.',
         duoPartnerName: 'Dre. Mireille Akplogan',
         duoPartnerPhoto: '/assets/duos/care-mireille.jpg',
-        duoId: 'duo-remedes-e-vivi-01',
-        episodeQuestion: '01 — L’évidence : Le moment où votre métier est devenu une évidence.',
+        duoId: 'duo-modernite-tradition-01',
+        episodeQuestion: "01 — Ce qu'on m'a transmis : Un savoir-faire dont vous ne pourriez plus vous passer.",
         protagonistIdRef: 'chef-koffi',
         invitedPeople: [
           {
@@ -3414,15 +3416,15 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Bohicon',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'E Vivi',
+            universeTag: 'Tradition',
             photoUrl: '/assets/duos/researcher-phd.jpg',
             badge: 'Invité(e)',
             invitedById: 'chef-koffi',
             invitedByName: 'Koffi',
-            invitationStory: 'Fait entrer par Koffi car son huile de palme rouge pressée à froid au pilon de bois donne à la sauce la saveur intemporelle des grand-mères.',
+            invitationStory: 'Fait entrer par Koffi car son huile de palme rouge pressée à froid au pilon de bois perpétue le geste ancestral des anciens.',
             duoPartnerName: 'Marc-Antoine',
-            duoId: 'duo-remedes-e-vivi-01',
-            episodeQuestion: '03 — Une rencontre marquante.',
+            duoId: 'duo-modernite-tradition-01',
+            episodeQuestion: '03 — L’autre façon.',
             protagonistIdRef: 'chef-koffi',
             invitedPeople: [
               {
@@ -3433,15 +3435,15 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 territory: 'Dassa-Zoumè',
                 country: 'Bénin',
                 flag: '🇧🇯',
-                universeTag: 'E Vivi',
+                universeTag: 'Tradition',
                 photoUrl: '/assets/duos/sayri-quispe.jpg',
                 badge: 'Invité(e)',
                 invitedById: 'roland-huile',
                 invitedByName: 'Roland',
-                invitationStory: 'Invitée par Roland pour faire découvrir les épices sacrées de savane qui soignent autant qu’elles régalent.',
+                invitationStory: 'Invitée par Roland pour faire découvrir les plantes et épices de savane transmises de mère en fille.',
                 duoPartnerName: 'Yasmine',
-                duoId: 'duo-remedes-e-vivi-01',
-                episodeQuestion: '04 — Ce qu’on ramène chez soi le soir.',
+                duoId: 'duo-modernite-tradition-01',
+                episodeQuestion: '04 — Ce qu’on garde.',
                 protagonistIdRef: 'chef-koffi'
               }
             ]
@@ -3452,57 +3454,57 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         id: 'helene-saint-amand',
         name: 'Hélène Saint-Amand',
         age: 49,
-        role: 'Praticienne d’herboristerie & soins naturels',
+        role: 'Praticienne en formulation clinique & laboratoire',
         territory: 'Paris / Marrakech',
         country: 'France & Maroc',
         flag: '🇫🇷',
-        universeTag: 'Remèdes',
-        photoUrl: '/assets/images/senan_innovatrice_1792933679487.jpg',
+        universeTag: 'Modernité',
+        photoUrl: '/assets/duos/athlete-hurdle.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Première effigie de Remèdes, explorant les infusions médicinales et l’art d’accueillir et d’apaiser.',
+        invitationStory: 'Première effigie de Modernité, alliant protocoles techniques rigoureux et écoute des pratiques d’aujourd’hui.',
         duoPartnerName: 'Koffi',
         duoPartnerPhoto: '/assets/duos/chef-koffi.jpg',
-        duoId: 'duo-remedes-e-vivi-01',
-        episodeQuestion: '01 — Le geste de soin qui rend un instant inoubliable.',
+        duoId: 'duo-modernite-tradition-01',
+        episodeQuestion: '01 — Le moment où ce métier est devenu le vôtre.',
         protagonistIdRef: 'helene-saint-amand',
         invitedPeople: [
           {
             id: 'marc-antoine-sommelier',
             name: 'Marc-Antoine',
             age: 41,
-            role: 'Alchimiste des infusions & herboriste',
+            role: 'Biochimiste & formulateur d’extractions modernes',
             territory: 'Paris',
             country: 'France',
             flag: '🇫🇷',
-            universeTag: 'Remèdes',
-            photoUrl: '/assets/images/sika_tisserande_1792933605542.jpg',
+            universeTag: 'Modernité',
+            photoUrl: '/assets/duos/care-mireille.jpg',
             badge: 'Invité(e)',
             invitedById: 'helene-saint-amand',
             invitedByName: 'Hélène Saint-Amand',
-            invitationStory: 'Invité par Hélène pour ses préparations d\'eaux d\'herbes médicinales et de fermentations naturelles.',
+            invitationStory: 'Invité par Hélène pour ses recherches de laboratoire sur les principes actifs végétaux.',
             duoPartnerName: 'Roland',
-            duoId: 'duo-remedes-e-vivi-01',
-            episodeQuestion: '02 — Tenir bon quand tout pèse.',
+            duoId: 'duo-modernite-tradition-01',
+            episodeQuestion: "02 — Quand ça n'a pas marché.",
             protagonistIdRef: 'helene-saint-amand',
             invitedPeople: [
               {
                 id: 'yasmine-parfumeuse',
                 name: 'Yasmine Benjelloun',
                 age: 33,
-                role: 'Apothicaire botanique & aromathérapeute',
+                role: 'Ingénieure en extraction & pharmacognosie',
                 territory: 'Marrakech',
                 country: 'Maroc',
                 flag: '🇲🇦',
-                universeTag: 'Remèdes',
+                universeTag: 'Modernité',
                 photoUrl: '/assets/duos/tobi-ganvie.jpg',
                 badge: 'Invité(e)',
                 invitedById: 'marc-antoine-sommelier',
                 invitedByName: 'Marc-Antoine',
-                invitationStory: 'Fait entrer par Marc-Antoine pour créer des baumes de fleur d’oranger et de résine de cèdre.',
+                invitationStory: 'Fait entrer par Marc-Antoine pour ses procédés modernes de distillation à froid.',
                 duoPartnerName: 'Félicité',
-                duoId: 'duo-remedes-e-vivi-01',
-                episodeQuestion: '04 — Ce qu’on ramène le soir.',
+                duoId: 'duo-modernite-tradition-01',
+                episodeQuestion: '04 — Ce qu’on garde.',
                 protagonistIdRef: 'helene-saint-amand'
               }
             ]
@@ -3512,11 +3514,11 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     ]
   },
   {
-    seriesId: 'builders-mi-do-kpo',
-    seriesTitle: 'Builders ‹ › Mi do kpô',
-    subtitle: 'Bâtir pour soi ‹ › bâtir pour tous.',
-    description: 'Deux façons de bâtir : celles et ceux qui entreprennent dans le réel et celles et ceux qui tiennent l’intérêt général et la vie commune.',
-    centralQuestion: 'Le choix & la confiance',
+    seriesId: 'builders-coachs',
+    seriesTitle: 'Builders ‹ › Coachs',
+    subtitle: 'Bâtir dans le réel ‹ › accompagner le chemin.',
+    description: 'Deux façons de faire grandir : celles et ceux qui entreprennent et bâtissent, et celles et ceux qui conseillent, soutiennent ou forment.',
+    centralQuestion: 'Le conseil',
     totalAffiliatedCount: 14,
     generationsCount: 3,
     pioneers: [
@@ -3524,38 +3526,38 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         id: 'fatou-diallo',
         name: 'Fatou Diallo',
         age: 42,
-        role: 'Investisseuse à impact & mécène',
+        role: 'Mentore & accompagnatrice d’entrepreneurs',
         territory: 'Dakar & Paris',
         country: 'Sénégal',
         flag: '🇸🇳',
-        universeTag: 'Mi do kpô',
+        universeTag: 'Coachs',
         photoUrl: '/assets/duos/fatou-diallo.jpg',
         isPioneer: true,
         badge: 'Première effigie',
-        invitationStory: 'Pionnière du soutien aux ateliers et services locaux, engagée à prouver que les moyens investis avec discernement nourrissent le bien commun.',
+        invitationStory: 'Pionnière du mentorat et de l’accompagnement de projets, elle aide les bâtisseurs à trouver leur voie et à tenir dans la durée.',
         duoPartnerName: 'Sènami Houndété',
-        duoPartnerPhoto: '/assets/images/senami_architecte_1792933801804.jpg',
-        duoId: 'duo-builders-mi-do-kpo-01',
-        episodeQuestion: '01 — Le choix de cette voie.',
+        duoPartnerPhoto: '/assets/duos/fatou-diallo.jpg',
+        duoId: 'duo-builders-coachs-01',
+        episodeQuestion: '01 — Le conseil.',
         protagonistIdRef: 'fatou-diallo',
         invitedPeople: [
           {
             id: 'amadou-kane',
             name: 'Amadou Kane',
             age: 58,
-            role: 'Banquier de développement solidaire',
+            role: 'Formateur & conseiller en stratégie coopérative',
             territory: 'Saint-Louis',
             country: 'Sénégal',
             flag: '🇸🇳',
-            universeTag: 'Mi do kpô',
+            universeTag: 'Coachs',
             photoUrl: '/assets/duos/tobi-houndegla.jpg',
             badge: 'Invité(e)',
             invitedById: 'fatou-diallo',
             invitedByName: 'Fatou Diallo',
-            invitationStory: 'Mentor de Fatou, pionnier des caisses de crédit mutuel rurale en Casamance.',
+            invitationStory: 'Mentor de Fatou, accompagnateur historique de caisses de crédit mutuel rurales en Casamance.',
             duoPartnerName: 'Maître Kofi Annan',
-            duoId: 'duo-builders-mi-do-kpo-01',
-            episodeQuestion: '02 — Quand tout a failli tomber.',
+            duoId: 'duo-builders-coachs-01',
+            episodeQuestion: '02 — Le risque.',
             protagonistIdRef: 'fatou-diallo',
             invitedPeople: []
           }
@@ -3576,27 +3578,27 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         invitationStory: 'Bâtisseur de terre crue et concepteur d’éco-matériaux, il matérialise les visions d’infrastructures durables.',
         duoPartnerName: 'Fatou Diallo',
         duoPartnerPhoto: '/assets/duos/fatou-diallo.jpg',
-        duoId: 'duo-builders-mi-do-kpo-01',
-        episodeQuestion: '01 — Le choix de cette voie.',
+        duoId: 'duo-builders-coachs-01',
+        episodeQuestion: '01 — Le conseil.',
         protagonistIdRef: 'kwame-mensah',
         invitedPeople: [
           {
             id: 'sena-houndete',
             name: 'Sena Houndété',
             age: 26,
-            role: 'Ingénieure en architecture bioclimatique',
+            role: 'Fondatrice de cabinet d’architecture bioclimatique',
             territory: 'Cotonou',
             country: 'Bénin',
             flag: '🇧🇯',
             universeTag: 'Builders',
-            photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
+            photoUrl: '/assets/duos/horizons-awa.jpg',
             badge: 'Invité(e)',
             invitedById: 'kwame-mensah',
             invitedByName: 'Kwame Mensah',
-            invitationStory: 'Apprentie formée sur les chantiers de voûtes nubiennes, devenue conceptrice de campus zéro-carbone.',
+            invitationStory: 'Apprentie formée sur les chantiers de voûtes nubiennes, devenue bâtisseuse de campus zéro-carbone.',
             duoPartnerName: 'Mariama Fall',
-            duoId: 'duo-builders-mi-do-kpo-01',
-            episodeQuestion: '03 — La confiance d’un autre.',
+            duoId: 'duo-builders-coachs-01',
+            episodeQuestion: '03 — La confiance.',
             protagonistIdRef: 'kwame-mensah',
             invitedPeople: []
           }
@@ -3605,8 +3607,8 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     ]
   },
   {
-    seriesId: 'phd-azovi',
-    seriesTitle: 'PhD ‹ › Azovi',
+    seriesId: 'phd-apprentis',
+    seriesTitle: 'PhD ‹ › Apprentis',
     subtitle: 'Apprendre par la recherche ‹ › apprendre par la main.',
     description: 'Quand la patience de la recherche doctorale rencontre l’apprentissage sur le tas en atelier : une lignée de chercheurs et d’apprentis.',
     centralQuestion: 'Apprendre',
@@ -3621,15 +3623,15 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         territory: 'Ganvié & Cotonou',
         country: 'Bénin',
         flag: '🇧🇯',
-        universeTag: 'Azovi',
+        universeTag: 'Apprentis',
         photoUrl: '/assets/duos/codjo-blind.jpg',
         isPioneer: true,
         badge: 'Première effigie',
         invitationStory: 'Président de l’association Voir Autrement, initiateur d’une lignée solidaire d’apprentis artisans.',
         duoPartnerName: 'Dre. Nadège Zinsou',
         duoPartnerPhoto: '/assets/duos/researcher-phd.jpg',
-        duoId: 'duo-phd-azovi-01',
-        episodeQuestion: '01 — Le premier jour d’apprentissage.',
+        duoId: 'duo-phd-apprentis-01',
+        episodeQuestion: '01 — La question qui ne lâche pas.',
         protagonistIdRef: 'codjo-blind',
         invitedPeople: [
           {
@@ -3640,14 +3642,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             territory: 'Cotonou',
             country: 'Bénin',
             flag: '🇧🇯',
-            universeTag: 'Azovi',
-            photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
+            universeTag: 'Apprentis',
+            photoUrl: '/assets/duos/horizons-awa.jpg',
             badge: 'Filleule de Pascal',
             invitedById: 'codjo-blind',
             invitedByName: 'Pascal Cossi',
             invitationStory: 'Parrainée par Pascal au sein de l’association Voir Autrement pour développer son atelier de sacs perlés.',
             duoPartnerName: 'Dre. Nadège Zinsou',
-            duoId: 'duo-phd-azovi-01',
+            duoId: 'duo-phd-apprentis-01',
             episodeQuestion: '02 — Apprendre en faisant.',
             protagonistIdRef: 'codjo-blind',
             invitedPeople: [
@@ -3659,14 +3661,14 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 territory: 'Allada & Cotonou',
                 country: 'Bénin',
                 flag: '🇧🇯',
-                universeTag: 'Azovi',
+                universeTag: 'Apprentis',
                 photoUrl: '/assets/duos/kwame-mensah.jpg',
                 badge: 'Filleul de Cécile',
                 invitedById: 'cecile-artisan',
                 invitedByName: 'Cécile',
                 invitationStory: 'Accueilli dans la lignée par Cécile pour transmettre la taille de sièges et tabourets en bois brut.',
                 duoPartnerName: 'Vieux Ahouan',
-                duoId: 'duo-phd-azovi-01',
+                duoId: 'duo-phd-apprentis-01',
                 episodeQuestion: '03 — L’erreur formatrice.',
                 protagonistIdRef: 'codjo-blind',
                 invitedPeople: []
@@ -3690,8 +3692,8 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         invitationStory: 'Explore la transmission des mémoires de la terre sacrée de Ouidah.',
         duoPartnerName: 'Pascal Cossi',
         duoPartnerPhoto: '/assets/duos/codjo-blind.jpg',
-        duoId: 'duo-phd-azovi-01',
-        episodeQuestion: '01 — Le premier jour.',
+        duoId: 'duo-phd-apprentis-01',
+        episodeQuestion: '01 — La question qui ne lâche pas.',
         protagonistIdRef: 'mawuna-medium',
         invitedPeople: [
           {
@@ -3709,8 +3711,8 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitedByName: 'Mawuna Houénou',
             invitationStory: 'A guidé Mawuna dans la compréhension de la mémoire orale.',
             duoPartnerName: 'Vieux Ahouan',
-            duoId: 'duo-phd-azovi-01',
-            episodeQuestion: '04 — Celui ou celle qui vous a formé.',
+            duoId: 'duo-phd-apprentis-01',
+            episodeQuestion: '04 — Celui ou celle qui vous a retenu.',
             protagonistIdRef: 'mawuna-medium',
             invitedPeople: []
           }

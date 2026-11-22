@@ -42,42 +42,42 @@ const STOCK_VIDEOS = [
 ];
 
 const SERIES_STYLES: Record<string, { accentColor: string; glowColor: string; bgGradient: string }> = {
-  'remedes-e-vivi': {
+  'modernite-tradition': {
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.65)',
     bgGradient: 'from-emerald-600 via-teal-700 to-stone-900'
   },
-  'amin-amen-legba': {
+  'jesus-legba': {
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.65)',
     bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
   },
-  'phd-azovi': {
+  'phd-apprentis': {
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.65)',
     bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
   },
-  'blacks-one-nyonoukpo': {
+  'blacks-one-wowmen': {
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.65)',
     bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
   },
-  'fiat-luxe-irokos': {
+  'bambous-irokos': {
     accentColor: '#EAB308',
     glowColor: 'rgba(234, 179, 8, 0.65)',
     bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
   },
-  'horizons-finagnon': {
+  'horizons-benin': {
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.65)',
     bgGradient: 'from-sky-600 via-blue-800 to-stone-900'
   },
-  'builders-mi-do-kpo': {
+  'builders-coachs': {
     accentColor: '#84CC16',
     glowColor: 'rgba(132, 204, 22, 0.65)',
     bgGradient: 'from-lime-600 via-green-700 to-stone-900'
   },
-  'regards-gbe': {
+  'regards-paroles': {
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.65)',
     bgGradient: 'from-purple-600 via-violet-700 to-stone-900'
@@ -86,7 +86,7 @@ const SERIES_STYLES: Record<string, { accentColor: string; glowColor: string; bg
 
 // Les 8 séries documentaires fondatrices
 const SERIES_SUBJECTS: ProposeSubject[] = SERIES_REGISTRY.map((series, index) => {
-  const style = SERIES_STYLES[series.id] || SERIES_STYLES['remedes-e-vivi'];
+  const style = SERIES_STYLES[series.id] || SERIES_STYLES['modernite-tradition'];
   return {
     id: series.id,
     title: series.title,
@@ -126,7 +126,7 @@ export const PROPOSE_DOORS: ProposeDoor[] = DIMENSIONS.map((dim, idx) => {
       icon: createDoorIcon('16-series/_dimension'),
       tagline: 'Racontez votre histoire face à un alter ego d’un autre continent.',
       videoUrl: STOCK_VIDEOS[0],
-      posterUrl: '/assets/doors/door-series.jpg',
+      posterUrl: '/Posters/Onboardings/choixdesseries.png',
       actionDoorLabel: 'Choisir cette porte',
       advantages: [
         'Dialogue face-à-face avec un alter ego d’un autre continent.',

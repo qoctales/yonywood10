@@ -58,14 +58,14 @@ export interface ExplorerCatalogItem {
 
 // 1. SÉRIES DOCUMENTAIRES (8 séries officielles)
 const SERIES_ACCENT_COLORS: Record<string, string> = {
-  'remedes-e-vivi': '#10B981',
-  'amin-amen-legba': '#D97706',
-  'phd-azovi': '#F59E0B',
-  'blacks-one-nyonoukpo': '#EC4899',
-  'fiat-luxe-irokos': '#EAB308',
-  'horizons-finagnon': '#0284C7',
-  'builders-mi-do-kpo': '#84CC16',
-  'regards-gbe': '#8B5CF6'
+  'modernite-tradition': '#10B981',
+  'jesus-legba': '#D97706',
+  'phd-apprentis': '#F59E0B',
+  'blacks-one-wowmen': '#EC4899',
+  'bambous-irokos': '#EAB308',
+  'horizons-benin': '#0284C7',
+  'builders-coachs': '#84CC16',
+  'regards-paroles': '#8B5CF6'
 };
 
 const seriesList: ExplorerCatalogItem[] = SERIES_REGISTRY.map((series) => ({
@@ -1492,7 +1492,7 @@ function buildCatalogForDimension(dimId: string): ExplorerCatalogItem[] {
     title: sc.label,
     subtitle: sc.tagline || dim?.tagline || '',
     question: sc.question,
-    photoUrl: sc.photoUrl || dim?.coverImage || '/assets/doors/door-sagesses.jpg',
+    photoUrl: sc.photoUrl || dim?.coverImage || '/Posters/Sides/Irokos.png',
     accentColor: sc.accentColor || dim?.accentColor,
     badge: sc.badge || `Porte ${dim?.label || ''}`,
     doorId: dimId,
@@ -1542,11 +1542,11 @@ const STOCK_VIDEOS = [
 ];
 
 const PEOPLE_PHOTOS = [
-  '/assets/images/sika_tisserande_1792933605542.jpg',
+  '/assets/duos/horizons-awa.jpg',
   '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
-  '/assets/images/senan_innovatrice_1792933679487.jpg',
+  '/assets/duos/athlete-hurdle.jpg',
   '/assets/duos/tobi-houndegla.jpg',
-  '/assets/images/amara_andine_1792933642777.jpg',
+  '/assets/duos/sayri-quispe.jpg',
   '/assets/duos/paroles-armel.jpg',
   '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
   '/assets/duos/tobi-ganvie.jpg',
@@ -1554,10 +1554,10 @@ const PEOPLE_PHOTOS = [
   '/assets/duos/mawuna-medium.jpg',
   '/assets/duos/codjo-blind.jpg',
   '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
-  '/assets/images/beninoise_femme_sika_1792164985263.jpg',
-  '/assets/images/beninois_sage_dossou_1792165004493.jpg',
-  '/assets/images/beninoise_jeune_senan_1792165025309.jpg',
-  '/assets/images/beninois_pecheur_tobi_1792165042006.jpg'
+  '/assets/duos/eleonore-vance.jpg',
+  '/assets/duos/dah-zounon.jpg',
+  '/assets/duos/care-mireille.jpg',
+  '/assets/duos/tobi-houndegla.jpg'
 ];
 
 const FIRST_NAMES = [

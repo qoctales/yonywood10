@@ -100,7 +100,7 @@ export const DemoStudioSection: React.FC = () => {
           <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
 
             <img
-              src={currentDoor.posterUrl || '/assets/doors/door-sagesses.jpg'}
+              src={currentDoor.posterUrl || '/Posters/Sides/Irokos.png'}
               alt={currentDoor.label}
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               loading="lazy"
@@ -207,7 +207,7 @@ export const DemoStudioSection: React.FC = () => {
           <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
 
             <img
-              src={currentSeries.coverImage || currentSeries.posterUrl || SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl}
+              src={currentSeries.coverImage || currentSeries.posterUrl || SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl}
               alt={currentSeries.title}
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             loading="lazy"

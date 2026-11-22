@@ -211,7 +211,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
   }, [returnCastingCategoryId, returnFinalChoiceId, returnPartId]);
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-3 sm:px-6 pt-1 sm:pt-2 pb-20 sm:pb-24 pt-safe pb-safe h-full max-h-full overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+    <div className="w-full max-w-3xl mx-auto px-3 sm:px-6 pt-1 sm:pt-2 pb-20 sm:pb-24 pt-safe pb-safe h-full max-h-full overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       
       {/* 1. EN-TÊTE EXACTEMENT ALIGNÉ AVEC LES ÉCRANS PRÉCÉDENTS (RETOUR FLUIDE AU CHOIX PRÉCÉDENT) */}
       <div className="relative flex items-center justify-between h-8 sm:h-10 shrink-0 gap-2 mb-0.5 sm:mb-1">

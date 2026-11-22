@@ -240,7 +240,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
   const [userPhoto, setUserPhoto] = useState<string>(() => {
     if (targetProtagonist) return targetProtagonist.photoUrl;
     if (effectiveOwner && effectiveOwner.avatarUrl) return effectiveOwner.avatarUrl;
-    return '/assets/images/romeo_avatar_1792698425983.jpg';
+    return '/assets/duos/paroles-armel.jpg';
   });
 
   // Mise à jour de l'identité si effectiveOwner change en mode propriétaire
@@ -343,7 +343,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         return ROMEO_SIMULATION_DATA[cat] || [];
       }
 
-      const pPhoto = targetProtagonist?.photoUrl || '/assets/images/amara_andine_1792933642777.jpg';
+      const pPhoto = targetProtagonist?.photoUrl || '/assets/duos/horizons-awa.jpg';
       const pVideo = targetProtagonist?.teaserVideoUrl || '/sample.mp4';
       const pName = targetProtagonist?.name || 'Artisan';
 
@@ -544,7 +544,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       title: sub.title,
       subtitle: PROFILE_TAB_LABELS[activeProfileTab],
       description: sub.synopsis,
-      posterUrl: sub.thumbnailUrl || userPhoto || '/assets/images/selfie_video_story.jpg',
+      posterUrl: sub.thumbnailUrl || userPhoto || '/Posters/Onboardings/mesvideos.png',
       videoUrl: sub.videoUrl || '/sample.mp4',
       duration: '02:00',
       tag: sub.title || PROFILE_TAB_LABELS[activeProfileTab]
@@ -867,7 +867,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
   };
 
   return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       {/* TOAST SUCCÈS */}
       {shareToast && (
         <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm w-full px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">

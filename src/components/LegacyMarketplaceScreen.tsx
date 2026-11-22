@@ -44,56 +44,49 @@ const PRODUCTIONS: ProductionPoster[] = [
   {
     id: 'topic-marche-dantokpa',
     title: 'Marché Dantokpa',
-    posterImage: '/assets/images/territoires_traditions_1792085253556.jpg',
+    posterImage: '/Posters/Focus/E Vivi.png',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-baccalaureat',
     title: 'Baccalauréat',
-    posterImage: '/assets/images/studio_orga_valeurs_1792608959843.jpg',
+    posterImage: '/Posters/Focus/Mon histoire fera le job.png',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-lycees-behanzin-toffa',
     title: 'Lycées Béhanzin et Toffa',
-    posterImage: '/assets/images/studio_orga_origines_1792608957920.jpg',
+    posterImage: '/Posters/Focus/Votre Honneur.png',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-apprentis',
     title: 'Apprentis',
-    posterImage: '/assets/images/expertises_artisanat_1792085293909.jpg',
-    videoPreviewUrl: '/sample.mp4',
-    sharePrice: 50
-  },
-  {
-    id: 'topic-sodabi',
-    title: 'Sodabi',
-    posterImage: '/assets/images/marques_alimentation_1792086435220.jpg',
+    posterImage: '/Posters/Sides/Apprentis.png',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-ganvie',
     title: 'Ganvié',
-    posterImage: '/assets/images/beninois_pecheur_tobi_1792165042006.jpg',
+    posterImage: '/assets/duos/tobi-houndegla.jpg',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-angelique-kidjo',
     title: 'Angélique Kidjo',
-    posterImage: '/assets/images/pers_arts_1792086472940.jpg',
+    posterImage: '/Posters/Focus/Artistes.png',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
   {
     id: 'topic-danialou-sagbohan',
     title: 'Danialou Sagbohan',
-    posterImage: '/assets/images/beninois_sage_dossou_1792165004493.jpg',
+    posterImage: '/Posters/Focus/Diasporas.png',
     videoPreviewUrl: '/sample.mp4',
     sharePrice: 50
   },
@@ -112,9 +105,9 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     id: 'peer-1',
     sellerId: 'koffi-tisserand',
     sellerName: 'Koffi',
-    sellerPhoto: '/assets/images/koffi_tisserand_1792933625628.jpg',
-    seriesTitle: 'Amin Amen ‹ › Legba',
-    posterImage: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
+    sellerPhoto: '/assets/duos/chef-koffi.jpg',
+    seriesTitle: 'Jesus ‹ › Legba',
+    posterImage: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 3,
     unitPrice: 55
@@ -124,8 +117,8 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerId: 'nadia-artist',
     sellerName: 'Mireille',
     sellerPhoto: '/assets/duos/care-mireille.jpg',
-    seriesTitle: 'Remèdes ‹ › E Vivi',
-    posterImage: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
+    seriesTitle: 'Modernité ‹ › Tradition',
+    posterImage: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 5,
     unitPrice: 52
@@ -135,8 +128,8 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerId: 'marcel-speaker',
     sellerName: 'Malik',
     sellerPhoto: '/assets/duos/malik-diop.jpg',
-    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
-    posterImage: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
+    seriesTitle: 'Blacks One ‹ › Wowmen',
+    posterImage: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 2,
     unitPrice: 72
@@ -145,9 +138,9 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     id: 'peer-4',
     sellerId: 'amina-cook',
     sellerName: 'Sènami',
-    sellerPhoto: '/assets/images/senami_architecte_1792933801804.jpg',
-    seriesTitle: 'Builders ‹ › Mi do kpô',
-    posterImage: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
+    sellerPhoto: '/assets/duos/fatou-diallo.jpg',
+    seriesTitle: 'Builders ‹ › Coachs',
+    posterImage: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 4,
     unitPrice: 62
@@ -157,8 +150,8 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerId: 'benoit-builder',
     sellerName: 'Tobi',
     sellerPhoto: '/assets/duos/tobi-houndegla.jpg',
-    seriesTitle: 'Horizons ‹ › Finagnon',
-    posterImage: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
+    seriesTitle: 'Horizons ‹ › Benin',
+    posterImage: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 3,
     unitPrice: 68
@@ -167,9 +160,9 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     id: 'peer-6',
     sellerId: 'codjo-voyant',
     sellerName: 'Kiki & Kpèdétin',
-    sellerPhoto: '/assets/images/kiki_passeur_1792933820505.jpg',
-    seriesTitle: 'Fiat Luxe ‹ › Irokos',
-    posterImage: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
+    sellerPhoto: '/assets/duos/kiki-alapini.jpg',
+    seriesTitle: 'Bambous ‹ › Irokos',
+    posterImage: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 4,
     unitPrice: 59
@@ -179,8 +172,8 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerId: 'builder-kwame-seller',
     sellerName: 'Nadège & Sénan',
     sellerPhoto: '/assets/duos/researcher-phd.jpg',
-    seriesTitle: 'PhD ‹ › Azovi',
-    posterImage: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
+    seriesTitle: 'PhD ‹ › Apprentis',
+    posterImage: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 6,
     unitPrice: 65
@@ -190,8 +183,8 @@ const INITIAL_PEER_OFFERS: PeerOffer[] = [
     sellerId: 'clara-focus-seller',
     sellerName: 'Chancelle & Armel',
     sellerPhoto: '/assets/duos/photographer-focus.jpg',
-    seriesTitle: 'Regards ‹ › Gbé',
-    posterImage: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
+    seriesTitle: 'Images ‹ › Paroles',
+    posterImage: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
     videoPreviewUrl: '/sample.mp4',
     sharesCount: 5,
     unitPrice: 58
@@ -242,19 +235,18 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
     'topic-baccalaureat': 78,    // 178 souscrites (70% — 78 restantes)
     'topic-lycees-behanzin-toffa': 74, // 182 souscrites (71% — 74 restantes)
     'topic-apprentis': 85,       // 171 souscrites (67% — 85 restantes)
-    'topic-sodabi': 69,          // 187 souscrites (73% — 69 restantes)
     'topic-ganvie': 73,          // 183 souscrites (71% — 73 restantes)
     'topic-angelique-kidjo': 64, // 192 souscrites (75% — 64 restantes)
     'topic-danialou-sagbohan': 70, // 186 souscrites (73% — 70 restantes)
     // Les 8 séries documentaires officielles
-    'remedes-e-vivi': 74, // 182 souscrites (71%)
-    'amin-amen-legba': 77, // 179 souscrites (70%)
-    'phd-azovi': 77, // 179 souscrites (70%)
-    'blacks-one-nyonoukpo': 80, // 176 souscrites (69%)
-    'fiat-luxe-irokos': 79, // 177 souscrites (69%)
-    'horizons-finagnon': 75, // 181 souscrites (71%)
-    'builders-mi-do-kpo': 72, // 184 souscrites (72%)
-    'regards-gbe': 76 // 180 souscrites (70%)
+    'modernite-tradition': 74, // 182 souscrites (71%)
+    'jesus-legba': 77, // 179 souscrites (70%)
+    'phd-apprentis': 77, // 179 souscrites (70%)
+    'blacks-one-wowmen': 80, // 176 souscrites (69%)
+    'bambous-irokos': 79, // 177 souscrites (69%)
+    'horizons-benin': 75, // 181 souscrites (71%)
+    'builders-coachs': 72, // 184 souscrites (72%)
+    'regards-paroles': 76 // 180 souscrites (70%)
   });
 
   // Chargement en temps réel des parts restantes depuis Firestore (requête unique optimisée)

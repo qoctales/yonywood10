@@ -361,7 +361,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
   const [swipeQuestionModalData, setSwipeQuestionModalData] = useState<{ title: string; question: string } | null>(null);
 
   // Filtrage par série (si mode séries)
-  const [selectedSeriesId, setSelectedSeriesId] = useState<string>('amin-amen-legba');
+  const [selectedSeriesId, setSelectedSeriesId] = useState<string>('jesus-legba');
   const [teaserProtagonist, setTeaserProtagonist] = useState<Protagonist | null>(null);
 
   // 2. Navigation spatiale : rotation, zoom et pan
@@ -1833,7 +1833,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
           activeFlagUrl={activeCategory === 'countries' ? getCountryFlagUrl(activeTopicId) : undefined}
           activeCoverImage={
             activeCategory === 'series'
-              ? (activeTopicItem?.photoUrl || SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl)
+              ? (activeTopicItem?.photoUrl || SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl)
               : (activeCategory !== 'countries' ? activeTopicItem?.photoUrl : undefined)
           }
           hoveredCoverImage={hoveredTopic?.photoUrl}

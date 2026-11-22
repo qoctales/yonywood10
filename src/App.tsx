@@ -5,6 +5,7 @@ import { BottomMenu } from './components/BottomMenu';
 import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
 import { ChunkErrorBoundary } from './components/ChunkErrorBoundary';
+import { BeninMotifWatermark } from './components/shared/BeninMotifWatermark';
 import { lazyWithRetry } from './utils/lazyWithRetry';
 import { SHOW_FINANCIAL_SCREENS, SHOW_PORTRAIT_IN_BAR } from './config/flags';
 import {
@@ -456,8 +457,10 @@ export default function App() {
         onTouchEnd={handleGlobalTouchEnd}
         className="flex-1 min-h-0 relative overflow-hidden flex flex-col"
       >
+        {!isDarkScreen && <BeninMotifWatermark />}
+        <div className="relative z-10 flex-1 min-h-0 flex flex-col overflow-hidden">
         <ChunkErrorBoundary resetKey={currentScreen.type}>
-        <Suspense fallback={<div className={`w-full h-full ${isDarkScreen ? 'bg-[#0E0D0B]' : 'bg-[#FAFAF9]'}`} />}>
+        <Suspense fallback={<div className={`w-full h-full ${isDarkScreen ? 'bg-[#0E0D0B]' : 'bg-transparent'}`} />}>
         {currentScreen.type === 'landing' && (
           <DuoFeedScreen 
             onNavigate={setCurrentScreen} 
@@ -658,6 +661,7 @@ export default function App() {
         )}
         </Suspense>
         </ChunkErrorBoundary>
+        </div>
       </main>
 
       {/* Menu de navigation principal : Studio, Héritage, Duo, Lumière, Production, Profil */}

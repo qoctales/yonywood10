@@ -8,7 +8,7 @@ export const DEFAULT_ADMIN_USER: UserAccount = {
   role: 'ADMIN',
   accountType: 'INDIVIDUAL',
   handle: '@romeo',
-  avatarUrl: '/assets/images/romeo_avatar_1792698425983.jpg',
+  avatarUrl: '/assets/duos/paroles-armel.jpg',
   bio: 'Béninois de retour d’expatriation après 8 années passées à l’étranger. Réalisateur & Fondateur YonyWood à Cotonou.',
   catchphrase: 'Béninois de retour d’expatriation après 8 années à l’étranger. Réalisateur & Fondateur YonyWood à Cotonou.',
   city: 'Cotonou',
@@ -35,7 +35,7 @@ export const INITIAL_DEMO_USERS: UserAccount[] = [
     role: 'USER',
     accountType: 'ORGANIZATION',
     handle: '@biosolaire_bj',
-    avatarUrl: '/assets/images/bio_solaire_1792933744556.jpg',
+    avatarUrl: '/assets/duos/kwame-mensah.jpg',
     bio: 'Pionnier des solutions d’énergie propre et d’irrigation solaire au service des agriculteurs et artisans du Bénin.',
     territory: 'Cotonou & Parakou',
     country: 'Bénin',
@@ -57,7 +57,7 @@ export const INITIAL_DEMO_USERS: UserAccount[] = [
     role: 'USER',
     accountType: 'ORGANIZATION',
     handle: '@tissage_ganvie',
-    avatarUrl: '/assets/images/sika_tisserande_1792933605542.jpg',
+    avatarUrl: '/assets/duos/horizons-awa.jpg',
     bio: 'Coopérative artisanale préservant les techniques ancestrales de tissage sur l’eau.',
     territory: 'Ganvié',
     country: 'Bénin',
@@ -279,7 +279,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       territory: (isPayloadObj && payload.territory) ? payload.territory : 'Cotonou',
       country: (isPayloadObj && payload.country) ? payload.country : 'Bénin',
       avatarUrl: accountType === 'ORGANIZATION' 
-        ? '/assets/images/marques_tech_1792086434196.jpg'
+        ? '/Posters/Sides/Builders.png'
         : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
       sharesCount: 10,
       createdAt: new Date().toISOString().split('T')[0],

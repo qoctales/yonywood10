@@ -19,7 +19,7 @@ export const ACTION_SHAREHOLDERS: ActionShareholderProfile[] = [
     photo: '/assets/duos/fatou-diallo.jpg',
     video: '/sample.mp4',
     phrase: 'Soutenir les bâtisseurs et les initiatives locales qui transforment nos territoires.',
-    series: ['Builders ‹ › Mi do kpô', 'Remèdes ‹ › E Vivi'],
+    series: ['Builders ‹ › Coachs', 'Modernité ‹ › Tradition'],
     protagonistId: 'coprod-nadia-kossi',
   },
   {
@@ -28,16 +28,16 @@ export const ACTION_SHAREHOLDERS: ActionShareholderProfile[] = [
     photo: '/assets/duos/coach-office.jpg',
     video: '/sample.mp4',
     phrase: 'Faire dialoguer la recherche, l’artisanat d’art et la mémoire vivante.',
-    series: ['Fiat Luxe ‹ › Irokos', 'Regards ‹ › Gbé'],
+    series: ['Bambous ‹ › Irokos', 'Images ‹ › Paroles'],
     protagonistId: 'coprod-armel-sarr',
   },
   {
     id: 'coprod-demo-3',
     name: 'Amara Kouyaté',
-    photo: '/assets/images/amara-kouyate-illus.jpg',
+    photo: '/assets/duos/eleonore-vance.jpg',
     video: '/sample.mp4',
     phrase: 'Propulser les créatrices et les récits africains qui inspirent les nouvelles générations.',
-    series: ['Blacks One ‹ › Nyonoukpo', 'Horizons ‹ › Finagnon'],
+    series: ['Blacks One ‹ › Wowmen', 'Horizons ‹ › Benin'],
     protagonistId: 'coprod-amara-kouyate',
   },
 ];

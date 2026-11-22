@@ -819,10 +819,10 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
                         const target = e.currentTarget;
                         target.onerror = null;
                         const fallbackCollabPhotos = [
-                          '/assets/images/amara_andine_1792933642777.jpg',
+                          '/assets/duos/horizons-awa.jpg',
                           '/assets/duos/chef-koffi.jpg',
                           '/assets/duos/kwame-mensah.jpg',
-                          '/assets/images/sika_tisserande_1792933605542.jpg',
+                          '/assets/duos/care-mireille.jpg',
                           '/assets/duos/dah-zounon.jpg'
                         ];
                         target.src = fallbackCollabPhotos[k % fallbackCollabPhotos.length];

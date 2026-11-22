@@ -44,7 +44,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Origines & Ancrage',
       subtitle: 'Arrivée à Cotonou & retrouvailles',
       description: 'Après 8 années d’expatriation, Roméo pose ses valises à Cotonou. Émotion des retrouvailles avec sa terre natale, la lumière tropicale et l’évidence de revenir bâtir au pays.',
-      posterUrl: '/assets/images/romeo_arriving_cotonou_1792698426939.jpg',
+      posterUrl: '/assets/duos/paroles-armel.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
       duration: '06:15',
       tag: 'Retour au pays'
@@ -54,7 +54,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Mémoires d’exil & traversées',
       subtitle: 'Itinéraire & Récit intime',
       description: 'Ce que la distance lui a appris : aiguiser son regard de cinéaste, comprendre l’exil et forger la conviction que les récits d’Afrique méritent une tribune universelle.',
-      posterUrl: '/assets/images/romeo_lagoon_sunset_1792698428025.jpg',
+      posterUrl: '/assets/duos/tobi-houndegla.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
       duration: '07:40',
       tag: 'Diaspora & Racines'
@@ -64,7 +64,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'La redécouverte de Cotonou',
       subtitle: 'Ancrage urbain & renouveau',
       description: 'Caméra à l’épaule, Roméo explore les carrefours, les ateliers d’artisans et les ruelles animées pour capturer l’énergie créative de la jeunesse béninoise.',
-      posterUrl: '/assets/images/romeo_settling_studio_1792698427492.jpg',
+      posterUrl: '/assets/duos/photographer-focus.jpg',
       videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
       duration: '05:20',
       tag: 'Ancrage natal'
@@ -74,7 +74,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Le souffle de la lagune',
       subtitle: 'Horizon & Transmission',
       description: 'Méditation face aux pirogues au crépuscule sur le lac Nokoué : poser les fondations d’un espace documentaire où chaque voix trouve son écho.',
-      posterUrl: '/assets/images/romeo_lagoon_sunset_1792698428025.jpg',
+      posterUrl: '/assets/duos/tobi-ganvie.jpg',
       videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
       duration: '08:10',
       tag: 'Transmission'
@@ -86,7 +86,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Cercles d’écoute avec les Anciens',
       subtitle: 'Rencontres intergénérationnelles',
       description: 'Partage du thé et recueil de récits avec les maîtres artisans et les sages pour archiver et célébrer leurs précieux savoir-faire.',
-      posterUrl: '/assets/images/romeo_dialogue_elders_1792698428934.jpg',
+      posterUrl: '/assets/duos/dah-zounon.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
       duration: '05:30',
       tag: 'Transmission orale'
@@ -96,7 +96,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Ateliers de cinéma documentaire',
       subtitle: 'Masterclass image & son de terrain',
       description: 'Formation pratique pour jeunes créateurs aux techniques de l’interview intime, du recueil mémoriel et du montage sensible.',
-      posterUrl: '/assets/images/romeo_settling_studio_1792698427492.jpg',
+      posterUrl: '/assets/duos/photographer-focus.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
       duration: '04:45',
       tag: 'Atelier de terrain'
@@ -106,7 +106,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Consultation scénario & récits',
       subtitle: 'Accompagnement de projets de films',
       description: 'Séance individuelle de conseil dramaturgique pour donner force et résonance à votre projet documentaire avant le tournage.',
-      posterUrl: '/assets/images/romeo_avatar_1792698425983.jpg',
+      posterUrl: '/assets/duos/paroles-armel.jpg',
       videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
       duration: '06:00',
       tag: 'Accompagnement'
@@ -116,7 +116,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Tirages d’art & photographies',
       subtitle: 'Série argentique « Retour au pays »',
       description: 'Tirages d’art limités et numérotés documentant la lumière et les visages du Bénin contemporain.',
-      posterUrl: '/assets/images/romeo_arriving_cotonou_1792698426939.jpg',
+      posterUrl: '/assets/duos/horizons-awa.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
       duration: '03:50',
       tag: 'Tirage numéroté'
@@ -128,7 +128,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'L’Atelier Créatif YonyWood Cotonou',
       subtitle: 'Studio documentaire & archivage',
       description: 'Aménagement d’un espace indépendant à Cotonou dédié à la réalisation documentaire, à l’archivage numérique et à l’accueil de résidences créatives.',
-      posterUrl: '/assets/images/romeo_settling_studio_1792698427492.jpg',
+      posterUrl: '/assets/duos/photographer-focus.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
       duration: '05:15',
       tag: 'Initiative personnelle',
@@ -139,7 +139,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Résidence des voix de la lagune',
       subtitle: 'Création collective en bordure d’eau',
       description: 'Tournage documentaire itinérant entre Ganvié et Porto-Novo pour capter la poésie et la vie des communautés lacustres.',
-      posterUrl: '/assets/images/romeo_lagoon_sunset_1792698428025.jpg',
+      posterUrl: '/assets/duos/tobi-houndegla.jpg',
       videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
       duration: '04:10',
       tag: 'Initiative personnelle',
@@ -150,7 +150,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Programme Passeurs d’Avenir',
       subtitle: 'Éducation à l’image en milieu scolaire',
       description: 'Ateliers d’initiation au documentaire dans les lycées et collèges du Sud-Bénin pour apprendre aux jeunes à raconter leurs mémoires.',
-      posterUrl: '/assets/images/romeo_dialogue_elders_1792698428934.jpg',
+      posterUrl: '/assets/duos/dah-zounon.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
       duration: '06:20',
       tag: 'Initiative personnelle',
@@ -161,7 +161,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Plateforme des mémoires vivantes',
       subtitle: 'Numérisation des savoirs oraux',
       description: 'Création d’une archive numérique ouverte connectant les diasporas aux savoir-faire et récits ancestraux du Bénin.',
-      posterUrl: '/assets/images/romeo_arriving_cotonou_1792698426939.jpg',
+      posterUrl: '/assets/duos/paroles-armel.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
       duration: '04:45',
       tag: 'Initiative personnelle',
@@ -174,7 +174,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Jeunes cadreurs & monteurs béninois',
       subtitle: 'Appel à compétences locales',
       description: 'Recherche de 3 jeunes talents en tournage et montage résidant à Cotonou ou Porto-Novo pour renforcer l’équipe de création documentaire.',
-      posterUrl: '/assets/images/romeo_settling_studio_1792698427492.jpg',
+      posterUrl: '/assets/duos/photographer-focus.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
       duration: '04:00',
       tag: 'Prioritaire'
@@ -184,7 +184,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Partenariats avec lieux culturels',
       subtitle: 'Espaces de projection & débats',
       description: 'Recherche de galeries, cours d’artisans et centres culturels pour organiser des projections et cercles d’échanges citoyens.',
-      posterUrl: '/assets/images/romeo_dialogue_elders_1792698428934.jpg',
+      posterUrl: '/assets/duos/dah-zounon.jpg',
       videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
       duration: '03:30',
       tag: 'En cours'
@@ -194,7 +194,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Matériel de numérisation audio',
       subtitle: 'Sauvegarde des mémoires sonores',
       description: 'Appel aux prêts de magnétophones et numériseurs pour traiter des archives orales enregistrées sur bandes et cassettes.',
-      posterUrl: '/assets/images/romeo_arriving_cotonou_1792698426939.jpg',
+      posterUrl: '/assets/duos/paroles-armel.jpg',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
       duration: '04:15',
       tag: 'D’ici juin'
@@ -204,7 +204,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       title: 'Soutiens & partenaires de la diaspora',
       subtitle: 'Accompagnement au cinéma indépendant',
       description: 'Recherche de partenaires et passionnés de culture pour accompagner la première saison documentaire YonyWood.',
-      posterUrl: '/assets/images/romeo_lagoon_sunset_1792698428025.jpg',
+      posterUrl: '/assets/duos/tobi-houndegla.jpg',
       videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
       duration: '05:00',
       tag: 'Permanente'
@@ -395,7 +395,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   {/* Niveau 2 : Cécile */}
                   <div className="p-2.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-center gap-3 ml-3">
                     <img
-                      src="/assets/images/amara_andine_1792933642777.jpg"
+                      src="/assets/duos/horizons-awa.jpg"
                       alt="Cécile"
                       className="w-10 h-10 rounded-xl object-cover border border-stone-200 shrink-0"
                       loading="lazy"

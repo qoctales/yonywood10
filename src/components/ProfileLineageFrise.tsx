@@ -99,7 +99,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
     saveLineageInvitation({
       fromUserId: currentUser?.id || 'usr-admin-romeo',
       fromUserName: currentUser?.name || 'Romeo Nonvide',
-      fromUserAvatar: currentUser?.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg',
+      fromUserAvatar: currentUser?.avatarUrl || '/assets/duos/paroles-armel.jpg',
       toUserId: selectedCandidate?.id,
       toUserName: selectedCandidate?.name || inviteEmail.trim(),
       toUserAvatar: selectedCandidate?.avatarUrl,
@@ -1069,7 +1069,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
             onClose={() => setIsCreditsModalOpen(false)}
             title={videoModalMember.name}
             seriesTitle="Lignée & Transmission"
-            credits={getSeriesCredits(videoModalMember.seriesId || 'amin-amen-legba', videoModalMember.name)}
+            credits={getSeriesCredits(videoModalMember.seriesId || 'jesus-legba', videoModalMember.name)}
             onNavigateToProfile={(protagonistId) => {
               setIsCreditsModalOpen(false);
               setVideoModalMember(null);
@@ -1256,7 +1256,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <img
-                              src={cand.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg'}
+                              src={cand.avatarUrl || '/assets/duos/paroles-armel.jpg'}
                               alt={cand.name}
                               className={`w-7 h-7 object-cover shrink-0 ${cand.type === 'ORGANIZATION' ? 'rounded-lg border border-amber-300' : 'rounded-full'}`}
                               loading="lazy"

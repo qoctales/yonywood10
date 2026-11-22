@@ -53,8 +53,8 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
   const [productions, setProductions] = useState<UserProductionShare[]>([
     {
       id: 'prod-1',
-      seriesId: 'horizons-finagnon',
-      seriesTitle: 'Horizons ‹ › Finagnon',
+      seriesId: 'horizons-benin',
+      seriesTitle: 'Horizons ‹ › Benin',
       sharesCount: 10,
       sharesOnSale: 2,
       startPrice: 35,
@@ -68,12 +68,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 24.5,
       liquidityScore: 'Élevée',
       status: 'En diffusion',
-      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl
     },
     {
       id: 'prod-2',
-      seriesId: 'amin-amen-legba',
-      seriesTitle: 'Amin Amen ‹ › Legba',
+      seriesId: 'jesus-legba',
+      seriesTitle: 'Jesus ‹ › Legba',
       sharesCount: 5,
       sharesOnSale: 0,
       startPrice: 40,
@@ -87,12 +87,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 15.2,
       liquidityScore: 'Moyenne',
       status: 'En post-production',
-      posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl
     },
     {
       id: 'prod-3',
-      seriesId: 'blacks-one-nyonoukpo',
-      seriesTitle: 'Blacks One ‹ › Nyonoukpo',
+      seriesId: 'blacks-one-wowmen',
+      seriesTitle: 'Blacks One ‹ › Wowmen',
       sharesCount: 8,
       sharesOnSale: 1,
       startPrice: 42,
@@ -106,12 +106,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 18.0,
       liquidityScore: 'Élevée',
       status: 'En diffusion',
-      posterUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl
     },
     {
       id: 'prod-4',
-      seriesId: 'fiat-luxe-irokos',
-      seriesTitle: 'Fiat Luxe ‹ › Irokos',
+      seriesId: 'bambous-irokos',
+      seriesTitle: 'Bambous ‹ › Irokos',
       sharesCount: 6,
       sharesOnSale: 2,
       startPrice: 45,
@@ -125,12 +125,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 11.8,
       liquidityScore: 'Moyenne',
       status: 'En tournage',
-      posterUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl
     },
     {
       id: 'prod-5',
-      seriesId: 'builders-mi-do-kpo',
-      seriesTitle: 'Builders ‹ › Mi do kpô',
+      seriesId: 'builders-coachs',
+      seriesTitle: 'Builders ‹ › Coachs',
       sharesCount: 12,
       sharesOnSale: 4,
       startPrice: 50,
@@ -144,12 +144,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 29.0,
       liquidityScore: 'Élevée',
       status: 'En production',
-      posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl
     },
     {
       id: 'prod-6',
-      seriesId: 'phd-azovi',
-      seriesTitle: 'PhD ‹ › Azovi',
+      seriesId: 'phd-apprentis',
+      seriesTitle: 'PhD ‹ › Apprentis',
       sharesCount: 15,
       sharesOnSale: 5,
       startPrice: 42,
@@ -163,7 +163,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       growthRatePercent: 32.5,
       liquidityScore: 'Élevée',
       status: 'En tournage',
-      posterUrl: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl
     }
   ]);
 
@@ -171,8 +171,8 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
   const [transactions] = useState<PortfolioTransactionItem[]>([
     {
       id: 'tx-1',
-      seriesId: 'horizons-finagnon',
-      seriesTitle: 'Horizons ‹ › Finagnon',
+      seriesId: 'horizons-benin',
+      seriesTitle: 'Horizons ‹ › Benin',
       sharesSold: 2,
       boughtPriceUnit: 35,
       soldPriceUnit: 52,
@@ -184,12 +184,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       buyerPhoto: '/assets/duos/sayri-quispe.jpg',
       buyerProtagonistId: 'sayri-quispe',
       buyerRole: 'Cultivateur & tisseur andin (Cusco)',
-      posterUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl
     },
     {
       id: 'tx-2',
-      seriesId: 'amin-amen-legba',
-      seriesTitle: 'Amin Amen ‹ › Legba',
+      seriesId: 'jesus-legba',
+      seriesTitle: 'Jesus ‹ › Legba',
       sharesSold: 1,
       boughtPriceUnit: 40,
       soldPriceUnit: 48,
@@ -201,12 +201,12 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       buyerPhoto: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
       buyerProtagonistId: 'dah-zounon',
       buyerRole: 'Dignitaire Legba (Porto-Novo)',
-      posterUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl
     },
     {
       id: 'tx-3',
-      seriesId: 'builders-mi-do-kpo',
-      seriesTitle: 'Builders ‹ › Mi do kpô',
+      seriesId: 'builders-coachs',
+      seriesTitle: 'Builders ‹ › Coachs',
       sharesSold: 3,
       boughtPriceUnit: 50,
       soldPriceUnit: 64,
@@ -215,10 +215,10 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
       netGain: 42,
       date: '10 mars 2026',
       buyerName: 'Koffi',
-      buyerPhoto: '/assets/images/koffi_tisserand_1792933625628.jpg',
+      buyerPhoto: '/assets/duos/chef-koffi.jpg',
       buyerProtagonistId: 'koffi-tisserand',
       buyerRole: 'Tisserand traditionnel (Porto-Novo)',
-      posterUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl
+      posterUrl: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl
     }
   ]);
 

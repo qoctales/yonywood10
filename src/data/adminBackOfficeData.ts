@@ -173,7 +173,7 @@ export const INITIAL_HERITAGE_THEMATIQUES: HeritageThematique[] = [
     title: 'Sagesses & Spiritualités',
     subtitle: 'Rites vivants, cosmologies et transmissions de la foi',
     description: 'Exploration des traditions initiatiques, du dialogue entre croyances ancestrales et modernité.',
-    coverImage: '/assets/doors/door-sagesses.jpg',
+    coverImage: '/Posters/Sides/Irokos.png',
     active: true,
     displayOrder: 1,
     sponsoredByBrandId: 'brand-fondation-afrique',
@@ -187,7 +187,7 @@ export const INITIAL_HERITAGE_THEMATIQUES: HeritageThematique[] = [
     title: 'Mémoires & Résistances',
     subtitle: 'Lignées de courage, récits de dignité et émancipation',
     description: 'Les voix qui ont forgé la dignité des peuples et traversé les silences de l\'histoire.',
-    coverImage: '/assets/doors/door-memoires.jpg',
+    coverImage: '/Posters/Sides/Tradition.png',
     active: true,
     displayOrder: 2,
     storiesCount: 34,
@@ -199,7 +199,7 @@ export const INITIAL_HERITAGE_THEMATIQUES: HeritageThematique[] = [
     title: 'Territoires & Écologies',
     subtitle: 'Savoirs de l\'eau, de la terre et des écosystèmes',
     description: 'La relation symbiotique des communautés avec leurs fleuves, leurs forêts et leurs sols vivants.',
-    coverImage: '/assets/doors/door-territoires.jpg',
+    coverImage: '/Posters/Sides/Horizons.png',
     active: true,
     displayOrder: 3,
     storiesCount: 19,
@@ -211,7 +211,7 @@ export const INITIAL_HERITAGE_THEMATIQUES: HeritageThematique[] = [
     title: 'Compétences & Métiers d\'Art',
     subtitle: 'La main qui façonne, l\'alchimie des matières',
     description: 'Forge, tissage, sculpture, architecture de terre : la transmission du geste créateur.',
-    coverImage: '/assets/doors/door-competences.jpg',
+    coverImage: '/Posters/Sides/Modernite\u0301.png',
     active: true,
     displayOrder: 4,
     sponsoredByBrandId: 'brand-luxe-artisanat',
@@ -225,7 +225,7 @@ export const INITIAL_HERITAGE_THEMATIQUES: HeritageThematique[] = [
     title: 'Bâtisseurs du Futur',
     subtitle: 'Audace entrepreneuriale et souveraineté solidaire',
     description: 'Ceux qui financent, bâtissent et relient les talents pour transformer durablement leur terroir.',
-    coverImage: '/assets/doors/door-projets.jpg',
+    coverImage: '/Posters/Sides/Builders.png',
     active: true,
     displayOrder: 5,
     storiesCount: 15,
@@ -389,9 +389,9 @@ export const INITIAL_SUBMITTED_STORIES: HeritageSubmittedStory[] = [
 
 export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
   {
-    seriesId: 'amin-amen-legba',
-    seriesTitle: 'Amin Amen ‹ › Legba',
-    coverImage: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
+    seriesId: 'jesus-legba',
+    seriesTitle: 'Jesus ‹ › Legba',
+    coverImage: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
     totalRaised: 18500,
     distributableEnvelope: 11100,
     distributedAmount: 3840,
@@ -422,9 +422,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     ]
   },
   {
-    seriesId: 'builders-mi-do-kpo',
-    seriesTitle: 'Builders ‹ › Mi do kpô',
-    coverImage: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
+    seriesId: 'builders-coachs',
+    seriesTitle: 'Builders ‹ › Coachs',
+    coverImage: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
     totalRaised: 24000,
     distributableEnvelope: 14400,
     distributedAmount: 5200,
@@ -444,9 +444,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'horizons-finagnon',
-    seriesTitle: 'Horizons ‹ › Finagnon',
-    coverImage: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
+    seriesId: 'horizons-benin',
+    seriesTitle: 'Horizons ‹ › Benin',
+    coverImage: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl,
     totalRaised: 14200,
     distributableEnvelope: 8520,
     distributedAmount: 2650,
@@ -466,9 +466,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'blacks-one-nyonoukpo',
-    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
-    coverImage: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
+    seriesId: 'blacks-one-wowmen',
+    seriesTitle: 'Blacks One ‹ › Wowmen',
+    coverImage: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
     totalRaised: 29500,
     distributableEnvelope: 17700,
     distributedAmount: 6420,
@@ -488,9 +488,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'fiat-luxe-irokos',
-    seriesTitle: 'Fiat Luxe ‹ › Irokos',
-    coverImage: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
+    seriesId: 'bambous-irokos',
+    seriesTitle: 'Bambous ‹ › Irokos',
+    coverImage: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
     totalRaised: 16800,
     distributableEnvelope: 10080,
     distributedAmount: 3100,
@@ -510,9 +510,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'phd-azovi',
-    seriesTitle: 'PhD ‹ › Azovi',
-    coverImage: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
+    seriesId: 'phd-apprentis',
+    seriesTitle: 'PhD ‹ › Apprentis',
+    coverImage: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
     totalRaised: 12200,
     distributableEnvelope: 7320,
     distributedAmount: 1800,
@@ -532,9 +532,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'remedes-e-vivi',
-    seriesTitle: 'Remèdes ‹ › E Vivi',
-    coverImage: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
+    seriesId: 'modernite-tradition',
+    seriesTitle: 'Modernité ‹ › Tradition',
+    coverImage: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
     totalRaised: 11500,
     distributableEnvelope: 6900,
     distributedAmount: 1450,
@@ -554,9 +554,9 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
     configHistory: []
   },
   {
-    seriesId: 'regards-gbe',
-    seriesTitle: 'Regards ‹ › Gbé',
-    coverImage: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
+    seriesId: 'regards-paroles',
+    seriesTitle: 'Images ‹ › Paroles',
+    coverImage: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
     totalRaised: 13800,
     distributableEnvelope: 8280,
     distributedAmount: 1980,
@@ -571,7 +571,7 @@ export const INITIAL_SERIES_ENVELOPES: SeriesEconomicEnvelope[] = [
       creatorsPoolPercent: 26,
       effectiveDate: '2026-04-01',
       updatedBy: 'Romeo Nonvide',
-      changeNotes: 'Initialisation de la série Regards et Parole.'
+      changeNotes: 'Initialisation de la série Images et Paroles.'
     },
     configHistory: []
   }
@@ -593,8 +593,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-02-18',
     supportedSeries: [
       {
-        seriesId: 'builders-mi-do-kpo',
-        seriesTitle: 'Builders ‹ › Mi do kpô',
+        seriesId: 'builders-coachs',
+        seriesTitle: 'Builders ‹ › Coachs',
         proposedAmount: 12000,
         committedAmount: 10000,
         receivedAmount: 10000,
@@ -604,8 +604,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         rightsClauseAcknowledged: true
       },
       {
-        seriesId: 'fiat-luxe-irokos',
-        seriesTitle: 'Fiat Luxe ‹ › Irokos',
+        seriesId: 'bambous-irokos',
+        seriesTitle: 'Bambous ‹ › Irokos',
         proposedAmount: 13000,
         committedAmount: 10000,
         receivedAmount: 8000,
@@ -620,7 +620,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-1',
         date: '2026-03-22',
         amount: 1450,
-        seriesTitle: 'Builders ‹ › Mi do kpô',
+        seriesTitle: 'Builders ‹ › Coachs',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-882194'
       },
@@ -628,7 +628,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-2',
         date: '2026-03-25',
         amount: 800,
-        seriesTitle: 'Fiat Luxe ‹ › Irokos',
+        seriesTitle: 'Bambous ‹ › Irokos',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-882201'
       },
@@ -636,7 +636,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-3',
         date: '2026-10-15',
         amount: 2000,
-        seriesTitle: 'Builders ‹ › Mi do kpô',
+        seriesTitle: 'Builders ‹ › Coachs',
         status: 'EN_ATTENTE',
         bankRef: 'EN_ATTENTE_ORDRE'
       }
@@ -657,8 +657,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-01-28',
     supportedSeries: [
       {
-        seriesId: 'amin-amen-legba',
-        seriesTitle: 'Amin Amen ‹ › Legba',
+        seriesId: 'jesus-legba',
+        seriesTitle: 'Jesus ‹ › Legba',
         proposedAmount: 8000,
         committedAmount: 8000,
         receivedAmount: 8000,
@@ -668,8 +668,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         rightsClauseAcknowledged: true
       },
       {
-        seriesId: 'blacks-one-nyonoukpo',
-        seriesTitle: 'Blacks One ‹ › Nyonoukpo',
+        seriesId: 'blacks-one-wowmen',
+        seriesTitle: 'Blacks One ‹ › Wowmen',
         proposedAmount: 7000,
         committedAmount: 7000,
         receivedAmount: 7000,
@@ -684,7 +684,7 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
         id: 'payout-4',
         date: '2026-03-15',
         amount: 1250,
-        seriesTitle: 'Amin Amen ‹ › Legba',
+        seriesTitle: 'Jesus ‹ › Legba',
         status: 'PAYE',
         bankRef: 'VIR-SEPA-YW-881903'
       }
@@ -705,8 +705,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
     createdAt: '2026-03-12',
     supportedSeries: [
       {
-        seriesId: 'horizons-finagnon',
-        seriesTitle: 'Horizons ‹ › Finagnon',
+        seriesId: 'horizons-benin',
+        seriesTitle: 'Horizons ‹ › Benin',
         proposedAmount: 10000,
         committedAmount: 7500,
         receivedAmount: 5000,
@@ -723,8 +723,8 @@ export const INITIAL_PRODUCER_DOSSIERS: ProducerDossier[] = [
 export const INITIAL_COOPTATIONS: CooptationItem[] = [
   {
     id: 'coopt-1',
-    seriesId: 'amin-amen-legba',
-    seriesTitle: 'Amin Amen ‹ › Legba',
+    seriesId: 'jesus-legba',
+    seriesTitle: 'Jesus ‹ › Legba',
     referentId: 'usr-admin-romeo',
     referentName: 'Romeo Nonvide',
     referentRole: 'Directeur éditorial & Référent',
@@ -741,8 +741,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-2',
-    seriesId: 'horizons-finagnon',
-    seriesTitle: 'Horizons ‹ › Finagnon',
+    seriesId: 'horizons-benin',
+    seriesTitle: 'Horizons ‹ › Benin',
     referentId: 'usr-creator-amina',
     referentName: 'Amina Traoré',
     referentRole: 'Égérie Référente',
@@ -759,8 +759,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-3',
-    seriesId: 'blacks-one-nyonoukpo',
-    seriesTitle: 'Blacks One ‹ › Nyonoukpo',
+    seriesId: 'blacks-one-wowmen',
+    seriesTitle: 'Blacks One ‹ › Wowmen',
     referentId: 'usr-creator-koffi',
     referentName: 'Koffi Mensah',
     referentRole: 'Égérie Forgeron',
@@ -776,8 +776,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-4',
-    seriesId: 'builders-mi-do-kpo',
-    seriesTitle: 'Builders ‹ › Mi do kpô',
+    seriesId: 'builders-coachs',
+    seriesTitle: 'Builders ‹ › Coachs',
     referentId: 'usr-coopt-malik',
     referentName: 'Malik Diop',
     referentRole: 'Membre Coopté Saint-Louis',
@@ -794,8 +794,8 @@ export const INITIAL_COOPTATIONS: CooptationItem[] = [
   },
   {
     id: 'coopt-5',
-    seriesId: 'phd-azovi',
-    seriesTitle: 'PhD ‹ › Azovi',
+    seriesId: 'phd-apprentis',
+    seriesTitle: 'PhD ‹ › Apprentis',
     referentId: 'usr-admin-romeo',
     referentName: 'Romeo Nonvide',
     referentRole: 'Référent de Cooptation',
@@ -818,8 +818,8 @@ export const INITIAL_ADVERTISING_CAMPAIGNS: AdvertisingCampaign[] = [
     brandLogo: '/yonywoodlogo.jpg',
     targetThematiqueId: 'th-competences',
     targetThematiqueTitle: 'Compétences & Métiers d\'Art',
-    targetSeriesId: 'fiat-luxe-irokos',
-    targetSeriesTitle: 'Fiat Luxe ‹ › Irokos',
+    targetSeriesId: 'bambous-irokos',
+    targetSeriesTitle: 'Bambous ‹ › Irokos',
     format: 'HABILLAGE_THEME',
     budgetCommitted: 12500,
     budgetConsumed: 7800,
@@ -850,8 +850,8 @@ export const INITIAL_ADVERTISING_CAMPAIGNS: AdvertisingCampaign[] = [
     id: 'camp-3',
     title: 'Campagne Agroécologie Transatlantique',
     brandName: 'BioTerroirs International',
-    targetSeriesId: 'horizons-finagnon',
-    targetSeriesTitle: 'Horizons ‹ › Finagnon',
+    targetSeriesId: 'horizons-benin',
+    targetSeriesTitle: 'Horizons ‹ › Benin',
     format: 'SPOT_PRE_ROLL',
     budgetCommitted: 6000,
     budgetConsumed: 1200,

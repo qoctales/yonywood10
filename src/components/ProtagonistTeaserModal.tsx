@@ -74,7 +74,7 @@ export const ProtagonistTeaserModal: React.FC<ProtagonistTeaserModalProps> = ({
     ? protagonist.stories[0].videoCoverUrl
     : '/sample.mp4';
 
-  const posterImg = protagonist.photoUrl || '/assets/images/koffi_tisserand_1792933625628.jpg';
+  const posterImg = protagonist.photoUrl || '/assets/duos/chef-koffi.jpg';
 
   return (
     <div 

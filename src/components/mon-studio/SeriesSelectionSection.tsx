@@ -56,7 +56,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
   };
 
   return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
         <StageBreadcrumb
           items={[
@@ -103,7 +103,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.onerror = null;
-                      target.src = '/assets/images/pillar_casting_phoenix.png';
+                      target.src = '/Posters/Onboardings/choixdesseries.png';
                     }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />

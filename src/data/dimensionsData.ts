@@ -58,7 +58,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#C89B3C',
     glowColor: 'rgba(200, 155, 60, 0.65)',
     bgGradient: 'from-[#D97706] via-[#92400E] to-[#451A03]',
-    coverImage: '/assets/doors/door-series.jpg'
+    coverImage: '/Posters/Onboardings/choixdesseries.png'
   },
   {
     id: 'sagesses',
@@ -73,7 +73,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.65)',
     bgGradient: 'from-[#A855F7] via-[#7E22CE] to-[#3B0764]',
-    coverImage: '/assets/doors/door-sagesses.jpg'
+    coverImage: '/Posters/Sides/Irokos.png'
   },
   {
     id: 'territoires',
@@ -88,7 +88,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.65)',
     bgGradient: 'from-[#10B981] via-[#047857] to-[#064E3B]',
-    coverImage: '/assets/doors/door-territoires.jpg'
+    coverImage: '/assets/Onboardings/Voyage.png'
   },
   {
     id: 'expertises',
@@ -103,7 +103,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#0EA5E9',
     glowColor: 'rgba(14, 165, 233, 0.65)',
     bgGradient: 'from-[#0EA5E9] via-[#0369A1] to-[#082F49]',
-    coverImage: '/assets/doors/door-competences.jpg'
+    coverImage: '/Posters/Sides/Apprentis.png'
   },
   {
     id: 'produits-services',
@@ -118,7 +118,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#6366F1',
     glowColor: 'rgba(99, 102, 241, 0.65)',
     bgGradient: 'from-[#6366F1] via-[#4338CA] to-[#1E1B4B]',
-    coverImage: '/assets/doors/door-offres.jpg'
+    coverImage: '/Posters/Focus/E%20Vivi.png'
   },
   {
     id: 'projets',
@@ -133,7 +133,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.65)',
     bgGradient: 'from-[#EC4899] via-[#BE185D] to-[#500724]',
-    coverImage: '/assets/doors/door-projets.jpg'
+    coverImage: '/Posters/Sides/Builders.png'
   },
   {
     id: 'marques',
@@ -148,7 +148,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#FB923C',
     glowColor: 'rgba(251, 146, 60, 0.65)',
     bgGradient: 'from-[#FB923C] via-[#C2410C] to-[#431407]',
-    coverImage: '/assets/doors/door-marques.jpg'
+    coverImage: '/Posters/Focus/Fiat%20Luxe.png'
   },
   {
     id: 'personnalites',
@@ -163,7 +163,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.65)',
     bgGradient: 'from-[#F59E0B] via-[#B45309] to-[#78350F]',
-    coverImage: '/assets/doors/door-personnalites.jpg'
+    coverImage: '/Posters/Focus/Artistes.png'
   }
 ];
 
@@ -177,129 +177,129 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
   // 01. SÉRIES (LES 8 SÉRIES FONDATRICES)
   // -----------------------------------------------------------------------
   {
-    id: 'series/remedes-e-vivi',
+    id: 'series/modernite-tradition',
     dimensionId: 'series',
-    slug: 'remedes-e-vivi',
+    slug: 'modernite-tradition',
     ordre: 1,
-    label: 'Remèdes ‹ › E Vivi',
-    icone: '16-series/remedes-e-vivi',
-    question: 'Racontez le moment où vous avez compris que votre métier serait de vous occuper des autres.',
-    tagline: 'Celles et ceux qui soignent face à celles et ceux qui nourrissent',
-    description: "Deux façons de veiller sur les autres : celles et ceux qui soignent, de toutes les médecines, et celles et ceux qui font que l'on mange et que l'on boit, du champ à l'assiette jusqu'au verre que l'on partage.",
-    badge: 'Série soin & nourricier',
-    photoUrl: SERIES_POSTER_FILES['remedes-e-vivi'].mainPosterUrl,
+    label: 'Modernité ‹ › Tradition',
+    icone: '16-series/modernite-tradition',
+    question: 'Racontez le moment où vous avez compris que ce métier serait le vôtre.',
+    tagline: 'Méthodes récentes et savoirs transmis face à face',
+    description: "Deux façons de faire que l'on oppose souvent, alors qu'elles cohabitent chaque jour : Modernité et Tradition.",
+    badge: 'Série savoirs & métiers',
+    photoUrl: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
     bgGradient: 'from-emerald-600 via-teal-700 to-stone-900'
   },
   {
-    id: 'series/amin-amen-legba',
+    id: 'series/jesus-legba',
     dimensionId: 'series',
-    slug: 'amin-amen-legba',
+    slug: 'jesus-legba',
     ordre: 2,
-    label: 'Amin Amen ‹ › Legba',
-    icone: '16-series/amin-amen-legba',
+    label: 'Jesus ‹ › Legba',
+    icone: '16-series/jesus-legba',
     question: "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
-    tagline: 'Amin Amen face au Vodun et aux traditions liées à Legba',
-    description: "Au Bénin, le Vodun occupe une place à part : une tradition d'origine, à laquelle d'autres croyances viennent faire face. D'un côté Amin Amen, de l'autre Legba.",
+    tagline: 'Chrétiens face aux pratiquants du Vodun et des traditions liées à Legba',
+    description: "Au Bénin, la foi chrétienne et le Vodun coexistent au cœur des familles, des quartiers et des consciences.",
     badge: 'Série foi & traditions',
-    photoUrl: SERIES_POSTER_FILES['amin-amen-legba'].mainPosterUrl,
+    photoUrl: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
     bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
   },
   {
-    id: 'series/phd-azovi',
+    id: 'series/phd-apprentis',
     dimensionId: 'series',
-    slug: 'phd-azovi',
+    slug: 'phd-apprentis',
     ordre: 3,
-    label: 'PhD ‹ › Azovi',
-    icone: '16-series/phd-azovi',
+    label: 'PhD ‹ › Apprentis',
+    icone: '16-series/phd-apprentis',
     question: 'Racontez votre tout premier jour là où vous avez commencé à apprendre votre métier.',
     tagline: 'Docteurs et chercheurs face aux apprentis et stagiaires de terrain',
-    description: "Deux façons d'apprendre, que l'on met rarement face à face : par les livres et la recherche, ou par la main, sous le regard d'un maître.",
+    description: "Deux façons d'apprendre que l'on met rarement face à face : par les livres et la recherche, ou par la main.",
     badge: 'Série savoir & apprentissage',
-    photoUrl: SERIES_POSTER_FILES['phd-azovi'].mainPosterUrl,
+    photoUrl: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
     bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
   },
   {
-    id: 'series/blacks-one-nyonoukpo',
+    id: 'series/blacks-one-wowmen',
     dimensionId: 'series',
-    slug: 'blacks-one-nyonoukpo',
+    slug: 'blacks-one-wowmen',
     ordre: 4,
-    label: 'Blacks One ‹ › Nyonoukpo',
-    icone: '16-series/blacks-one-nyonoukpo',
+    label: 'Blacks One ‹ › Wowmen',
+    icone: '16-series/blacks-one-wowmen',
     question: 'Racontez le moment où vous avez appris à être fier de qui vous êtes.',
-    tagline: 'Identités noires et unité face à la force et la beauté des femmes',
-    description: "Deux manières de dire « voilà ce qui compte pour moi » : défendre des identités noires dans leur diversité, et dire son admiration pour Nyonoukpo, la « femme panthère ».",
+    tagline: 'Identités noires face à la force et la beauté des femmes',
+    description: "Deux manières de dire ce qui compte : l'unité dans la diversité des mondes noirs et le regard porté sur les femmes.",
     badge: 'Série fierté & dignité',
-    photoUrl: SERIES_POSTER_FILES['blacks-one-nyonoukpo'].mainPosterUrl,
+    photoUrl: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.6)',
     bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
   },
   {
-    id: 'series/fiat-luxe-irokos',
+    id: 'series/bambous-irokos',
     dimensionId: 'series',
-    slug: 'fiat-luxe-irokos',
+    slug: 'bambous-irokos',
     ordre: 5,
-    label: 'Fiat Luxe ‹ › Irokos',
-    icone: '16-series/fiat-luxe-irokos',
-    question: 'Racontez ce que vous avez mis des années à apprendre, et que vous ne savez toujours pas expliquer avec des mots.',
-    tagline: 'Artisans d’art et créateurs du rare face à la sagesse des aînés',
-    description: "Deux maîtrises que seul le temps permet d'acquérir : celle du geste, qui fait un objet d'une beauté rare, et celle de la vie, qui fait d'une personne un repère.",
-    badge: 'Série maîtrise & aînés',
-    photoUrl: SERIES_POSTER_FILES['fiat-luxe-irokos'].mainPosterUrl,
+    label: 'Bambous ‹ › Irokos',
+    icone: '16-series/bambous-irokos',
+    question: 'Racontez le jour où une personne d’un autre âge que le vôtre vous a appris quelque chose que vous n’avez jamais oublié.',
+    tagline: 'La jeunesse qui se lance face à la sagesse des aînés',
+    description: "Deux âges de la vie en dialogue : l'élan du bambou qui pousse vite et la profondeur de l'iroko qui dure.",
+    badge: 'Série générations',
+    photoUrl: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
     accentColor: '#EAB308',
     glowColor: 'rgba(234, 179, 8, 0.6)',
     bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
   },
   {
-    id: 'series/horizons-finagnon',
+    id: 'series/horizons-benin',
     dimensionId: 'series',
-    slug: 'horizons-finagnon',
+    slug: 'horizons-benin',
     ordre: 6,
-    label: 'Horizons ‹ › Finagnon',
-    icone: '16-series/horizons-finagnon',
+    label: 'Horizons ‹ › Benin',
+    icone: '16-series/horizons-benin',
     question: 'Racontez le moment où vous avez senti que vous étiez enfin chez vous.',
-    tagline: 'D’autres nations face aux Béninois du pays et de la diaspora',
-    description: "Chacun a un endroit auquel il se sent profondément lié. D'un côté Horizons rassemble d'autres nations ; de l'autre Finagnon rassemble les Béninois du pays et du monde.",
+    tagline: 'D’autres nations face au Bénin et à sa diaspora',
+    description: "Chacun a un endroit auquel il se sent profondément lié. Horizons rassemble d'autres nations face au Bénin.",
     badge: 'Série lieux & racines',
-    photoUrl: SERIES_POSTER_FILES['horizons-finagnon'].mainPosterUrl,
+    photoUrl: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl,
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
     bgGradient: 'from-blue-600 via-indigo-700 to-stone-900'
   },
   {
-    id: 'series/builders-mi-do-kpo',
+    id: 'series/builders-coachs',
     dimensionId: 'series',
-    slug: 'builders-mi-do-kpo',
+    slug: 'builders-coachs',
     ordre: 7,
-    label: 'Builders ‹ › Mi do kpô',
-    icone: '16-series/builders-mi-do-kpo',
+    label: 'Builders ‹ › Coachs',
+    icone: '16-series/builders-coachs',
     question: "Racontez le moment où vous avez choisi cette voie, avec ce qu'elle comportait de risque ou de renoncement.",
-    tagline: 'Celles et ceux qui bâtissent face à celles et ceux qui servent l’intérêt général',
-    description: "Deux façons de bâtir : pour soi, ou pour tous. Builders qui entreprennent et créent, et Mi do kpô qui font tenir la vie commune.",
-    badge: 'Série bâtir & intérêt général',
-    photoUrl: SERIES_POSTER_FILES['builders-mi-do-kpo'].mainPosterUrl,
+    tagline: 'Celles et ceux qui bâtissent face à celles et ceux qui accompagnent',
+    description: "Deux façons de faire grandir : ceux qui construisent et ceux qui conseillent, soutiennent ou orientent.",
+    badge: 'Série bâtir & accompagner',
+    photoUrl: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
     accentColor: '#84CC16',
     glowColor: 'rgba(132, 204, 22, 0.6)',
     bgGradient: 'from-lime-600 via-green-700 to-stone-900'
   },
   {
-    id: 'series/regards-gbe',
+    id: 'series/regards-paroles',
     dimensionId: 'series',
-    slug: 'regards-gbe',
+    slug: 'regards-paroles',
     ordre: 8,
-    label: 'Regards ‹ › Gbé',
-    icone: '16-series/regards-gbe',
-    question: 'Racontez le moment où vous avez compris que si vous ne le disiez pas, personne ne le dirait à votre place.',
+    label: 'Images ‹ › Paroles',
+    icone: '16-series/regards-paroles',
+    question: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
     tagline: 'L’œil de l’image face aux maîtres de la parole et du verbe',
-    description: "Deux façons de faire entendre une histoire : par les regards ou par la voix. Regards réunit les artistes visuels ; Gbé réunit écrivains, poètes, slameurs, conteurs et orateurs.",
+    description: "Deux façons de faire entendre une histoire : par les regards ou par la voix. Images réunit photographes, vidéastes, cinéastes et artistes visuels ; Paroles réunit écrivains, poètes, slameurs, conteurs et orateurs.",
     badge: 'Série regard & voix',
-    photoUrl: SERIES_POSTER_FILES['regards-gbe'].mainPosterUrl,
+    photoUrl: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
     bgGradient: 'from-purple-600 via-violet-700 to-stone-900'
@@ -331,7 +331,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle épreuve majeure a brisé vos certitudes pour forger votre résilience et votre force intérieure ?',
     tagline: 'La traversée de l’adversité, l’épreuve et la reconstruction intérieure',
     badge: 'Résilience',
-    photoUrl: '/assets/directions/sagesses-resilience.jpg',
+    photoUrl: '/assets/duos/athlete-hurdle.jpg',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
     bgGradient: 'from-amber-500 via-orange-600 to-stone-950'
@@ -346,7 +346,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment cultivez-vous l’harmonie, la fidélité et le don de soi face aux tempêtes de l’existence ?',
     tagline: 'L’amour véritable, la tendresse partagée et le compagnonnage',
     badge: 'Amour',
-    photoUrl: '/assets/directions/sagesses-amour.jpg',
+    photoUrl: '/Posters/Sides/Wowmen.png',
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.6)',
     bgGradient: 'from-pink-500 via-rose-600 to-stone-950'
@@ -361,7 +361,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel geste d’entraide ou d’engagement collectif a renforcé votre foi en la communauté ?',
     tagline: 'L’union fraternelle, le soutien mutuel et le vivre-ensemble',
     badge: 'Solidarité',
-    photoUrl: '/assets/directions/sagesses-solidarite.jpg',
+    photoUrl: '/Posters/Onboardings/coproductions.png',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
@@ -376,7 +376,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Pour quelle bénédiction ou quel enseignement de vie éprouvez-vous chaque jour une profonde gratitude ?',
     tagline: 'La reconnaissance du cœur, l’émerveillement et la paix de l’esprit',
     badge: 'Gratitude',
-    photoUrl: '/assets/directions/sagesses-gratitude.jpg',
+    photoUrl: '/Posters/Focus/Hoxo%CC%80.png',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
     bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
@@ -391,7 +391,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Face aux obstacles insurmontables, comment avez-vous puisé l’énergie de continuer sans jamais abandonner ?',
     tagline: 'La ténacité, l’effort continu et le dépassement des limites',
     badge: 'Persévérance',
-    photoUrl: '/assets/directions/sagesses-perseverance.jpg',
+    photoUrl: '/assets/duos/tobi-ganvie.jpg',
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
     bgGradient: 'from-blue-500 via-indigo-700 to-stone-950'
@@ -406,7 +406,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel acte d’écoute, de douceur ou de compassion a transformé votre regard sur autrui ?',
     tagline: 'La gentillesse sincère, l’empathie et la protection des vulnérables',
     badge: 'Bienveillance',
-    photoUrl: '/assets/directions/sagesses-bienveillance.jpg',
+    photoUrl: '/assets/duos/care-mireille.jpg',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
     bgGradient: 'from-cyan-500 via-teal-700 to-stone-950'
@@ -421,7 +421,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel pardon difficile a libéré votre âme et guéri les blessures du passé ?',
     tagline: 'La réconciliation, la paix retrouvée et la libération intérieure',
     badge: 'Pardon',
-    photoUrl: '/assets/directions/sagesses-pardon.jpg',
+    photoUrl: '/Posters/Sides/Jesus.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
     bgGradient: 'from-violet-500 via-purple-700 to-stone-950'
@@ -436,7 +436,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle leçon de vie vous a rappelé la valeur de la modestie et du respect envers nos aînés et la Terre ?',
     tagline: 'La modestie du sage, l’écoute patiente et le respect des racines',
     badge: 'Humilité',
-    photoUrl: '/assets/directions/sagesses-humilite.jpg',
+    photoUrl: '/Posters/Sides/Irokos.png',
     accentColor: '#EAB308',
     glowColor: 'rgba(234, 179, 8, 0.6)',
     bgGradient: 'from-yellow-500 via-amber-700 to-stone-950'
@@ -463,7 +463,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel monument, cité ancienne ou vestige séculaire incarne le trésor de vos ancêtres ?',
     tagline: 'Les pierres sacrées, l’architecture séculaire et les sanctuaires vivants',
     badge: 'Patrimoine',
-    photoUrl: '/assets/directions/territoires-patrimoine.jpg',
+    photoUrl: '/Posters/Sides/Benin.png',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
     bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
@@ -478,7 +478,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle fête coutumière ou rite ancestral réveille en vous le sentiment d’appartenance ?',
     tagline: 'Les cérémonies, les tambours, les danses et la mémoire vivante',
     badge: 'Traditions',
-    photoUrl: '/assets/directions/territoires-traditions.jpg',
+    photoUrl: '/Posters/Sides/Tradition.png',
     accentColor: '#E11D48',
     glowColor: 'rgba(225, 29, 72, 0.6)',
     bgGradient: 'from-rose-500 via-red-700 to-stone-950'
@@ -493,7 +493,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle expression culturelle singulière fait battre le cœur de votre région ?',
     tagline: 'L’art vivant, les récits partagés, la musique et la vivacité populaire',
     badge: 'Culture',
-    photoUrl: '/assets/directions/territoires-culture.jpg',
+    photoUrl: '/Posters/Sides/Legba.png',
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
     bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
@@ -508,7 +508,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel événement fondateur ou épopée héroïque a forgé l’identité de votre territoire ?',
     tagline: 'Les batailles, les traités, les royaumes et la transmission des aïeux',
     badge: 'Histoire',
-    photoUrl: '/assets/directions/territoires-histoire.jpg',
+    photoUrl: '/assets/duos/dah-zounon.jpg',
     accentColor: '#2563EB',
     glowColor: 'rgba(37, 99, 235, 0.6)',
     bgGradient: 'from-blue-600 via-indigo-800 to-stone-950'
@@ -523,7 +523,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle saveur, produit de la terre ou paysage nourricier caractérise vos terroirs ?',
     tagline: 'La terre nourricière, les villages, les cultures et les saveurs uniques',
     badge: 'Terroirs',
-    photoUrl: '/assets/directions/territoires-terroirs.jpg',
+    photoUrl: '/Posters/Focus/E%20Vivi.png',
     accentColor: '#16A34A',
     glowColor: 'rgba(22, 163, 74, 0.6)',
     bgGradient: 'from-green-600 via-emerald-800 to-stone-950'
@@ -538,7 +538,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle langue ou dialecte de votre terre maternelle porte l’âme de vos pensées ?',
     tagline: 'Les parlers maternels, la poésie orale, les proverbes et la résonance des mots',
     badge: 'Langues',
-    photoUrl: '/assets/directions/territoires-langues.jpg',
+    photoUrl: '/Posters/Sides/Paroles.png',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
     bgGradient: 'from-orange-600 via-amber-800 to-stone-950'
@@ -553,7 +553,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment gardez-vous le lien vivant avec votre terre d’origine depuis l’exil ou l’étranger ?',
     tagline: 'Les ponts entre continents, les retours au pays et le double ancrage',
     badge: 'Diaspora',
-    photoUrl: '/assets/directions/territoires-diaspora.jpg',
+    photoUrl: '/Posters/Focus/Diasporas.png',
     accentColor: '#0EA5E9',
     glowColor: 'rgba(14, 165, 233, 0.6)',
     bgGradient: 'from-sky-500 via-cyan-700 to-stone-950'
@@ -568,7 +568,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel rituel quotidien ou habitude de vie locale incarne la saveur de vos journées ?',
     tagline: 'L’art de vivre quotidien, la convivialité et les gestes partagés',
     badge: 'Habitudes',
-    photoUrl: '/assets/directions/territoires-habitudes.jpg',
+    photoUrl: '/Posters/Sides/Horizons.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
     bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
@@ -595,7 +595,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel geste d’orfèvre ou savoir-faire manuel perpétuez-vous pour honorer la matière ?',
     tagline: 'La noblesse du travail de la main, la forge, le cuir, le bois et le tissage',
     badge: 'Artisanat',
-    photoUrl: '/assets/directions/expertises-artisanat.jpg',
+    photoUrl: '/Posters/Sides/Apprentis.png',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
     bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
@@ -610,7 +610,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment éveillez-vous l’esprit critique et transmettez-vous les clés du savoir aux jeunes générations ?',
     tagline: 'La pédagogie, la formation, l’école et les repères durables',
     badge: 'Éducation',
-    photoUrl: '/assets/directions/expertises-education.jpg',
+    photoUrl: '/Posters/Sides/PhD.png',
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
     bgGradient: 'from-blue-500 via-indigo-700 to-stone-950'
@@ -625,7 +625,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment mettez-vous la technologie et le code au service de solutions concrètes et humaines ?',
     tagline: 'L’ingénierie logicielle, les données, l’intelligence artificielle et l’innovation',
     badge: 'Numérique',
-    photoUrl: '/assets/directions/expertises-numerique.jpg',
+    photoUrl: '/Posters/Sides/Modernite%CC%81.png',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
     bgGradient: 'from-cyan-500 via-teal-700 to-stone-950'
@@ -640,7 +640,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle vision stratégique et quel modèle d’entreprise crée durablement de la valeur partagée ?',
     tagline: 'La finance d’entreprise, la gestion stratégique, le commerce et l’expansion',
     badge: 'Business',
-    photoUrl: '/assets/directions/expertises-business.jpg',
+    photoUrl: '/Posters/Sides/Builders.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
     bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
@@ -655,7 +655,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment défendez-vous le droit, l’équité et la protection des plus vulnérables ?',
     tagline: 'L’état de droit, le barreau, la médiation et la rectitude juridique',
     badge: 'Justice',
-    photoUrl: '/assets/directions/expertises-justice.jpg',
+    photoUrl: '/Posters/Focus/Votre%20Honneur.png',
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.6)',
     bgGradient: 'from-sky-600 via-blue-800 to-stone-950'
@@ -670,7 +670,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel dévouement guide votre pratique médicale ou thérapeutique au chevet des patients ?',
     tagline: 'La médecine, les soins infirmiers, la santé publique et la recherche biomédicale',
     badge: 'Santé',
-    photoUrl: '/assets/directions/expertises-sante.jpg',
+    photoUrl: '/assets/duos/care-mireille.jpg',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
     bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
@@ -685,7 +685,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel engagement et quel courage déployez-vous pour protéger les biens et la paix civile ?',
     tagline: 'La protection civile, la cybersécurité, les secours et la sûreté collective',
     badge: 'Sécurité',
-    photoUrl: '/assets/directions/expertises-securite.jpg',
+    photoUrl: '/Posters/Onboardings/securite.png',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
     bgGradient: 'from-red-600 via-rose-700 to-stone-950'
@@ -700,7 +700,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment façonnez-vous des formes élégantes et des espaces intuitifs qui enchantent l’usage ?',
     tagline: 'L’architecture, le design d’espace, l’esthétique industrielle et la création visuelle',
     badge: 'Design',
-    photoUrl: '/assets/directions/expertises-design.jpg',
+    photoUrl: '/Posters/Sides/Images.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
     bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
@@ -727,7 +727,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle vision bienveillante et naturelle de la beauté sublime vos produits et soins ?',
     tagline: 'Cosmétique naturelle, parures et mise en valeur des peaux',
     badge: 'Beauté',
-    photoUrl: '/assets/directions/produits-services-beaute.jpg',
+    photoUrl: '/Posters/Sides/Wowmen.png',
     accentColor: '#F43F5E',
     glowColor: 'rgba(244, 63, 94, 0.6)',
     bgGradient: 'from-rose-500 via-pink-700 to-stone-950'
@@ -742,7 +742,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelles saveurs authentiques et quelle hospitalité régale vos convives à table ?',
     tagline: 'Haute gastronomie, tables d’hôtes, street food d’auteur et art culinaire',
     badge: 'Restauration',
-    photoUrl: '/assets/directions/produits-services-restauration.jpg',
+    photoUrl: '/assets/duos/chef-koffi.jpg',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
     bgGradient: 'from-orange-500 via-red-700 to-stone-950'
@@ -757,7 +757,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment vos collections habillent-elles les silhouettes avec identité et panache ?',
     tagline: 'Textile éthique, coupes contemporaines et matières nobles',
     badge: 'Mode',
-    photoUrl: '/assets/directions/produits-services-mode.jpg',
+    photoUrl: '/assets/duos/fatou-diallo.jpg',
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
     bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
@@ -772,7 +772,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle méthode de relaxation ou soin holistique offre un havre de paix à l’esprit ?',
     tagline: 'Massages, spas, méditation et équilibre corps-esprit',
     badge: 'Bien-être',
-    photoUrl: '/assets/directions/produits-services-bien-etre.jpg',
+    photoUrl: '/assets/duos/mawuna-medium.jpg',
     accentColor: '#14B8A6',
     glowColor: 'rgba(20, 184, 166, 0.6)',
     bgGradient: 'from-teal-500 via-emerald-700 to-stone-950'
@@ -787,7 +787,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelles échappées mémorables et immersions culturelles faites-vous vivre aux voyageurs ?',
     tagline: 'Écotourisme, voyages immersifs, hébergements de charme et circuits guidés',
     badge: 'Tourisme',
-    photoUrl: '/assets/directions/produits-services-tourisme.jpg',
+    photoUrl: '/assets/Onboardings/Voyage.png',
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.6)',
     bgGradient: 'from-sky-500 via-blue-700 to-stone-950'
@@ -802,7 +802,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle douceur et quel cadre d’éveil attentif assurez-vous aux tout-petits au quotidien ?',
     tagline: 'Crèches bienveillantes, nounous de confiance et activités d’éveil',
     badge: 'Garde d’enfants',
-    photoUrl: '/assets/directions/produits-services-garde-enfants.jpg',
+    photoUrl: '/Posters/Focus/Hoxo%CC%80.png',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
     bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
@@ -817,7 +817,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel niveau d’exigence et de disponibilité sur-mesure déployez-vous pour vos résidents ?',
     tagline: 'Conciergerie privée, intendance, services VIP et assistance 24/7',
     badge: 'Conciergerie',
-    photoUrl: '/assets/directions/produits-services-conciergerie.jpg',
+    photoUrl: '/Posters/Sides/Coachs.png',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
     bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
@@ -832,7 +832,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment dénichez-vous les lieux de vie d’exception où bâtir des mémoires durables ?',
     tagline: 'Promotion de prestige, habitats durables et gestion patrimoniale',
     badge: 'Immobilier',
-    photoUrl: '/assets/directions/produits-services-immobilier.jpg',
+    photoUrl: '/Posters/Sides/Builders.png',
     accentColor: '#6366F1',
     glowColor: 'rgba(99, 102, 241, 0.6)',
     bgGradient: 'from-indigo-500 via-blue-700 to-stone-950'
@@ -859,7 +859,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel univers ludique ou compétition stimulante rassemble petits et grands autour du jeu ?',
     tagline: 'Jeux vidéo, jeux de société traditionnels, esports et tournois',
     badge: 'Jeux',
-    photoUrl: '/assets/directions/projets-jeux.jpg',
+    photoUrl: '/Posters/Focus/Pour%20Rire.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
     bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
@@ -874,7 +874,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle action environnementale concrète menez-vous pour préserver la terre et la biodiversité ?',
     tagline: 'Reforestation, énergies renouvelables, dépollution et agriculture régénératrice',
     badge: 'Écologie',
-    photoUrl: '/assets/directions/projets-ecologie.jpg',
+    photoUrl: '/Posters/Sides/Irokos.png',
     accentColor: '#22C55E',
     glowColor: 'rgba(34, 197, 94, 0.6)',
     bgGradient: 'from-green-500 via-emerald-700 to-stone-950'
@@ -889,7 +889,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel projet artistique ou festival fédérateur réveille la flamme créative du public ?',
     tagline: 'Festivals, musées vivants, scènes ouvertes et patrimoines revisités',
     badge: 'Culture',
-    photoUrl: '/assets/directions/projets-culture.jpg',
+    photoUrl: '/Posters/Focus/Artistes.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
     bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
@@ -904,7 +904,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle initiative solidaire soulage la précarité et redonne dignité aux personnes fragilisées ?',
     tagline: 'Action caritative, soutien d’urgence, réinsertion et banques alimentaires',
     badge: 'Social',
-    photoUrl: '/assets/directions/projets-social.jpg',
+    photoUrl: '/assets/duos/tobi-houndegla.jpg',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
     bgGradient: 'from-red-500 via-rose-700 to-stone-950'
@@ -919,7 +919,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment bâtissez-vous la confiance et l’entraide au sein de votre quartier ou village ?',
     tagline: 'Comités de quartier, coopératives citoyennes et lieux de vie partagés',
     badge: 'Communautaire',
-    photoUrl: '/assets/directions/projets-communautaire.jpg',
+    photoUrl: '/Posters/Onboardings/coproductions.png',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
@@ -934,7 +934,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle solution ingénieuse et frugale inventez-vous pour surmonter un défi complexe ?',
     tagline: 'Technologies pionnières, recherche appliquée et prototypes audacieux',
     badge: 'Innovation',
-    photoUrl: '/assets/directions/projets-innovation.jpg',
+    photoUrl: '/Posters/Sides/Modernite%CC%81.png',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
     bgGradient: 'from-cyan-500 via-sky-700 to-stone-950'
@@ -949,7 +949,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment bâtissez-vous une entreprise pérenne qui crée de l’emploi et de la souveraineté économique ?',
     tagline: 'Création d’entreprises, modèles économiques résilients et essor industriel',
     badge: 'Entreprise',
-    photoUrl: '/assets/directions/projets-entreprise.jpg',
+    photoUrl: '/Posters/Sides/Builders.png',
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
     bgGradient: 'from-blue-500 via-indigo-700 to-stone-950'
@@ -964,7 +964,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel défi audacieux ou expédition hors normes vous a poussé au-delà de vos limites ?',
     tagline: 'Explorations, expéditions terrestres et maritimes, défis extrêmes',
     badge: 'Aventure',
-    photoUrl: '/assets/directions/projets-aventure.jpg',
+    photoUrl: '/assets/duos/sayri-quispe.jpg',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
     bgGradient: 'from-orange-600 via-amber-800 to-stone-950'
@@ -991,7 +991,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment alliez-vous rareté, haute manufacture et prestige intemporel dans votre maison ?',
     tagline: 'Haute joaillerie, maroquinerie d’art, parfumerie rare et maisons de légende',
     badge: 'Luxe',
-    photoUrl: '/assets/directions/marques-luxe.jpg',
+    photoUrl: '/Posters/Focus/Fiat%20Luxe.png',
     accentColor: '#C89B3C',
     glowColor: 'rgba(200, 155, 60, 0.6)',
     bgGradient: 'from-amber-500 via-yellow-700 to-stone-950'
@@ -1006,7 +1006,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment votre signature stylistique impose-t-elle une allure reconnaissable entre mille ?',
     tagline: 'Maisons de couture, prêt-à-porter de caractère et accessoires iconiques',
     badge: 'Mode',
-    photoUrl: '/assets/directions/marques-mode.jpg',
+    photoUrl: '/assets/duos/fatou-diallo.jpg',
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.6)',
     bgGradient: 'from-pink-500 via-rose-700 to-stone-950'
@@ -1021,7 +1021,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle formule secrète et quel rituel précieux fidélisent vos adeptes au quotidien ?',
     tagline: 'Lignes de soins premium, cosmétiques d’auteur et fragrances signatures',
     badge: 'Beauté',
-    photoUrl: '/assets/directions/marques-beaute.jpg',
+    photoUrl: '/Posters/Sides/Wowmen.png',
     accentColor: '#F43F5E',
     glowColor: 'rgba(244, 63, 94, 0.6)',
     bgGradient: 'from-rose-500 via-pink-700 to-stone-950'
@@ -1036,7 +1036,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment votre produit technologique redéfinit-il les standards d’usage de toute une industrie ?',
     tagline: 'Constructeurs, logiciels d’exception, équipements intelligents et tech visionnaire',
     badge: 'Tech',
-    photoUrl: '/assets/directions/marques-tech.jpg',
+    photoUrl: '/Posters/Sides/Modernite%CC%81.png',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
     bgGradient: 'from-cyan-500 via-sky-700 to-stone-950'
@@ -1051,7 +1051,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel goût inimitable et quelle fidélité au goût d’origine font la réputation de votre marque ?',
     tagline: 'Boissons légendaires, épicerie fine, chocolateries et fleurons du goût',
     badge: 'Alimentation',
-    photoUrl: '/assets/directions/produits-services-restauration.jpg',
+    photoUrl: '/Posters/Focus/E%20Vivi.png',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
@@ -1066,7 +1066,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment accompagnez-vous l’effort, le dépassement et la ferveur des athlètes sur tous les terrains ?',
     tagline: 'Équipementiers renommés, tenues techniques et marques de performance',
     badge: 'Sport',
-    photoUrl: '/assets/directions/marques-sport.jpg',
+    photoUrl: '/assets/duos/athlete-hurdle.jpg',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
@@ -1081,7 +1081,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment consolidez-vous la solidité et la confiance financière nécessaire aux grandes réalisations ?',
     tagline: 'Banques historiques, assurances fiables, fonds d’investissement et microfinance',
     badge: 'Finance',
-    photoUrl: '/assets/directions/marques-finance.jpg',
+    photoUrl: '/Posters/Sides/Coachs.png',
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.6)',
     bgGradient: 'from-sky-500 via-blue-700 to-stone-950'
@@ -1096,7 +1096,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle promesse de service impeccable et de sérénité honorez-vous chaque jour auprès de vos clients ?',
     tagline: 'Grands réseaux de transport, télécoms, hôtellerie et enseignes de service',
     badge: 'Services',
-    photoUrl: '/assets/directions/marques-services.jpg',
+    photoUrl: '/Posters/Focus/Mon%20histoire%20fera%20le%20job.png',
     accentColor: '#6366F1',
     glowColor: 'rgba(99, 102, 241, 0.6)',
     bgGradient: 'from-indigo-500 via-blue-700 to-stone-950'
@@ -1123,7 +1123,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel combat citoyen ou lutte pour la justice guide l’ensemble de votre existence ?',
     tagline: 'Défenseurs des droits, figures militantes et voix du courage civique',
     badge: 'Engagement',
-    photoUrl: '/assets/directions/personnalites-engagement.jpg',
+    photoUrl: '/Posters/Sides/Blacks%20One.png',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
     bgGradient: 'from-red-600 via-rose-700 to-stone-950'
@@ -1138,7 +1138,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle figure historique ou souverain bâtisseur continue d’inspirer la grandeur de votre communauté ?',
     tagline: 'Rois fondateurs, pionniers visionnaires et héros entrés dans la postérité',
     badge: 'Légendes',
-    photoUrl: '/assets/directions/personnalites-legendes.jpg',
+    photoUrl: '/Posters/Sides/Irokos.png',
     accentColor: '#C89B3C',
     glowColor: 'rgba(200, 155, 60, 0.6)',
     bgGradient: 'from-amber-500 via-yellow-700 to-stone-950'
@@ -1153,7 +1153,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel artiste musicien a composé la bande-son de vos émotions les plus intenses ?',
     tagline: 'Chantres de la mémoire, virtuoses, icônes du rythme et voix légendaires',
     badge: 'Musique',
-    photoUrl: '/assets/directions/personnalites-musique.jpg',
+    photoUrl: '/Posters/Focus/Artistes.png',
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
     bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
@@ -1168,7 +1168,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel réalisateur ou comédien a su donner un visage inoubliable à nos mémoires ?',
     tagline: 'Maîtres de l’écran, actrices et acteurs charismatiques et metteurs en scène',
     badge: 'Cinéma',
-    photoUrl: '/assets/directions/personnalites-cinema.jpg',
+    photoUrl: '/Posters/Sides/Images.png',
     accentColor: '#E11D48',
     glowColor: 'rgba(225, 29, 72, 0.6)',
     bgGradient: 'from-rose-500 via-red-700 to-stone-950'
@@ -1183,7 +1183,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel plasticien, sculpteur ou peintre a révolutionné votre regard sur le monde ?',
     tagline: 'Artistes plasticiens, sculpteurs, photographes d’art et créateurs d’univers',
     badge: 'Arts',
-    photoUrl: '/assets/directions/personnalites-arts.jpg',
+    photoUrl: '/assets/duos/performers-yede.jpg',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
     bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
@@ -1198,7 +1198,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel champion incarne la bravoure, la discipline et la noblesse dans la victoire ?',
     tagline: 'Athlètes de légende, capitaines d’équipe et médaillés olympiques',
     badge: 'Sport',
-    photoUrl: '/assets/directions/personnalites-sport.jpg',
+    photoUrl: '/assets/duos/athlete-hurdle.jpg',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
@@ -1213,7 +1213,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quelle voix des réseaux inspire la jeunesse par son authenticité et son impact positif ?',
     tagline: 'Créateurs de contenu, voix inspirantes du web et leaders d’opinion',
     badge: 'Influenceurs',
-    photoUrl: '/assets/directions/personnalites-influenceurs.jpg',
+    photoUrl: '/Posters/Sides/Bambous.png',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
     bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
@@ -1228,7 +1228,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel guide spirituel a éclairé votre route par sa parole de vérité, d’élévation et de paix ?',
     tagline: 'Sages vénérables, gardiens du culte, guides de confrérie et voix saintes',
     badge: 'Foi',
-    photoUrl: '/assets/directions/personnalites-foi.jpg',
+    photoUrl: '/Posters/Sides/Jesus.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
     bgGradient: 'from-purple-500 via-indigo-700 to-stone-950'

@@ -38,7 +38,7 @@ const AFRIKA_FUN_CARDS: CompanyCard[] = [
     companyName: 'Africafun',
     firstName: 'Amina',
     role: 'Monteuse & Réalisatrice',
-    photoUrl: '/assets/images/amara_andine_1792933642777.jpg',
+    photoUrl: '/assets/duos/horizons-awa.jpg',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     quote: '« Chez Africafun, chaque montage préserve la vérité des regards et le rythme noble de nos récits. »'
   },

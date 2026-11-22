@@ -64,7 +64,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
   };
 
   return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
         <StageBreadcrumb
           items={[
@@ -108,7 +108,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                   </h3>
                   <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed mb-4">
                     {entries.length === 0
-                      ? 'Depuis le Studio, touchez l’icône de coproduction sur la série de votre choix (simulation démo).'
+                      ? 'Depuis le Studio, touchez l’icône de coproduction sur la série de votre choix.'
                       : 'Ajoutez une nouvelle série depuis le Studio.'}
                   </p>
                   <button
@@ -140,19 +140,16 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/15 to-black/85 pointer-events-none" />
 
-                {/* HAUT : Titre série + Badge Démo */}
+                {/* HAUT : Titre série */}
                 <div className="relative z-10 flex items-center justify-between gap-1.5 w-full min-w-0">
-                  <div className="inline-flex w-fit max-w-[calc(100%-58px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                  <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
                     <span className="font-editorial text-[8.5px] sm:text-[10px] font-semibold text-white truncate">
                       {entry.seriesTitle}
                     </span>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-black/75 border border-white/20 text-[9.5px] font-semibold text-[#FFE7A3] shrink-0">
-                    Démo
-                  </span>
                 </div>
 
-                {/* BAS : Détail papyrus + Parts simulées */}
+                {/* BAS : Détail papyrus + Parts */}
                 <div
                   className="relative z-10 w-full flex items-end justify-between gap-2 pointer-events-auto pt-2"
                   onMouseDown={(e) => e.stopPropagation()}
@@ -208,9 +205,6 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                   <h3 className="font-editorial text-xs sm:text-sm font-semibold text-[#1C1917] leading-tight truncate">
                     {detailEntry.seriesTitle}
                   </h3>
-                  <span className="text-[10px] font-semibold text-[#A2482B]">
-                    Simulation démo enregistrée
-                  </span>
                 </div>
                 <button
                   type="button"
@@ -244,14 +238,14 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
 
               <div className="rounded-xl bg-white border border-stone-200 p-3 space-y-1">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-stone-500">Parts simulées</span>
+                  <span className="text-stone-500">Parts</span>
                   <span className="font-bold text-[#1C1917]">
                     {detailEntry.sharesCount} ({totalSimulated} €)
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-stone-500">Statut</span>
-                  <span className="font-semibold text-emerald-700">Active (démo)</span>
+                  <span className="font-semibold text-emerald-700">Active</span>
                 </div>
               </div>
 
@@ -261,18 +255,18 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                 </p>
               )}
 
-              <p className="text-[10px] text-stone-500 leading-snug">
-                Simulation locale uniquement : aucun paiement réel n&apos;est effectué.
-              </p>
-
               <button
                 type="button"
                 onClick={() => handleRemove(detailEntry.seriesId, detailEntry.seriesTitle)}
                 className="w-full py-2 rounded-xl border border-stone-300 hover:border-rose-300 hover:bg-rose-50 text-stone-700 hover:text-rose-700 text-xs font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5" />
-                <span>Retirer cette simulation</span>
+                <span>Retirer cette coproduction</span>
               </button>
+
+              <p className="text-[9.5px] text-stone-400 text-center tracking-wide">
+                Coproduction
+              </p>
             </>
           );
         })()}

@@ -481,7 +481,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
   return (
     <div 
       onWheel={handleWheel}
-      className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between select-none bg-white text-[#1C1917]"
+      className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between select-none bg-transparent text-[#1C1917]"
     >
       
       {/* ========================================================================= */}

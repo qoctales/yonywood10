@@ -107,7 +107,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
   const [city, setCity] = useState<string>(profile.city || profile.territory || 'Cotonou');
   const [country, setCountry] = useState<string>(profile.country || 'Bénin');
   const [avatarUrl, setAvatarUrl] = useState<string>(
-    profile.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg'
+    profile.avatarUrl || '/assets/duos/paroles-armel.jpg'
   );
   const photoInputRef = useRef<HTMLInputElement>(null);
 
@@ -132,7 +132,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
       setHandle(profile.handle || '@romeo');
       setCity(profile.city || profile.territory || 'Cotonou');
       setCountry(profile.country || 'Bénin');
-      setAvatarUrl(profile.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg');
+      setAvatarUrl(profile.avatarUrl || '/assets/duos/paroles-armel.jpg');
       setEmail(profile.email || 'qoctales@gmail.com');
       setPhone(profile.phone || '');
     }
@@ -143,7 +143,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
     setHandle(profile.handle || '@romeo');
     setCity(profile.city || profile.territory || 'Cotonou');
     setCountry(profile.country || 'Bénin');
-    setAvatarUrl(profile.avatarUrl || '/assets/images/romeo_avatar_1792698425983.jpg');
+    setAvatarUrl(profile.avatarUrl || '/assets/duos/paroles-armel.jpg');
     setEmail(profile.email || 'qoctales@gmail.com');
     setPhone(profile.phone || '');
     setIsChangingPassword(false);
@@ -189,7 +189,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
         city: cleanCity,
         territory: cleanCity,
         country: cleanCountry,
-        avatarUrl: avatarUrl.trim() || '/assets/images/romeo_avatar_1792698425983.jpg'
+        avatarUrl: avatarUrl.trim() || '/assets/duos/paroles-armel.jpg'
       });
       setIsEditingCard(false);
       onShowToast('Identité enregistrée.');
@@ -243,7 +243,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
   };
 
   return (
-    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
+    <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       <div className="flex-1 w-full max-w-3xl mx-auto px-3 sm:px-6 min-h-0 overflow-hidden flex flex-col justify-between pt-1 sm:pt-2">
         <StageBreadcrumb
           items={[
@@ -350,7 +350,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                             onError={(e) => {
                               const target = e.currentTarget;
                               target.onerror = null;
-                              target.src = '/assets/images/romeo_avatar_1792698425983.jpg';
+                              target.src = '/assets/duos/paroles-armel.jpg';
                             }}
                             className="w-full h-full object-cover"
                           />

@@ -1,20 +1,20 @@
 /**
  * Table unique de correspondance des anciens identifiants de séries vers les 8 nouveaux identifiants canoniques.
- * Utilisée uniquement pour :
+ * Utilisée pour :
  *  - migrer les valeurs persistées (localStorage, routes/liens, vidéos soumises)
- *  - résoudre les anciens chemins d'affiches conservées sur disque
+ *  - pointer vers les chemins exacts des affiches officielles sur disque
  *  - maintenir la rétrocompatibilité des API et vues héritées
  */
 
 export const CANONICAL_SERIES_IDS = [
-  'remedes-e-vivi',
-  'amin-amen-legba',
-  'phd-azovi',
-  'blacks-one-nyonoukpo',
-  'fiat-luxe-irokos',
-  'horizons-finagnon',
-  'builders-mi-do-kpo',
-  'regards-gbe'
+  'modernite-tradition',
+  'jesus-legba',
+  'phd-apprentis',
+  'blacks-one-wowmen',
+  'bambous-irokos',
+  'horizons-benin',
+  'builders-coachs',
+  'regards-paroles'
 ] as const;
 
 export type CanonicalSeriesId = (typeof CANONICAL_SERIES_IDS)[number];
@@ -39,163 +39,201 @@ export interface SeriesPosterFilesEntry {
 }
 
 /**
- * Chemins des affiches existantes conservées temporairement sans renommage de fichier.
- * Les séries dont les côtés 1/2 ont changé d'ordre pointent vers l'affiche de côté correspondante.
+ * Chemins exacts des affiches officielles dans /public/Posters/Duos/ et /public/Posters/Sides/
+ * (respect strict des caractères Unicode NFD, extensions et chevrons présents sur disque).
  */
 export const SERIES_POSTER_FILES: Record<CanonicalSeriesId, SeriesPosterFilesEntry> = {
-  'remedes-e-vivi': {
-    mainPosterUrl: encodeURI('/Posters/Remedes ‹ › E Vivi.png'),
-    partAPosterUrl: encodeURI('/Posters/Sides/Remedes.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/E Vivi.png')
+  'modernite-tradition': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Modernite\u0301 <> Tradition.png'),
+    partAPosterUrl: encodeURI('/Posters/Sides/Modernite\u0301.png'),
+    partBPosterUrl: encodeURI('/Posters/Sides/Tradition.png')
   },
-  'amin-amen-legba': {
-    mainPosterUrl: encodeURI('/Posters/Amin Amen ‹ › Legba.png'),
-    partAPosterUrl: encodeURI('/Posters/Sides/Amin Amen.png'),
+  'jesus-legba': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Jesus <> Legba.png'),
+    partAPosterUrl: encodeURI('/Posters/Sides/Jesus.png'),
     partBPosterUrl: encodeURI('/Posters/Sides/Legba.png')
   },
-  'phd-azovi': {
-    mainPosterUrl: encodeURI('/Posters/PhD <> Azovi.png'),
+  'phd-apprentis': {
+    mainPosterUrl: encodeURI('/Posters/Duos/PhD <> Apprentis.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/PhD.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Azovi.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Apprentis.png')
   },
-  'blacks-one-nyonoukpo': {
-    mainPosterUrl: encodeURI('/Posters/Blacks One ‹ › Nyonu\u0300.png'),
+  'blacks-one-wowmen': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Blacks One <> Wowmen.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Blacks One.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Nyonu\u0300.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Wowmen.png')
   },
-  'fiat-luxe-irokos': {
-    mainPosterUrl: encodeURI('/Posters/Fiat Luxe <> Irokos.png'),
-    partAPosterUrl: encodeURI('/Posters/Sides/Fiat Luxe.png'),
+  'bambous-irokos': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Bambous <> Irokos.png'),
+    partAPosterUrl: encodeURI('/Posters/Sides/Bambous.png'),
     partBPosterUrl: encodeURI('/Posters/Sides/Irokos.png')
   },
-  'horizons-finagnon': {
-    mainPosterUrl: encodeURI('/Posters/Horizons ‹ › Finagnon.png'),
+  'horizons-benin': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Horizons <> Benin.png'),
     partAPosterUrl: encodeURI('/Posters/Sides/Horizons.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Finagnon.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Benin.png')
   },
-  'builders-mi-do-kpo': {
-    mainPosterUrl: encodeURI('/Posters/Builders <> Mi do kpo\u0302.png'),
+  'builders-coachs': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Builders <> Coachs.jpg'),
     partAPosterUrl: encodeURI('/Posters/Sides/Builders.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Mi do kpo.png')
+    partBPosterUrl: encodeURI('/Posters/Sides/Coachs.png')
   },
-  'regards-gbe': {
-    mainPosterUrl: encodeURI('/Posters/Regards ‹ › Gbe.png'),
-    partAPosterUrl: encodeURI('/Posters/Sides/Regards.png'),
-    partBPosterUrl: encodeURI('/Posters/Sides/Gbe\u0301.png')
+  'regards-paroles': {
+    mainPosterUrl: encodeURI('/Posters/Duos/Images <> Paroles.png'),
+    partAPosterUrl: encodeURI('/Posters/Sides/Images.png'),
+    partBPosterUrl: encodeURI('/Posters/Sides/Paroles.png')
   }
 };
 
 export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
-  // Anciens IDs v2 -> nouveaux IDs officiels (même position)
+  // Anciens IDs v3 -> nouveaux IDs officiels (même position)
+  'remedes-e-vivi': {
+    legacyId: 'remedes-e-vivi',
+    status: 'mapped',
+    targetSeriesId: 'modernite-tradition',
+    note: 'Remèdes ‹ › E Vivi -> Modernité ‹ › Tradition'
+  },
+  'amin-amen-legba': {
+    legacyId: 'amin-amen-legba',
+    status: 'mapped',
+    targetSeriesId: 'jesus-legba',
+    note: 'Amin Amen ‹ › Legba -> Jesus ‹ › Legba'
+  },
+  'phd-azovi': {
+    legacyId: 'phd-azovi',
+    status: 'mapped',
+    targetSeriesId: 'phd-apprentis',
+    note: 'PhD ‹ › Azovi -> PhD ‹ › Apprentis'
+  },
+  'blacks-one-nyonoukpo': {
+    legacyId: 'blacks-one-nyonoukpo',
+    status: 'mapped',
+    targetSeriesId: 'blacks-one-wowmen',
+    note: 'Blacks One ‹ › Nyonoukpo -> Blacks One ‹ › Wowmen'
+  },
+  'fiat-luxe-irokos': {
+    legacyId: 'fiat-luxe-irokos',
+    status: 'mapped',
+    targetSeriesId: 'bambous-irokos',
+    note: 'Fiat Luxe ‹ › Irokos -> Bambous ‹ › Irokos'
+  },
+  'horizons-finagnon': {
+    legacyId: 'horizons-finagnon',
+    status: 'mapped',
+    targetSeriesId: 'horizons-benin',
+    note: 'Horizons ‹ › Finagnon -> Horizons ‹ › Benin'
+  },
+  'builders-mi-do-kpo': {
+    legacyId: 'builders-mi-do-kpo',
+    status: 'mapped',
+    targetSeriesId: 'builders-coachs',
+    note: 'Builders ‹ › Mi do kpô -> Builders ‹ › Coachs'
+  },
+  'regards-gbe': {
+    legacyId: 'regards-gbe',
+    status: 'mapped',
+    targetSeriesId: 'regards-paroles',
+    note: 'Regards ‹ › Gbé -> Images ‹ › Paroles'
+  },
+
+  // Anciens IDs v2 -> nouveaux IDs officiels
   'care-feed': {
     legacyId: 'care-feed',
     status: 'mapped',
-    targetSeriesId: 'remedes-e-vivi',
-    note: 'Care <> Feed -> Remèdes ‹ › E Vivi'
+    targetSeriesId: 'modernite-tradition',
+    note: 'Care <> Feed -> Modernité ‹ › Tradition'
   },
   'vodun-rays-autre-foi': {
     legacyId: 'vodun-rays-autre-foi',
     status: 'mapped',
-    targetSeriesId: 'amin-amen-legba',
-    note: 'Vodun Rays <> Autre Foi -> Amin Amen ‹ › Legba'
+    targetSeriesId: 'jesus-legba',
+    note: 'Vodun Rays <> Autre Foi -> Jesus ‹ › Legba'
   },
   'baobabs-bambous': {
     legacyId: 'baobabs-bambous',
     status: 'mapped',
-    targetSeriesId: 'phd-azovi',
-    note: 'Baobabs <> Bambous -> PhD ‹ › Azovi'
+    targetSeriesId: 'bambous-irokos',
+    note: 'Baobabs <> Bambous -> Bambous ‹ › Irokos'
   },
   'phd-nukplonkplon': {
     legacyId: 'phd-nukplonkplon',
     status: 'mapped',
-    targetSeriesId: 'phd-azovi',
-    note: 'PhD ‹ › Nukplonkplon -> PhD ‹ › Azovi'
-  },
-  'blacks-one-wowmen': {
-    legacyId: 'blacks-one-wowmen',
-    status: 'mapped',
-    targetSeriesId: 'blacks-one-nyonoukpo',
-    note: 'Blacks One <> Wowmen -> Blacks One ‹ › Nyonoukpo'
+    targetSeriesId: 'phd-apprentis',
+    note: 'PhD ‹ › Nukplonkplon -> PhD ‹ › Apprentis'
   },
   'fiat-luxe-phd': {
     legacyId: 'fiat-luxe-phd',
     status: 'mapped',
-    targetSeriesId: 'fiat-luxe-irokos',
-    note: 'Fiat Luxe <> PhD -> Fiat Luxe ‹ › Irokos'
+    targetSeriesId: 'phd-apprentis',
+    note: 'Fiat Luxe <> PhD -> PhD ‹ › Apprentis'
   },
   'finagnon-horizons': {
     legacyId: 'finagnon-horizons',
     status: 'mapped',
-    targetSeriesId: 'horizons-finagnon',
-    note: 'Finagnon <> Horizons -> Horizons ‹ › Finagnon'
+    targetSeriesId: 'horizons-benin',
+    note: 'Finagnon <> Horizons -> Horizons ‹ › Benin'
   },
   'performers-builders': {
     legacyId: 'performers-builders',
     status: 'mapped',
-    targetSeriesId: 'builders-mi-do-kpo',
-    note: 'Performers <> Builders -> Builders ‹ › Mi do kpô'
+    targetSeriesId: 'builders-coachs',
+    note: 'Performers <> Builders -> Builders ‹ › Coachs'
   },
   'builders-akwe': {
     legacyId: 'builders-akwe',
     status: 'mapped',
-    targetSeriesId: 'builders-mi-do-kpo',
-    note: 'Builders ‹ › Àkwè -> Builders ‹ › Mi do kpô'
+    targetSeriesId: 'builders-coachs',
+    note: 'Builders ‹ › Àkwè -> Builders ‹ › Coachs'
   },
   'paroles-regards': {
     legacyId: 'paroles-regards',
     status: 'mapped',
-    targetSeriesId: 'regards-gbe',
-    note: 'Paroles <> Regards -> Regards ‹ › Gbé'
+    targetSeriesId: 'regards-paroles',
+    note: 'Paroles <> Regards -> Images ‹ › Paroles'
   },
 
   // Anciens IDs v1 -> nouveaux IDs officiels
   'blacks-one-amazones': {
     legacyId: 'blacks-one-amazones',
     status: 'mapped',
-    targetSeriesId: 'blacks-one-nyonoukpo',
-    note: 'Correspondance directe vers Blacks One ‹ › Nyonoukpo'
+    targetSeriesId: 'blacks-one-wowmen',
+    note: 'Correspondance directe vers Blacks One ‹ › Wowmen'
   },
   'blacks-one-beyond-eve': {
     legacyId: 'blacks-one-beyond-eve',
     status: 'mapped',
-    targetSeriesId: 'blacks-one-nyonoukpo',
-    note: 'Correspondance directe vers Blacks One ‹ › Nyonoukpo'
+    targetSeriesId: 'blacks-one-wowmen',
+    note: 'Correspondance directe vers Blacks One ‹ › Wowmen'
   },
   'baobab-bambou': {
     legacyId: 'baobab-bambou',
     status: 'mapped',
-    targetSeriesId: 'phd-azovi',
-    note: 'Ancien baobab-bambou -> PhD ‹ › Azovi'
+    targetSeriesId: 'bambous-irokos',
+    note: 'Ancien baobab-bambou -> Bambous ‹ › Irokos'
   },
   'esu-jesus': {
     legacyId: 'esu-jesus',
     status: 'mapped',
-    targetSeriesId: 'amin-amen-legba',
-    note: 'Ancien identifiant de Amin Amen ‹ › Legba (ex Èṣù <> Jésus)'
-  },
-  'jesus-legba': {
-    legacyId: 'jesus-legba',
-    status: 'mapped',
-    targetSeriesId: 'amin-amen-legba',
-    note: 'Correspondance directe vers Amin Amen ‹ › Legba'
+    targetSeriesId: 'jesus-legba',
+    note: 'Ancien identifiant de Jesus ‹ › Legba (ex Èṣù <> Jésus)'
   },
   'pictures-words': {
     legacyId: 'pictures-words',
     status: 'mapped',
-    targetSeriesId: 'regards-gbe',
-    note: 'Correspondance directe vers Regards ‹ › Gbé'
+    targetSeriesId: 'regards-paroles',
+    note: 'Correspondance directe vers Images ‹ › Paroles'
   },
   'benin-monde': {
     legacyId: 'benin-monde',
     status: 'mapped',
-    targetSeriesId: 'horizons-finagnon',
-    note: 'Correspondance directe vers Horizons ‹ › Finagnon'
+    targetSeriesId: 'horizons-benin',
+    note: 'Correspondance directe vers Horizons ‹ › Benin'
   },
   'benin-world': {
     legacyId: 'benin-world',
     status: 'mapped',
-    targetSeriesId: 'horizons-finagnon',
-    note: 'Correspondance directe vers Horizons ‹ › Finagnon'
+    targetSeriesId: 'horizons-benin',
+    note: 'Correspondance directe vers Horizons ‹ › Benin'
   },
 
   // Anciennes séries v1 sans équivalent (masquées)
@@ -235,34 +273,34 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
     legacyId: 'coaching-phd',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : côté Coaching masqué, côté PhD -> phd-azovi (part-a)',
+    note: 'Scindée : Coachs -> builders-coachs (part-b), PhD -> phd-apprentis (part-a)',
     splitSides: {
-      sideALabel: 'Coaching',
-      sideATarget: null,
+      sideALabel: 'Coachs',
+      sideATarget: { seriesId: 'builders-coachs', partId: 'part-b' },
       sideBLabel: 'PhD',
-      sideBTarget: { seriesId: 'phd-azovi', partId: 'part-a' }
+      sideBTarget: { seriesId: 'phd-apprentis', partId: 'part-a' }
     }
   },
   'fiat-luxe-builders': {
     legacyId: 'fiat-luxe-builders',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Fiat Luxe -> fiat-luxe-irokos (part-a), Builders -> builders-mi-do-kpo (part-a)',
+    note: 'Scindée : Builders -> builders-coachs (part-a)',
     splitSides: {
       sideALabel: 'Fiat Luxe',
-      sideATarget: { seriesId: 'fiat-luxe-irokos', partId: 'part-a' },
+      sideATarget: null,
       sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' }
+      sideBTarget: { seriesId: 'builders-coachs', partId: 'part-a' }
     }
   },
   'finagnon-qosqorico': {
     legacyId: 'finagnon-qosqorico',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Finagnon -> horizons-finagnon (part-b), Qosqorico masqué',
+    note: 'Scindée : Benin -> horizons-benin (part-b), Qosqorico masqué',
     splitSides: {
       sideALabel: 'Finagnon',
-      sideATarget: { seriesId: 'horizons-finagnon', partId: 'part-b' },
+      sideATarget: { seriesId: 'horizons-benin', partId: 'part-b' },
       sideBLabel: 'Qosqorico',
       sideBTarget: null
     }
@@ -271,34 +309,34 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
     legacyId: 'dixeat-fiat-luxe',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Dixeat masqué, Fiat Luxe -> fiat-luxe-irokos (part-a)',
+    note: 'Scindée : ancienne série masquée',
     splitSides: {
       sideALabel: 'Dixeat',
       sideATarget: null,
       sideBLabel: 'Fiat Luxe',
-      sideBTarget: { seriesId: 'fiat-luxe-irokos', partId: 'part-a' }
+      sideBTarget: null
     }
   },
   'investors-builders': {
     legacyId: 'investors-builders',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Investors masqué, Builders -> builders-mi-do-kpo (part-a)',
+    note: 'Scindée : Investors masqué, Builders -> builders-coachs (part-a)',
     splitSides: {
       sideALabel: 'Investors',
       sideATarget: null,
       sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' }
+      sideBTarget: { seriesId: 'builders-coachs', partId: 'part-a' }
     }
   },
   'builders-seekers': {
     legacyId: 'builders-seekers',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Builders -> builders-mi-do-kpo (part-a), Seekers masqué',
+    note: 'Scindée : Builders -> builders-coachs (part-a), Seekers masqué',
     splitSides: {
       sideALabel: 'Builders',
-      sideATarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' },
+      sideATarget: { seriesId: 'builders-coachs', partId: 'part-a' },
       sideBLabel: 'Seekers',
       sideBTarget: null
     }
@@ -307,24 +345,24 @@ export const LEGACY_SERIES_MAPPING: Record<string, LegacySeriesMappingEntry> = {
     legacyId: 'focus-phd',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Focus masqué, PhD -> phd-azovi (part-a)',
+    note: 'Scindée : Focus masqué, PhD -> phd-apprentis (part-a)',
     splitSides: {
       sideALabel: 'Focus',
       sideATarget: null,
       sideBLabel: 'PhD',
-      sideBTarget: { seriesId: 'phd-azovi', partId: 'part-a' }
+      sideBTarget: { seriesId: 'phd-apprentis', partId: 'part-a' }
     }
   },
   'dixeat-builders': {
     legacyId: 'dixeat-builders',
     status: 'split_hidden',
     targetSeriesId: null,
-    note: 'Scindée : Dixeat masqué, Builders -> builders-mi-do-kpo (part-a)',
+    note: 'Scindée : Dixeat masqué, Builders -> builders-coachs (part-a)',
     splitSides: {
       sideALabel: 'Dixeat',
       sideATarget: null,
       sideBLabel: 'Builders',
-      sideBTarget: { seriesId: 'builders-mi-do-kpo', partId: 'part-a' }
+      sideBTarget: { seriesId: 'builders-coachs', partId: 'part-a' }
     }
   }
 };
@@ -434,7 +472,6 @@ export function migratePersistedScreenSeriesId(screenObj: unknown): {
             changed = true;
           }
         } else {
-          // Ancienne série masquée -> réinitialisation propre sur le premier ID officiel
           clone[field] = CANONICAL_SERIES_IDS[0];
           changed = true;
         }

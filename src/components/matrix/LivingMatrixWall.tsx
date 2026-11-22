@@ -141,16 +141,16 @@ const MatrixCell: React.FC<MatrixCellProps> = React.memo(({
           const target = e.currentTarget;
           target.onerror = null;
           const fallbackAvatars = [
-            '/assets/images/amara_andine_1792933642777.jpg',
+            '/assets/duos/horizons-awa.jpg',
             '/assets/duos/chef-koffi.jpg',
             '/assets/duos/kwame-mensah.jpg',
-            '/assets/images/sika_tisserande_1792933605542.jpg',
+            '/assets/duos/care-mireille.jpg',
             '/assets/duos/dah-zounon.jpg',
             '/assets/duos/fatou-diallo.jpg',
-            '/assets/images/koffi_tisserand_1792933625628.jpg',
+            '/assets/duos/paroles-armel.jpg',
             '/assets/duos/malik-diop.jpg',
             '/assets/duos/mawuna-medium.jpg',
-            '/assets/images/senan_innovatrice_1792933679487.jpg'
+            '/assets/duos/researcher-phd.jpg'
           ];
           target.src = fallbackAvatars[idx % fallbackAvatars.length];
         }}

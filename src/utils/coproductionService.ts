@@ -27,14 +27,14 @@ const USER_COPRODUCTIONS_KEY = 'yonywood_user_coproductions';
 export const COPRODUCTIONS_UPDATED_EVENT = 'yonywood:coproductions-updated';
 
 const BASE_SERIES_VIEWS: Record<string, number> = {
-  'remedes-e-vivi': 14200,
-  'amin-amen-legba': 18900,
-  'phd-azovi': 11400,
-  'blacks-one-nyonoukpo': 24600,
-  'fiat-luxe-irokos': 15800,
-  'horizons-finagnon': 13500,
-  'builders-mi-do-kpo': 21300,
-  'regards-gbe': 12900,
+  'modernite-tradition': 14200,
+  'jesus-legba': 18900,
+  'phd-apprentis': 11400,
+  'blacks-one-wowmen': 24600,
+  'bambous-irokos': 15800,
+  'horizons-benin': 13500,
+  'builders-coachs': 21300,
+  'regards-paroles': 12900,
 };
 
 function notifyCoproductionsUpdated(): void {

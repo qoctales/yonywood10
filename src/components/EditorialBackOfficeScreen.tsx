@@ -275,7 +275,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                     <div className="flex items-center gap-3.5 min-w-0">
                       <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-black shrink-0 border border-stone-200">
                         <img
-                          src={sub.thumbnailUrl || '/assets/images/selfie_video_story.jpg'}
+                          src={sub.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
                           alt={sub.title}
                           className="w-full h-full object-cover"
                           loading="lazy"
