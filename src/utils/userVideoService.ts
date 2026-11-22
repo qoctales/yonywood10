@@ -107,11 +107,23 @@ export function resolveSubmissionProfileTab(
     return submission.profileTab;
   }
   const u = (submission.universe || '').toLowerCase().trim();
-  if (u === 'parcours' || u === 'soi-parcours' || u === 'recit') {
-    return 'parcours';
-  }
-  if (u === 'projets' || u === 'initiatives' || u === 'soi-projets') {
+  if (
+    u === 'projets' ||
+    u === 'initiatives' ||
+    u === 'soi-projets' ||
+    u === 'portrait-q7'
+  ) {
     return 'projets';
+  }
+  if (
+    u === 'parcours' ||
+    u === 'soi-parcours' ||
+    u === 'recit' ||
+    u === 'soi' ||
+    u.startsWith('portrait-') ||
+    u.startsWith('soi-')
+  ) {
+    return 'parcours';
   }
   return null;
 }

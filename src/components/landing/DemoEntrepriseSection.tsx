@@ -29,7 +29,7 @@ const AFRIKA_FUN_CARDS: CompanyCard[] = [
     type: 'intro',
     companyName: 'Africafun',
     title: 'Focus',
-    photoUrl: '/assets/Onboardings/Voyage.png',
+    photoUrl: '/Posters/Studio/Studio.Focus.png',
     quote: 'Un espace vivant dédié à la valorisation authentique de l’entreprise. Ici, collaborateurs, créateurs et partenaires racontent l’histoire humaine, les savoir-faire et l’âme qui font votre réalité.'
   },
   {

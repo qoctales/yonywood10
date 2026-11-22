@@ -35,6 +35,7 @@ export interface VideoSimulationItem {
   duration: string;
   tag?: string;
   extraInfo?: string;
+  questionText?: string;
 }
 
 export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationItem[]> = {

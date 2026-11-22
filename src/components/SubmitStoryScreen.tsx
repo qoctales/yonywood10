@@ -42,7 +42,7 @@ import { STAGE_CARD_DIMENSIONS_CLASS, STAGE_PERSPECTIVE, STAGE_CENTER_TRANSLATE_
 
 const SHOW_TOP_STORIES_BANNER = false;
 const SHOW_HIDDEN_STUDIO_PILLARS = false;
-const VISIBLE_STUDIO_PILLAR_IDS: StudioPillar['id'][] = ['duos', 'focus'];
+const VISIBLE_STUDIO_PILLAR_IDS: StudioPillar['id'][] = ['duos', 'focus', 'soi'];
 
 const VISIBLE_STUDIO_PILLARS: StudioPillar[] = SHOW_HIDDEN_STUDIO_PILLARS
   ? STUDIO_PILLARS
@@ -665,15 +665,16 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
         ? setSelectedCategoryIndex
         : setSelectedPillarIndex;
 
-  // Préchargement léger (250 ms) sur la carte audio active centrée (série, côté, Focus ou question)
+  // Préchargement léger (250 ms) sur la carte audio active centrée (série, côté, Focus, Portrait ou question)
   useEffect(() => {
     if (selectedFinalChoice || isUploadScreenActive) return;
-    if (activePillar?.id !== 'duos' && activePillar?.id !== 'focus') return;
+    if (activePillar?.id !== 'duos' && activePillar?.id !== 'focus' && activePillar?.id !== 'soi') return;
     const activeItem = currentList[currentIndex] as StudioPillarItem | undefined;
     if (!activeItem) return;
 
+    const isPortraitQuestion = isLevel1 && activePillar?.id === 'soi';
     const timer = window.setTimeout(() => {
-      if ((isLevel1 || isSideSelectionLevel) && activeItem.subtitle) {
+      if ((isLevel1 || isSideSelectionLevel) && !isPortraitQuestion && activeItem.subtitle) {
         episodeVoiceReader.preload(
           {
             mode: 'synopsis',
@@ -681,7 +682,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
           },
           { cacheOnly: true }
         );
-      } else if (isLevel2 && activeItem.question) {
+      } else if ((isLevel2 || isPortraitQuestion) && activeItem.question) {
         episodeVoiceReader.preload(
           {
             mode: 'episode',
@@ -982,7 +983,10 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
       return;
     }
 
-    const titleClean = selectedFileName.replace(/\.[^/.]+$/, "") || selectedFinalChoice?.title || 'Récit YonyWood';
+    const isPortraitSubmission = activePillar?.id === 'soi';
+    const titleClean = isPortraitSubmission
+      ? (selectedFinalChoice?.title || 'Mon Portrait')
+      : (selectedFileName.replace(/\.[^/.]+$/, "") || selectedFinalChoice?.title || 'Récit YonyWood');
     const authorName = currentUser?.name || 'Créateur YonyWood';
     const authorAvatar = currentUser?.avatarUrl || '/assets/duos/kwame-mensah.jpg';
 
@@ -1005,8 +1009,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
       authorName,
       authorAvatarUrl: authorAvatar,
       title: titleClean,
-      synopsis: `Soumission pour ${selectedFinalChoice?.title || 'le Studio'} (${contextSummary}). En attente de validation éditoriale.`,
-      universe: activePillar?.id || 'studio',
+      synopsis: isPortraitSubmission
+        ? (selectedFinalChoice?.question || selectedFinalChoice?.subtitle || `Réponse Portrait : ${titleClean}.`)
+        : `Soumission pour ${selectedFinalChoice?.title || 'le Studio'} (${contextSummary}). En attente de validation éditoriale.`,
+      ...(selectedFinalChoice?.question ? { questionText: selectedFinalChoice.question } : {}),
+      universe: selectedFinalChoice?.id || activePillar?.id || 'studio',
       ...(resolvedProfileTab ? { profileTab: resolvedProfileTab } : {}),
       videoUrl: '/sample.mp4',
       thumbnailUrl: selectedFinalChoice?.posterUrl || '/assets/duos/performers-yede.jpg',
@@ -1731,7 +1738,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
             celestialAudio?.playOrbSelect?.();
           }}
           getKey={(pillar) => `studio-pillar-card-${pillar.id}`}
-          circular={false}
+          circular={VISIBLE_STUDIO_PILLARS.length >= 3}
           dragDisabled={Boolean(synopsisModalItem || coproduceModalSeriesId)}
           showDesktopArrows={SHOW_CAROUSEL_ARROWS}
           prevAriaLabel="Direction précédente"
@@ -1951,8 +1958,9 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 const castingItem = item as StudioPillarItem;
                 const hasSubCategories = isLevel1 && Boolean(castingItem.subCategories && castingItem.subCategories.length > 0);
                 const isSeriesAudioCard = isLevel1 && (activePillar?.id === 'duos' || activePillar?.id === 'focus');
+                const isPortraitQuestionCard = isLevel1 && activePillar?.id === 'soi';
                 const isSideAudioCard = isSideSelectionLevel && activePillar?.id === 'duos';
-                const isEpisodeAudioCard = isLevel2 && (activePillar?.id === 'duos' || activePillar?.id === 'focus');
+                const isEpisodeAudioCard = isPortraitQuestionCard || (isLevel2 && (activePillar?.id === 'duos' || activePillar?.id === 'focus'));
                 const isAudioCard = isSeriesAudioCard || isSideAudioCard || isEpisodeAudioCard;
                 const isSynopsisAudioMode = isSeriesAudioCard || isSideAudioCard;
 
@@ -2427,7 +2435,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     ))}
                   </div>
                 </div>
-              ) : activePillar?.id === 'focus' && 'question' in synopsisModalItem && synopsisModalItem.question ? (
+              ) : (activePillar?.id === 'focus' || activePillar?.id === 'soi') && 'question' in synopsisModalItem && synopsisModalItem.question ? (
                 <div className="pt-2 border-t border-stone-200/80">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block mb-1">
                     {('badge' in synopsisModalItem && synopsisModalItem.badge) ? `${synopsisModalItem.badge}${synopsisModalItem.episodeTitle ? ` · ${synopsisModalItem.episodeTitle}` : ''}` : 'Question'}

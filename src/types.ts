@@ -573,6 +573,7 @@ export interface UserVideoSubmission {
   authorAvatarUrl?: string;
   title: string;
   synopsis: string;
+  questionText?: string;
   universe: string;
   profileTab?: ProfileVideoTab;
   videoUrl?: string;

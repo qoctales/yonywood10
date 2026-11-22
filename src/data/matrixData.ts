@@ -29,7 +29,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'Jesus ‹ › Legba',
     subtitle: 'Jesus ‹ › Legba. Deux traditions. Une même question de foi.',
     description: 'De la rencontre sacrée entre un dignitaire Vodun et un prêtre naît une onde de transmission : découvrez les 16 pionniers et leurs lignées à travers le monde.',
-    centralQuestion: "L'appel",
+    centralQuestion: 'Appel',
     accentColor: '#C89B3C',
     pioneers: [
       {
@@ -604,7 +604,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'Horizons ‹ › Benin',
     subtitle: 'Horizons ‹ › Benin. Deux territoires. Une même réflexion sur ce qui nous relie à un lieu.',
     description: 'Entre les pilotis de Ganvié et d’autres horizons du monde, 16 pionniers portent un dialogue sur l’attachement à la terre, à la diaspora et aux ancêtres.',
-    centralQuestion: 'Ce qui ramène chez soi',
+    centralQuestion: 'Chez soi',
     accentColor: '#B8860B',
     pioneers: [
       {
@@ -1352,7 +1352,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'Bambous ‹ › Irokos',
     subtitle: 'La jeunesse qui pousse vite ‹ › la sagesse des aînés.',
     description: "Deux âges de la vie, face à face : l'élan de la jeunesse et la mémoire patiente des aînés.",
-    centralQuestion: 'Être pris au sérieux',
+    centralQuestion: 'Pris au sérieux',
     accentColor: '#D97706',
     pioneers: [
       {
@@ -1726,7 +1726,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'Builders ‹ › Coachs',
     subtitle: 'Bâtir dans le réel ‹ › accompagner le chemin.',
     description: 'Deux façons de faire grandir : celles et ceux qui entreprennent et bâtissent, et celles et ceux qui conseillent et accompagnent.',
-    centralQuestion: 'Le conseil',
+    centralQuestion: 'Phrase décisive',
     accentColor: '#10B981',
     pioneers: [
       {
@@ -2087,7 +2087,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'Modernité ‹ › Tradition',
     subtitle: 'Méthodes récentes ‹ › savoirs transmis.',
     description: "Deux façons de faire qui cohabitent chaque jour : méthodes, outils et savoirs récents d'un côté, gestes et savoirs transmis de génération en génération de l'autre.",
-    centralQuestion: "Ce qu'on m'a transmis",
+    centralQuestion: 'Geste hérité',
     accentColor: '#8B5CF6',
     pioneers: [
       {
@@ -2385,7 +2385,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'PhD ‹ › Apprentis',
     subtitle: "Apprendre par les livres et la recherche ‹ › apprendre par la main auprès d'un maître.",
     description: "Entre la patience des thèses académiques et l'apprentissage sur le tas en atelier, 16 parcours de transmission.",
-    centralQuestion: 'La question qui ne lâche pas',
+    centralQuestion: 'Plus que tout',
     accentColor: '#D97706',
     pioneers: [
       {
@@ -2683,7 +2683,7 @@ export const MATRIX_SERIES_DATA: MatrixSeriesConfig[] = [
     seriesTitle: 'Images ‹ › Paroles',
     subtitle: "Faire entendre une histoire par l'image ‹ › par le verbe et la voix.",
     description: "Quand le regard visuel des créateurs d'images rencontre la force de la parole des écrivains, poètes, slameurs et orateurs.",
-    centralQuestion: 'Le déclic',
+    centralQuestion: 'Déclic',
     accentColor: '#B45309',
     pioneers: [
       {

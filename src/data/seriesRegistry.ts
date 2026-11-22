@@ -65,39 +65,39 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['modernite-tradition'].partBPosterUrl
     },
     synopsis:
-      "Deux façons de faire que l'on oppose souvent, alors qu'elles cohabitent chaque jour. D'un côté, Modernité : celles et ceux qui exercent leur métier avec des méthodes, des outils et des savoirs récents, de la médecine moderne aux techniques d'aujourd'hui. De l'autre, Tradition : celles et ceux qui exercent avec des savoirs transmis de génération en génération, de la médecine traditionnelle à l'artisanat. Beaucoup de gens consultent ou achètent chez les uns puis chez les autres. La série ne demande pas quelle manière est la meilleure. Elle leur pose les mêmes questions : le savoir-faire transmis, la méthode qui a échoué, la façon dont quelqu'un d'autre s'y prend, ce qu'ils refusent de changer.",
+      "Le lundi, on consulte le médecin. Le mardi, le tradipraticien. Deux savoirs, un même souci : soigner, fabriquer, bien faire. L'un est né des laboratoires et des outils d'aujourd'hui, l'autre se transmet de main en main depuis des générations. Ils se croisent, se défient, s'empruntent. Et au fond de chaque atelier, la même question : que garder, que changer ?",
     posterUrl: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: "Ce qu'on m'a transmis",
+        title: 'Geste hérité',
         question:
-          "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
+          "Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites.",
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: "Quand ça n'a pas marché",
+        title: 'Quand ça lâche',
         question:
-          'Racontez une fois où la méthode que vous aviez apprise a échoué, et ce que vous avez fait à la place.',
+          'Racontez le jour où ce en quoi vous aviez confiance (un remède, une méthode, un outil) vous a laissé tomber, et ce que vous avez fait ensuite.',
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: "L'autre façon",
+        title: 'Autre façon',
         question:
-          "Racontez la première fois où vous avez vu quelqu'un s'y prendre autrement que vous, et réussir.",
+          "Racontez la fois où vous avez vu quelqu'un s'y prendre autrement que vous, et réussir, et ce que cela a remué en vous.",
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: "Ce qu'on garde",
+        title: 'Pas question',
         question:
-          'Racontez ce que vous avez refusé de changer dans votre façon de faire, malgré la pression.',
+          'Racontez ce que vous refusez de changer, même quand tout le monde vous dit que ce serait mieux, et pourquoi.',
         status: 'coming_soon'
       }
     ]
@@ -120,38 +120,39 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['jesus-legba'].partBPosterUrl
     },
     synopsis:
-      "Au Bénin, le Vodun occupe une place à part : une tradition d'origine, à laquelle d'autres croyances viennent faire face. D'un côté, Jesus, qui rassemble les chrétiens de toutes confessions. De l'autre, Legba, qui rassemble les pratiquants du Vodun et des traditions qui lui sont liées. Le Vodun est au centre, comme point de départ. La série ne demande pas qui a raison. Elle demande à chacun de raconter à quel moment il s'est senti appelé, a douté, a eu besoin de courage, et ce qu'il veut transmettre.",
+      "Au Bénin, le Vodun était là avant tout le reste. D'autres croyances sont venues, se sont installées, lui ont fait face. D'un côté, les chrétiens de toutes confessions ; de l'autre, les pratiquants du Vodun et des traditions qui lui sont liées. Deux façons de prier, un même sol, une même question : à qui confier ce que l'on ne maîtrise pas ?",
     posterUrl: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: "L'appel",
+        title: 'Appel',
         question:
-          "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
+          'Racontez le moment où vous avez senti que quelque chose de plus grand que vous était là.',
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: 'Le vacillement',
-        question: 'Racontez un moment où ce qui vous tenait debout a vacillé.',
+        title: 'Silence',
+        question:
+          "Racontez un moment où vous avez demandé de l'aide à ce en quoi vous croyez, et où rien n'a semblé répondre.",
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: 'Le courage de croire',
+        title: 'Prix à payer',
         question:
-          "Racontez une fois où ce en quoi vous croyez vous a demandé plus de courage que vous n'en pensiez avoir.",
+          "Racontez un jour où ce en quoi vous croyez vous a coûté quelque chose (une amitié, une place, le regard des autres), et pourquoi vous n'avez pas lâché.",
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: "Ce qu'on transmet",
+        title: 'Ce qui reste',
         question:
-          "Racontez ce que vous voudriez transmettre, à quelqu'un que vous aimez, de ce qui vous a tenu debout.",
+          'Racontez ce que vous voudriez que ceux que vous aimez gardent de ce qui vous a tenu debout.',
         status: 'coming_soon'
       }
     ]
@@ -174,38 +175,39 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['phd-apprentis'].partBPosterUrl
     },
     synopsis:
-      "Deux façons d'apprendre, que l'on met rarement face à face : par les livres et la recherche, ou par la main, sous le regard d'un maître. D'un côté, des docteurs et des chercheurs qui cherchent parfois pendant des années une réponse que personne n'a encore trouvée. De l'autre, Apprentis : celles et ceux, apprentis ou stagiaires, qui apprennent un métier en le faisant, à l'atelier, au garage ou sur le chantier. Au Bénin, l'apprentissage est un chemin que beaucoup de jeunes empruntent. La série leur pose les mêmes questions : la question qui ne lâche pas, ce qu'on apprend en faisant, l'erreur qui a tout appris, la personne qui les a empêchés d'abandonner.",
+      "Certains cherchent pendant des années une réponse que personne n'a encore trouvée. D'autres apprennent un métier en le faisant, à l'atelier, au garage, sur le chantier. Docteurs et chercheurs d'un côté, apprentis et stagiaires de l'autre : deux patiences, deux écoles. Et partout quelqu'un qui montre, corrige, encourage, puis finit par dire : maintenant, à toi.",
     posterUrl: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'La question qui ne lâche pas',
+        title: 'Plus que tout',
         question:
-          'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
+          'Racontez ce que vous avez voulu réussir plus que tout, et ce que vous avez mis de côté pour y arriver.',
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: 'Apprendre en faisant',
+        title: 'Première réussite',
         question:
-          "Racontez ce que vous avez appris par la pratique, et qu'aucun livre ni aucun cours ne vous avait dit.",
+          "Racontez la première fois où vous avez réussi quelque chose que vous n'arriviez pas à faire, et la personne à qui vous avez voulu le montrer.",
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: "L'erreur",
-        question: "Racontez une erreur qui vous a appris plus qu'une réussite.",
+        title: 'Encore apprendre',
+        question:
+          "Racontez ce que vous voudriez encore apprendre dans votre vie, et ce qui vous en a empêché jusqu'ici.",
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: 'Celui ou celle qui vous a retenu',
+        title: 'Tenir bon',
         question:
-          "Racontez la personne qui vous a empêché d'abandonner quand apprendre vous semblait trop dur.",
+          "Racontez la personne grâce à qui vous n'avez pas abandonné, un jour où vous n'en pouviez plus.",
         status: 'coming_soon'
       }
     ]
@@ -228,7 +230,7 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['blacks-one-wowmen'].partBPosterUrl
     },
     synopsis:
-      "Deux combats pour la dignité, qui se rencontrent. D'un côté, Blacks One : des gens qui viennent défendre des identités noires, dans toute leur diversité, avec en toile de fond l'idée d'unité. De l'autre, Wowmen : des femmes qui racontent leur propre histoire, et des hommes qui disent ce que les femmes représentent pour eux et pourquoi il faut les défendre. Les deux côtés se recouvrent, et c'est voulu : chacun choisit celui où il se reconnaît le plus. La série leur pose les mêmes questions : le moment où l'on a voulu les faire se sentir petits, le choix de prendre parti, la personne qui leur a appris la dignité, ce qu'ils voudraient dire à un enfant d'aujourd'hui.",
+      "Deux combats pour la dignité, une même ligne de front. Blacks One rassemble celles et ceux qui défendent les identités noires dans toute leur diversité, l'unité en toile de fond. Wowmen donne la parole aux femmes qui racontent leur histoire, et aux hommes qui disent ce qu'elles représentent pour eux. Les deux côtés se recouvrent : chacun choisit celui où il se reconnaît le plus.",
     posterUrl: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
     episodes: [
       {
@@ -236,7 +238,7 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
         number: '01',
         title: 'Se redresser',
         question:
-          "Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé.",
+          "Racontez le jour où une personne (vous, ou quelqu'un que vous aimez) a été rabaissée à cause de ce qu'elle est, et ce qui l'a aidée à se redresser.",
         status: 'coming_soon'
       },
       {
@@ -244,22 +246,23 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
         number: '02',
         title: 'Prendre parti',
         question:
-          "Racontez une fois où vous avez défendu quelqu'un ou quelque chose qui vous est cher, alors qu'il aurait été plus simple de vous taire.",
+          "Racontez le jour où vous avez pris la défense de quelqu'un alors qu'il aurait été plus simple de vous taire, et ce que vous avez ressenti au moment de parler.",
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: 'La dignité',
-        question: "Racontez la personne dont la force vous a appris ce qu'est la dignité.",
+        title: 'Dignité',
+        question:
+          'Racontez la personne qui vous a appris la dignité, sans jamais prononcer ce mot.',
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: "À un enfant d'aujourd'hui",
+        title: "Enfants d'aujourd'hui",
         question:
-          "Racontez ce que vous voudriez dire à un enfant d'aujourd'hui, pour qu'il sache qui il est avant que le monde ne le lui dise.",
+          "Racontez ce que vous voudriez dire à un enfant d'aujourd'hui, pour qu'il sache qui il est avant que le monde ne décide pour lui.",
         status: 'coming_soon'
       }
     ]
@@ -282,39 +285,39 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['bambous-irokos'].partBPosterUrl
     },
     synopsis:
-      "Deux âges de la vie, face à face. D'un côté, Bambous : la jeunesse qui pousse vite et plie sans casser. De l'autre, Irokos : l'iroko est un arbre immense, qui vit des siècles, et la série lui emprunte son nom pour rendre hommage aux aînés. Les jeunes portent des élans, des doutes et des idées que personne n'a eues avant eux. Les aînés portent une mémoire et une sagesse qu'on prend rarement le temps d'écouter longuement. La série les rapproche et leur pose les mêmes questions : la première fois où l'on a été pris au sérieux, le malentendu entre générations, ce que l'autre vous a appris, ce que l'on voudrait lui transmettre.",
+      "Le bambou pousse vite et plie sans casser. L'iroko, géant, traverse les siècles. Entre eux, deux âges de la vie : une jeunesse pleine d'élans, de doutes et d'idées que personne n'a eues avant elle, et des aînés porteurs d'une mémoire qu'on prend rarement le temps d'écouter. Des silences, des malentendus, des repas de famille. Et parfois, la phrase qui change tout.",
     posterUrl: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Être pris au sérieux',
+        title: 'Pris au sérieux',
         question:
-          "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
+          "Racontez la première fois où quelqu'un d'une autre génération a pris au sérieux ce que vous disiez, et ce que cela vous a fait.",
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: "L'écart",
+        title: 'Écart',
         question:
-          "Racontez un moment où l'écart entre deux générations a failli vous séparer de quelqu'un, et ce qui s'est passé ensuite.",
+          "Racontez un moment où l'écart d'âge a failli vous séparer de quelqu'un que vous aimiez, et ce qui s'est passé ensuite.",
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: "Ce que l'autre m'a appris",
+        title: 'Sans le vouloir',
         question:
-          "Racontez ce que vous avez appris de quelqu'un qui n'avait pas votre âge, et que personne de votre âge n'aurait pu vous dire.",
+          "Racontez ce qu'une personne d'une autre génération vous a montré, sans même chercher à vous l'apprendre.",
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: "Ce qu'on se transmet",
+        title: 'Il est encore temps',
         question:
-          "Racontez ce que vous voudriez dire, ou transmettre, à quelqu'un d'une autre génération que la vôtre.",
+          "Racontez ce que vous voudriez dire, avant qu'il ne soit trop tard, à quelqu'un d'une autre génération.",
         status: 'coming_soon'
       }
     ]
@@ -337,13 +340,13 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['horizons-benin'].partBPosterUrl
     },
     synopsis:
-      "Chacun a un endroit auquel il se sent profondément lié. D'un côté, Horizons rassemble des personnes d'autres nations, qui parlent de leur propre pays ou territoire avec le même attachement. De l'autre, Benin rassemble les Béninois du pays et du monde, qui viennent parler du Bénin : ce qu'ils y ont vécu, ce qu'ils aiment, leur envie de le servir, et aussi celles et ceux qui accueillent ceux qui viennent le découvrir. Le Bénin est au centre, comme point de départ. Les personnes métissées choisissent leur côté, et c'est voulu.",
+      "Chacun porte en lui un endroit. Un pays, un quartier, une odeur de cuisine. Horizons réunit des personnes d'autres nations qui parlent de chez elles avec le même attachement. Benin réunit les Béninois du pays et du monde, et celles et ceux qui accueillent les visiteurs : ce qu'ils y ont vécu, ce qu'ils y aiment, ce qu'ils veulent pour lui. Le Bénin est le point de départ.",
     posterUrl: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Ce qui ramène chez soi',
+        title: 'Chez soi',
         question:
           "Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec.",
         status: 'coming_soon'
@@ -351,7 +354,7 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       {
         id: 'ep2',
         number: '02',
-        title: "Ce qu'on emporte",
+        title: 'Bagages',
         question:
           "Racontez ce que vous emporteriez partout avec vous de l'endroit qui vous a fait, et ce que vous ne pourriez jamais emporter.",
         status: 'coming_soon'
@@ -359,17 +362,17 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       {
         id: 'ep3',
         number: '03',
-        title: 'Défendre sa terre',
+        title: "Vu d'ailleurs",
         question:
-          "Racontez une fois où vous avez défendu l'endroit d'où vous venez devant quelqu'un qui ne le connaissait pas, et ce que cela a réveillé en vous.",
+          "Racontez le jour où quelqu'un a parlé de chez vous sans le connaître, et ce que vous avez ressenti.",
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: 'Bâtir chez soi',
+        title: 'Bienvenue',
         question:
-          "Racontez ce que vous faites, ou voudriez faire, pour qu'il fasse bon vivre chez vous.",
+          "Racontez ce que vous voudriez construire chez vous pour que ceux qui y vivent, et ceux qui y arrivent, s'y sentent bien.",
         status: 'coming_soon'
       }
     ]
@@ -392,39 +395,39 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['builders-coachs'].partBPosterUrl
     },
     synopsis:
-      "Deux façons de bâtir : faire exister, et montrer le chemin. Builders réunit celles et ceux qui ont déjà bâti : une entreprise, un atelier, un lieu, un projet. Coachs réunit celles et ceux qui accompagnent les autres pour qu'ils bâtissent à leur tour : coachs, mentors, entraîneurs, formateurs. Les uns ont pris le risque, les autres aident à le prendre. La série leur pose les mêmes questions : le conseil qui a changé le cours d'une vie, le risque que tout le monde déconseillait, la personne qui a cru en eux, l'échec dont on parle peu.",
+      "Il y a ceux qui se lancent, et ceux qui aident à se lancer. Les Builders ont monté une entreprise, un atelier, un lieu, un projet : ils ont pris le risque. Les Coachs, mentors, entraîneurs et formateurs aident les autres à le prendre. Les uns connaissent le prix d'un pari, les autres savent reconnaître l'instant où quelqu'un est prêt. Entre eux, un conseil, un doute, une confiance.",
     posterUrl: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Le conseil',
+        title: 'Phrase décisive',
         question:
-          "Racontez le conseil qui a changé la direction de votre vie, et la personne qui vous l'a donné.",
+          "Racontez la phrase, reçue ou dite, qui a changé la direction d'une vie, la vôtre ou celle d'un autre.",
         status: 'coming_soon'
       },
       {
         id: 'ep2',
         number: '02',
-        title: 'Le risque',
+        title: 'Pari fou',
         question:
-          'Racontez le jour où vous avez pris un risque que tout le monde vous déconseillait.',
+          'Racontez le jour où vous avez pris un risque que tout le monde vous déconseillait, et ce que vous avez ressenti la veille.',
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: 'La confiance',
+        title: 'Confiance',
         question:
-          'Racontez la personne qui a cru en vous avant que vous ne croyiez en vous-même.',
+          "Racontez la personne qui a cru en vous avant vous-même, ou celle en qui vous avez cru avant qu'elle n'y croie.",
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: "L'échec",
+        title: 'Chute',
         question:
-          "Racontez un échec de votre parcours dont vous parlez rarement, et ce qu'il vous a appris.",
+          "Racontez l'échec dont vous parlez le moins, et ce qu'il a laissé en vous.",
         status: 'coming_soon'
       }
     ]
@@ -447,15 +450,15 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
       posterUrl: SERIES_POSTER_FILES['regards-paroles'].partBPosterUrl
     },
     synopsis:
-      "Deux façons de faire entendre une histoire : par les regards ou par la voix. Images réunit photographes, vidéastes, cinéastes et artistes visuels ; Paroles réunit écrivains, poètes, slameurs, conteurs et orateurs. Les uns donnent forme au monde par les images, les autres par les mots.",
+      "Une histoire se montre, ou se dit. Images réunit photographes, vidéastes, cinéastes, peintres, plasticiens et graffeurs. Paroles réunit écrivains, poètes, slameurs, conteurs et orateurs. Les uns donnent forme au monde avec la lumière et le cadre, les autres avec le rythme et les mots. Une même envie les tient tous : que quelqu'un voie, et n'oublie pas.",
     posterUrl: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
     episodes: [
       {
         id: 'ep1',
         number: '01',
-        title: 'Le déclic',
+        title: 'Déclic',
         question:
-          "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
+          'Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir au monde, et que personne ne le ferait à votre place.',
         status: 'coming_soon'
       },
       {
@@ -463,23 +466,23 @@ export const SERIES_REGISTRY: SeriesRegistryEntry[] = [
         number: '02',
         title: 'Pas compris',
         question:
-          "Racontez une création qui n'a pas été comprise comme vous l'espériez, et ce que vous en avez fait.",
+          "Racontez le jour où personne n'a compris ce que vous aviez créé, écrit ou dit, et ce que vous avez fait de ce silence.",
         status: 'coming_soon'
       },
       {
         id: 'ep3',
         number: '03',
-        title: 'Ce qui vous a bouleversé',
+        title: 'Souffle coupé',
         question:
-          "Racontez une image, un texte ou une voix qui vous a bouleversé, et ce qu'elle a changé en vous.",
+          'Racontez une image, un texte ou une voix qui vous a coupé le souffle, et ce qui a changé en vous ensuite.',
         status: 'coming_soon'
       },
       {
         id: 'ep4',
         number: '04',
-        title: "L'histoire encore cachée",
+        title: 'Histoire cachée',
         question:
-          "Racontez l'histoire que vous portez en vous et que vous n'avez pas encore osé montrer au monde.",
+          "Racontez l'histoire que vous portez en vous et que vous n'avez pas encore osé montrer ou dire au monde, et ce qui vous retient.",
         status: 'coming_soon'
       }
     ]

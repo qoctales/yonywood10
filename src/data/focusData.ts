@@ -45,38 +45,38 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Fiat Luxe',
     synopsis:
-      "Le luxe, ce n'est pas seulement ce qui coûte cher : c'est ce qui demande du temps, de la main et de l'exigence. De l'artisanat d'art à la couture, du bijou au tissage, de l'hôtellerie à la maison de création, Fiat Luxe recueille les histoires de celles et ceux qui font, portent ou admirent la rareté et la perfection. Chacun peut y raconter : un geste, un objet, une rencontre.",
+      "Le vrai luxe ne se mesure pas au prix. Il se mesure au temps, à la main, à l'exigence. De l'artisanat d'art à la couture, du bijou au tissage, de l'hôtellerie à la maison de création : ceux qui font, portent ou admirent la rareté et la perfection ont chacun un geste, un objet, une rencontre à raconter. Un point de couture, un éclat d'or : tout peut en dire long.",
     consigne: 'Racontez ce que vous avez vécu ou vu, sans promouvoir un produit.',
     question:
-      'Racontez la plus belle chose que vous connaissiez qui ait demandé des années à faire ou à obtenir, et ce que ce temps lui a donné.',
+      'Racontez la plus belle chose que vous connaissiez qui ait demandé des années, que vous l\'ayez faite, reçue ou admirée, et ce que ce temps lui a donné.',
     questions: [
       {
         id: 'q1',
         number: '01',
-        title: 'Le prix du temps',
+        title: 'Prix du temps',
         question:
-          'Racontez la plus belle chose que vous connaissiez qui ait demandé des années à faire ou à obtenir, et ce que ce temps lui a donné.',
+          "Racontez la plus belle chose que vous connaissiez qui ait demandé des années, que vous l'ayez faite, reçue ou admirée, et ce que ce temps lui a donné.",
       },
       {
         id: 'q2',
         number: '02',
-        title: 'Le beau plutôt que le facile',
+        title: 'Je le garde',
         question:
-          'Racontez une fois où vous avez choisi le beau et le durable plutôt que le rapide et le bon marché.',
+          "Racontez l'objet que vous gardez depuis des années et que vous ne donneriez à personne, et l'histoire qu'il porte.",
       },
       {
         id: 'q3',
         number: '03',
-        title: "L'exigence",
+        title: 'Exigence',
         question:
-          'Racontez la personne qui vous a appris à ne pas vous contenter du « presque ».',
+          'Racontez la personne qui vous a appris à ne pas vous contenter du « presque », et ce que vous lui devez encore.',
       },
       {
         id: 'q4',
         number: '04',
-        title: 'La beauté rare',
+        title: 'Beauté rare',
         question:
-          'Racontez un jour où vous avez vu quelque chose de si bien fait que vous en êtes resté sans voix.',
+          'Racontez le jour où vous avez vu quelque chose de si beau ou de si bien fait que les mots vous ont manqué.',
       },
     ],
     commandite: false,
@@ -90,9 +90,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/eleonore-vance.jpg',
         protagonistId: 'eleonore-vance',
         questionNumber: '01',
-        questionTitle: 'Le prix du temps',
+        questionTitle: 'Prix du temps',
         question:
-          'Racontez la plus belle chose que vous connaissiez qui ait demandé des années à faire ou à obtenir, et ce que ce temps lui a donné.',
+          "Racontez la plus belle chose que vous connaissiez qui ait demandé des années, que vous l'ayez faite, reçue ou admirée, et ce que ce temps lui a donné.",
         durationFormatted: '2:18',
         posterUrl: '/assets/duos/eleonore-vance.jpg',
         videoUrl: '/sample.mp4',
@@ -104,9 +104,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/sayri-quispe.jpg',
         protagonistId: 'sayri-quispe',
         questionNumber: '02',
-        questionTitle: 'Le beau plutôt que le facile',
+        questionTitle: 'Je le garde',
         question:
-          'Racontez une fois où vous avez choisi le beau et le durable plutôt que le rapide et le bon marché.',
+          "Racontez l'objet que vous gardez depuis des années et que vous ne donneriez à personne, et l'histoire qu'il porte.",
         durationFormatted: '2:04',
         posterUrl: '/assets/duos/sayri-quispe.jpg',
         videoUrl: '/sample.mp4',
@@ -118,38 +118,38 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Dixeat',
     synopsis:
-      "Un ancien sage aurait dit que ce que l'on dit est plus important que ce que l'on mange. Dixeat prend la phrase au mot : autour des tables, des cuisines, des restaurants et des marchés, ce sont les paroles qui restent. Cuisiniers, serveurs, propriétaires, clients, fournisseurs, agriculteurs, pêcheurs : chacun raconte l'histoire d'un plat, d'un lieu ou d'un repas partagé.",
+      "Un ancien sage l'aurait dit : ce que l'on dit compte plus que ce que l'on mange. Autour des tables, dans les cuisines, les restaurants, les marchés, ce sont les paroles qui restent. Cuisiniers, serveurs, propriétaires, clients, fournisseurs, agriculteurs, pêcheurs : chacun a l'histoire d'un plat, d'un lieu, d'un repas partagé. Une phrase entendue à table peut durer toute une vie.",
     consigne: "L'histoire d'abord : ne faites pas la publicité d'un établissement.",
     question:
-      "Racontez l'histoire d'un plat, d'un repas ou d'un lieu où l'on mange, qui compte pour vous.",
+      "Racontez le plat que quelqu'un préparait pour vous, et que vous ne retrouvez plus tout à fait.",
     questions: [
       {
         id: 'q1',
         number: '01',
-        title: 'Au menu',
+        title: "Plat d'avant",
         question:
-          "Racontez l'histoire d'un plat, d'un repas ou d'un lieu où l'on mange, qui compte pour vous.",
+          "Racontez le plat que quelqu'un préparait pour vous, et que vous ne retrouvez plus tout à fait.",
       },
       {
         id: 'q2',
         number: '02',
-        title: 'Une parole à table',
+        title: 'Parole à table',
         question:
-          'Racontez une parole entendue à table qui vous a marqué plus que le repas lui-même.',
+          "Racontez une parole entendue à table que vous n'avez jamais oubliée.",
       },
       {
         id: 'q3',
         number: '03',
-        title: "Ce qu'on ne voit pas",
+        title: 'Invisibles',
         question:
-          "Racontez ce qui s'est passé avant qu'un repas arrive à table, et que personne autour de la table n'a vu.",
+          "Racontez une personne qui a cultivé, pêché, cuisiné ou servi, et dont personne autour de la table ne connaît l'histoire.",
       },
       {
         id: 'q4',
         number: '04',
-        title: 'La table des autres',
+        title: 'Table partagée',
         question:
-          'Racontez un repas partagé qui a changé quelque chose entre vous et les personnes présentes.',
+          'Racontez un repas partagé qui a changé quelque chose entre vous et une autre personne : une réconciliation, un adieu, un début.',
       },
     ],
     commandite: false,
@@ -163,9 +163,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/chef-koffi.jpg',
         protagonistId: 'koffi-mensah',
         questionNumber: '01',
-        questionTitle: 'Au menu',
+        questionTitle: "Plat d'avant",
         question:
-          "Racontez l'histoire d'un plat, d'un repas ou d'un lieu où l'on mange, qui compte pour vous.",
+          "Racontez le plat que quelqu'un préparait pour vous, et que vous ne retrouvez plus tout à fait.",
         durationFormatted: '2:14',
         posterUrl: '/assets/duos/chef-koffi.jpg',
         videoUrl: '/sample.mp4',
@@ -177,9 +177,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/tobi-houndegla.jpg',
         protagonistId: 'tobi-houndegla',
         questionNumber: '03',
-        questionTitle: "Ce qu'on ne voit pas",
+        questionTitle: 'Invisibles',
         question:
-          "Racontez ce qui s'est passé avant qu'un repas arrive à table, et que personne autour de la table n'a vu.",
+          "Racontez une personne qui a cultivé, pêché, cuisiné ou servi, et dont personne autour de la table ne connaît l'histoire.",
         durationFormatted: '2:32',
         posterUrl: '/assets/duos/tobi-houndegla.jpg',
         videoUrl: '/sample.mp4',
@@ -189,9 +189,9 @@ export const FOCUS_DATA: FocusItem[] = [
   {
     id: 'pour-rire',
     type: 'theme',
-    titre: 'Pour rire',
+    titre: 'Fou rire',
     synopsis:
-      "Tout le monde a vécu un moment où le rire a pris le dessus : un fou rire au pire moment, une gaffe, un malentendu, une rencontre absurde. Pour rire accueille ces anecdotes vraiment vécues, racontées pour faire rire, et pour rire ensemble.",
+      "Le pire moment. Le plus grand sérieux. Et soudain, impossible de s'arrêter. Un fou rire, une gaffe, un malentendu, une rencontre absurde : tout le monde a vécu une scène dont on rit encore des années plus tard. Ces anecdotes vraiment vécues font rire à chaque fois, ceux qui les ont vécues comme ceux qui les écoutent. On y rit d'abord de soi, et on y rit ensemble.",
     consigne:
       "Anecdotes réellement vécues. Pas de moquerie visant une ethnie, une religion, un handicap ou une personne que l'on pourrait reconnaître : on rit d'abord de soi.",
     question: "Racontez un fou rire que vous n'avez pas pu arrêter, au pire moment possible.",
@@ -199,29 +199,29 @@ export const FOCUS_DATA: FocusItem[] = [
       {
         id: 'q1',
         number: '01',
-        title: 'Le fou rire',
+        title: 'Pire moment',
         question: "Racontez un fou rire que vous n'avez pas pu arrêter, au pire moment possible.",
       },
       {
         id: 'q2',
         number: '02',
-        title: 'La gaffe',
+        title: 'Gaffe',
         question:
           "Racontez une maladresse qui vous a fait mourir de honte, et dont vous riez aujourd'hui.",
       },
       {
         id: 'q3',
         number: '03',
-        title: 'Le malentendu',
+        title: 'Notre blague',
         question:
-          'Racontez un malentendu qui a mal tourné, et qui est devenu une histoire drôle.',
+          "Racontez la blague, le mot ou le souvenir qui vous fait rire depuis des années avec quelqu'un, et que personne d'autre ne comprend.",
       },
       {
         id: 'q4',
         number: '04',
-        title: 'La personne drôle',
+        title: 'Rire malgré tout',
         question:
-          "Racontez la personne la plus drôle que vous connaissiez, et une chose qu'elle a faite ou dite qui vous fait encore rire.",
+          "Racontez le jour où quelqu'un vous a fait rire alors que vous n'en aviez aucune envie.",
       },
     ],
     commandite: false,
@@ -235,7 +235,7 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/paroles-armel.jpg',
         protagonistId: 'armel-hounkpatin',
         questionNumber: '01',
-        questionTitle: 'Le fou rire',
+        questionTitle: 'Pire moment',
         question: "Racontez un fou rire que vous n'avez pas pu arrêter, au pire moment possible.",
         durationFormatted: '1:58',
         posterUrl: '/assets/duos/paroles-armel.jpg',
@@ -248,9 +248,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/performers-yede.jpg',
         protagonistId: 'yede-dossou',
         questionNumber: '03',
-        questionTitle: 'Le malentendu',
+        questionTitle: 'Notre blague',
         question:
-          'Racontez un malentendu qui a mal tourné, et qui est devenu une histoire drôle.',
+          "Racontez la blague, le mot ou le souvenir qui vous fait rire depuis des années avec quelqu'un, et que personne d'autre ne comprend.",
         durationFormatted: '2:11',
         posterUrl: '/assets/duos/performers-yede.jpg',
         videoUrl: '/sample.mp4',
@@ -262,39 +262,39 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Mon Histoire fera le Job',
     synopsis:
-      "Un CV dit ce que l'on a fait. Une histoire dit qui l'on est. Ce Focus est pour celles et ceux qui cherchent leur place professionnelle, à vingt ans comme à cinquante : un emploi, un stage, une reconversion, un premier client. Ils racontent ce qu'ils savent faire par une histoire plutôt que par une liste. Ceux qui recrutent y entendent autre chose qu'un CV.",
+      "Un CV dit ce que l'on a fait. Une histoire dit qui l'on est. À vingt ans comme à cinquante, en quête d'un emploi, d'un stage, d'une reconversion ou d'un premier client, chacun peut dire ce qu'il sait faire autrement que par une liste. Un parcours ne tient jamais sur une page. Et ceux qui recrutent y entendent enfin une personne, une voix, une manière d'être.",
     consigne:
       "Racontez ce que vous savez faire. Chaque personne décide seule si elle peut être contactée ; rien n'est exposé par défaut.",
     question:
-      "Racontez le moment où vous avez fait un travail dont vous êtes fier, et que personne n'a remarqué.",
+      'Racontez ce que vous avez fait de mieux, payé ou non, sans que personne ne le remarque.',
     questions: [
       {
         id: 'q1',
         number: '01',
         title: 'Fier en silence',
         question:
-          "Racontez le moment où vous avez fait un travail dont vous êtes fier, et que personne n'a remarqué.",
+          'Racontez ce que vous avez fait de mieux, payé ou non, sans que personne ne le remarque.',
       },
       {
         id: 'q2',
         number: '02',
-        title: 'Un obstacle surmonté',
+        title: 'Porte fermée',
         question:
-          'Racontez un obstacle que vous avez surmonté dans votre travail ou vos études, et comment.',
+          'Racontez la fois où l\'on vous a dit non (un refus, un échec, une porte fermée), et ce que vous en avez fait.',
       },
       {
         id: 'q3',
         number: '03',
-        title: 'Ce que je cherche à bâtir',
+        title: 'Travail rêvé',
         question:
-          "Racontez le travail que vous voudriez faire, et ce que vous voudriez qu'il change.",
+          "Racontez le travail dont vous rêvez, et ce que vous voudriez qu'il change, pour vous ou pour les autres.",
       },
       {
         id: 'q4',
         number: '04',
-        title: 'Un service rendu',
+        title: 'Service rendu',
         question:
-          "Racontez une fois où votre savoir-faire a vraiment rendu service à quelqu'un.",
+          "Racontez la fois où ce que vous savez faire, même simple, a vraiment aidé quelqu'un, et ce que vous avez vu sur son visage.",
       },
     ],
     commandite: false,
@@ -310,7 +310,7 @@ export const FOCUS_DATA: FocusItem[] = [
         questionNumber: '01',
         questionTitle: 'Fier en silence',
         question:
-          "Racontez le moment où vous avez fait un travail dont vous êtes fier, et que personne n'a remarqué.",
+          'Racontez ce que vous avez fait de mieux, payé ou non, sans que personne ne le remarque.',
         durationFormatted: '2:26',
         posterUrl: '/assets/duos/researcher-phd.jpg',
         videoUrl: '/sample.mp4',
@@ -322,9 +322,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/malik-diop.jpg',
         protagonistId: 'malik-diop',
         questionNumber: '03',
-        questionTitle: 'Ce que je cherche à bâtir',
+        questionTitle: 'Travail rêvé',
         question:
-          "Racontez le travail que vous voudriez faire, et ce que vous voudriez qu'il change.",
+          "Racontez le travail dont vous rêvez, et ce que vous voudriez qu'il change, pour vous ou pour les autres.",
         durationFormatted: '2:12',
         posterUrl: '/assets/duos/malik-diop.jpg',
         videoUrl: '/sample.mp4',
@@ -336,16 +336,16 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Votre Honneur',
     synopsis:
-      "Un avocat plaide pour les autres. Ici, il plaide pour lui-même. Votre Honneur invite avocats, juristes et toutes celles et tous ceux qui ont une cause à défendre à raconter leur propre histoire sous la forme d'une plaidoirie : un récit adressé à des juges, avec des arguments, des preuves et une conclusion.",
+      "Un avocat plaide pour les autres. Aujourd'hui, il plaide pour lui-même. Avocats, juristes, et toutes celles et tous ceux qui ont une cause à défendre racontent leur propre histoire comme une plaidoirie : des arguments, des preuves, une conclusion. Devant eux, des juges qui écoutent. Chacun parle avec ses mots, comme s'il en allait de son honneur.",
     consigne:
-      "Ne parlez d'aucun dossier de client ni d'aucun détail qui le ferait reconnaître.",
+      "Ne parlez d'aucun dossier de client ni d'aucun détail qui le ferait reconnaître. Ne vous accusez d'aucune infraction pénale et ne mettez en cause aucune personne identifiable.",
     question:
       'Racontez une injustice dont vous avez été victime ou témoin, comme si vous la plaidiez devant un juge.',
     questions: [
       {
         id: 'q1',
         number: '01',
-        title: "L'injustice",
+        title: 'Injustice',
         question:
           'Racontez une injustice dont vous avez été victime ou témoin, comme si vous la plaidiez devant un juge.',
       },
@@ -354,21 +354,21 @@ export const FOCUS_DATA: FocusItem[] = [
         number: '02',
         title: 'Plaider coupable',
         question:
-          "Racontez une faute que vous avez commise, et plaidez-la : ce qui l'explique, sans l'excuser.",
+          "Racontez une faute ordinaire que vous avez commise, et plaidez-la : ce qui l'explique, sans l'excuser.",
       },
       {
         id: 'q3',
         number: '03',
-        title: 'Une cause difficile',
+        title: 'Cause perdue',
         question:
-          'Racontez une cause que vous avez défendue, ou voulu défendre, alors que tout semblait contre vous.',
+          "Racontez la cause que vous avez défendue, ou voulu défendre, alors que tout semblait perdu d'avance, et ce qui vous a fait tenir.",
       },
       {
         id: 'q4',
         number: '04',
-        title: 'Ma conclusion',
+        title: 'Dernier mot',
         question:
-          "Racontez ce que vous voudriez que l'on retienne de votre histoire, comme si vous veniez de terminer votre plaidoirie.",
+          'Racontez ce que vous voudriez que l\'on retienne de votre vie, comme si vous veniez de terminer votre plaidoirie.',
       },
     ],
     commandite: false,
@@ -382,7 +382,7 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/horizons-awa.jpg',
         protagonistId: 'awa-ndiaye',
         questionNumber: '01',
-        questionTitle: "L'injustice",
+        questionTitle: 'Injustice',
         question:
           'Racontez une injustice dont vous avez été victime ou témoin, comme si vous la plaidiez devant un juge.',
         durationFormatted: '2:41',
@@ -398,7 +398,7 @@ export const FOCUS_DATA: FocusItem[] = [
         questionNumber: '02',
         questionTitle: 'Plaider coupable',
         question:
-          "Racontez une faute que vous avez commise, et plaidez-la : ce qui l'explique, sans l'excuser.",
+          "Racontez une faute ordinaire que vous avez commise, et plaidez-la : ce qui l'explique, sans l'excuser.",
         durationFormatted: '2:20',
         posterUrl: '/assets/duos/kwame-mensah.jpg',
         videoUrl: '/sample.mp4',
@@ -410,7 +410,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Hoxò',
     synopsis:
-      "Au Bénin, les jumeaux, les Hoxò, ont une place à part : on les dit porteurs de bon augure, on les honore, on leur consacre des cérémonies. Ce Focus recueille les histoires de celles et ceux qui en ont une à raconter : jumeaux et jumelles, parents, proches, dignitaires, artistes, témoins.",
+      "Au Bénin, les jumeaux, les Hoxò, ont une place à part. On les dit porteurs de bon augure, on les honore, on leur consacre des cérémonies. Jumeaux et jumelles, parents, proches, dignitaires, artistes, témoins : chacun garde un souvenir, une attente, une histoire de ces enfants venus par deux, et de la place que tout un entourage leur fait. Une tradition vivante, faite de noms et de souvenirs.",
     consigne:
       'Récits de vie uniquement : ne filmez pas de rituel. Parlez des autres avec respect.',
     question: 'Racontez votre premier souvenir lié à des jumeaux, que vous en soyez un ou non.',
@@ -418,27 +418,27 @@ export const FOCUS_DATA: FocusItem[] = [
       {
         id: 'q1',
         number: '01',
-        title: 'Le premier souvenir',
+        title: 'Premier souvenir',
         question: 'Racontez votre premier souvenir lié à des jumeaux, que vous en soyez un ou non.',
       },
       {
         id: 'q2',
         number: '02',
-        title: "L'arrivée",
+        title: 'Arrivée',
         question:
           "Racontez comment l'arrivée de jumeaux a été accueillie autour de vous, et ce qui vous en est resté.",
       },
       {
         id: 'q3',
         number: '03',
-        title: 'Le lien',
+        title: 'Lien',
         question:
           "Racontez un moment où le lien entre deux jumeaux vous a montré ce que veut dire être proche de quelqu'un.",
       },
       {
         id: 'q4',
         number: '04',
-        title: "Ce qu'on transmet",
+        title: 'Transmission',
         question:
           "Racontez ce que l'on vous a transmis sur la place des jumeaux, et ce que vous voudriez transmettre à votre tour.",
       },
@@ -454,7 +454,7 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/mawuna-medium.jpg',
         protagonistId: 'mawuna-houenou',
         questionNumber: '01',
-        questionTitle: 'Le premier souvenir',
+        questionTitle: 'Premier souvenir',
         question: 'Racontez votre premier souvenir lié à des jumeaux, que vous en soyez un ou non.',
         durationFormatted: '2:35',
         posterUrl: '/assets/duos/mawuna-medium.jpg',
@@ -467,7 +467,7 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
         protagonistId: 'mahougnon-zounon',
         questionNumber: '04',
-        questionTitle: "Ce qu'on transmet",
+        questionTitle: 'Transmission',
         question:
           "Racontez ce que l'on vous a transmis sur la place des jumeaux, et ce que vous voudriez transmettre à votre tour.",
         durationFormatted: '2:19',
@@ -481,36 +481,39 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Black To Roots',
     synopsis:
-      "On part pour étudier, travailler, fuir, aimer, ou simplement voir plus loin. Black To Roots recueille les histoires de celles et ceux qui vivent loin de l'endroit où ils sont nés, de ceux qui sont partis et de ceux qui sont restés, de ceux qui reviennent et de ceux qui attendent. Béninois de l'étranger ou personnes d'autres pays : chacun raconte ce que signifie d'être d'ici et de là-bas.",
+      "Les racines ne sont pas toujours là où l'on est né. Certains sont nés en Afrique et pensent au retour. D'autres ont grandi aux Caraïbes, aux États-Unis, au Brésil ou en Europe, liés à une terre qu'ils n'ont parfois jamais vue. Ceux qui sont partis, ceux qui sont restés, ceux qui reviennent, ceux qui attendent : chacun définit ses racines et les fait vivre là où il est. Chacun porte une origine.",
     consigne:
-      'Respectez les personnes dont vous parlez. Racontez votre expérience, sans généraliser sur un pays ou un peuple.',
-    question: 'Racontez un départ qui a changé votre vie.',
+      'Chacun définit ses propres racines : ne jugez pas celles des autres. Racontez votre expérience, sans généraliser sur un pays ou un peuple.',
+    question:
+      "Racontez le moment où vous avez compris d'où vous veniez vraiment, et ce que cela a changé en vous.",
     questions: [
       {
         id: 'q1',
         number: '01',
-        title: 'Un départ',
-        question: 'Racontez un départ qui a changé votre vie.',
+        title: "J'ai compris",
+        question:
+          "Racontez le moment où vous avez compris d'où vous veniez vraiment, et ce que cela a changé en vous.",
       },
       {
         id: 'q2',
         number: '02',
-        title: 'Étranger',
+        title: 'Héritage',
         question:
-          'Racontez la première fois où vous vous êtes senti étranger, et ce que vous avez fait de ce sentiment.',
+          'Racontez ce qui vous a été transmis de vos origines (un plat, une langue, un nom, une habitude, un silence), et ce que cela représente pour vous.',
       },
       {
         id: 'q3',
         number: '03',
-        title: "Ce qu'on garde",
+        title: "D'où venez-vous ?",
         question:
-          'Racontez ce que vous avez gardé de chez vous (un plat, une langue, une habitude), et pourquoi.',
+          "Racontez le jour où l'on vous a demandé « d'où venez-vous ? » et où vous n'avez pas su quoi répondre.",
       },
       {
         id: 'q4',
         number: '04',
-        title: 'Le retour',
-        question: 'Racontez un retour, ou un retour que vous attendez encore.',
+        title: 'Renouer',
+        question:
+          'Racontez ce que vous faites, ou voudriez faire, pour garder vivantes vos racines, en y retournant ou là où vous êtes.',
       },
     ],
     commandite: false,
@@ -524,8 +527,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/fatou-diallo.jpg',
         protagonistId: 'fatou-diallo',
         questionNumber: '01',
-        questionTitle: 'Un départ',
-        question: 'Racontez un départ qui a changé votre vie.',
+        questionTitle: "J'ai compris",
+        question:
+          "Racontez le moment où vous avez compris d'où vous veniez vraiment, et ce que cela a changé en vous.",
         durationFormatted: '2:28',
         posterUrl: '/assets/duos/fatou-diallo.jpg',
         videoUrl: '/sample.mp4',
@@ -537,8 +541,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/tobi-ganvie.jpg',
         protagonistId: 'tobi-ganvie',
         questionNumber: '04',
-        questionTitle: 'Le retour',
-        question: 'Racontez un retour, ou un retour que vous attendez encore.',
+        questionTitle: 'Renouer',
+        question:
+          'Racontez ce que vous faites, ou voudriez faire, pour garder vivantes vos racines, en y retournant ou là où vous êtes.',
         durationFormatted: '2:05',
         posterUrl: '/assets/duos/tobi-ganvie.jpg',
         videoUrl: '/sample.mp4',
@@ -548,41 +553,41 @@ export const FOCUS_DATA: FocusItem[] = [
   {
     id: 'artistes',
     type: 'theme',
-    titre: 'Artistes',
+    titre: 'Hall des arts',
     synopsis:
-      "Artistes accueille celles et ceux qui créent (musiciens, comédiens, danseurs, peintres, sculpteurs, écrivains, cinéastes) et celles et ceux qui admirent un artiste ou une œuvre et veulent la faire connaître. Chacun raconte une œuvre ou un artiste qui compte pour lui. Il n'est pas nécessaire d'être artiste pour y entrer.",
+      "Un hall, c'est l'endroit où l'on entre, où l'on s'arrête, où l'on regarde. Musiciens, comédiens, danseurs, peintres, sculpteurs, écrivains, cinéastes y croisent celles et ceux qui admirent un artiste ou une œuvre et veulent la faire connaître. Chacun apporte une œuvre ou un artiste qui compte pour lui. Tout commence par ce qui nous a touchés. Nul besoin d'être artiste pour entrer.",
     consigne:
       "N'utilisez aucun extrait de musique, de film ou d'œuvre protégée sans autorisation.",
     question:
-      'Racontez une œuvre (chanson, film, tableau, spectacle, livre) qui vous a marqué, et ce qu’elle a changé en vous.',
+      "Racontez l'œuvre (chanson, film, tableau, spectacle, livre) qui a changé quelque chose en vous, et où vous étiez ce jour-là.",
     questions: [
       {
         id: 'q1',
         number: '01',
-        title: "L'œuvre qui m'a marqué",
+        title: 'Œuvre marquante',
         question:
-          'Racontez une œuvre (chanson, film, tableau, spectacle, livre) qui vous a marqué, et ce qu’elle a changé en vous.',
+          "Racontez l'œuvre (chanson, film, tableau, spectacle, livre) qui a changé quelque chose en vous, et où vous étiez ce jour-là.",
       },
       {
         id: 'q2',
         number: '02',
-        title: "Ce que j'ai créé",
+        title: 'Création',
         question:
-          'Racontez quelque chose que vous avez créé, même petit, dont vous êtes fier, et ce qui vous a poussé à le faire.',
+          'Racontez ce que vous avez créé, même petit, et ce qui vous a poussé à le faire alors que personne ne vous le demandait.',
       },
       {
         id: 'q3',
         number: '03',
-        title: 'Le premier regard',
+        title: 'Premier regard',
         question:
-          "Racontez la première fois où vous avez montré ce que vous aviez fait à quelqu'un, et ce qu'il a dit ou n'a pas dit.",
+          "Racontez la première fois où vous avez montré ce que vous aviez fait à quelqu'un, et ce que cette personne a dit ou n'a pas dit.",
       },
       {
         id: 'q4',
         number: '04',
-        title: 'Faire connaître',
+        title: "Que personne n'oublie",
         question:
-          'Racontez un artiste ou une œuvre que vous voudriez que tout le monde découvre, et pourquoi.',
+          "Racontez un artiste ou une œuvre que vous voudriez que le monde n'oublie jamais, et pourquoi.",
       },
     ],
     commandite: false,
@@ -596,9 +601,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/photographer-focus.jpg',
         protagonistId: 'chancelle-agbo',
         questionNumber: '01',
-        questionTitle: "L'œuvre qui m'a marqué",
+        questionTitle: 'Œuvre marquante',
         question:
-          'Racontez une œuvre (chanson, film, tableau, spectacle, livre) qui vous a marqué, et ce qu’elle a changé en vous.',
+          "Racontez l'œuvre (chanson, film, tableau, spectacle, livre) qui a changé quelque chose en vous, et où vous étiez ce jour-là.",
         durationFormatted: '2:48',
         posterUrl: '/assets/duos/photographer-focus.jpg',
         videoUrl: '/sample.mp4',
@@ -610,9 +615,9 @@ export const FOCUS_DATA: FocusItem[] = [
         authorAvatar: '/assets/duos/care-mireille.jpg',
         protagonistId: 'mireille-akplogan',
         questionNumber: '04',
-        questionTitle: 'Faire connaître',
+        questionTitle: "Que personne n'oublie",
         question:
-          'Racontez un artiste ou une œuvre que vous voudriez que tout le monde découvre, et pourquoi.',
+          "Racontez un artiste ou une œuvre que vous voudriez que le monde n'oublie jamais, et pourquoi.",
         durationFormatted: '2:16',
         posterUrl: '/assets/duos/care-mireille.jpg',
         videoUrl: '/sample.mp4',

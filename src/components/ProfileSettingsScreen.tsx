@@ -547,7 +547,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       posterUrl: sub.thumbnailUrl || userPhoto || '/Posters/Onboardings/mesvideos.png',
       videoUrl: sub.videoUrl || '/sample.mp4',
       duration: '02:00',
-      tag: sub.title || PROFILE_TAB_LABELS[activeProfileTab]
+      tag: sub.title || PROFILE_TAB_LABELS[activeProfileTab],
+      questionText: sub.questionText
     }));
   }, [isOwner, activeProfileTab, ownerUserId, userPhoto, submissionsVersion]);
 
@@ -963,7 +964,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                     onTogglePlay={isCenter ? toggleVideoPlayback : () => {}}
                     isMuted={isMuted}
                     onToggleMute={isCenter ? toggleMute : () => {}}
-                    questionText={getQuestionText()}
+                    questionText={item.questionText || getQuestionText()}
                     factText={item.description}
                     onShare={isCenter ? handleShareProfile : undefined}
                     onReportVideo={

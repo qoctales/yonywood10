@@ -30,6 +30,7 @@ export interface StudioPillar {
   title: string;
   durationBadge?: string;
   subtitle: string;
+  consigne?: string;
   question: string;
   posterUrl: string;
   videoUrl: string;
@@ -54,7 +55,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
     durationBadge: "Jusqu'à 2 minutes 56",
     subtitle: 'Une série avec deux perspectives. On choisit la sienne et on raconte une histoire posée.',
     question: 'Face à quel alter ego d’un autre monde souhaitez-vous confronter votre propre vécu ?',
-    posterUrl: encodeURI('/Posters/Studio/Affiche Duo.png'),
+    posterUrl: '/Posters/Studio/Studio.Duo.png?v=2',
     videoUrl: STOCK_VIDEOS[0],
     items: SERIES_REGISTRY.map((series, idx) => ({
       id: series.id,
@@ -92,51 +93,139 @@ export const STUDIO_PILLARS: StudioPillar[] = [
   },
 
   // =========================================================================
-  // 2. PORTRAIT (jusqu'à 2 minutes 56 - 4 directions d’expression et d’affirmation de soi)
+  // 2. PORTRAIT (jusqu'à 2 minutes 56 - 8 questions universelles pour se montrer au monde)
   // =========================================================================
   {
     id: 'soi',
     title: 'Portrait',
     durationBadge: "Jusqu'à 2 minutes 56",
-    subtitle: 'On se raconte soi-même dans les quatre directions d’expression et d’affirmation de soi.',
-    question: 'Quelle dimension intime de votre histoire humaine souhaitez-vous offrir au monde ?',
-    posterUrl: '/Posters/Onboardings/mesvideos.png',
+    subtitle:
+      "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+    consigne:
+      "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+    question:
+      "Racontez le souvenir qui, selon vous, explique le chemin que vous suivez aujourd'hui.",
+    posterUrl: '/Posters/Studio/Studio.Portrait.png?v=2',
     videoUrl: STOCK_VIDEOS[3],
     items: [
       {
-        id: 'soi-parcours',
-        title: 'Parcours de vie',
+        id: 'portrait-q1',
+        title: 'Souvenir',
+        badge: 'Question 1',
+        episodeTitle: 'Souvenir',
         durationBadge: "Jusqu'à 2 minutes 56",
-        subtitle: 'Son histoire, les étapes qui l’ont construite.',
-        question: 'Quelles étapes fondatrices et quels tournants ont sculpté la personne que vous êtes ?',
-        posterUrl: '/Posters/Focus/Mon%20histoire%20fera%20le%20job.png',
-        videoUrl: STOCK_VIDEOS[3]
-      },
-      {
-        id: 'soi-produits-services',
-        title: 'Produits et services',
-        durationBadge: "Jusqu'à 2 minutes 56",
-        subtitle: 'Ce qu’elle fait, vend ou propose.',
-        question: 'Quelle offre, création ou savoir-faire d’excellence mettez-vous au service d’autrui ?',
-        posterUrl: '/assets/duos/fatou-diallo.jpg',
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          "Racontez le souvenir qui, selon vous, explique le chemin que vous suivez aujourd'hui.",
+        posterUrl: '/Posters/Sides/Benin.png',
         videoUrl: STOCK_VIDEOS[0]
       },
       {
-        id: 'soi-projets',
-        title: 'Projets',
+        id: 'portrait-q2',
+        title: 'Personne',
+        badge: 'Question 2',
+        episodeTitle: 'Personne',
         durationBadge: "Jusqu'à 2 minutes 56",
-        subtitle: 'Ses projets en cours, éventuellement en financement participatif.',
-        question: 'Quel chantier enthousiasmant ou création porteuse souhaitez-vous propulser ?',
-        posterUrl: '/Posters/Sides/Builders.png',
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          "Racontez la personne qui a le plus compté dans votre vie, et un moment avec elle que vous n'oublierez jamais.",
+        posterUrl: '/Posters/Sides/Horizons.png',
         videoUrl: STOCK_VIDEOS[1]
       },
       {
-        id: 'soi-besoins-opportunites',
-        title: 'Besoins et opportunités',
+        id: 'portrait-q3',
+        title: 'Rien à changer',
+        badge: 'Question 3',
+        episodeTitle: 'Rien à changer',
         durationBadge: "Jusqu'à 2 minutes 56",
-        subtitle: 'Recherche d’emploi ou de collaborateur, opportunité offerte, etc.',
-        question: 'Quel appel à compétences ou quelle opportunité d’alliance lancez-vous à la communauté ?',
-        posterUrl: '/Posters/Sides/Coachs.png',
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          "Racontez un jour où vous n'auriez rien voulu changer.",
+        posterUrl: '/Posters/Sides/Builders.png',
+        videoUrl: STOCK_VIDEOS[2]
+      },
+      {
+        id: 'portrait-q4',
+        title: 'Carrefour',
+        badge: 'Question 4',
+        episodeTitle: 'Carrefour',
+        durationBadge: "Jusqu'à 2 minutes 56",
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          'Racontez un moment où il fallait choisir entre deux vies, et ce que vous avez laissé derrière vous.',
+        posterUrl: '/assets/duos/athlete-hurdle.jpg',
+        videoUrl: STOCK_VIDEOS[3]
+      },
+      {
+        id: 'portrait-q5',
+        title: 'Épreuve',
+        badge: 'Question 5',
+        episodeTitle: 'Épreuve',
+        durationBadge: "Jusqu'à 2 minutes 56",
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          'Racontez le moment le plus dur de votre vie, et ce qui vous a permis de tenir.',
+        posterUrl: '/Posters/Sides/Irokos.png',
+        videoUrl: STOCK_VIDEOS[4]
+      },
+      {
+        id: 'portrait-q6',
+        title: 'Leçon',
+        badge: 'Question 6',
+        episodeTitle: 'Leçon',
+        durationBadge: "Jusqu'à 2 minutes 56",
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          "Racontez ce que les années vous ont appris de plus précieux, et le jour où vous l'avez compris.",
+        posterUrl: '/Posters/Sides/Wowmen.png',
+        videoUrl: STOCK_VIDEOS[0]
+      },
+      {
+        id: 'portrait-q7',
+        title: 'Non-dit',
+        badge: 'Question 7',
+        episodeTitle: 'Non-dit',
+        durationBadge: "Jusqu'à 2 minutes 56",
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          "Racontez ce que vous n'avez jamais pu dire à quelqu'un, et ce que vous lui diriez aujourd'hui.",
+        posterUrl: '/Posters/Sides/Modernite%CC%81.png',
+        videoUrl: STOCK_VIDEOS[1]
+      },
+      {
+        id: 'portrait-q8',
+        title: 'Espoir',
+        badge: 'Question 8',
+        episodeTitle: 'Espoir',
+        durationBadge: "Jusqu'à 2 minutes 56",
+        subtitle:
+          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+        consigne:
+          "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
+        question:
+          'Racontez ce que vous espérez encore de la vie, et à quoi ressemblera le jour où cela arrivera.',
+        posterUrl: '/Posters/Sides/Paroles.png',
         videoUrl: STOCK_VIDEOS[2]
       }
     ]
@@ -592,7 +681,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
             title: 'Tourisme',
             subtitle: 'Guider les voyageurs au cœur des merveilles cachées et des cultures locales.',
             question: 'Quel trésor insoupçonné faites-vous découvrir à ceux qui viennent de loin ?',
-            posterUrl: '/assets/Onboardings/Voyage.png',
+            posterUrl: '/Posters/Sides/Horizons.png',
             videoUrl: STOCK_VIDEOS[4]
           },
           {
@@ -868,7 +957,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
     durationBadge: "Jusqu'à 2 minutes 56",
     subtitle: 'Chaque thématique est un sujet précis et ouvert à tous. On partage son histoire, son souvenir ou sa voix pour enrichir le récit collectif.',
     question: 'Sur quelle thématique souhaitez-vous partager votre histoire ou votre souvenir personnel ?',
-    posterUrl: encodeURI('/Posters/Studio/Affiche Focus.png?v=2'),
+    posterUrl: '/Posters/Studio/Studio.Focus.png?v=2',
     videoUrl: STOCK_VIDEOS[4],
     items: FOCUS_DATA.filter((focus) => focus.accesOuvert && !focus.commandite).map((focus, idx) => ({
       id: focus.id,

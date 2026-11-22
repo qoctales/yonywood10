@@ -826,7 +826,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Prêtre catholique & enseignant',
           partnerPhoto: '/assets/duos/duo_pere_matthieu_1791655226601.jpg',
           duoId: 'duo-jesus-legba-01',
-          question: '01 — La Rencontre : Le jour où la foi a cessé d\'être un mot'
+          question: '01 — Appel : Racontez le moment où vous avez senti que quelque chose de plus grand que vous était là.'
         }
       ],
       opportunities: [
@@ -880,7 +880,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-dah-01',
         title: 'Le feu sous l’iroko noir',
         questionNumber: '01',
-        questionTitle: 'La Rencontre',
+        questionTitle: 'Appel',
         duration: '11:42',
         videoDurationSeconds: 702,
         summary: 'À l’âge de dix-neuf ans, Mahougnon fuyait le village après un naufrage familial. Assis au carrefour d’Allada, une simple poignée de terre chaude déposée par un vieillard a suspendu son désespoir.',
@@ -925,7 +925,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Dignitaire Vodoun',
           partnerPhoto: '/assets/duos/mahougnon_esu_portrait_1791701582891.jpg',
           duoId: 'duo-jesus-legba-01',
-          question: '01 — La Rencontre : L’éveil devant l’invisible'
+          question: '01 — Appel : Racontez le moment où vous avez senti que quelque chose de plus grand que vous était là.'
         }
       ],
       opportunities: [
@@ -966,7 +966,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-matthieu-01',
         title: 'Le silence dans la nef de Ouidah',
         questionNumber: '01',
-        questionTitle: 'La Rencontre',
+        questionTitle: 'Appel',
         duration: '13:05',
         videoDurationSeconds: 785,
         summary: 'Pendant ses années de doute à l’université, Dieudonné est entré par hasard dans la basilique déserte de Ouidah en plein midi. Ce n’est pas un miracle qui l’a retenu, mais une soudaine certitude d’être attendu.',
@@ -1011,7 +1011,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Conteuse & médiatrice culturelle (Saint-Louis)',
           partnerPhoto: '/assets/duos/horizons-awa.jpg',
           duoId: 'duo-horizons-benin-01',
-          question: '01 — Chez Soi : Racontez le moment où vous avez senti que vous étiez enfin chez vous.'
+          question: "01 — Chez soi : Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec."
         }
       ],
       opportunities: [
@@ -1052,7 +1052,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-tobi-01',
         title: 'Le premier coup de pagaie seul',
         questionNumber: '01',
-        questionTitle: 'Chez Soi',
+        questionTitle: 'Chez soi',
         duration: '09:28',
         videoDurationSeconds: 568,
         summary: 'Le jour de ses sept ans, son père l’a laissé seul au milieu de la lagune brumeuse avec une perche de bambou. Ce jour-là, l’effroi s’est métamorphosé en un sentiment d’appartenance absolu.',
@@ -1094,7 +1094,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Charpentier de pirogues de Ganvié',
           partnerPhoto: '/assets/duos/tobi-houndegla.jpg',
           duoId: 'duo-horizons-benin-01',
-          question: '01 — Chez Soi : Deux mondes reliés par la fidélité à un élément'
+          question: "01 — Chez soi : Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec."
         }
       ],
       opportunities: [
@@ -1135,7 +1135,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-sayri-01',
         title: 'Le sel de Maras au lever du soleil',
         questionNumber: '01',
-        questionTitle: 'Chez Soi',
+        questionTitle: 'Chez soi',
         duration: '10:14',
         videoDurationSeconds: 614,
         summary: 'Sayri se rappelle la première aurore passée seul sur la terrasse familiale, les doigts engourdis par la gelée matinale, lorsqu’une flûte résonnant au loin a donné une voix à la vallée entière.',
@@ -1179,7 +1179,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Oratrice & fondatrice de collectif féminin',
           partnerPhoto: '/assets/duos/eleonore-vance.jpg',
           duoId: 'duo-blacks-one-wowmen-01',
-          question: "01 — Se redresser : Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé."
+          question: "01 — Se redresser : Racontez le jour où une personne (vous, ou quelqu'un que vous aimez) a été rabaissée à cause de ce qu'elle est, et ce qui l'a aidée à se redresser."
         }
       ],
       opportunities: [
@@ -1219,8 +1219,8 @@ export const PROTAGONISTS: Protagonist[] = [
       {
         id: 'story-malik-01',
         title: 'Le premier cercle sous le réverbère',
-        questionNumber: '03',
-        questionTitle: 'Ce que l’on Porte',
+        questionNumber: '01',
+        questionTitle: 'Se redresser',
         duration: '12:10',
         videoDurationSeconds: 730,
         summary: 'Malik raconte l’instant où, rejeté d’une grande audition à Paris pour « manque d’académisme », il a compris que son bagage le plus précieux n’était pas leur validation, mais la pulsation lébou transmise par sa mère.',
@@ -1264,7 +1264,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Orateur civique & penseur panafricain',
           partnerPhoto: '/assets/duos/malik-diop.jpg',
           duoId: 'duo-blacks-one-wowmen-01',
-          question: "01 — Se redresser : Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé."
+          question: "01 — Se redresser : Racontez le jour où une personne (vous, ou quelqu'un que vous aimez) a été rabaissée à cause de ce qu'elle est, et ce qui l'a aidée à se redresser."
         }
       ],
       opportunities: [
@@ -1349,7 +1349,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Médecin urgentiste au CNHU-HKM de Cotonou',
           partnerPhoto: '/assets/duos/care-mireille.jpg',
           duoId: 'duo-modernite-tradition-01',
-          question: '01 — L’évidence : Racontez le moment où vous avez compris que ce métier serait le vôtre.'
+          question: "01 — Geste hérité : Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites."
         }
       ],
       opportunities: [
@@ -1390,7 +1390,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-koffi-01',
         title: 'Le bol d’igname au milieu de l’orage',
         questionNumber: '01',
-        questionTitle: 'L’évidence',
+        questionTitle: 'Geste hérité',
         duration: '08:52',
         videoDurationSeconds: 532,
         summary: 'Koffi raconte ce soir de déluge à Cotonou où un portefaix exténué a retrouvé ses forces devant sa marmite fumante de sauce gboman.',
@@ -1432,7 +1432,7 @@ export const PROTAGONISTS: Protagonist[] = [
           partnerRole: 'Cuisinier de rue',
           partnerPhoto: '/assets/duos/chef-koffi.jpg',
           duoId: 'duo-modernite-tradition-01',
-          question: '01 — Le Goût : Deux artisans de l’instant précieux'
+          question: "01 — Geste hérité : Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites."
         }
       ],
       opportunities: [
@@ -1473,7 +1473,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-helene-01',
         title: 'Le verre d’eau offert sans un mot',
         questionNumber: '01',
-        questionTitle: 'Le Goût',
+        questionTitle: 'Geste hérité',
         duration: '10:48',
         videoDurationSeconds: 648,
         summary: 'Hélène se souvient d’un grand dîner d’État où le geste le plus marquant ne fut pas le caviar servi, mais une simple coupe d’eau de source tiède infusée à la feuille d’oranger, apportée à une femme terrifiée par la foule.',
@@ -2042,7 +2042,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Le cadre n’enferme pas le monde : il le révèle. Quand tu presses le déclencheur au marché de Ouidah, tu reçois une confidence. »',
     bio: 'Quinze ans de chroniques visuelles sur la côte béninoise, saisissant la beauté des marchés, des gestes quotidiens et de la lumière du golfe.',
     universeTag: 'Images',
-    centralQuestion: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
+    centralQuestion: 'Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir au monde, et que personne ne le ferait à votre place.',
     storiesCount: 6,
     transmissionsCount: 4,
     projectsCount: 2,
@@ -2051,7 +2051,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-photographer-chancelle-01',
         title: 'L’aube dorée sur les étals de Ouidah',
         questionNumber: '01',
-        questionTitle: 'Le déclic',
+        questionTitle: 'Déclic',
         duration: '09:10',
         videoDurationSeconds: 550,
         summary: 'Chancelle raconte l’attente patiente à la porte du marché de Ouidah pour capter sans un mot le regard souverain d’une tisseuse à l’ouverture du jour.',
@@ -2079,7 +2079,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Une thèse n’est pas un diplôme qu’on accroche : c’est une promesse faite à nos savoirs de ne jamais se contenter de l’à-peu-près. »',
     bio: 'Formée à l’Université d’Abomey-Calavi, Nadège consacre ses travaux de recherche aux modèles cognitifs de la transmission orale et de la mémoire collective au Bénin.',
     universeTag: 'PhD',
-    centralQuestion: 'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
+    centralQuestion: 'Racontez ce que vous avez voulu réussir plus que tout, et ce que vous avez mis de côté pour y arriver.',
     storiesCount: 5,
     transmissionsCount: 3,
     projectsCount: 4,
@@ -2088,7 +2088,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-researcher-nadege-01',
         title: 'La nuit de soutenance à Abomey-Calavi',
         questionNumber: '01',
-        questionTitle: 'La question qui ne lâche pas',
+        questionTitle: 'Plus que tout',
         duration: '08:15',
         videoDurationSeconds: 495,
         summary: 'Nadège partage son tout premier jour au laboratoire d’Abomey-Calavi face à son tableau noir, décidée à démontrer que les contes oraux béninois obéissent à une architecture cognitive d’une précision mathématique.',
@@ -2116,7 +2116,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Soigner à Cotonou, c’est tenir la main de quelqu’un à trois heures du matin jusqu’à ce que la fièvre recule devant la patience. »',
     bio: 'Médecin aux urgences du CNHU-HKM de Cotonou, Mireille veille chaque nuit sur les patients et tisse un pont bienveillant entre médecine hospitalière et écoute humaine.',
     universeTag: 'Modernité',
-    centralQuestion: "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
+    centralQuestion: "Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites.",
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 2,
@@ -2125,7 +2125,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-mireille-01',
         title: 'La garde d’harmattan aux urgences de Cotonou',
         questionNumber: '01',
-        questionTitle: "Ce qu'on m'a transmis",
+        questionTitle: 'Geste hérité',
         duration: '09:05',
         videoDurationSeconds: 545,
         summary: 'Mireille raconte la première nuit où, encore jeune interne au CNHU, le sourire apaisé d’une mère après un accouchement difficile a scellé sa vocation.',
@@ -2153,7 +2153,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« L’iroko n’est pas pressé : il offre son ombre à ceux qui viendront écouter bien après lui. »',
     bio: 'Figure respectée de la lagune Nokoué, Doyen Kiki Alapini rassemble les jeunes autour des pirogues pour transmettre la sagesse orale, la patience et la mémoire des aînés.',
     universeTag: 'Irokos',
-    centralQuestion: "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
+    centralQuestion: "Racontez la première fois où quelqu'un d'une autre génération a pris au sérieux ce que vous disiez, et ce que cela vous a fait.",
     storiesCount: 6,
     transmissionsCount: 7,
     projectsCount: 2,
@@ -2162,7 +2162,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-kiki-01',
         title: 'Les contes du soir sous le grand iroko',
         questionNumber: '01',
-        questionTitle: 'Être pris au sérieux',
+        questionTitle: 'Pris au sérieux',
         duration: '10:20',
         videoDurationSeconds: 620,
         summary: 'À 72 ans, Kiki évoque l’instant où un jeune venu de la ville l’a écouté pendant des heures sans l’interrompre, scellant un respect mutuel entre générations.',
@@ -2190,7 +2190,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« On peut lire dix manuels sur le courant, mais c’est le jour où l’on tient le fer à souder dans l’atelier de Cotonou que les mains comprennent. »',
     bio: 'Formée à l’atelier dès 18 ans aux côtés d’un maître électricien de Fidjrossè, Sénan assemble aujourd’hui des systèmes solaires autonomes en apprenant chaque geste sur le terrain.',
     universeTag: 'Apprentis',
-    centralQuestion: 'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
+    centralQuestion: 'Racontez ce que vous avez voulu réussir plus que tout, et ce que vous avez mis de côté pour y arriver.',
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 3,
@@ -2199,7 +2199,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-senan-01',
         title: 'Le premier jour à l’atelier de Fidjrossè',
         questionNumber: '01',
-        questionTitle: 'La question qui ne lâche pas',
+        questionTitle: 'Plus que tout',
         duration: '07:15',
         videoDurationSeconds: 435,
         summary: 'Sénan évoque son tout premier matin à l’atelier de Fidjrossè où son patron lui a confié son premier multimètre et une radio en panne à réparer devant tout le monde.',
@@ -2227,7 +2227,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Le geste d’Abomey se transmet devant la flamme, dans la patience du bronze ciselé à la main. »',
     bio: 'Formée auprès des maîtres bronziers d’Abomey, Kpèdétin crée des parures d’or, de bronze et de pierres célébrant le savoir-faire transmis du Danxomè.',
     universeTag: 'Tradition',
-    centralQuestion: "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
+    centralQuestion: "Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites.",
     storiesCount: 5,
     transmissionsCount: 4,
     projectsCount: 2,
@@ -2236,7 +2236,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-kpedetin-01',
         title: 'La fonte du premier bracelet d’Abomey',
         questionNumber: '01',
-        questionTitle: "Ce qu'on m'a transmis",
+        questionTitle: 'Geste hérité',
         duration: '08:50',
         videoDurationSeconds: 530,
         summary: 'Kpèdétin raconte comment ses doigts ont reconnu dès le premier moulage que l’artisanat du bronze d’Abomey serait sa vie.',
@@ -2273,7 +2273,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-awa-01',
         title: 'Les balcons ocres au bord du fleuve Sénégal',
         questionNumber: '01',
-        questionTitle: 'Ce qui ramène chez soi',
+        questionTitle: 'Chez soi',
         duration: '08:25',
         videoDurationSeconds: 505,
         summary: 'Awa évoque l’instant où le vent marin de la Langue de Barbarie lui a rappelé pourquoi elle avait choisi de revenir vivre et créer sur son île.',
@@ -2301,7 +2301,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Quand le tambour résonne dans la cour de Cotonou, les jeunes et les aînés se répondent sans un mot. »',
     bio: 'Jeune chorégraphe et créateur à Cotonou, Yédê dialogue avec les anciens du quartier pour relier les rythmes contemporains aux mémoires vivantes.',
     universeTag: 'Bambous',
-    centralQuestion: "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
+    centralQuestion: "Racontez la première fois où quelqu'un d'une autre génération a pris au sérieux ce que vous disiez, et ce que cela vous a fait.",
     storiesCount: 5,
     transmissionsCount: 4,
     projectsCount: 3,
@@ -2310,7 +2310,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-yede-01',
         title: 'La première pulsation dans la cour d’Akpakpa',
         questionNumber: '01',
-        questionTitle: 'Être pris au sérieux',
+        questionTitle: 'Pris au sérieux',
         duration: '07:55',
         videoDurationSeconds: 475,
         summary: 'Yédê raconte le soir où le doyen des percussionnistes d’Akpakpa a posé son propre tambour devant lui et lui a demandé d’ouvrir la danse.',
@@ -2338,7 +2338,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Bâtir en terre comprimée et en bois local sous le soleil de Cotonou, c’est prouver que notre architecture ancestrale est déjà futuriste. »',
     bio: 'Fondatrice d’un cabinet d’architecture bioclimatique à Cotonou, Sènami conçoit des écoles, des ateliers et des lieux culturels frais, durables et ancrés dans la terre béninoise.',
     universeTag: 'Builders',
-    centralQuestion: "Racontez le conseil qui a changé la direction de votre vie, et la personne qui vous l'a donné.",
+    centralQuestion: "Racontez la phrase, reçue ou dite, qui a changé la direction d'une vie, la vôtre ou celle d'un autre.",
     storiesCount: 4,
     transmissionsCount: 3,
     projectsCount: 5,
@@ -2347,7 +2347,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-senami-01',
         title: 'Les plans tracés sous les palmiers de Cotonou',
         questionNumber: '01',
-        questionTitle: 'Le conseil',
+        questionTitle: 'Phrase décisive',
         duration: '08:40',
         videoDurationSeconds: 520,
         summary: 'Sènami se rappelle le conseil d’un ancien ingénieur qui l’a décidée à bâtir tout un pavillon scolaire en briques de latérite malgré les doutes.',
@@ -2375,7 +2375,7 @@ export const PROTAGONISTS: Protagonist[] = [
     quote: '« Le mot a le poids du feu et la douceur de la pluie. Quand je scande mes vers à Cotonou, je réveille nos mémoires. »',
     bio: 'Voix vibrante de la scène littéraire et slam de Cotonou, Armel mêle français, fòn et poésie contemporaine pour faire entendre les histoires tues.',
     universeTag: 'Paroles',
-    centralQuestion: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
+    centralQuestion: 'Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir au monde, et que personne ne le ferait à votre place.',
     storiesCount: 5,
     transmissionsCount: 3,
     projectsCount: 3,
@@ -2384,7 +2384,7 @@ export const PROTAGONISTS: Protagonist[] = [
         id: 'story-poet-armel-01',
         title: 'Le slam de l’Espace Culturel à Cotonou',
         questionNumber: '01',
-        questionTitle: 'Le déclic',
+        questionTitle: 'Déclic',
         duration: '07:20',
         videoDurationSeconds: 440,
         summary: 'Armel raconte le soir où il a posé son carnet sur scène pour dire à voix haute ce que tout le quartier gardait enfoui.',
@@ -2408,8 +2408,8 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('mireille-akplogan'),
     protagonistB: findProtagonist('kpedetin-houndegla'),
     questionNumber: '01',
-    questionTitle: "Ce qu'on m'a transmis",
-    centralQuestion: "Racontez un savoir-faire que quelqu'un vous a transmis, et dont vous ne pourriez plus vous passer.",
+    questionTitle: 'Geste hérité',
+    centralQuestion: "Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites.",
     quoteA: '« À trois heures du matin aux urgences de Cotonou, quand la main d’un patient serre la vôtre, vous savez que vous êtes exactement à votre place. »',
     quoteB: '« À l’atelier d’Abomey, dès que j’ai senti le souffle du soufflet sur le bronze en fusion, j’ai compris que ce métier transmis était le mien. »',
     coverImage: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
@@ -2426,8 +2426,8 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('pere-matthieu'),
     protagonistB: findProtagonist('dah-zounon'),
     questionNumber: '01',
-    questionTitle: "L'appel",
-    centralQuestion: "Racontez le moment où vous avez senti qu'il existait quelque chose de plus grand que vous.",
+    questionTitle: 'Appel',
+    centralQuestion: 'Racontez le moment où vous avez senti que quelque chose de plus grand que vous était là.',
     quoteA: '« Je suis entré dans la nef déserte de Ouidah pour fuir la brûlure du soleil. Ce n’est pas un miracle qui m’a retenu : c’était la certitude d’être attendu. »',
     quoteB: '« Ce n’était pas un coup de tonnerre. C’était la chaleur d’une poignée de terre d’Allada, un jour où je croyais que le monde était mort. »',
     coverImage: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
@@ -2444,8 +2444,8 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('researcher-eleonore'),
     protagonistB: findProtagonist('senan-agossa'),
     questionNumber: '01',
-    questionTitle: 'La question qui ne lâche pas',
-    centralQuestion: 'Racontez une question, un problème ou un geste qui vous a obsédé pendant des mois ou des années.',
+    questionTitle: 'Plus que tout',
+    centralQuestion: 'Racontez ce que vous avez voulu réussir plus que tout, et ce que vous avez mis de côté pour y arriver.',
     quoteA: '« Le premier jour devant mon tableau noir à Abomey-Calavi, j’ai juré de prouver la rigueur mathématique cachée dans nos savoirs oraux. »',
     quoteB: '« Le premier matin à l’atelier de Fidjrossè, quand mon patron m’a posé une radio ouverte entre les mains, j’ai compris qu’apprendre commence par oser toucher. »',
     coverImage: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
@@ -2463,7 +2463,7 @@ const RAW_DUOS: Duo[] = [
     protagonistB: findProtagonist('eleonore-vance'),
     questionNumber: '01',
     questionTitle: 'Se redresser',
-    centralQuestion: "Racontez une fois où l'on a voulu vous faire sentir petit à cause de ce que vous êtes, et comment vous vous êtes redressé.",
+    centralQuestion: "Racontez le jour où une personne (vous, ou quelqu'un que vous aimez) a été rabaissée à cause de ce qu'elle est, et ce qui l'a aidée à se redresser.",
     quoteA: '« L’émancipation commence le jour où l’on refuse de regarder son histoire avec les yeux de ceux qui l’ont confisquée. »',
     quoteB: '« En ouvrant la malle des pagnes de ma mère, j’ai compris que la force et la dignité des femmes portent nos sociétés entières. »',
     coverImage: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
@@ -2480,8 +2480,8 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('yede-dossa'),
     protagonistB: findProtagonist('kiki-alapini'),
     questionNumber: '01',
-    questionTitle: 'Être pris au sérieux',
-    centralQuestion: "Racontez la première fois où vous avez senti qu'une personne d'une autre génération vous prenait au sérieux.",
+    questionTitle: 'Pris au sérieux',
+    centralQuestion: "Racontez la première fois où quelqu'un d'une autre génération a pris au sérieux ce que vous disiez, et ce que cela vous a fait.",
     quoteA: '« Le soir où un ancien de Porto-Novo s’est assis au premier rang pour écouter mes premiers pas sur scène, j’ai senti le poids et la confiance de son regard. »',
     quoteB: '« Sur la lagune de Ganvié, quand les jeunes charpentiers sont venus me demander d’observer leur plan de pirogue, le pont entre nos deux âges s’est ouvert. »',
     coverImage: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
@@ -2498,7 +2498,7 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('awa-ndiaye'),
     protagonistB: findProtagonist('tobi-houndegla'),
     questionNumber: '01',
-    questionTitle: 'Ce qui ramène chez soi',
+    questionTitle: 'Chez soi',
     centralQuestion: "Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec.",
     quoteA: '« En retrouvant les façades ocres de Saint-Louis face au fleuve, j’ai senti que ma voix n’avait jamais quitté cette île. »',
     quoteB: '« Le jour où ma pirogue a glissé dans la brume de Ganvié sans que j’aie besoin de regarder le rivage : cette lagune est dans mon sang. »',
@@ -2516,8 +2516,8 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('senami-houndete'),
     protagonistB: findProtagonist('coach-marc'),
     questionNumber: '01',
-    questionTitle: 'Le conseil',
-    centralQuestion: "Racontez le conseil qui a changé la direction de votre vie, et la personne qui vous l'a donné.",
+    questionTitle: 'Phrase décisive',
+    centralQuestion: "Racontez la phrase, reçue ou dite, qui a changé la direction d'une vie, la vôtre ou celle d'un autre.",
     quoteA: '« Tout le monde me disait que bâtir une école en terre comprimée à Cotonou était fou : c’est un ancien ingénieur qui m’a dit d’oser poser la première brique. »',
     quoteB: '« Le jour où j’ai dit à un jeune fondateur d’arrêter de tout porter seul et de déléguer sa première équipe, son projet a enfin décollé. »',
     coverImage: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
@@ -2534,8 +2534,8 @@ const RAW_DUOS: Duo[] = [
     protagonistA: findProtagonist('photographer-chancelle'),
     protagonistB: findProtagonist('poet-armel'),
     questionNumber: '01',
-    questionTitle: 'Le déclic',
-    centralQuestion: "Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir aux autres, et que c'était à vous de le faire.",
+    questionTitle: 'Déclic',
+    centralQuestion: 'Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir au monde, et que personne ne le ferait à votre place.',
     quoteA: '« À Ouidah, lorsque je cadre un visage avant l’aube, l’image dit exactement ce que les discours officiels ont oublié. »',
     quoteB: '« Le mot claque comme un tambour dans la nuit : si nous n’écrivons pas nos propres récits de Cotonou, d’autres les effaceront. »',
     coverImage: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
@@ -3385,7 +3385,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     seriesTitle: 'Modernité ‹ › Tradition',
     subtitle: 'Méthodes récentes ‹ › savoirs transmis.',
     description: 'Le pont entre celles et ceux qui exercent avec des techniques récentes et les artisans et praticiens des savoirs transmis de génération en génération.',
-    centralQuestion: 'Le métier',
+    centralQuestion: 'Geste hérité',
     totalAffiliatedCount: 10,
     generationsCount: 3,
     pioneers: [
@@ -3405,7 +3405,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         duoPartnerName: 'Dre. Mireille Akplogan',
         duoPartnerPhoto: '/assets/duos/care-mireille.jpg',
         duoId: 'duo-modernite-tradition-01',
-        episodeQuestion: "01 — Ce qu'on m'a transmis : Un savoir-faire dont vous ne pourriez plus vous passer.",
+        episodeQuestion: "01 — Geste hérité : Racontez un geste, une méthode ou un remède que vous tenez de quelqu'un, et ce qui se passe en vous quand vous le refaites.",
         protagonistIdRef: 'chef-koffi',
         invitedPeople: [
           {
@@ -3424,7 +3424,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitationStory: 'Fait entrer par Koffi car son huile de palme rouge pressée à froid au pilon de bois perpétue le geste ancestral des anciens.',
             duoPartnerName: 'Marc-Antoine',
             duoId: 'duo-modernite-tradition-01',
-            episodeQuestion: '03 — L’autre façon.',
+            episodeQuestion: '03 — Autre façon.',
             protagonistIdRef: 'chef-koffi',
             invitedPeople: [
               {
@@ -3443,7 +3443,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 invitationStory: 'Invitée par Roland pour faire découvrir les plantes et épices de savane transmises de mère en fille.',
                 duoPartnerName: 'Yasmine',
                 duoId: 'duo-modernite-tradition-01',
-                episodeQuestion: '04 — Ce qu’on garde.',
+                episodeQuestion: '04 — Pas question.',
                 protagonistIdRef: 'chef-koffi'
               }
             ]
@@ -3466,7 +3466,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         duoPartnerName: 'Koffi',
         duoPartnerPhoto: '/assets/duos/chef-koffi.jpg',
         duoId: 'duo-modernite-tradition-01',
-        episodeQuestion: '01 — Le moment où ce métier est devenu le vôtre.',
+        episodeQuestion: '01 — Geste hérité.',
         protagonistIdRef: 'helene-saint-amand',
         invitedPeople: [
           {
@@ -3485,7 +3485,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitationStory: 'Invité par Hélène pour ses recherches de laboratoire sur les principes actifs végétaux.',
             duoPartnerName: 'Roland',
             duoId: 'duo-modernite-tradition-01',
-            episodeQuestion: "02 — Quand ça n'a pas marché.",
+            episodeQuestion: '02 — Quand ça lâche.',
             protagonistIdRef: 'helene-saint-amand',
             invitedPeople: [
               {
@@ -3504,7 +3504,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 invitationStory: 'Fait entrer par Marc-Antoine pour ses procédés modernes de distillation à froid.',
                 duoPartnerName: 'Félicité',
                 duoId: 'duo-modernite-tradition-01',
-                episodeQuestion: '04 — Ce qu’on garde.',
+                episodeQuestion: '04 — Pas question.',
                 protagonistIdRef: 'helene-saint-amand'
               }
             ]
@@ -3518,7 +3518,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     seriesTitle: 'Builders ‹ › Coachs',
     subtitle: 'Bâtir dans le réel ‹ › accompagner le chemin.',
     description: 'Deux façons de faire grandir : celles et ceux qui entreprennent et bâtissent, et celles et ceux qui conseillent, soutiennent ou forment.',
-    centralQuestion: 'Le conseil',
+    centralQuestion: 'Phrase décisive',
     totalAffiliatedCount: 14,
     generationsCount: 3,
     pioneers: [
@@ -3538,7 +3538,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         duoPartnerName: 'Sènami Houndété',
         duoPartnerPhoto: '/assets/duos/fatou-diallo.jpg',
         duoId: 'duo-builders-coachs-01',
-        episodeQuestion: '01 — Le conseil.',
+        episodeQuestion: '01 — Phrase décisive.',
         protagonistIdRef: 'fatou-diallo',
         invitedPeople: [
           {
@@ -3557,7 +3557,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitationStory: 'Mentor de Fatou, accompagnateur historique de caisses de crédit mutuel rurales en Casamance.',
             duoPartnerName: 'Maître Kofi Annan',
             duoId: 'duo-builders-coachs-01',
-            episodeQuestion: '02 — Le risque.',
+            episodeQuestion: '02 — Pari fou.',
             protagonistIdRef: 'fatou-diallo',
             invitedPeople: []
           }
@@ -3579,7 +3579,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         duoPartnerName: 'Fatou Diallo',
         duoPartnerPhoto: '/assets/duos/fatou-diallo.jpg',
         duoId: 'duo-builders-coachs-01',
-        episodeQuestion: '01 — Le conseil.',
+        episodeQuestion: '01 — Phrase décisive.',
         protagonistIdRef: 'kwame-mensah',
         invitedPeople: [
           {
@@ -3598,7 +3598,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitationStory: 'Apprentie formée sur les chantiers de voûtes nubiennes, devenue bâtisseuse de campus zéro-carbone.',
             duoPartnerName: 'Mariama Fall',
             duoId: 'duo-builders-coachs-01',
-            episodeQuestion: '03 — La confiance.',
+            episodeQuestion: '03 — Confiance.',
             protagonistIdRef: 'kwame-mensah',
             invitedPeople: []
           }
@@ -3611,7 +3611,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
     seriesTitle: 'PhD ‹ › Apprentis',
     subtitle: 'Apprendre par la recherche ‹ › apprendre par la main.',
     description: 'Quand la patience de la recherche doctorale rencontre l’apprentissage sur le tas en atelier : une lignée de chercheurs et d’apprentis.',
-    centralQuestion: 'Apprendre',
+    centralQuestion: 'Plus que tout',
     totalAffiliatedCount: 12,
     generationsCount: 3,
     pioneers: [
@@ -3631,7 +3631,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         duoPartnerName: 'Dre. Nadège Zinsou',
         duoPartnerPhoto: '/assets/duos/researcher-phd.jpg',
         duoId: 'duo-phd-apprentis-01',
-        episodeQuestion: '01 — La question qui ne lâche pas.',
+        episodeQuestion: '01 — Plus que tout.',
         protagonistIdRef: 'codjo-blind',
         invitedPeople: [
           {
@@ -3650,7 +3650,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitationStory: 'Parrainée par Pascal au sein de l’association Voir Autrement pour développer son atelier de sacs perlés.',
             duoPartnerName: 'Dre. Nadège Zinsou',
             duoId: 'duo-phd-apprentis-01',
-            episodeQuestion: '02 — Apprendre en faisant.',
+            episodeQuestion: '02 — Première réussite.',
             protagonistIdRef: 'codjo-blind',
             invitedPeople: [
               {
@@ -3669,7 +3669,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
                 invitationStory: 'Accueilli dans la lignée par Cécile pour transmettre la taille de sièges et tabourets en bois brut.',
                 duoPartnerName: 'Vieux Ahouan',
                 duoId: 'duo-phd-apprentis-01',
-                episodeQuestion: '03 — L’erreur formatrice.',
+                episodeQuestion: '03 — Encore apprendre.',
                 protagonistIdRef: 'codjo-blind',
                 invitedPeople: []
               }
@@ -3693,7 +3693,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
         duoPartnerName: 'Pascal Cossi',
         duoPartnerPhoto: '/assets/duos/codjo-blind.jpg',
         duoId: 'duo-phd-apprentis-01',
-        episodeQuestion: '01 — La question qui ne lâche pas.',
+        episodeQuestion: '01 — Plus que tout.',
         protagonistIdRef: 'mawuna-medium',
         invitedPeople: [
           {
@@ -3712,7 +3712,7 @@ const RAW_SERIES_AFFILIATION_TREES: SeriesAffiliationTree[] = [
             invitationStory: 'A guidé Mawuna dans la compréhension de la mémoire orale.',
             duoPartnerName: 'Vieux Ahouan',
             duoId: 'duo-phd-apprentis-01',
-            episodeQuestion: '04 — Celui ou celle qui vous a retenu.',
+            episodeQuestion: '04 — Tenir bon.',
             protagonistIdRef: 'mawuna-medium',
             invitedPeople: []
           }
