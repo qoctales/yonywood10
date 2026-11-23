@@ -267,12 +267,12 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
           <div className="flex items-center justify-between pb-1.5 sm:pb-2 border-b border-stone-100 shrink-0">
             <div className="flex items-center gap-2">
               <span className="text-[10.5px] sm:text-xs uppercase tracking-wider font-semibold text-stone-500">
-                {activeTab === 'question' ? 'Question' : 'Évaluation'}
+                {activeTab === 'question' ? 'Thème' : 'Évaluation'}
               </span>
             </div>
 
             <div className="flex items-center gap-1.5 bg-stone-100 p-0.5 sm:p-1 rounded-full border border-stone-200">
-              {/* Icône du Livre (Question) */}
+              {/* Icône du Livre (Thème) */}
               <button
                 type="button"
                 onClick={() => {
@@ -284,8 +284,8 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
                     ? 'bg-[#A2482B] text-white shadow-xs'
                     : 'text-stone-400 hover:text-stone-700'
                 }`}
-                title="Afficher la question"
-                aria-label="Afficher la question"
+                title="Afficher le thème"
+                aria-label="Afficher le thème"
               >
                 <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>

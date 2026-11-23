@@ -120,7 +120,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           "Racontez le souvenir qui, selon vous, explique le chemin que vous suivez aujourd'hui.",
-        posterUrl: '/Posters/Sides/Benin.png',
+        posterUrl: '/Posters/Portrait/portrait-souvenir.jpg',
         videoUrl: STOCK_VIDEOS[0]
       },
       {
@@ -135,7 +135,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           "Racontez la personne qui a le plus compté dans votre vie, et un moment avec elle que vous n'oublierez jamais.",
-        posterUrl: '/Posters/Sides/Horizons.png',
+        posterUrl: '/Posters/Portrait/portrait-personne.jpg',
         videoUrl: STOCK_VIDEOS[1]
       },
       {
@@ -150,7 +150,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           "Racontez un jour où vous n'auriez rien voulu changer.",
-        posterUrl: '/Posters/Sides/Builders.png',
+        posterUrl: '/Posters/Portrait/portrait-rien-a-changer.jpg',
         videoUrl: STOCK_VIDEOS[2]
       },
       {
@@ -165,7 +165,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           'Racontez un moment où il fallait choisir entre deux vies, et ce que vous avez laissé derrière vous.',
-        posterUrl: '/assets/duos/athlete-hurdle.jpg',
+        posterUrl: '/Posters/Portrait/portrait-carrefour.jpg',
         videoUrl: STOCK_VIDEOS[3]
       },
       {
@@ -180,7 +180,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           'Racontez le moment le plus dur de votre vie, et ce qui vous a permis de tenir.',
-        posterUrl: '/Posters/Sides/Irokos.png',
+        posterUrl: '/Posters/Portrait/portrait-epreuve.jpg',
         videoUrl: STOCK_VIDEOS[4]
       },
       {
@@ -195,7 +195,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           "Racontez ce que les années vous ont appris de plus précieux, et le jour où vous l'avez compris.",
-        posterUrl: '/Posters/Sides/Wowmen.png',
+        posterUrl: '/Posters/Portrait/portrait-lecon.jpg',
         videoUrl: STOCK_VIDEOS[0]
       },
       {
@@ -210,7 +210,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           "Racontez ce que vous n'avez jamais pu dire à quelqu'un, et ce que vous lui diriez aujourd'hui.",
-        posterUrl: '/Posters/Sides/Modernite%CC%81.png',
+        posterUrl: '/Posters/Portrait/portrait-non-dit.jpg',
         videoUrl: STOCK_VIDEOS[1]
       },
       {
@@ -225,7 +225,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
           'Racontez ce que vous espérez encore de la vie, et à quoi ressemblera le jour où cela arrivera.',
-        posterUrl: '/Posters/Sides/Paroles.png',
+        posterUrl: '/Posters/Portrait/portrait-espoir.jpg',
         videoUrl: STOCK_VIDEOS[2]
       }
     ]

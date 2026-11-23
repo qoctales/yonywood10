@@ -489,6 +489,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
   // 5. Média vidéo ou audio en arrière-plan
   const [playingCardId, setPlayingCardId] = useState<string | null>(null);
   const [isAudioLoading, setIsAudioLoading] = useState<boolean>(false);
+  const [typingCardId, setTypingCardId] = useState<string | null>(null);
+  const [typingQuestionProgress, setTypingQuestionProgress] = useState<number>(1);
   const [isMuted, setIsMuted] = useState(true);
 
   // 6. Modale Synopsis (Papyrus) - largeur ajustée à la carte vidéo
@@ -529,6 +531,14 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     setSynopsisModalItem(null);
   }, []);
 
+  const stopVoicePlayback = useCallback(() => {
+    episodeVoiceReader.stop();
+    setIsAudioLoading(false);
+    setPlayingCardId(null);
+    setTypingCardId(null);
+    setTypingQuestionProgress(1);
+  }, []);
+
   useEffect(() => {
     return () => {
       episodeVoiceReader.stop();
@@ -537,11 +547,15 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
   useEffect(() => {
     if (!playingCardId) return;
-    if (!activePillar || (activePillar.id !== 'duos' && activePillar.id !== 'focus') || selectedFinalChoice || isUploadScreenActive) {
-      episodeVoiceReader.stop();
-      setIsAudioLoading(false);
+    if (
+      !activePillar ||
+      (activePillar.id !== 'duos' && activePillar.id !== 'focus' && activePillar.id !== 'soi') ||
+      selectedFinalChoice ||
+      isUploadScreenActive
+    ) {
+      stopVoicePlayback();
     }
-  }, [playingCardId, activePillar, selectedFinalChoice, isUploadScreenActive]);
+  }, [playingCardId, activePillar, selectedFinalChoice, isUploadScreenActive, stopVoicePlayback]);
 
   // Pré-sélection éventuelle venant d'une série documentaire externe
   useEffect(() => {
@@ -665,6 +679,20 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
         ? setSelectedCategoryIndex
         : setSelectedPillarIndex;
 
+  const buildEpisodeVoiceConfig = useCallback(
+    (item: StudioPillarItem, isPortraitItem: boolean) => {
+      const cleanLabel =
+        item.badge && !/^question\b/i.test(item.badge) ? item.badge : undefined;
+      return {
+        mode: 'episode' as const,
+        episodeLabel: isPortraitItem ? undefined : cleanLabel,
+        episodeTitle: isPortraitItem ? undefined : item.episodeTitle,
+        question: item.question,
+      };
+    },
+    []
+  );
+
   // Préchargement léger (250 ms) sur la carte audio active centrée (série, côté, Focus, Portrait ou question)
   useEffect(() => {
     if (selectedFinalChoice || isUploadScreenActive) return;
@@ -684,12 +712,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
         );
       } else if ((isLevel2 || isPortraitQuestion) && activeItem.question) {
         episodeVoiceReader.preload(
-          {
-            mode: 'episode',
-            episodeLabel: activeItem.badge,
-            episodeTitle: activeItem.episodeTitle,
-            question: activeItem.question,
-          },
+          buildEpisodeVoiceConfig(activeItem, isPortraitQuestion),
           { cacheOnly: true }
         );
       }
@@ -705,12 +728,12 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     isLevel2,
     currentList,
     currentIndex,
+    buildEpisodeVoiceConfig,
   ]);
 
   // Actions de navigation hiérarchique
   const handleSelectPillar = (pillar: StudioPillar) => {
-    episodeVoiceReader.stop();
-    setIsAudioLoading(false);
+    stopVoicePlayback();
     setActivePillar(pillar);
     setSelectedCategoryIndex(0);
     setActiveCastingCategory(null);
@@ -719,13 +742,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     setSelectedSubThemeIndex(0);
     setSelectedFinalChoice(null);
     setSelectedFocusRole('');
-    setPlayingCardId(null);
     celestialAudio?.playOrbSelect?.();
   };
 
   const handleSelectCastingCategory = (categoryItem: StudioPillarItem) => {
-    episodeVoiceReader.stop();
-    setIsAudioLoading(false);
+    stopVoicePlayback();
     if (categoryItem.subCategories && categoryItem.subCategories.length > 0) {
       setActiveCastingCategory(categoryItem);
       setSelectedSeriesSide(null);
@@ -733,7 +754,6 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
       setSelectedSubThemeIndex(0);
       setSelectedFinalChoice(null);
       setSelectedFocusRole('');
-      setPlayingCardId(null);
       celestialAudio?.playOrbSelect?.();
     } else {
       handleSelectFinalChoice(categoryItem);
@@ -741,9 +761,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
   };
 
   const handleSelectSeriesSide = (sideId: 'part-a' | 'part-b') => {
-    episodeVoiceReader.stop();
-    setIsAudioLoading(false);
-    setPlayingCardId(null);
+    stopVoicePlayback();
     setSelectedSeriesSide(sideId);
     setSelectedPartId(sideId);
     setSelectedSubThemeIndex(0);
@@ -751,11 +769,9 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
   };
 
   const handleSelectFinalChoice = (item: StudioPillarItem) => {
-    episodeVoiceReader.stop();
-    setIsAudioLoading(false);
+    stopVoicePlayback();
     setSelectedFinalChoice(item);
     setSelectedFocusRole(item.roles?.[0] || '');
-    setPlayingCardId(null);
     setDuoPreviewVideo(null);
     celestialAudio?.playOrbSelect?.();
   };
@@ -828,20 +844,16 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
   // Navigation dans le Carrousel 3D
   const goToNext = useCallback(() => {
-    episodeVoiceReader.stop();
-    setIsAudioLoading(false);
-    setPlayingCardId(null);
+    stopVoicePlayback();
     setCurrentIndex((prev) => (prev + 1) % currentList.length);
     celestialAudio?.playOrbSelect?.();
-  }, [currentList.length, setCurrentIndex]);
+  }, [currentList.length, setCurrentIndex, stopVoicePlayback]);
 
   const goToPrev = useCallback(() => {
-    episodeVoiceReader.stop();
-    setIsAudioLoading(false);
-    setPlayingCardId(null);
+    stopVoicePlayback();
     setCurrentIndex((prev) => (prev - 1 + currentList.length) % currentList.length);
     celestialAudio?.playOrbSelect?.();
-  }, [currentList.length, setCurrentIndex]);
+  }, [currentList.length, setCurrentIndex, stopVoicePlayback]);
 
   // Navigation clavier flèches gauche / droite / Escape
   useEffect(() => {
@@ -869,25 +881,21 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
           setSelectedFinalChoice(null);
           setDuoPreviewVideo(null);
         } else if (isLevel2 && activeRegistrySeries && selectedSeriesSide) {
-          episodeVoiceReader.stop();
-          setIsAudioLoading(false);
+          stopVoicePlayback();
           setSelectedSeriesSide(null);
-          setPlayingCardId(null);
         } else if (activeCastingCategory) {
-          episodeVoiceReader.stop();
-          setIsAudioLoading(false);
+          stopVoicePlayback();
           setActiveCastingCategory(null);
           setSelectedSeriesSide(null);
-          setPlayingCardId(null);
         } else if (activePillar) {
+          stopVoicePlayback();
           setActivePillar(null);
-          setPlayingCardId(null);
         }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goToNext, goToPrev, activePillar, activeCastingCategory, activeRegistrySeries, selectedSeriesSide, isLevel2, selectedFinalChoice, synopsisModalItem, isUploadScreenActive, closeSynopsisModal]);
+  }, [goToNext, goToPrev, activePillar, activeCastingCategory, activeRegistrySeries, selectedSeriesSide, isLevel2, selectedFinalChoice, synopsisModalItem, isUploadScreenActive, closeSynopsisModal, stopVoicePlayback]);
 
   // Gestion des événements tactiles
   const onTouchStart = (e: React.TouchEvent) => {
@@ -1211,9 +1219,18 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
                 {selectedFinalChoice.question && (
                   <div className="bg-white border border-stone-200/80 rounded-xl px-3 py-2 space-y-1">
-                    {(selectedFinalChoice.badge || selectedFinalChoice.episodeTitle) && (
+                    {((selectedFinalChoice.badge && !/^question\b/i.test(selectedFinalChoice.badge)) || (selectedFinalChoice.episodeTitle && selectedFinalChoice.episodeTitle !== selectedFinalChoice.title)) && (
                       <div className="text-[10.5px] font-bold uppercase tracking-wider text-[#A2482B]">
-                        {[selectedFinalChoice.badge, selectedFinalChoice.episodeTitle].filter(Boolean).join(' · ')}
+                        {[
+                          selectedFinalChoice.badge && !/^question\b/i.test(selectedFinalChoice.badge)
+                            ? selectedFinalChoice.badge
+                            : null,
+                          selectedFinalChoice.episodeTitle && selectedFinalChoice.episodeTitle !== selectedFinalChoice.title
+                            ? selectedFinalChoice.episodeTitle
+                            : null
+                        ]
+                          .filter(Boolean)
+                          .join(' · ')}
                       </div>
                     )}
                     <p className="text-xs text-stone-700 leading-relaxed">
@@ -1392,13 +1409,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
             <div className="flex items-center gap-1.5 sm:gap-2 h-full min-w-0">
               <button
                 onClick={() => {
-                  episodeVoiceReader.stop();
-                  setIsAudioLoading(false);
+                  stopVoicePlayback();
                   setActivePillar(null);
                   setActiveCastingCategory(null);
                   setSelectedSeriesSide(null);
                   setSelectedFinalChoice(null);
-                  setPlayingCardId(null);
                 }}
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title="Revenir au choix Studio"
@@ -1423,12 +1438,10 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
             <div className="flex items-center gap-1.5 sm:gap-2 h-full min-w-0">
               <button
                 onClick={() => {
-                  episodeVoiceReader.stop();
-                  setIsAudioLoading(false);
+                  stopVoicePlayback();
                   setActiveCastingCategory(null);
                   setSelectedSeriesSide(null);
                   setSelectedFinalChoice(null);
-                  setPlayingCardId(null);
                 }}
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title={`Revenir à ${activePillar?.title || 'Duocumentaires'}`}
@@ -1455,11 +1468,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 <>
                   <button
                     onClick={() => {
+                      stopVoicePlayback();
                       setActivePillar(null);
                       setActiveCastingCategory(null);
                       setSelectedSeriesSide(null);
                       setSelectedFinalChoice(null);
-                      setPlayingCardId(null);
                     }}
                     className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer items-center gap-1 group py-1 shrink-0 hidden sm:flex"
                     title="Retour"
@@ -1473,15 +1486,13 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
               <button
                 onClick={() => {
-                  episodeVoiceReader.stop();
-                  setIsAudioLoading(false);
+                  stopVoicePlayback();
                   if (activeRegistrySeries) {
                     setSelectedSeriesSide(null);
                   } else {
                     setActiveCastingCategory(null);
                   }
                   setSelectedFinalChoice(null);
-                  setPlayingCardId(null);
                 }}
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title={activeRegistrySeries ? 'Revenir au choix du côté' : `Revenir à ${activePillar?.title || 'Rush'}`}
@@ -1525,7 +1536,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
               <div className="relative flex items-center h-full min-w-0">
                 <span className="font-editorial text-[9.5px] sm:text-sm md:text-base font-semibold text-[#1C1917] tracking-normal leading-tight sm:whitespace-nowrap pr-1 sm:pr-2 select-none">
-                  {selectedFinalChoice.badge ? `${selectedFinalChoice.title} — ${selectedFinalChoice.badge}` : selectedFinalChoice.title}
+                  {selectedFinalChoice.badge && !/^question\b/i.test(selectedFinalChoice.badge)
+                    ? `${selectedFinalChoice.title} — ${selectedFinalChoice.badge}`
+                    : selectedFinalChoice.episodeTitle && selectedFinalChoice.episodeTitle !== selectedFinalChoice.title
+                      ? `${selectedFinalChoice.title} — ${selectedFinalChoice.episodeTitle}`
+                      : selectedFinalChoice.title}
                 </span>
                 <div className="absolute left-0 -bottom-1.5 w-8 h-0.5 bg-[#A2482B] rounded-full" />
               </div>
@@ -1766,6 +1781,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     alt={pillar.title}
                     loading={isCenter ? 'eager' : 'lazy'}
                     decoding="async"
+                    referrerPolicy="no-referrer"
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
                 )}
@@ -1985,10 +2001,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                         }
                       } else {
                         // Clic sur une carte latérale : la faire pivoter immédiatement au centre
-                        episodeVoiceReader.stop();
-                        setIsAudioLoading(false);
+                        stopVoicePlayback();
                         setCurrentIndex(idx);
-                        setPlayingCardId(null);
                         celestialAudio?.playOrbSelect?.();
                       }
                     }}
@@ -2031,16 +2045,24 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                               : encodeURI('/Posters/Duos/Modernite\u0301 <> Tradition.png');
                         }}
                         className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-300 ${
-                          isEpisodeAudioCard ? 'opacity-50' : ''
-                        } ${isPlaying && isAudioCard ? 'animate-poster-kenburns' : ''}`}
+                          isPlaying && isAudioCard ? 'animate-poster-kenburns' : ''
+                        }`}
                       />
                     )}
 
-                    {/* Voile cinématographique pour une visibilité optimale */}
+                    {/* Voile cinématographique : transparent en haut pour laisser vivre l'illustration, puis dégradé sombre en bas */}
                     <div
+                      style={
+                        isEpisodeAudioCard
+                          ? {
+                              background:
+                                'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.42) 66%, rgba(0,0,0,0.78) 84%, rgba(0,0,0,0.92) 100%)'
+                            }
+                          : undefined
+                      }
                       className={`absolute inset-0 pointer-events-none ${
                         isEpisodeAudioCard
-                          ? 'bg-gradient-to-b from-black/55 via-black/30 to-black/75'
+                          ? ''
                           : 'bg-gradient-to-b from-black/60 via-transparent to-black/85'
                       }`}
                     />
@@ -2049,13 +2071,20 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     {/* HAUT : Titre série/côté sur une seule ligne + Lecture à droite */}
                     {/* ========================================================= */}
                     <div className="relative z-10 flex items-center justify-between gap-1 pointer-events-auto w-full min-w-0">
-                      <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2 sm:px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                      <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 rounded-full px-2 sm:px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
                         <span
                           className="font-editorial text-[8px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none"
                           title={item.title}
                         >
                           {item.title}
                         </span>
+                        {isPlaying && isEpisodeAudioCard && !(castingItem.badge && !/^question\b/i.test(castingItem.badge)) && (
+                          <span className="inline-flex items-center gap-0.5 h-2.5 shrink-0" aria-hidden="true">
+                            <span className="w-0.5 h-2 bg-[#F3C677] rounded-full animate-modern-wave" />
+                            <span className="w-0.5 h-2.5 bg-[#F3C677] rounded-full animate-modern-wave [animation-delay:0.15s]" />
+                            <span className="w-0.5 h-1.5 bg-[#F3C677] rounded-full animate-modern-wave [animation-delay:0.3s]" />
+                          </span>
+                        )}
                       </div>
 
                       {/* Déclencheur lecture vidéo (ou lecture vocale sur carte Série / Côté / Épisode) en haut à droite */}
@@ -2088,17 +2117,20 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                             e.preventDefault();
                             e.stopPropagation();
                             if (!isCenter) {
-                              episodeVoiceReader.stop();
-                              setIsAudioLoading(false);
-                              setPlayingCardId(null);
+                              stopVoicePlayback();
                               setCurrentIndex(idx);
                             } else if (isAudioCard) {
                               if (isPlaying) {
-                                episodeVoiceReader.stop();
-                                setIsAudioLoading(false);
-                                setPlayingCardId(null);
+                                stopVoicePlayback();
                               } else {
                                 setPlayingCardId(item.id);
+                                if (isEpisodeAudioCard) {
+                                  setTypingCardId(item.id);
+                                  setTypingQuestionProgress(0);
+                                } else {
+                                  setTypingCardId(null);
+                                  setTypingQuestionProgress(1);
+                                }
                                 episodeVoiceReader.speak(
                                   isSynopsisAudioMode
                                     ? {
@@ -2117,18 +2149,22 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                                         }
                                       }
                                     : {
-                                        mode: 'episode',
-                                        episodeLabel: castingItem.badge,
-                                        episodeTitle: castingItem.episodeTitle,
-                                        question: castingItem.question,
+                                        ...buildEpisodeVoiceConfig(castingItem, isPortraitQuestionCard),
                                         onLoadStart: () => setIsAudioLoading(true),
                                         onStart: () => setIsAudioLoading(false),
+                                        onProgress: (_overall, qProgress) => {
+                                          setTypingQuestionProgress(qProgress);
+                                        },
                                         onEnd: () => {
                                           setIsAudioLoading(false);
+                                          setTypingQuestionProgress(1);
+                                          setTypingCardId((prev) => (prev === item.id ? null : prev));
                                           setPlayingCardId((prev) => (prev === item.id ? null : prev));
                                         },
                                         onError: (msg) => {
                                           setIsAudioLoading(false);
+                                          setTypingQuestionProgress(1);
+                                          setTypingCardId((prev) => (prev === item.id ? null : prev));
                                           setPlayingCardId((prev) => (prev === item.id ? null : prev));
                                           showToast(msg || "La lecture vocale n'est pas disponible.");
                                         }
@@ -2172,37 +2208,75 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     </div>
 
                     {/* ========================================================= */}
-                    {/* CENTRE : Épisode + Titre à gauche, Question centrée (sans guillemets) */}
+                    {/* BAS DU VISUEL : Question positionnée en bas + effet dactylo */}
                     {/* ========================================================= */}
-                    {isEpisodeAudioCard && castingItem.question && (
-                      <div className="relative z-10 flex-1 flex flex-col justify-center min-h-0 px-1 sm:px-2 py-2 pointer-events-none">
-                        <div className="w-full text-left mb-2.5 sm:mb-3 space-y-0.5">
-                          {castingItem.badge && (
-                            <div className="flex items-center gap-1.5">
-                              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F3C677] drop-shadow-sm">
-                                {castingItem.badge}
-                              </span>
-                              {isPlaying && (
-                                <span className="inline-flex items-center gap-0.5 h-3" aria-hidden="true">
-                                  <span className="w-0.5 h-2.5 bg-[#F3C677] rounded-full animate-modern-wave" />
-                                  <span className="w-0.5 h-3 bg-[#F3C677] rounded-full animate-modern-wave [animation-delay:0.15s]" />
-                                  <span className="w-0.5 h-2 bg-[#F3C677] rounded-full animate-modern-wave [animation-delay:0.3s]" />
-                                </span>
+                    {isEpisodeAudioCard && castingItem.question && (() => {
+                      const visibleBadge =
+                        castingItem.badge && !/^question\b/i.test(castingItem.badge)
+                          ? castingItem.badge
+                          : null;
+                      const visibleEpisodeTitle =
+                        castingItem.episodeTitle && castingItem.episodeTitle !== item.title
+                          ? castingItem.episodeTitle
+                          : null;
+                      const isTypingThisCard = isPlaying && typingCardId === item.id;
+                      const fullQuestion = castingItem.question;
+                      const totalChars = fullQuestion.length;
+                      const revealedCount = isTypingThisCard
+                        ? Math.min(totalChars, Math.max(0, Math.round(totalChars * typingQuestionProgress)))
+                        : totalChars;
+                      const revealedText = fullQuestion.slice(0, revealedCount);
+                      const hiddenText = fullQuestion.slice(revealedCount);
+
+                      return (
+                        <div className="relative z-10 flex-1 flex flex-col justify-end min-h-0 px-1 sm:px-2 pb-2 sm:pb-3.5 pt-4 pointer-events-none">
+                          {(visibleBadge || visibleEpisodeTitle) && (
+                            <div className="w-full text-left mb-1.5 sm:mb-2 space-y-0.5">
+                              {visibleBadge && (
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F3C677] drop-shadow-sm">
+                                    {visibleBadge}
+                                  </span>
+                                  {isPlaying && (
+                                    <span className="inline-flex items-center gap-0.5 h-3" aria-hidden="true">
+                                      <span className="w-0.5 h-2.5 bg-[#F3C677] rounded-full animate-modern-wave" />
+                                      <span className="w-0.5 h-3 bg-[#F3C677] rounded-full animate-modern-wave [animation-delay:0.15s]" />
+                                      <span className="w-0.5 h-2 bg-[#F3C677] rounded-full animate-modern-wave [animation-delay:0.3s]" />
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                              {visibleEpisodeTitle && (
+                                <p className="font-editorial text-xs sm:text-sm font-semibold text-white text-left leading-snug drop-shadow-sm">
+                                  {visibleEpisodeTitle}
+                                </p>
                               )}
                             </div>
                           )}
-                          {castingItem.episodeTitle && (
-                            <p className="font-editorial text-xs sm:text-sm font-semibold text-white text-left leading-snug drop-shadow-sm">
-                              {castingItem.episodeTitle}
-                            </p>
-                          )}
-                        </div>
 
-                        <p className="text-center text-[11.5px] sm:text-[13px] font-medium text-white leading-relaxed drop-shadow-md">
-                          {castingItem.question}
-                        </p>
-                      </div>
-                    )}
+                          <p className="text-center text-[11.5px] sm:text-[13px] font-medium text-white leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.92)]">
+                            {isTypingThisCard ? (
+                              <>
+                                <span>{revealedText}</span>
+                                {revealedCount < totalChars && (
+                                  <span
+                                    className="inline-block relative w-0 h-[0.95em] align-middle"
+                                    aria-hidden="true"
+                                  >
+                                    <span className="absolute left-0 top-0 w-[1.5px] h-full bg-[#F3C677] animate-pulse" />
+                                  </span>
+                                )}
+                                <span className="opacity-0 select-none" aria-hidden="true">
+                                  {hiddenText}
+                                </span>
+                              </>
+                            ) : (
+                              fullQuestion
+                            )}
+                          </p>
+                        </div>
+                      );
+                    })()}
 
                     {/* ========================================================= */}
                     {/* BAS : ÉPURÉ (Pas de texte encombrant)                      */}
@@ -2438,7 +2512,9 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
               ) : (activePillar?.id === 'focus' || activePillar?.id === 'soi') && 'question' in synopsisModalItem && synopsisModalItem.question ? (
                 <div className="pt-2 border-t border-stone-200/80">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block mb-1">
-                    {('badge' in synopsisModalItem && synopsisModalItem.badge) ? `${synopsisModalItem.badge}${synopsisModalItem.episodeTitle ? ` · ${synopsisModalItem.episodeTitle}` : ''}` : 'Question'}
+                    {('badge' in synopsisModalItem && synopsisModalItem.badge && !/^question\b/i.test(synopsisModalItem.badge))
+                      ? `${synopsisModalItem.badge}${synopsisModalItem.episodeTitle && synopsisModalItem.episodeTitle !== synopsisModalItem.title ? ` · ${synopsisModalItem.episodeTitle}` : ''}`
+                      : (synopsisModalItem.episodeTitle && synopsisModalItem.episodeTitle !== synopsisModalItem.title ? synopsisModalItem.episodeTitle : 'Question')}
                   </span>
                   <p className="text-stone-800 text-xs sm:text-[12.5px] font-normal leading-relaxed">
                     {synopsisModalItem.question}

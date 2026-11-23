@@ -10,6 +10,7 @@ export interface EpisodeVoicePayload {
   question?: string;
   onLoadStart?: () => void;
   onStart?: () => void;
+  onProgress?: (overallProgress: number, questionProgress: number) => void;
   onEnd?: () => void;
   onError?: (message?: string) => void;
 }
@@ -34,21 +35,41 @@ function cleanSpokenSegment(text?: string): string {
     .replace(/\s+/g, ' ');
 }
 
-function formatSpokenText(payload: EpisodeVoicePayload, mode: VoiceReaderMode): string {
+function buildSpokenParts(payload: EpisodeVoicePayload, mode: VoiceReaderMode): {
+  text: string;
+  questionStartRatio: number;
+} {
   if (mode === 'synopsis') {
-    return cleanSpokenSegment(payload.synopsis || payload.question);
+    return {
+      text: cleanSpokenSegment(payload.synopsis || payload.question),
+      questionStartRatio: 0,
+    };
   }
 
-  const parts: string[] = [];
+  const prefixParts: string[] = [];
   const epLabel = cleanSpokenSegment(payload.episodeLabel);
   const epTitle = cleanSpokenSegment(payload.episodeTitle);
   const epQuestion = cleanSpokenSegment(payload.question);
 
-  if (epLabel) parts.push(`${epLabel}.`);
-  if (epTitle) parts.push(`${epTitle}.`);
-  if (epQuestion) parts.push(epQuestion);
+  if (epLabel) prefixParts.push(`${epLabel}.`);
+  if (epTitle) prefixParts.push(`${epTitle}.`);
 
-  return parts.join(' ');
+  const prefixText = prefixParts.join(' ');
+  const fullText = [prefixText, epQuestion].filter(Boolean).join(' ');
+
+  if (!prefixText || !epQuestion) {
+    return {
+      text: fullText,
+      questionStartRatio: 0,
+    };
+  }
+
+  const prefixWeight = prefixText.length + 4;
+  const totalWeight = prefixWeight + epQuestion.length;
+  return {
+    text: fullText,
+    questionStartRatio: Math.min(0.65, prefixWeight / Math.max(1, totalWeight)),
+  };
 }
 
 interface ResolvedVoiceRequest {
@@ -56,6 +77,7 @@ interface ResolvedVoiceRequest {
   text: string;
   style: string;
   cacheKey: string;
+  questionStartRatio: number;
 }
 
 class QuotaExhaustedError extends Error {
@@ -101,6 +123,7 @@ class EpisodeVoiceReader {
   private activeStreamReader: ReadableStreamDefaultReader<Uint8Array> | null = null;
   private activeSources: AudioBufferSourceNode[] = [];
   private activeUtterance: SpeechSynthesisUtterance | null = null;
+  private activeRafId: number | null = null;
   private audioCtx: AudioContext | null = null;
   private urlCache = new Map<string, string>();
   private inFlightRequests = new Map<string, Promise<string>>();
@@ -135,12 +158,26 @@ class EpisodeVoiceReader {
 
   private resolveRequest(payload: EpisodeVoicePayload): ResolvedVoiceRequest | null {
     const mode: VoiceReaderMode = payload.mode ?? 'episode';
-    const text = formatSpokenText(payload, mode);
+    const { text, questionStartRatio } = buildSpokenParts(payload, mode);
     if (!text) return null;
 
     const style = STYLE_BY_MODE[mode];
     const cacheKey = `${mode}::${text}`;
-    return { mode, text, style, cacheKey };
+    return { mode, text, style, cacheKey, questionStartRatio };
+  }
+
+  private toQuestionProgress(overall: number, questionStartRatio: number): number {
+    const clamped = Math.min(1, Math.max(0, overall));
+    if (questionStartRatio <= 0) return clamped;
+    if (clamped <= questionStartRatio) return 0;
+    return Math.min(1, Math.max(0, (clamped - questionStartRatio) / (1 - questionStartRatio)));
+  }
+
+  private stopProgressLoop() {
+    if (this.activeRafId !== null && typeof window !== 'undefined') {
+      window.cancelAnimationFrame(this.activeRafId);
+      this.activeRafId = null;
+    }
   }
 
   hasCached(payload: EpisodeVoicePayload): boolean {
@@ -252,7 +289,12 @@ class EpisodeVoiceReader {
     return frVoices.find((v) => v.lang.toLowerCase() === 'fr-fr') || frVoices[0];
   }
 
-  private speakWithBrowserVoice(text: string, activeSession: number, payload: EpisodeVoicePayload): boolean {
+  private speakWithBrowserVoice(
+    text: string,
+    questionStartRatio: number,
+    activeSession: number,
+    payload: EpisodeVoicePayload
+  ): boolean {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
       return false;
     }
@@ -271,22 +313,54 @@ class EpisodeVoiceReader {
 
       this.activeUtterance = utterance;
       let didNotifyStart = false;
+      let startPerf = 0;
+      let lastOverall = 0;
+      let boundaryRatio = 0;
+      const estimatedDurationMs = Math.max(1800, (text.length / 14.0) * 1000);
+
+      const startLoop = () => {
+        this.stopProgressLoop();
+        startPerf = performance.now();
+        const tick = () => {
+          if (this.sessionId !== activeSession || !this.activeUtterance) return;
+          const elapsedRatio = Math.min(0.97, (performance.now() - startPerf) / estimatedDurationMs);
+          const nextOverall = Math.max(lastOverall, boundaryRatio > 0 ? Math.max(boundaryRatio, elapsedRatio * 0.85) : elapsedRatio);
+          lastOverall = Math.min(0.99, nextOverall);
+          payload.onProgress?.(lastOverall, this.toQuestionProgress(lastOverall, questionStartRatio));
+          this.activeRafId = window.requestAnimationFrame(tick);
+        };
+        this.activeRafId = window.requestAnimationFrame(tick);
+      };
 
       const notifyStart = () => {
         if (!didNotifyStart && this.sessionId === activeSession) {
           didNotifyStart = true;
           payload.onStart?.();
+          startLoop();
+        }
+      };
+
+      utterance.onboundary = (event) => {
+        if (this.sessionId !== activeSession) return;
+        if (typeof event.charIndex === 'number' && text.length > 0) {
+          const wordProgress = Math.min(0.99, (event.charIndex + (event.charLength || 4)) / text.length);
+          if (wordProgress > boundaryRatio) {
+            boundaryRatio = wordProgress;
+          }
         }
       };
 
       utterance.onstart = notifyStart;
       utterance.onend = () => {
         if (this.sessionId !== activeSession) return;
+        this.stopProgressLoop();
+        payload.onProgress?.(1, 1);
         this.activeUtterance = null;
         payload.onEnd?.();
       };
       utterance.onerror = () => {
         if (this.sessionId !== activeSession) return;
+        this.stopProgressLoop();
         this.activeUtterance = null;
         payload.onEnd?.();
       };
@@ -301,6 +375,7 @@ class EpisodeVoiceReader {
   }
 
   private cleanupPlayback() {
+    this.stopProgressLoop();
     if (this.activeStreamReader) {
       try {
         this.activeStreamReader.cancel().catch(() => {});
@@ -354,16 +429,41 @@ class EpisodeVoiceReader {
     this.cleanupPlayback();
   }
 
-  private async playAudioUrl(audioUrl: string, activeSession: number, payload: EpisodeVoicePayload) {
+  private async playAudioUrl(
+    audioUrl: string,
+    questionStartRatio: number,
+    activeSession: number,
+    payload: EpisodeVoicePayload
+  ) {
     const audio = new Audio(audioUrl);
     audio.preload = 'auto';
     this.activeAudio = audio;
 
     let didNotifyStart = false;
+    let lastOverall = 0;
+
+    const startLoop = () => {
+      this.stopProgressLoop();
+      const tick = () => {
+        if (this.sessionId !== activeSession || this.activeAudio !== audio) return;
+        const dur = audio.duration;
+        if (Number.isFinite(dur) && dur > 0) {
+          const nextOverall = Math.min(1, Math.max(lastOverall, audio.currentTime / dur));
+          lastOverall = nextOverall;
+          payload.onProgress?.(nextOverall, this.toQuestionProgress(nextOverall, questionStartRatio));
+        }
+        if (!audio.paused && !audio.ended) {
+          this.activeRafId = window.requestAnimationFrame(tick);
+        }
+      };
+      this.activeRafId = window.requestAnimationFrame(tick);
+    };
+
     const notifyStart = () => {
       if (!didNotifyStart && this.sessionId === activeSession) {
         didNotifyStart = true;
         payload.onStart?.();
+        startLoop();
       }
     };
 
@@ -371,6 +471,8 @@ class EpisodeVoiceReader {
 
     audio.onended = () => {
       if (this.sessionId !== activeSession) return;
+      this.stopProgressLoop();
+      payload.onProgress?.(1, 1);
       this.cleanupPlayback();
       payload.onEnd?.();
     };
@@ -387,7 +489,7 @@ class EpisodeVoiceReader {
 
   private async playStreamingPcm(
     response: Response,
-    cacheKey: string,
+    resolved: ResolvedVoiceRequest,
     activeSession: number,
     payload: EpisodeVoicePayload,
     ctx: AudioContext
@@ -400,8 +502,32 @@ class EpisodeVoiceReader {
     const collectedChunks: Uint8Array[] = [];
     let carryByte: number | null = null;
     let nextStartTime = ctx.currentTime + 0.03;
+    let playbackOriginTime = 0;
     let didNotifyStart = false;
+    let streamEnded = false;
+    let finalDuration = 0;
+    let lastOverall = 0;
     let lastSource: AudioBufferSourceNode | null = null;
+    const estimatedDurationSec = Math.max(2.0, resolved.text.length / 13.8);
+
+    const startLoop = () => {
+      this.stopProgressLoop();
+      const tick = () => {
+        if (this.sessionId !== activeSession) return;
+        const elapsed = Math.max(0, ctx.currentTime - playbackOriginTime);
+        let rawOverall = 0;
+        if (streamEnded && finalDuration > 0) {
+          rawOverall = Math.min(1, elapsed / finalDuration);
+        } else {
+          const dynamicHorizon = Math.max(estimatedDurationSec, (nextStartTime - playbackOriginTime) + 0.35);
+          rawOverall = Math.min(0.92, elapsed / dynamicHorizon);
+        }
+        lastOverall = Math.max(lastOverall, rawOverall);
+        payload.onProgress?.(lastOverall, this.toQuestionProgress(lastOverall, resolved.questionStartRatio));
+        this.activeRafId = window.requestAnimationFrame(tick);
+      };
+      this.activeRafId = window.requestAnimationFrame(tick);
+    };
 
     try {
       while (true) {
@@ -447,6 +573,9 @@ class EpisodeVoiceReader {
         source.connect(ctx.destination);
 
         const startAt = Math.max(ctx.currentTime + 0.015, nextStartTime);
+        if (!didNotifyStart) {
+          playbackOriginTime = startAt;
+        }
         source.start(startAt);
         nextStartTime = startAt + audioBuffer.duration;
 
@@ -456,6 +585,7 @@ class EpisodeVoiceReader {
         if (!didNotifyStart && this.sessionId === activeSession) {
           didNotifyStart = true;
           payload.onStart?.();
+          startLoop();
         }
       }
 
@@ -466,17 +596,24 @@ class EpisodeVoiceReader {
       if (collectedChunks.length > 0) {
         const wavBlob = buildWavBlobFromPcmChunks(collectedChunks);
         const wavUrl = URL.createObjectURL(wavBlob);
-        this.setCachedUrl(cacheKey, wavUrl);
+        this.setCachedUrl(resolved.cacheKey, wavUrl);
       }
+
+      streamEnded = true;
+      finalDuration = Math.max(0.25, nextStartTime - playbackOriginTime);
 
       if (lastSource) {
         const tailSource = lastSource;
         tailSource.onended = () => {
           if (this.sessionId !== activeSession) return;
+          this.stopProgressLoop();
+          payload.onProgress?.(1, 1);
           this.cleanupPlayback();
           payload.onEnd?.();
         };
       } else {
+        this.stopProgressLoop();
+        payload.onProgress?.(1, 1);
         this.cleanupPlayback();
         payload.onEnd?.();
       }
@@ -510,7 +647,7 @@ class EpisodeVoiceReader {
     try {
       const cachedUrl = this.urlCache.get(resolved.cacheKey);
       if (cachedUrl) {
-        await this.playAudioUrl(cachedUrl, activeSession, payload);
+        await this.playAudioUrl(cachedUrl, resolved.questionStartRatio, activeSession, payload);
         return;
       }
 
@@ -521,7 +658,7 @@ class EpisodeVoiceReader {
       if (inFlight) {
         const url = await inFlight;
         if (this.sessionId !== activeSession) return;
-        await this.playAudioUrl(url, activeSession, payload);
+        await this.playAudioUrl(url, resolved.questionStartRatio, activeSession, payload);
         return;
       }
 
@@ -543,14 +680,14 @@ class EpisodeVoiceReader {
         if (response.status === 429) {
           this.quotaCooldownUntil = Date.now() + 5 * 60 * 1000;
         }
-        if (this.speakWithBrowserVoice(resolved.text, activeSession, payload)) {
+        if (this.speakWithBrowserVoice(resolved.text, resolved.questionStartRatio, activeSession, payload)) {
           return;
         }
         throw new Error('La lecture vocale est momentanément indisponible.');
       }
 
       if (!response.ok) {
-        if (this.speakWithBrowserVoice(resolved.text, activeSession, payload)) {
+        if (this.speakWithBrowserVoice(resolved.text, resolved.questionStartRatio, activeSession, payload)) {
           return;
         }
         throw new Error('La lecture vocale est momentanément indisponible.');
@@ -560,7 +697,7 @@ class EpisodeVoiceReader {
       if (format === 'pcm-24000' && unlockedCtx && response.body) {
         const started = await this.playStreamingPcm(
           response,
-          resolved.cacheKey,
+          resolved,
           activeSession,
           payload,
           unlockedCtx
@@ -573,13 +710,16 @@ class EpisodeVoiceReader {
 
       const audioUrl = URL.createObjectURL(audioBlob);
       this.setCachedUrl(resolved.cacheKey, audioUrl);
-      await this.playAudioUrl(audioUrl, activeSession, payload);
+      await this.playAudioUrl(audioUrl, resolved.questionStartRatio, activeSession, payload);
     } catch (err: any) {
       if (this.sessionId !== activeSession) {
         return;
       }
 
-      if (err?.name !== 'NotAllowedError' && this.speakWithBrowserVoice(resolved.text, activeSession, payload)) {
+      if (
+        err?.name !== 'NotAllowedError' &&
+        this.speakWithBrowserVoice(resolved.text, resolved.questionStartRatio, activeSession, payload)
+      ) {
         return;
       }
 

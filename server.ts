@@ -916,7 +916,13 @@ async function startServer() {
 
   if (!isProd) {
     app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: '1h' }));
-    app.use('/src/assets', express.static(path.resolve(__dirname, 'src/assets'), { maxAge: '1h' }));
+    const srcAssetsStatic = express.static(path.resolve(__dirname, 'src/assets'), { maxAge: '1h' });
+    app.use('/src/assets', (req: Request, res: Response, next) => {
+      if ('import' in req.query || req.originalUrl.includes('?import')) {
+        return next();
+      }
+      return srcAssetsStatic(req, res, next);
+    });
 
     const vitePromise = (async () => {
       const { createServer: createViteServer } = await import('vite');
