@@ -4,16 +4,20 @@ import {
   BookOpen,
   ChevronLeft,
   ChevronRight,
-  DoorOpen,
+  Loader2,
+  Pause,
   Scroll,
   X
 } from 'lucide-react';
 import { ViewScreen } from '../types';
+import { TvPlayerIcon } from './YonywoodBrandIcons';
+import { LegbaArchButton } from './shared/LegbaArchButton';
 import { FOCUS_DATA, FocusItem, FocusVideoItem } from '../data/focusData';
 import { UnifiedVideoCardOverlay } from './UnifiedVideoCardOverlay';
 import { StageCarousel3D } from './shared/StageCarousel3D';
 import { CardWidthModal } from './shared/CardWidthModal';
 import { celestialAudio } from '../utils/celestialAudio';
+import { episodeVoiceReader } from '../utils/episodeVoiceReader';
 import { SHOW_CAROUSEL_ARROWS } from '../config/flags';
 import { STAGE_CARD_DIMENSIONS_CLASS, STAGE_CENTER_TRANSLATE_Z } from '../config/cardLayout';
 
@@ -51,6 +55,9 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
 
   const [isTopicOpened, setIsTopicOpened] = useState<boolean>(false);
   const [papyrusFocus, setPapyrusFocus] = useState<FocusItem | null>(null);
+  const [isSynopsisPlaying, setIsSynopsisPlaying] = useState<boolean>(false);
+  const [isSynopsisLoading, setIsSynopsisLoading] = useState<boolean>(false);
+  const [synopsisAudioError, setSynopsisAudioError] = useState<string | null>(null);
   const [videoIndices, setVideoIndices] = useState<Record<string, number>>({});
   const currentVideoIndex = videoIndices[currentFocus.id] || 0;
   const currentVideo: FocusVideoItem =
@@ -69,6 +76,81 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
   const lastScrollTimeRef = useRef<number>(0);
   const [dragOffsetY, setDragOffsetY] = useState<number>(0);
   const [isDraggingY, setIsDraggingY] = useState<boolean>(false);
+
+  const stopSynopsisVoice = useCallback(() => {
+    episodeVoiceReader.stop();
+    setIsSynopsisPlaying(false);
+    setIsSynopsisLoading(false);
+  }, []);
+
+  const closePapyrusModal = useCallback(() => {
+    stopSynopsisVoice();
+    setSynopsisAudioError(null);
+    setPapyrusFocus(null);
+  }, [stopSynopsisVoice]);
+
+  useEffect(() => {
+    return () => {
+      episodeVoiceReader.stop();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isTopicOpened || !currentFocus?.synopsis) return;
+    const timer = window.setTimeout(() => {
+      episodeVoiceReader.preload(
+        {
+          mode: 'trailer',
+          synopsis: currentFocus.synopsis,
+        },
+        { cacheOnly: false }
+      );
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [isTopicOpened, currentFocus?.synopsis]);
+
+  useEffect(() => {
+    if (!papyrusFocus?.synopsis) return;
+    episodeVoiceReader.preload(
+      {
+        mode: 'trailer',
+        synopsis: papyrusFocus.synopsis,
+      },
+      { cacheOnly: false }
+    );
+  }, [papyrusFocus]);
+
+  const handleToggleSynopsisVoice = useCallback(() => {
+    if (!papyrusFocus?.synopsis) return;
+    setSynopsisAudioError(null);
+
+    if (isSynopsisPlaying || isSynopsisLoading) {
+      stopSynopsisVoice();
+      return;
+    }
+
+    episodeVoiceReader.speak({
+      mode: 'trailer',
+      synopsis: papyrusFocus.synopsis,
+      onLoadStart: () => {
+        setIsSynopsisLoading(true);
+        setIsSynopsisPlaying(false);
+      },
+      onStart: () => {
+        setIsSynopsisLoading(false);
+        setIsSynopsisPlaying(true);
+      },
+      onEnd: () => {
+        setIsSynopsisLoading(false);
+        setIsSynopsisPlaying(false);
+      },
+      onError: (msg) => {
+        setIsSynopsisLoading(false);
+        setIsSynopsisPlaying(false);
+        setSynopsisAudioError(msg || "La lecture vocale n'est pas disponible.");
+      },
+    });
+  }, [papyrusFocus, isSynopsisPlaying, isSynopsisLoading, stopSynopsisVoice]);
 
   const handleEnterFocus = useCallback((idx?: number) => {
     if (typeof idx === 'number') {
@@ -287,7 +369,6 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
             showDesktopArrows={SHOW_CAROUSEL_ARROWS}
             prevAriaLabel="Focus précédent"
             nextAriaLabel="Focus suivant"
-            onActiveCardClick={(_item, idx) => handleEnterFocus(idx)}
             renderCard={(focus, idx, { isCenter }) => (
               <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
                 <img
@@ -321,7 +402,7 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
 
                 {/* BAS : Papyrus (gauche) + Porte Choisir (droite) */}
                 <div
-                  className="relative z-10 w-full flex items-center justify-between pointer-events-auto pt-2"
+                  className="relative z-10 w-full flex items-end justify-between pointer-events-auto pt-2"
                   onMouseDown={(e) => e.stopPropagation()}
                   onTouchStart={(e) => e.stopPropagation()}
                 >
@@ -340,23 +421,15 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                     <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                   </button>
 
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (!isCenter) {
-                        setFocusIndex(idx);
-                        celestialAudio.playOrbSelect();
-                      } else {
-                        handleEnterFocus(idx);
-                      }
+                  <LegbaArchButton
+                    isCenterAction={isCenter}
+                    resetKey={`focus-${focus.id}`}
+                    onCenterCard={() => {
+                      setFocusIndex(idx);
+                      celestialAudio.playOrbSelect();
                     }}
-                    className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                  >
-                    <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                    <span>Choisir</span>
-                  </button>
+                    onActivate={() => handleEnterFocus(idx)}
+                  />
                 </div>
               </div>
             )}
@@ -495,17 +568,15 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                 {isQuestionOpen && (
                   <div
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute inset-x-3.5 sm:inset-x-4 bottom-14 sm:bottom-16 z-40 bg-white text-stone-900 rounded-2xl p-3.5 shadow-2xl border border-white/40 animate-in fade-in slide-in-from-bottom-2 duration-200 pointer-events-auto"
+                    className="absolute inset-x-3.5 sm:inset-x-4 bottom-14 sm:bottom-16 z-40 max-h-[58%] overflow-y-auto no-scrollbar bg-white text-stone-900 rounded-2xl p-3.5 sm:p-4 shadow-2xl border border-white/40 animate-in fade-in slide-in-from-bottom-2 duration-200 pointer-events-auto"
                   >
-                    <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-stone-100">
-                      <div className="flex items-center gap-1.5 min-w-0">
+                    <div className="flex items-start justify-between gap-2 pb-2 mb-2.5 border-b border-stone-100">
+                      <div className="flex items-center gap-2 min-w-0">
                         <span className="p-1 rounded-full bg-[#A2482B] text-white flex items-center justify-center shrink-0">
                           <BookOpen className="w-3 h-3" />
                         </span>
-                        <span className="text-[10.5px] uppercase tracking-wider font-semibold text-stone-500 truncate">
-                          {activeFocusQuestion
-                            ? `Question ${activeFocusQuestion.number} · ${activeFocusQuestion.title}`
-                            : 'Question'}
+                        <span className="text-[10.5px] uppercase tracking-wider font-semibold text-stone-500 leading-snug break-words">
+                          {activeFocusQuestion?.title || 'Question'}
                         </span>
                       </div>
                       <button
@@ -517,19 +588,9 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <p className="font-ui text-xs sm:text-[13px] leading-relaxed text-stone-700 font-light">
+                    <p className="font-ui text-xs sm:text-[13px] leading-[1.75] text-stone-700 font-normal">
                       {formatCleanQuestion(activeFocusQuestion?.question || currentFocus.question)}
                     </p>
-                    {currentFocus.consigne && (
-                      <div className="mt-2 pt-2 border-t border-stone-100">
-                        <span className="text-[9.5px] font-bold uppercase tracking-wider text-[#A2482B] block mb-0.5">
-                          Consigne aux participants
-                        </span>
-                        <p className="text-[11px] text-stone-500 leading-snug">
-                          {currentFocus.consigne}
-                        </p>
-                      </div>
-                    )}
                   </div>
                 )}
               </UnifiedVideoCardOverlay>
@@ -538,10 +599,10 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
         </div>
       )}
 
-      {/* MODALE PAPYRUS (SYNOPSIS, CONSIGNE & QUESTIONS DU FOCUS) */}
+      {/* MODALE PAPYRUS (SYNOPSIS FOCUS + LECTURE BANDE-ANNONCE) */}
       <CardWidthModal
         isOpen={Boolean(papyrusFocus)}
-        onClose={() => setPapyrusFocus(null)}
+        onClose={closePapyrusModal}
         ariaLabel={papyrusFocus ? papyrusFocus.titre : 'Présentation Focus'}
         className="p-4 sm:p-5 space-y-3 text-stone-800 max-h-[78dvh] flex flex-col"
       >
@@ -566,16 +627,32 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
               </div>
               <button
                 type="button"
-                onClick={() => setPapyrusFocus(null)}
-                className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-                title="Fermer"
-                aria-label="Fermer"
+                onClick={handleToggleSynopsisVoice}
+                className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
+                  isSynopsisPlaying || isSynopsisLoading
+                    ? 'bg-[#A2482B] border-[#A2482B] text-white'
+                    : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
+                }`}
+                title={
+                  isSynopsisLoading
+                    ? 'Chargement de la voix...'
+                    : isSynopsisPlaying
+                      ? 'Arrêter la lecture du synopsis'
+                      : 'Écouter le synopsis'
+                }
+                aria-label={isSynopsisPlaying ? 'Arrêter la lecture du synopsis' : 'Écouter le synopsis'}
               >
-                <X className="w-3.5 h-3.5" />
+                {isSynopsisLoading ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : isSynopsisPlaying ? (
+                  <Pause className="w-3.5 h-3.5 fill-current" />
+                ) : (
+                  <TvPlayerIcon className="w-4 h-4" strokeWidth={1.75} />
+                )}
               </button>
             </div>
 
-            <div className="py-0.5 space-y-2.5 overflow-y-auto pr-1 min-h-0">
+            <div className="py-0.5 overflow-y-auto pr-1 min-h-0 space-y-2">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-1">
                   Synopsis
@@ -584,42 +661,8 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                   {papyrusFocus.synopsis}
                 </p>
               </div>
-
-              {papyrusFocus.consigne && (
-                <div className="pt-2 border-t border-stone-200/80">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block mb-1">
-                    Consigne aux participants
-                  </span>
-                  <p className="text-stone-700 text-[11.5px] sm:text-xs leading-relaxed">
-                    {papyrusFocus.consigne}
-                  </p>
-                </div>
-              )}
-
-              <div className="pt-2 border-t border-stone-200/80 space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block">
-                  {papyrusFocus.questions.length > 1 ? 'Les 4 questions' : 'Question'}
-                </span>
-                <div className="space-y-2">
-                  {papyrusFocus.questions.map((q) => (
-                    <div key={q.id} className="rounded-xl bg-white/80 border border-stone-200/70 p-2.5 space-y-0.5">
-                      <div className="text-[10.5px] font-bold text-[#A2482B] uppercase tracking-wide">
-                        {q.number}. {q.title}
-                      </div>
-                      <p className="text-stone-800 text-xs sm:text-[12.5px] font-normal leading-relaxed">
-                        {formatCleanQuestion(q.question)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {papyrusFocus.commandite && papyrusFocus.sponsorNote && (
-                <div className="pt-2 border-t border-stone-200/80">
-                  <p className="text-[11px] text-stone-500 leading-relaxed">
-                    {papyrusFocus.sponsorNote}
-                  </p>
-                </div>
+              {synopsisAudioError && (
+                <p className="text-[11px] text-[#A2482B] font-medium">{synopsisAudioError}</p>
               )}
             </div>
           </>

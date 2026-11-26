@@ -186,7 +186,7 @@ export const FOCUS_TOPICS: FocusTopic[] = [
     id: 'topic-lycees-behanzin-toffa',
     title: 'Lycées Béhanzin et Toffa',
     category: 'Focus',
-    posterUrl: '/Posters/Focus/Pour Rire.png',
+    posterUrl: '/Posters/Focus/Fou Rire.png',
     tagline: 'Des histoires parallèles qui se croisent entre garçons et filles.',
     synopsis: "Un lycée de garçons, un lycée de filles, des histoires parallèles qui se croisent. Anciens et anciennes évoquent leurs professeurs, leurs bêtises et les amitiés nées dans la cour. Garçons et filles, ils se répondent et montrent ce que ces murs leur ont donné pour la vie.",
     question: "Un souvenir du lycée Béhanzin ou du lycée Toffa vous fait encore sourire aujourd'hui : lequel raconteriez-vous à vos enfants ou à vos petits-enfants ?",

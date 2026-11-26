@@ -580,7 +580,7 @@ export const COMPANIES_DATA: CompanyEntity[] = [
     id: 'cinema-nomade',
     category: 'Cinéma itinérant',
     companyName: 'Cinéma Nomade',
-    photoUrl: '/Posters/Focus/Pour%20Rire.png',
+    photoUrl: '/Posters/Focus/Fou%20Rire.png',
     videoUrl: SAMPLE_VIDEOS[2],
     manifestoVideoUrl: SAMPLE_VIDEOS[2],
     manifestoQuestion: 'Comment porter les grands chefs-d’œuvre du cinéma africain sous les étoiles des villages ?',

@@ -208,6 +208,83 @@ function buildWavHeader(pcmDataLength: number, sampleRate = 24000, channels = 1,
   return header;
 }
 
+const PCM_SILENCE_THRESHOLD = 180;
+const PCM_LEAD_IN_SAMPLES = 240; // 10 ms à 24 kHz
+const PCM_TAIL_SAMPLES = 2880; // 120 ms à 24 kHz
+
+function trimSilenceFromPcm(pcm: Buffer): Buffer {
+  const totalSamples = Math.floor(pcm.length / 2);
+  if (totalSamples <= PCM_LEAD_IN_SAMPLES + 120) return pcm;
+
+  let firstActive = -1;
+  for (let i = 0; i < totalSamples; i++) {
+    if (Math.abs(pcm.readInt16LE(i * 2)) >= PCM_SILENCE_THRESHOLD) {
+      firstActive = i;
+      break;
+    }
+  }
+  if (firstActive === -1) return pcm;
+
+  let lastActive = firstActive;
+  for (let i = totalSamples - 1; i >= firstActive; i--) {
+    if (Math.abs(pcm.readInt16LE(i * 2)) >= PCM_SILENCE_THRESHOLD) {
+      lastActive = i;
+      break;
+    }
+  }
+
+  const startSample = Math.max(0, firstActive - PCM_LEAD_IN_SAMPLES);
+  const endSample = Math.min(totalSamples, lastActive + PCM_TAIL_SAMPLES);
+  if (startSample === 0 && endSample === totalSamples) return pcm;
+
+  const trimmed = Buffer.from(pcm.subarray(startSample * 2, endSample * 2));
+  const trimmedSamples = Math.floor(trimmed.length / 2);
+
+  // Micro fondu d'entrée (6 ms) pour éviter tout clic
+  const fadeInSamples = Math.min(144, trimmedSamples);
+  for (let i = 0; i < fadeInSamples; i++) {
+    const sample = trimmed.readInt16LE(i * 2);
+    trimmed.writeInt16LE(Math.round(sample * (i / fadeInSamples)), i * 2);
+  }
+
+  return trimmed;
+}
+
+function findWavDataOffset(wavBuffer: Buffer): { dataOffset: number; dataSize: number } | null {
+  if (wavBuffer.length < 44) return null;
+  if (wavBuffer.toString('ascii', 0, 4) !== 'RIFF' || wavBuffer.toString('ascii', 8, 12) !== 'WAVE') {
+    return null;
+  }
+  let offset = 12;
+  while (offset + 8 <= wavBuffer.length) {
+    const chunkId = wavBuffer.toString('ascii', offset, offset + 4);
+    const chunkSize = wavBuffer.readUInt32LE(offset + 4);
+    if (chunkId === 'data') {
+      return {
+        dataOffset: offset + 8,
+        dataSize: Math.min(chunkSize, wavBuffer.length - (offset + 8)),
+      };
+    }
+    offset += 8 + chunkSize + (chunkSize % 2);
+  }
+  return null;
+}
+
+function trimSilenceFromWav(wavBuffer: Buffer): Buffer {
+  const info = findWavDataOffset(wavBuffer);
+  if (!info || info.dataSize <= 0) return wavBuffer;
+
+  const pcm = wavBuffer.subarray(info.dataOffset, info.dataOffset + info.dataSize);
+  const trimmedPcm = trimSilenceFromPcm(pcm);
+  if (trimmedPcm.length === pcm.length) return wavBuffer;
+
+  const header = Buffer.from(wavBuffer.subarray(0, 44));
+  header.writeUInt32LE(36 + trimmedPcm.length, 4);
+  header.write('data', 36);
+  header.writeUInt32LE(trimmedPcm.length, 40);
+  return Buffer.concat([header, trimmedPcm]);
+}
+
 function isQuotaOrRateLimitError(err: any): boolean {
   const status = err?.status || err?.statusCode;
   const raw = typeof err?.message === 'string' ? err.message : '';
@@ -315,7 +392,7 @@ async function synthesizeSpeechWav(text: string, style: string, voiceName: strin
         throw new Error('Réponse audio vide reçue du service TTS.');
       }
 
-      return Buffer.from(base64Audio, 'base64');
+      return trimSilenceFromWav(Buffer.from(base64Audio, 'base64'));
     } catch (err: any) {
       lastError = err;
       if (isQuotaOrRateLimitError(err)) {
@@ -461,6 +538,7 @@ app.post('/api/tts-stream', async (req: Request, res: Response) => {
       const pcmChunks: Buffer[] = [];
       let headersSent = false;
       let abortedByClient = false;
+      let speechStarted = false;
 
       const onClose = () => {
         abortedByClient = true;
@@ -498,7 +576,28 @@ app.post('/api/tts-stream', async (req: Request, res: Response) => {
           const base64Data = chunk.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
           if (!base64Data) continue;
 
-          const pcm = Buffer.from(base64Data, 'base64');
+          let pcm = Buffer.from(base64Data, 'base64');
+          if (pcm.length === 0) continue;
+
+          if (!speechStarted) {
+            const sampleCount = Math.floor(pcm.length / 2);
+            let firstActive = -1;
+            for (let i = 0; i < sampleCount; i++) {
+              if (Math.abs(pcm.readInt16LE(i * 2)) >= PCM_SILENCE_THRESHOLD) {
+                firstActive = i;
+                break;
+              }
+            }
+            if (firstActive === -1) {
+              continue;
+            }
+            speechStarted = true;
+            const startByte = Math.max(0, firstActive - PCM_LEAD_IN_SAMPLES) * 2;
+            if (startByte > 0) {
+              pcm = Buffer.from(pcm.subarray(startByte));
+            }
+          }
+
           if (pcm.length === 0) continue;
 
           if (!headersSent) {
@@ -520,7 +619,7 @@ app.post('/api/tts-stream', async (req: Request, res: Response) => {
         }
 
         if (!abortedByClient && pcmChunks.length > 0) {
-          const pcmAll = Buffer.concat(pcmChunks);
+          const pcmAll = trimSilenceFromPcm(Buffer.concat(pcmChunks));
           const wavBuffer = Buffer.concat([buildWavHeader(pcmAll.length), pcmAll]);
           setTtsCache(cacheKey, wavBuffer);
         }
@@ -883,14 +982,76 @@ let EXPLORER_CATEGORIES: any[] = [];
 let EXPLORER_CATALOG: Record<string, any> = {};
 let resolveCanonicalSeriesIdFn: (rawId?: string | null) => string | null = (id) => id ?? null;
 
+const TRAILER_VOICE_NAME = 'Algenib';
+const TRAILER_STYLE =
+  "Voix d'homme noire grave, rauque, ronde et profondément chaleureuse, avec une forte présence dans les graves et un timbre humain très naturel, posé et authentique, comme un conteur intime qui parle près du micro avec calme et intensité, sans ton robotique ni emphase artificielle. Prononcer « Vodoun » avec le son « ou » et prononcer le mot anglais « Rays » en anglais comme « Days » (/reɪz/).";
+
+function cleanSpokenSegmentServer(text?: string): string {
+  return (text || '')
+    .trim()
+    .replace(/[«»"]/g, '')
+    .replace(/\bvodun\b/gi, 'Vodoun')
+    .replace(/\s+/g, ' ');
+}
+
+let trailerPrewarmStarted = false;
+async function prewarmTrailerSynopses(rawSynopses: string[]) {
+  if (trailerPrewarmStarted || !process.env.GEMINI_API_KEY) return;
+  trailerPrewarmStarted = true;
+
+  const uniqueTexts = Array.from(
+    new Set(rawSynopses.map((s) => cleanSpokenSegmentServer(s)).filter(Boolean))
+  );
+
+  for (const text of uniqueTexts) {
+    const prepared = prepareTtsParams({
+      text,
+      style: TRAILER_STYLE,
+      voiceName: TRAILER_VOICE_NAME,
+    });
+    if ('error' in prepared) continue;
+
+    if (getCachedTtsWav(prepared.cacheKey)) continue;
+
+    try {
+      const existing = ttsInFlight.get(prepared.cacheKey);
+      const pending =
+        existing ||
+        synthesizeSpeechWav(prepared.spokenText, prepared.style, prepared.voiceName)
+          .then((wav) => {
+            setTtsCache(prepared.cacheKey, wav);
+            return wav;
+          })
+          .finally(() => {
+            ttsInFlight.delete(prepared.cacheKey);
+          });
+      if (!existing) ttsInFlight.set(prepared.cacheKey, pending);
+      await pending;
+    } catch (err: any) {
+      if (isQuotaOrRateLimitError(err)) {
+        break;
+      }
+      // Continuer silencieusement sur les autres synopsis en cas d'erreur ponctuelle
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 450));
+  }
+}
+
 let dataLoadPromise: Promise<void> | null = null;
 function ensureDataLoaded(): Promise<void> {
   if (!dataLoadPromise) {
     dataLoadPromise = (async () => {
+      let focusSynopses: string[] = [];
+      let seriesSynopses: string[] = [];
       const unregisterTsx = registerTsx();
       try {
         const registry = await import('./src/data/seriesRegistry');
         resolveCanonicalSeriesIdFn = registry.resolveCanonicalSeriesId;
+        seriesSynopses = (registry.SERIES_REGISTRY || []).map((s: any) => s?.synopsis || '');
+
+        const focusModule = await import('./src/data/focusData');
+        focusSynopses = (focusModule.FOCUS_DATA || []).map((f: any) => f?.synopsis || '');
 
         const mockData = await import('./src/data/mockData');
         DOCUMENTARIES = mockData.DOCUMENTARIES;
@@ -903,6 +1064,10 @@ function ensureDataLoaded(): Promise<void> {
       } finally {
         unregisterTsx();
       }
+
+      prewarmTrailerSynopses([...focusSynopses, ...seriesSynopses]).catch(() => {
+        // ignore background warmup failure
+      });
     })();
   }
   return dataLoadPromise;

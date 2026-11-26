@@ -100,7 +100,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
     title: 'Portrait',
     durationBadge: "Jusqu'à 2 minutes 56",
     subtitle:
-      "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+      "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
     consigne:
       "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
     question:
@@ -115,7 +115,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Souvenir',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -130,7 +130,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Personne',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -145,7 +145,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Rien à changer',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -160,7 +160,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Carrefour',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -175,7 +175,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Épreuve',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -190,7 +190,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Leçon',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -205,7 +205,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Non-dit',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -220,7 +220,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         episodeTitle: 'Espoir',
         durationBadge: "Jusqu'à 2 minutes 56",
         subtitle:
-          "Un souvenir, une personne, un jour parfait, un choix, une épreuve, une leçon, une parole jamais dite, un espoir : huit moments, une vie. Une vie se raconte rarement d'un trait. Elle se dit par fragments, avec ses propres mots, en s'arrêtant sur ce qui compte vraiment. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
+          "Huit fragments pour raconter l'essentiel d'une vie, avec vos propres mots. À la fin, ceux qui vous regardent ne voient plus un profil : ils connaissent votre histoire.",
         consigne:
           "Racontez ce que vous avez vécu, avec vos mots. Ne citez une personne reconnaissable qu'avec son accord.",
         question:
@@ -240,7 +240,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
     durationBadge: '32 secondes',
     subtitle: 'Une histoire courte, racontée vite et sans mise en scène, autour d’une valeur humaine fondamentale.',
     question: 'Quel savoir, quel rite ou quelle sagesse locale votre voix doit-elle transmettre ?',
-    posterUrl: '/Posters/Onboardings/choixdesseries.png',
+    posterUrl: '/Posters/Onboardings/series-feed-hero.jpg',
     videoUrl: STOCK_VIDEOS[1],
     items: [
       // -----------------------------------------------------------------------
@@ -283,7 +283,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
             title: 'Solidarité',
             subtitle: 'La force de l’entraide, la main tendue sans rien attendre en retour.',
             question: 'Quel acte de fraternité ou d’entraide a marqué à jamais votre trajectoire ?',
-            posterUrl: '/Posters/Onboardings/coproductions.png',
+            posterUrl: '/Posters/Onboardings/coproductions-hero.jpg',
             videoUrl: STOCK_VIDEOS[3]
           },
           {
@@ -463,7 +463,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
             title: 'Sécurité',
             subtitle: 'Veiller sur la communauté, protéger les biens et préserver la paix civile.',
             question: 'Comment instaurez-vous un climat de confiance et de sécurité durable ?',
-            posterUrl: '/Posters/Onboardings/securite.png',
+            posterUrl: '/Posters/Onboardings/securite-hero.jpg',
             videoUrl: STOCK_VIDEOS[1]
           },
           {
@@ -727,7 +727,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
             title: 'Jeux',
             subtitle: 'Éveil ludique, plaisir de jouer ensemble et stimulation de la créativité.',
             question: 'Quel jeu traditionnel ou moderne avez-vous imaginé pour rassembler petits et grands ?',
-            posterUrl: '/Posters/Focus/Pour%20Rire.png',
+            posterUrl: '/Posters/Focus/Fou%20Rire.png',
             videoUrl: STOCK_VIDEOS[0]
           },
           {
@@ -751,7 +751,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
             title: 'Communautaire',
             subtitle: 'La force du collectif qui s’organise pour bâtir son propre avenir.',
             question: 'Comment mobilisez-vous votre village ou quartier autour d’un projet commun ?',
-            posterUrl: '/Posters/Onboardings/coproductions.png',
+            posterUrl: '/Posters/Onboardings/coproductions-hero.jpg',
             videoUrl: STOCK_VIDEOS[3]
           },
           {
@@ -853,7 +853,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
             title: 'Communauté',
             subtitle: 'Le sentiment d’appartenance à un peuple, un village ou un groupe soudé.',
             question: 'Comment votre communauté vous soutient-elle et comment l’honorez-vous en retour ?',
-            posterUrl: '/Posters/Onboardings/coproductions.png',
+            posterUrl: '/Posters/Onboardings/coproductions-hero.jpg',
             videoUrl: STOCK_VIDEOS[1]
           },
           {

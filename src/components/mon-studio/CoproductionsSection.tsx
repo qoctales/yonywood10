@@ -10,6 +10,8 @@ import {
   removeUserCoproduction,
   getSeriesStats,
   formatViewsCompact,
+  formatFcfa,
+  DEMO_SHARE_UNIT_FCFA,
   COPRODUCTIONS_UPDATED_EVENT
 } from '../../utils/coproductionService';
 import { resolveSeriesById } from '../../data/seriesRegistry';
@@ -127,7 +129,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
 
             const { entry } = slot;
             const stats = getSeriesStats(entry.seriesId);
-            const totalSimulated = entry.sharesCount * entry.unitAmountEur;
+            const totalSimulated = entry.sharesCount * (entry.unitAmountFcfa || DEMO_SHARE_UNIT_FCFA);
 
             return (
               <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
@@ -171,7 +173,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
 
                   <div className="text-right bg-black/75 border border-white/20 rounded-xl px-2.5 py-1.5 shadow-md">
                     <div className="text-[11px] sm:text-xs font-bold text-white leading-tight">
-                      {entry.sharesCount} {entry.sharesCount > 1 ? 'parts' : 'part'} ({totalSimulated} €)
+                      {entry.sharesCount} {entry.sharesCount > 1 ? 'parts' : 'part'} ({formatFcfa(totalSimulated)})
                     </div>
                     <div className="text-[9.5px] text-stone-300 leading-tight mt-0.5">
                       {formatViewsCompact(stats.viewsCount)} vues · {stats.duosCount} duos
@@ -193,7 +195,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
         {detailEntry && (() => {
           const stats = getSeriesStats(detailEntry.seriesId);
           const seriesMeta = resolveSeriesById(detailEntry.seriesId);
-          const totalSimulated = detailEntry.sharesCount * detailEntry.unitAmountEur;
+          const totalSimulated = detailEntry.sharesCount * (detailEntry.unitAmountFcfa || DEMO_SHARE_UNIT_FCFA);
 
           return (
             <>
@@ -240,7 +242,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-stone-500">Parts</span>
                   <span className="font-bold text-[#1C1917]">
-                    {detailEntry.sharesCount} ({totalSimulated} €)
+                    {detailEntry.sharesCount} ({formatFcfa(totalSimulated)})
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs">

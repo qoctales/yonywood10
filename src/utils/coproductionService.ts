@@ -17,14 +17,20 @@ export interface UserCoproductionEntry {
   seriesTitle: string;
   posterUrl: string;
   sharesCount: number;
-  unitAmountEur: number;
+  unitAmountFcfa: number;
   status: 'ACTIVE_DEMO';
   updatedAt: string;
 }
 
-export const DEMO_SHARE_UNIT_EUR = 25;
+export const DEMO_SHARE_UNIT_FCFA = 20000;
 const USER_COPRODUCTIONS_KEY = 'yonywood_user_coproductions';
 export const COPRODUCTIONS_UPDATED_EVENT = 'yonywood:coproductions-updated';
+
+export function formatFcfa(amount: number): string {
+  const safeAmount = Math.max(0, Math.round(amount));
+  const formatted = safeAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return `${formatted} FCFA`;
+}
 
 const BASE_SERIES_VIEWS: Record<string, number> = {
   'modernite-tradition': 14200,
@@ -82,18 +88,18 @@ export function getUserCoproductions(): UserCoproductionEntry[] {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed
-      .map((entry: UserCoproductionEntry) => {
+      .map((entry: UserCoproductionEntry & { unitAmountEur?: number }) => {
         const canonicalId = resolveCanonicalSeriesId(entry.seriesId) || entry.seriesId;
         const series = resolveSeriesById(canonicalId);
         if (!series) return null;
         return {
-          ...entry,
           seriesId: series.id,
           seriesTitle: series.title,
           posterUrl: series.posterUrl,
           sharesCount: Math.max(1, Number(entry.sharesCount) || 1),
-          unitAmountEur: Number(entry.unitAmountEur) || DEMO_SHARE_UNIT_EUR,
+          unitAmountFcfa: Number(entry.unitAmountFcfa) || DEMO_SHARE_UNIT_FCFA,
           status: 'ACTIVE_DEMO' as const,
+          updatedAt: entry.updatedAt || new Date().toISOString(),
         };
       })
       .filter((item): item is UserCoproductionEntry => Boolean(item));
@@ -129,7 +135,7 @@ export function addUserCoproduction(
         seriesTitle: stats.seriesTitle,
         posterUrl: stats.posterUrl,
         sharesCount: Math.max(1, additionalShares),
-        unitAmountEur: DEMO_SHARE_UNIT_EUR,
+        unitAmountFcfa: DEMO_SHARE_UNIT_FCFA,
         status: 'ACTIVE_DEMO',
         updatedAt: now,
       },

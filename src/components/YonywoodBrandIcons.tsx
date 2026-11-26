@@ -1182,5 +1182,28 @@ export const DoorArchIcon: React.FC<IconProps> = ({
   );
 };
 
-
-
+/**
+ * LegbaDoorIcon:
+ * Icône Papa Legba, gardien de la porte, pour les boutons de choix.
+ */
+export const LegbaDoorIcon: React.FC<IconProps> = ({
+  className = 'w-5 h-5'
+}) => {
+  return (
+    <svg
+      viewBox="23 31 134 134"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`-translate-y-[1px] ${className}`}
+      aria-hidden="true"
+    >
+      <circle cx="90" cy="55.2" r="11.7" />
+      <path d="M66.6 46.2H113.4" />
+      <path d="M75.6 46.2Q75.6 33.6 90 33.6Q104.4 33.6 104.4 46.2Z" fill="currentColor" />
+      <path d="M90 67.8C75.6 80.4 68.4 120 64.8 156H115.2C111.6 120 104.4 80.4 90 67.8Z" />
+    </svg>
+  );
+};

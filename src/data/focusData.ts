@@ -45,7 +45,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Fiat Luxe',
     synopsis:
-      "Le vrai luxe ne se mesure pas au prix. Il se mesure au temps, à la main, à l'exigence. De l'artisanat d'art à la couture, du bijou au tissage, de l'hôtellerie à la maison de création : ceux qui font, portent ou admirent la rareté et la perfection ont chacun un geste, un objet, une rencontre à raconter. Un point de couture, un éclat d'or : tout peut en dire long.",
+      "Le vrai luxe ne se mesure pas au prix. Il se mesure au temps, à la main, à l'exigence. De la haute couture au bijou, du tissage à l'hôtellerie : celles et ceux qui créent ou admirent la rareté ont tous un geste, un objet, une rencontre à raconter. Un point de couture, un éclat d'or : tout peut en dire long.",
     consigne: 'Racontez ce que vous avez vécu ou vu, sans promouvoir un produit.',
     question:
       'Racontez la plus belle chose que vous connaissiez qui ait demandé des années, que vous l\'ayez faite, reçue ou admirée, et ce que ce temps lui a donné.',
@@ -118,7 +118,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Dixeat',
     synopsis:
-      "Un ancien sage l'aurait dit : ce que l'on dit compte plus que ce que l'on mange. Autour des tables, dans les cuisines, les restaurants, les marchés, ce sont les paroles qui restent. Cuisiniers, serveurs, propriétaires, clients, fournisseurs, agriculteurs, pêcheurs : chacun a l'histoire d'un plat, d'un lieu, d'un repas partagé. Une phrase entendue à table peut durer toute une vie.",
+      "Un ancien sage l'aurait dit : ce que l'on dit compte plus que ce que l'on mange. Autour des tables, des cuisines et des marchés, ce sont les paroles qui restent. Cuisiniers, serveurs, clients, agriculteurs ou pêcheurs : chacun garde l'histoire d'un plat, d'un lieu, d'un repas partagé. Une phrase à table peut durer toute une vie.",
     consigne: "L'histoire d'abord : ne faites pas la publicité d'un établissement.",
     question:
       "Racontez le plat que quelqu'un préparait pour vous, et que vous ne retrouvez plus tout à fait.",
@@ -191,7 +191,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Fou rire',
     synopsis:
-      "Le pire moment. Le plus grand sérieux. Et soudain, impossible de s'arrêter. Un fou rire, une gaffe, un malentendu, une rencontre absurde : tout le monde a vécu une scène dont on rit encore des années plus tard. Ces anecdotes vraiment vécues font rire à chaque fois, ceux qui les ont vécues comme ceux qui les écoutent. On y rit d'abord de soi, et on y rit ensemble.",
+      "Le pire moment. Le plus grand sérieux. Et soudain, impossible de s'arrêter. Un fou rire, une gaffe, un malentendu ou une rencontre absurde : chacun a vécu une scène dont on rit encore des années plus tard. Ces anecdotes vraiment vécues font toujours sourire : on y rit d'abord de soi, et on y rit ensemble.",
     consigne:
       "Anecdotes réellement vécues. Pas de moquerie visant une ethnie, une religion, un handicap ou une personne que l'on pourrait reconnaître : on rit d'abord de soi.",
     question: "Racontez un fou rire que vous n'avez pas pu arrêter, au pire moment possible.",
@@ -226,7 +226,7 @@ export const FOCUS_DATA: FocusItem[] = [
     ],
     commandite: false,
     accesOuvert: true,
-    posterUrl: encodeURI('/Posters/Focus/Pour Rire.png?v=2'),
+    posterUrl: encodeURI('/Posters/Focus/Fou Rire.png?v=2'),
     videos: [
       {
         id: 'focus-pour-rire-1',
@@ -262,7 +262,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Mon Histoire fera le Job',
     synopsis:
-      "Un CV dit ce que l'on a fait. Une histoire dit qui l'on est. À vingt ans comme à cinquante, en quête d'un emploi, d'un stage, d'une reconversion ou d'un premier client, chacun peut dire ce qu'il sait faire autrement que par une liste. Un parcours ne tient jamais sur une page. Et ceux qui recrutent y entendent enfin une personne, une voix, une manière d'être.",
+      "Un CV dit ce que l'on a fait. Une histoire dit qui l'on est. En quête d'un emploi, d'un stage, d'une reconversion ou d'un premier client, chacun peut dire ce qu'il sait faire autrement que par une liste. Un parcours ne tient pas sur une page. Et ceux qui recrutent y entendent enfin une voix, une manière d'être.",
     consigne:
       "Racontez ce que vous savez faire. Chaque personne décide seule si elle peut être contactée ; rien n'est exposé par défaut.",
     question:
@@ -336,7 +336,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Votre Honneur',
     synopsis:
-      "Un avocat plaide pour les autres. Aujourd'hui, il plaide pour lui-même. Avocats, juristes, et toutes celles et tous ceux qui ont une cause à défendre racontent leur propre histoire comme une plaidoirie : des arguments, des preuves, une conclusion. Devant eux, des juges qui écoutent. Chacun parle avec ses mots, comme s'il en allait de son honneur.",
+      "Un avocat plaide pour les autres. Aujourd'hui, il plaide pour lui-même. Avocats, juristes et toutes celles et ceux qui ont une cause à défendre racontent leur histoire comme une plaidoirie : arguments, preuves, conclusion. Devant des juges attentifs, chacun parle avec ses mots, comme s'il en allait de son honneur.",
     consigne:
       "Ne parlez d'aucun dossier de client ni d'aucun détail qui le ferait reconnaître. Ne vous accusez d'aucune infraction pénale et ne mettez en cause aucune personne identifiable.",
     question:
@@ -410,7 +410,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Hoxò',
     synopsis:
-      "Au Bénin, les jumeaux, les Hoxò, ont une place à part. On les dit porteurs de bon augure, on les honore, on leur consacre des cérémonies. Jumeaux et jumelles, parents, proches, dignitaires, artistes, témoins : chacun garde un souvenir, une attente, une histoire de ces enfants venus par deux, et de la place que tout un entourage leur fait. Une tradition vivante, faite de noms et de souvenirs.",
+      "Au Bénin, les jumeaux, les Hoxò, ont une place à part. Porteurs de bon augure, on les honore et on leur consacre des cérémonies. Jumeaux, parents, proches, dignitaires ou témoins : chacun garde un souvenir, une attente, une histoire de ces enfants venus par deux. Une tradition vivante, faite de noms et de mémoire.",
     consigne:
       'Récits de vie uniquement : ne filmez pas de rituel. Parlez des autres avec respect.',
     question: 'Racontez votre premier souvenir lié à des jumeaux, que vous en soyez un ou non.',
@@ -481,7 +481,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Black To Roots',
     synopsis:
-      "Les racines ne sont pas toujours là où l'on est né. Certains sont nés en Afrique et pensent au retour. D'autres ont grandi aux Caraïbes, aux États-Unis, au Brésil ou en Europe, liés à une terre qu'ils n'ont parfois jamais vue. Ceux qui sont partis, ceux qui sont restés, ceux qui reviennent, ceux qui attendent : chacun définit ses racines et les fait vivre là où il est. Chacun porte une origine.",
+      "Les racines ne sont pas toujours là où l'on est né. Certains sont nés en Afrique et pensent au retour ; d'autres ont grandi aux Caraïbes, aux Amériques ou en Europe, liés à une terre parfois jamais vue. Ceux qui partent, restent ou reviennent font vivre leurs origines là où ils sont. Chacun porte sa source.",
     consigne:
       'Chacun définit ses propres racines : ne jugez pas celles des autres. Racontez votre expérience, sans généraliser sur un pays ou un peuple.',
     question:
@@ -555,7 +555,7 @@ export const FOCUS_DATA: FocusItem[] = [
     type: 'theme',
     titre: 'Hall des arts',
     synopsis:
-      "Un hall, c'est l'endroit où l'on entre, où l'on s'arrête, où l'on regarde. Musiciens, comédiens, danseurs, peintres, sculpteurs, écrivains, cinéastes y croisent celles et ceux qui admirent un artiste ou une œuvre et veulent la faire connaître. Chacun apporte une œuvre ou un artiste qui compte pour lui. Tout commence par ce qui nous a touchés. Nul besoin d'être artiste pour entrer.",
+      "Un hall est l'endroit où l'on entre, s'arrête et regarde. Musiciens, comédiens, danseurs, peintres ou écrivains y croisent celles et ceux qui veulent faire connaître une œuvre. Chacun apporte un artiste ou une création qui l'a marqué. Tout commence par ce qui nous touche. Nul besoin d'être artiste pour entrer.",
     consigne:
       "N'utilisez aucun extrait de musique, de film ou d'œuvre protégée sans autorisation.",
     question:

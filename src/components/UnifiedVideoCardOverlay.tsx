@@ -166,31 +166,13 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
       </div>
 
       {/* =================================================================== */}
-      {/* HAUT DROITE : LECTEUR VIDÉO TÉLÉ VINTAGE & MUET (SANS AUCUN 3-POINTS) */}
+      {/* HAUT DROITE : LECTEUR VIDÉO TÉLÉ VINTAGE (SANS BOUTON MUET ICI)      */}
       {/* =================================================================== */}
       <div 
-        className="absolute top-3 sm:top-3.5 right-3 sm:right-3.5 z-20 pointer-events-auto flex items-center gap-1.5"
+        className="absolute top-3 sm:top-3.5 right-3 sm:right-3.5 z-20 pointer-events-auto flex items-center"
         onMouseDown={(e) => e.stopPropagation()}
         onTouchStart={(e) => e.stopPropagation()}
       >
-        {/* Bouton Muet discret (uniquement si en lecture et fonction fournie) */}
-        {isPlaying && onToggleMute && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onToggleMute();
-            }}
-            onMouseDown={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
-            className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
-            title={isMuted ? 'Activer le son' : 'Couper le son'}
-          >
-            {isMuted ? <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
-          </button>
-        )}
-
         {/* Déclencheur lecteur vidéo officiel TvPlayerIcon en haut à droite */}
         <button
           type="button"
@@ -213,7 +195,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
       </div>
 
       {/* =================================================================== */}
-      {/* COLONNE D'ACTIONS VERTICALE : Question, Évaluation (Casting), Profil, Partage */}
+      {/* COLONNE D'ACTIONS VERTICALE : Muet, Question, Évaluation, Profil, Partage */}
       {/* =================================================================== */}
       <div 
         className="absolute right-2.5 sm:right-3.5 top-[56%] sm:top-[58%] -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 sm:gap-2 pointer-events-auto"
@@ -221,6 +203,23 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
         onMouseDown={(e) => e.stopPropagation()}
         onTouchStart={(e) => e.stopPropagation()}
       >
+        {/* 0. Bouton Muet dans la colonne de droite lorsque la vidéo est en lecture */}
+        {isPlaying && onToggleMute && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleMute();
+            }}
+            className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+            title={isMuted ? 'Activer le son' : 'Couper le son'}
+            aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
+          >
+            {isMuted ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+          </button>
+        )}
+
         {customActionButtons ? (
           customActionButtons
         ) : (

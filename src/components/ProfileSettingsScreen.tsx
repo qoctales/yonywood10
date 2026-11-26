@@ -544,7 +544,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       title: sub.title,
       subtitle: PROFILE_TAB_LABELS[activeProfileTab],
       description: sub.synopsis,
-      posterUrl: sub.thumbnailUrl || userPhoto || '/Posters/Onboardings/mesvideos.png',
+      posterUrl: sub.thumbnailUrl || userPhoto || '/Posters/Onboardings/mes-videos-hero.jpg',
       videoUrl: sub.videoUrl || '/sample.mp4',
       duration: '02:00',
       tag: sub.title || PROFILE_TAB_LABELS[activeProfileTab],

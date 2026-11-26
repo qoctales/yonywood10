@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   CheckCircle2,
   Scroll,
-  DoorOpen,
   X
 } from 'lucide-react';
+import { LegbaArchButton } from './shared/LegbaArchButton';
 import { ViewScreen, UserAccount } from '../types';
 import { useAuth, DEFAULT_ADMIN_USER } from '../services/authContext';
 import {
@@ -121,18 +121,18 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               showDesktopArrows={true}
               prevAriaLabel="Section précédente"
               nextAriaLabel="Section suivante"
-              onActiveCardClick={(entry) => setActiveSection(entry.id)}
               renderCard={(entry, idx, { isCenter }) => {
                 const isImageFailed = Boolean(failedPosterIds[entry.id]);
 
                 return (
-                  <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#A2482B]">
+                  <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
                     {!isImageFailed && (
                       <img
                         src={entry.posterUrl}
                         alt={entry.title}
                         loading="eager"
                         decoding="async"
+                        referrerPolicy="no-referrer"
                         onError={() =>
                           setFailedPosterIds((prev) =>
                             prev[entry.id] ? prev : { ...prev, [entry.id]: true }
@@ -142,7 +142,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                       />
                     )}
 
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/80 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/75 pointer-events-none" />
 
                     {/* HAUT : Pastille titre en haut à gauche */}
                     <div className="relative z-10 flex items-center justify-between gap-1 w-full min-w-0">
@@ -155,7 +155,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
 
                     {/* BAS : Papyrus (gauche) + Porte Choisir (droite) */}
                     <div
-                      className="relative z-10 w-full flex items-center justify-between pointer-events-auto pt-2"
+                      className="relative z-10 w-full flex items-end justify-between pointer-events-auto pt-2"
                       onMouseDown={(e) => e.stopPropagation()}
                       onTouchStart={(e) => e.stopPropagation()}
                     >
@@ -173,22 +173,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                         <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                       </button>
 
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          if (!isCenter) {
-                            setHomeCardIndex(idx);
-                          } else {
-                            setActiveSection(entry.id);
-                          }
-                        }}
-                        className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                      >
-                        <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                        <span>Choisir</span>
-                      </button>
+                      <LegbaArchButton
+                        isCenterAction={isCenter}
+                        resetKey={`settings-${entry.id}`}
+                        onCenterCard={() => setHomeCardIndex(idx)}
+                        onActivate={() => setActiveSection(entry.id)}
+                      />
                     </div>
                   </div>
                 );

@@ -17,28 +17,28 @@ export const PROFILE_ONBOARDING_CARDS: ProfileOnboardingCardEntry[] = [
   {
     id: 'security',
     title: 'Sécurité',
-    posterUrl: '/Posters/Onboardings/securite.png',
+    posterUrl: '/Posters/Onboardings/securite-hero.jpg?v=3',
     papyrusText:
       'Ton compte, sous clé. Modifie ton nom, ton mot de passe et gère tes accès en toute tranquillité.'
   },
   {
     id: 'series',
     title: SERIES_FEED_SECTION_LABEL,
-    posterUrl: '/Posters/Onboardings/choixdesseries.png',
+    posterUrl: '/Posters/Onboardings/series-feed-hero.jpg?v=5',
     papyrusText:
       'Compose ton feed. Fais défiler les séries, valide celles qui te donnent envie et écarte les autres. Ton feed s’adapte à tes choix.'
   },
   {
     id: 'videos',
     title: 'Mes Vidéos',
-    posterUrl: '/Posters/Onboardings/mesvideos.png',
+    posterUrl: '/Posters/Onboardings/mes-videos-hero.jpg?v=5',
     papyrusText:
       'Ta collection, tes règles. Retrouve toutes tes vidéos : change la couverture, modifie le titre ou supprime-les. Ajoute-en une nouvelle avec le « + ».'
   },
   {
     id: 'coproductions',
     title: 'Coproductions',
-    posterUrl: '/Posters/Onboardings/coproductions.png',
+    posterUrl: '/Posters/Onboardings/coproductions-hero.jpg?v=5',
     papyrusText:
       'Tes séries soutenues, au même endroit. Retrouve les séries que tu as choisi de coproduire, leurs vues, leurs duos et ton nombre de parts.'
   }

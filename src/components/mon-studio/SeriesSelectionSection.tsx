@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Check, Scroll, Volume2, VolumeX, Pause, X } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Check, Scroll, Volume2, VolumeX, Pause, Loader2 } from 'lucide-react';
 import { DOCUMENTARIES } from '../../data/mockData';
 import {
   SERIES_REGISTRY,
@@ -11,6 +11,7 @@ import { StageCarousel3D } from '../shared/StageCarousel3D';
 import { StageBreadcrumb } from '../shared/StageBreadcrumb';
 import { CardWidthModal } from '../shared/CardWidthModal';
 import { SERIES_FEED_SECTION_LABEL } from '../../constants/profileOnboardingContent';
+import { episodeVoiceReader } from '../../utils/episodeVoiceReader';
 
 interface SeriesSelectionSectionProps {
   selectedDocFilter: string[];
@@ -29,6 +30,8 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
   const [playingSeriesId, setPlayingSeriesId] = useState<string | null>(null);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [synopsisSeries, setSynopsisSeries] = useState<SeriesRegistryEntry | null>(null);
+  const [isSynopsisPlaying, setIsSynopsisPlaying] = useState<boolean>(false);
+  const [isSynopsisLoading, setIsSynopsisLoading] = useState<boolean>(false);
 
   const normalizedSelection = Array.from(
     new Set(
@@ -41,6 +44,77 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
   useEffect(() => {
     setPlayingSeriesId(null);
   }, [currentIndex]);
+
+  useEffect(() => {
+    return () => {
+      episodeVoiceReader.stop();
+    };
+  }, []);
+
+  useEffect(() => {
+    const activeSeries = SERIES_REGISTRY[currentIndex];
+    if (!activeSeries?.synopsis) return;
+    const timer = window.setTimeout(() => {
+      episodeVoiceReader.preload(
+        {
+          mode: 'trailer',
+          synopsis: activeSeries.synopsis
+        },
+        { cacheOnly: false }
+      );
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (!synopsisSeries?.synopsis) return;
+    episodeVoiceReader.preload(
+      {
+        mode: 'trailer',
+        synopsis: synopsisSeries.synopsis
+      },
+      { cacheOnly: false }
+    );
+  }, [synopsisSeries]);
+
+  const closeSynopsisModal = useCallback(() => {
+    episodeVoiceReader.stop();
+    setIsSynopsisPlaying(false);
+    setIsSynopsisLoading(false);
+    setSynopsisSeries(null);
+  }, []);
+
+  const handleToggleSynopsisVoice = useCallback(() => {
+    if (!synopsisSeries?.synopsis) return;
+    if (isSynopsisPlaying || isSynopsisLoading) {
+      episodeVoiceReader.stop();
+      setIsSynopsisPlaying(false);
+      setIsSynopsisLoading(false);
+      return;
+    }
+
+    episodeVoiceReader.speak({
+      mode: 'trailer',
+      synopsis: synopsisSeries.synopsis,
+      onLoadStart: () => {
+        setIsSynopsisLoading(true);
+        setIsSynopsisPlaying(false);
+      },
+      onStart: () => {
+        setIsSynopsisLoading(false);
+        setIsSynopsisPlaying(true);
+      },
+      onEnd: () => {
+        setIsSynopsisLoading(false);
+        setIsSynopsisPlaying(false);
+      },
+      onError: (msg) => {
+        setIsSynopsisLoading(false);
+        setIsSynopsisPlaying(false);
+        onShowToast(msg || "La lecture vocale n'est pas disponible.");
+      }
+    });
+  }, [synopsisSeries, isSynopsisPlaying, isSynopsisLoading, onShowToast]);
 
   const handleToggleSeries = (seriesId: string) => {
     const isChecked = normalizedSelection.includes(seriesId);
@@ -103,7 +177,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.onerror = null;
-                      target.src = '/Posters/Onboardings/choixdesseries.png';
+                      target.src = '/Posters/Onboardings/series-feed-hero.jpg';
                     }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
@@ -238,7 +312,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
 
       <CardWidthModal
         isOpen={Boolean(synopsisSeries)}
-        onClose={() => setSynopsisSeries(null)}
+        onClose={closeSynopsisModal}
         ariaLabel={synopsisSeries ? `Synopsis — ${synopsisSeries.title}` : 'Synopsis'}
         className="p-4 sm:p-5 space-y-3"
       >
@@ -253,12 +327,28 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
               </h3>
               <button
                 type="button"
-                onClick={() => setSynopsisSeries(null)}
-                className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-                title="Fermer"
-                aria-label="Fermer"
+                onClick={handleToggleSynopsisVoice}
+                className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
+                  isSynopsisPlaying || isSynopsisLoading
+                    ? 'bg-[#A2482B] border-[#A2482B] text-white'
+                    : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
+                }`}
+                title={
+                  isSynopsisLoading
+                    ? 'Chargement de la voix...'
+                    : isSynopsisPlaying
+                      ? 'Arrêter la lecture du synopsis'
+                      : 'Écouter le synopsis'
+                }
+                aria-label={isSynopsisPlaying ? 'Arrêter la lecture du synopsis' : 'Écouter le synopsis'}
               >
-                <X className="w-3.5 h-3.5" />
+                {isSynopsisLoading ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : isSynopsisPlaying ? (
+                  <Pause className="w-3.5 h-3.5 fill-current" />
+                ) : (
+                  <TvPlayerIcon className="w-4 h-4" strokeWidth={1.75} />
+                )}
               </button>
             </div>
 

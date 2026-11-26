@@ -1,9 +1,10 @@
 // Lecteur vocal naturel pour la lecture des synopsis (Niveau 1) et questions d'épisodes (Niveau 2) via /api/tts
 
-export type VoiceReaderMode = 'episode' | 'synopsis';
+export type VoiceReaderMode = 'episode' | 'synopsis' | 'trailer';
 
 export interface EpisodeVoicePayload {
   mode?: VoiceReaderMode;
+  voiceName?: string;
   synopsis?: string;
   episodeLabel?: string;
   episodeTitle?: string;
@@ -23,6 +24,14 @@ const STYLE_BY_MODE: Record<VoiceReaderMode, string> = {
     `Voix de femme française très douce, chaleureuse, naturelle et posée, rythme intime et fluide de narratrice documentaire. ${PRONUNCIATION_HINT}`,
   synopsis:
     `Voix de femme française douce, chaleureuse, naturelle et posée, ton calme et incarné de bande-annonce documentaire. ${PRONUNCIATION_HINT}`,
+  trailer:
+    `Voix d'homme noire grave, rauque, ronde et profondément chaleureuse, avec une forte présence dans les graves et un timbre humain très naturel, posé et authentique, comme un conteur intime qui parle près du micro avec calme et intensité, sans ton robotique ni emphase artificielle. ${PRONUNCIATION_HINT}`,
+};
+
+const VOICE_BY_MODE: Record<VoiceReaderMode, string> = {
+  episode: 'Kore',
+  synopsis: 'Kore',
+  trailer: 'Algenib',
 };
 
 const MAX_CLIENT_AUDIO_CACHE = 64;
@@ -39,7 +48,7 @@ function buildSpokenParts(payload: EpisodeVoicePayload, mode: VoiceReaderMode): 
   text: string;
   questionStartRatio: number;
 } {
-  if (mode === 'synopsis') {
+  if (mode === 'synopsis' || mode === 'trailer') {
     return {
       text: cleanSpokenSegment(payload.synopsis || payload.question),
       questionStartRatio: 0,
@@ -74,6 +83,7 @@ function buildSpokenParts(payload: EpisodeVoicePayload, mode: VoiceReaderMode): 
 
 interface ResolvedVoiceRequest {
   mode: VoiceReaderMode;
+  voiceName: string;
   text: string;
   style: string;
   cacheKey: string;
@@ -120,6 +130,8 @@ function buildWavBlobFromPcmChunks(chunks: Uint8Array[], sampleRate = 24000, cha
 class EpisodeVoiceReader {
   private sessionId = 0;
   private activeAudio: HTMLAudioElement | null = null;
+  private activeMediaSource: MediaElementAudioSourceNode | null = null;
+  private activeFilterNodes: AudioNode[] = [];
   private activeStreamReader: ReadableStreamDefaultReader<Uint8Array> | null = null;
   private activeSources: AudioBufferSourceNode[] = [];
   private activeUtterance: SpeechSynthesisUtterance | null = null;
@@ -156,14 +168,32 @@ class EpisodeVoiceReader {
     return this.audioCtx;
   }
 
+  private createTrailerEqChain(ctx: AudioContext): { input: AudioNode; output: AudioNode } {
+    const lowShelf = ctx.createBiquadFilter();
+    lowShelf.type = 'lowshelf';
+    lowShelf.frequency.value = 155;
+    lowShelf.gain.value = 4.5;
+
+    const highShelf = ctx.createBiquadFilter();
+    highShelf.type = 'highshelf';
+    highShelf.frequency.value = 4800;
+    highShelf.gain.value = -2.0;
+
+    lowShelf.connect(highShelf);
+    highShelf.connect(ctx.destination);
+    this.activeFilterNodes.push(lowShelf, highShelf);
+    return { input: lowShelf, output: highShelf };
+  }
+
   private resolveRequest(payload: EpisodeVoicePayload): ResolvedVoiceRequest | null {
     const mode: VoiceReaderMode = payload.mode ?? 'episode';
     const { text, questionStartRatio } = buildSpokenParts(payload, mode);
     if (!text) return null;
 
+    const voiceName = payload.voiceName || VOICE_BY_MODE[mode];
     const style = STYLE_BY_MODE[mode];
-    const cacheKey = `${mode}::${text}`;
-    return { mode, text, style, cacheKey, questionStartRatio };
+    const cacheKey = `${mode}::${voiceName}::${text}`;
+    return { mode, voiceName, text, style, cacheKey, questionStartRatio };
   }
 
   private toQuestionProgress(overall: number, questionStartRatio: number): number {
@@ -197,7 +227,13 @@ class EpisodeVoiceReader {
     this.urlCache.set(key, objectUrl);
   }
 
-  private fetchAndCacheAudio(text: string, style: string, cacheKey: string, cacheOnly = false): Promise<string> {
+  private fetchAndCacheAudio(
+    text: string,
+    style: string,
+    voiceName: string,
+    cacheKey: string,
+    cacheOnly = false
+  ): Promise<string> {
     const cachedUrl = this.urlCache.get(cacheKey);
     if (cachedUrl) {
       return Promise.resolve(cachedUrl);
@@ -215,7 +251,7 @@ class EpisodeVoiceReader {
         body: JSON.stringify({
           text,
           style,
-          voiceName: 'Kore',
+          voiceName,
           cacheOnly,
         }),
       });
@@ -268,12 +304,18 @@ class EpisodeVoiceReader {
       return;
     }
 
-    this.fetchAndCacheAudio(resolved.text, resolved.style, resolved.cacheKey, cacheOnly).catch(() => {
+    this.fetchAndCacheAudio(
+      resolved.text,
+      resolved.style,
+      resolved.voiceName,
+      resolved.cacheKey,
+      cacheOnly
+    ).catch(() => {
       // Préchargement silencieux : bascule transparente gérée au clic sur Lecture
     });
   }
 
-  private pickBestFrenchVoice(): SpeechSynthesisVoice | null {
+  private pickBestFrenchVoice(mode: VoiceReaderMode = 'episode'): SpeechSynthesisVoice | null {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
     const voices = window.speechSynthesis.getVoices();
     if (!voices || voices.length === 0) return null;
@@ -281,7 +323,10 @@ class EpisodeVoiceReader {
     const frVoices = voices.filter((v) => v.lang.toLowerCase().startsWith('fr'));
     if (frVoices.length === 0) return null;
 
-    const preferredKeywords = ['google', 'natural', 'neural', 'thomas', 'amélie', 'amelie', 'denise', 'hortense', 'audrey', 'virginie', 'julie', 'céline'];
+    const preferredKeywords =
+      mode === 'trailer'
+        ? ['thomas', 'nicolas', 'daniel', 'paul', 'henri', 'google', 'natural', 'neural']
+        : ['google', 'natural', 'neural', 'thomas', 'amélie', 'amelie', 'denise', 'hortense', 'audrey', 'virginie', 'julie', 'céline'];
     for (const kw of preferredKeywords) {
       const match = frVoices.find((v) => v.name.toLowerCase().includes(kw));
       if (match) return match;
@@ -300,13 +345,14 @@ class EpisodeVoiceReader {
     }
 
     try {
+      const mode: VoiceReaderMode = payload.mode ?? 'episode';
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'fr-FR';
-      utterance.rate = 0.96;
-      utterance.pitch = 1.0;
+      utterance.rate = mode === 'trailer' ? 0.93 : 0.96;
+      utterance.pitch = mode === 'trailer' ? 0.86 : 1.0;
 
-      const preferredVoice = this.pickBestFrenchVoice();
+      const preferredVoice = this.pickBestFrenchVoice(mode);
       if (preferredVoice) {
         utterance.voice = preferredVoice;
       }
@@ -398,6 +444,26 @@ class EpisodeVoiceReader {
       this.activeSources = [];
     }
 
+    if (this.activeMediaSource) {
+      try {
+        this.activeMediaSource.disconnect();
+      } catch {
+        // ignore media source disconnect errors
+      }
+      this.activeMediaSource = null;
+    }
+
+    if (this.activeFilterNodes.length > 0) {
+      for (const node of this.activeFilterNodes) {
+        try {
+          node.disconnect();
+        } catch {
+          // ignore filter disconnect errors
+        }
+      }
+      this.activeFilterNodes = [];
+    }
+
     if (this.activeAudio) {
       try {
         this.activeAudio.onplay = null;
@@ -433,11 +499,26 @@ class EpisodeVoiceReader {
     audioUrl: string,
     questionStartRatio: number,
     activeSession: number,
-    payload: EpisodeVoicePayload
+    payload: EpisodeVoicePayload,
+    mode: VoiceReaderMode = 'episode'
   ) {
     const audio = new Audio(audioUrl);
     audio.preload = 'auto';
     this.activeAudio = audio;
+
+    if (mode === 'trailer') {
+      const ctx = this.getOrUnlockAudioContext();
+      if (ctx) {
+        try {
+          const mediaSource = ctx.createMediaElementSource(audio);
+          const eq = this.createTrailerEqChain(ctx);
+          mediaSource.connect(eq.input);
+          this.activeMediaSource = mediaSource;
+        } catch {
+          // Fallback to direct HTMLAudioElement output if Web Audio routing fails
+        }
+      }
+    }
 
     let didNotifyStart = false;
     let lastOverall = 0;
@@ -498,6 +579,11 @@ class EpisodeVoiceReader {
 
     const reader = response.body.getReader();
     this.activeStreamReader = reader;
+
+    const streamDestination: AudioNode =
+      resolved.mode === 'trailer'
+        ? this.createTrailerEqChain(ctx).input
+        : ctx.destination;
 
     const collectedChunks: Uint8Array[] = [];
     let carryByte: number | null = null;
@@ -570,7 +656,7 @@ class EpisodeVoiceReader {
 
         const source = ctx.createBufferSource();
         source.buffer = audioBuffer;
-        source.connect(ctx.destination);
+        source.connect(streamDestination);
 
         const startAt = Math.max(ctx.currentTime + 0.015, nextStartTime);
         if (!didNotifyStart) {
@@ -647,7 +733,7 @@ class EpisodeVoiceReader {
     try {
       const cachedUrl = this.urlCache.get(resolved.cacheKey);
       if (cachedUrl) {
-        await this.playAudioUrl(cachedUrl, resolved.questionStartRatio, activeSession, payload);
+        await this.playAudioUrl(cachedUrl, resolved.questionStartRatio, activeSession, payload, resolved.mode);
         return;
       }
 
@@ -658,7 +744,7 @@ class EpisodeVoiceReader {
       if (inFlight) {
         const url = await inFlight;
         if (this.sessionId !== activeSession) return;
-        await this.playAudioUrl(url, resolved.questionStartRatio, activeSession, payload);
+        await this.playAudioUrl(url, resolved.questionStartRatio, activeSession, payload, resolved.mode);
         return;
       }
 
@@ -669,7 +755,7 @@ class EpisodeVoiceReader {
         body: JSON.stringify({
           text: resolved.text,
           style: resolved.style,
-          voiceName: 'Kore',
+          voiceName: resolved.voiceName,
           cacheOnly,
         }),
       });
@@ -710,7 +796,7 @@ class EpisodeVoiceReader {
 
       const audioUrl = URL.createObjectURL(audioBlob);
       this.setCachedUrl(resolved.cacheKey, audioUrl);
-      await this.playAudioUrl(audioUrl, resolved.questionStartRatio, activeSession, payload);
+      await this.playAudioUrl(audioUrl, resolved.questionStartRatio, activeSession, payload, resolved.mode);
     } catch (err: any) {
       if (this.sessionId !== activeSession) {
         return;

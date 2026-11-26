@@ -58,7 +58,7 @@ export const DIMENSIONS: Dimension[] = [
     accentColor: '#C89B3C',
     glowColor: 'rgba(200, 155, 60, 0.65)',
     bgGradient: 'from-[#D97706] via-[#92400E] to-[#451A03]',
-    coverImage: '/Posters/Onboardings/choixdesseries.png'
+    coverImage: '/Posters/Onboardings/series-feed-hero.jpg'
   },
   {
     id: 'sagesses',
@@ -361,7 +361,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel geste d’entraide ou d’engagement collectif a renforcé votre foi en la communauté ?',
     tagline: 'L’union fraternelle, le soutien mutuel et le vivre-ensemble',
     badge: 'Solidarité',
-    photoUrl: '/Posters/Onboardings/coproductions.png',
+    photoUrl: '/Posters/Onboardings/coproductions-hero.jpg',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
@@ -685,7 +685,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel engagement et quel courage déployez-vous pour protéger les biens et la paix civile ?',
     tagline: 'La protection civile, la cybersécurité, les secours et la sûreté collective',
     badge: 'Sécurité',
-    photoUrl: '/Posters/Onboardings/securite.png',
+    photoUrl: '/Posters/Onboardings/securite-hero.jpg',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
     bgGradient: 'from-red-600 via-rose-700 to-stone-950'
@@ -859,7 +859,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Quel univers ludique ou compétition stimulante rassemble petits et grands autour du jeu ?',
     tagline: 'Jeux vidéo, jeux de société traditionnels, esports et tournois',
     badge: 'Jeux',
-    photoUrl: '/Posters/Focus/Pour%20Rire.png',
+    photoUrl: '/Posters/Focus/Fou%20Rire.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
     bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
@@ -919,7 +919,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     question: 'Comment bâtissez-vous la confiance et l’entraide au sein de votre quartier ou village ?',
     tagline: 'Comités de quartier, coopératives citoyennes et lieux de vie partagés',
     badge: 'Communautaire',
-    photoUrl: '/Posters/Onboardings/coproductions.png',
+    photoUrl: '/Posters/Onboardings/coproductions-hero.jpg',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
     bgGradient: 'from-orange-500 via-amber-700 to-stone-950'

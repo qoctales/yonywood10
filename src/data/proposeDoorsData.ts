@@ -126,7 +126,7 @@ export const PROPOSE_DOORS: ProposeDoor[] = DIMENSIONS.map((dim, idx) => {
       icon: createDoorIcon('16-series/_dimension'),
       tagline: 'Racontez votre histoire face à un alter ego d’un autre continent.',
       videoUrl: STOCK_VIDEOS[0],
-      posterUrl: '/Posters/Onboardings/choixdesseries.png',
+      posterUrl: '/Posters/Onboardings/series-feed-hero.jpg',
       actionDoorLabel: 'Choisir cette porte',
       advantages: [
         'Dialogue face-à-face avec un alter ego d’un autre continent.',

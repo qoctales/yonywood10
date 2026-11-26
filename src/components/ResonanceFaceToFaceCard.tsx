@@ -11,6 +11,7 @@ interface ResonanceFaceToFaceCardProps {
   duoQuestion?: string;
   duoId?: string;
   isActive?: boolean;
+  canEvaluate?: boolean;
   onNavigateToSlide?: (slideIndex: 0 | 1 | 2) => void;
   onNavigateToPortrait: (protagonistId: string) => void;
 }
@@ -84,6 +85,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
   duoQuestion,
   duoId = 'default-duo',
   isActive = true,
+  canEvaluate = false,
   onNavigateToSlide,
   onNavigateToPortrait,
 }) => {
@@ -109,6 +111,12 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
 
   // Onglet actif : 'question' par défaut
   const [activeTab, setActiveTab] = useState<'question' | 'evaluation'>('question');
+
+  useEffect(() => {
+    if (!canEvaluate && activeTab === 'evaluation') {
+      setActiveTab('question');
+    }
+  }, [canEvaluate, activeTab]);
 
   // Question nettoyée et découpée en mots
   const cleanQuestion = useMemo(() => {
@@ -290,19 +298,28 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
                 <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
-              {/* Icône Award (Évaluation / Résonance) */}
+              {/* Icône Award (Évaluation / Résonance) — grisée tant que les 2 vidéos n'ont pas été regardées 5 s */}
               <button
                 type="button"
+                disabled={!canEvaluate}
+                aria-disabled={!canEvaluate}
                 onClick={() => {
+                  if (!canEvaluate) return;
                   setActiveTab('evaluation');
                   celestialAudio.playOrbSelect();
                 }}
-                className={`p-1.5 rounded-full transition-all cursor-pointer ${
-                  activeTab === 'evaluation'
-                    ? 'bg-[#A2482B] text-white shadow-xs'
-                    : 'text-stone-400 hover:text-stone-700'
+                className={`p-1.5 rounded-full transition-all ${
+                  !canEvaluate
+                    ? 'text-stone-300 opacity-45 cursor-not-allowed'
+                    : activeTab === 'evaluation'
+                      ? 'bg-[#A2482B] text-white shadow-xs cursor-pointer'
+                      : 'text-stone-400 hover:text-stone-700 cursor-pointer'
                 }`}
-                title="Afficher l'évaluation"
+                title={
+                  canEvaluate
+                    ? "Afficher l'évaluation"
+                    : 'Regardez au moins 5 secondes des deux vidéos pour évaluer'
+                }
                 aria-label="Afficher l'évaluation"
               >
                 <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4" />

@@ -11,7 +11,6 @@ import {
   Upload,
   Volume2,
   VolumeX,
-  DoorOpen,
   ArrowRight,
   ChevronLeft,
   AlertCircle
@@ -26,7 +25,7 @@ import {
   updateUserVideoThumbnail,
   trySaveUserVideoSubmission
 } from '../../utils/userVideoService';
-import { TvPlayerIcon } from '../YonywoodBrandIcons';
+import { TvPlayerIcon, LegbaDoorIcon } from '../YonywoodBrandIcons';
 import { StageCarousel3D } from '../shared/StageCarousel3D';
 import { StageBreadcrumb } from '../shared/StageBreadcrumb';
 import { CardWidthModal } from '../shared/CardWidthModal';
@@ -303,7 +302,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
       universe: selectedCategory,
       profileTab: selectedCategory,
       videoUrl: newVideoPreviewUrl || '/sample.mp4',
-      thumbnailUrl: profile.avatarUrl || '/Posters/Onboardings/mesvideos.png'
+      thumbnailUrl: profile.avatarUrl || '/Posters/Onboardings/mes-videos-hero.jpg'
     });
 
     if ('error' in result) {
@@ -347,9 +346,10 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
               return (
                 <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513] cursor-pointer">
                   <img
-                    src="/Posters/Onboardings/mesvideos.png"
+                    src="/Posters/Onboardings/mes-videos-hero.jpg"
                     alt="Ajouter une vidéo"
-                    className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+                    referrerPolicy="no-referrer"
+                    className="absolute inset-0 w-full h-full object-cover opacity-45 pointer-events-none"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/90 pointer-events-none" />
 
@@ -393,7 +393,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       }}
                       className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] text-white font-medium text-xs shadow-md flex items-center gap-1.5 transition-all cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
                     >
-                      <DoorOpen className="w-3.5 h-3.5 text-white/90" />
+                      <LegbaDoorIcon className="w-3.5 h-3.5 text-white/90" />
                       <span>Déposer</span>
                     </button>
                   </div>
@@ -410,7 +410,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 {isPlaying ? (
                   <video
                     src={video.videoUrl || '/sample.mp4'}
-                    poster={video.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
+                    poster={video.thumbnailUrl || '/Posters/Onboardings/mes-videos-hero.jpg'}
                     autoPlay
                     loop
                     playsInline
@@ -419,12 +419,13 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                   />
                 ) : (
                   <img
-                    src={video.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
+                    src={video.thumbnailUrl || '/Posters/Onboardings/mes-videos-hero.jpg'}
                     alt={video.title}
+                    referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.onerror = null;
-                      target.src = '/Posters/Onboardings/mesvideos.png';
+                      target.src = '/Posters/Onboardings/mes-videos-hero.jpg';
                     }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
@@ -607,7 +608,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 <video
                   ref={videoPreviewRef}
                   src={coverModalVideo.videoUrl || '/sample.mp4'}
-                  poster={coverModalVideo.thumbnailUrl || '/Posters/Onboardings/mesvideos.png'}
+                  poster={coverModalVideo.thumbnailUrl || '/Posters/Onboardings/mes-videos-hero.jpg'}
                   crossOrigin="anonymous"
                   playsInline
                   muted
@@ -891,7 +892,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                     Passer par le Studio complet
                   </p>
                 </div>
-                <DoorOpen className="w-3.5 h-3.5 shrink-0" />
+                <LegbaDoorIcon className="w-3.5 h-3.5 shrink-0" />
               </button>
             </div>
           </div>

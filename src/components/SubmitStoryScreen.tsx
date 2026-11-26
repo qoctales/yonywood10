@@ -5,7 +5,6 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  DoorOpen,
   Scroll,
   X,
   UploadCloud,
@@ -14,9 +13,6 @@ import {
   Check,
   AtSign,
   Loader2,
-  Eye,
-  Users,
-  Film,
   Minus,
   Plus
 } from 'lucide-react';
@@ -25,13 +21,14 @@ import { STUDIO_PILLARS, StudioPillar, StudioPillarItem } from '../data/studioPi
 import { DOCUMENTARIES } from '../data/mockData';
 import { SERIES_REGISTRY, resolveCanonicalSeriesId, resolveSeriesById, SeriesSide } from '../data/seriesRegistry';
 import { TvPlayerIcon, ProductionTokenIcon } from './YonywoodBrandIcons';
+import { LegbaArchButton } from './shared/LegbaArchButton';
 import { CardWidthModal } from './shared/CardWidthModal';
 import { StageCarousel3D } from './shared/StageCarousel3D';
 import {
   addUserCoproduction,
   getSeriesStats,
-  formatViewsCompact,
-  DEMO_SHARE_UNIT_EUR
+  formatFcfa,
+  DEMO_SHARE_UNIT_FCFA
 } from '../utils/coproductionService';
 import { celestialAudio } from '../utils/celestialAudio';
 import { episodeVoiceReader } from '../utils/episodeVoiceReader';
@@ -495,6 +492,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
   // 6. Modale Synopsis (Papyrus) - largeur ajustée à la carte vidéo
   const [synopsisModalItem, setSynopsisModalItem] = useState<StudioPillar | StudioPillarItem | null>(null);
+  const [isSynopsisModalPlaying, setIsSynopsisModalPlaying] = useState(false);
+  const [isSynopsisModalLoading, setIsSynopsisModalLoading] = useState(false);
   const [coproduceModalSeriesId, setCoproduceModalSeriesId] = useState<string | null>(null);
   const [coproduceShares, setCoproduceShares] = useState<number>(1);
 
@@ -527,17 +526,20 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     }, 2400);
   };
 
-  const closeSynopsisModal = useCallback(() => {
-    setSynopsisModalItem(null);
-  }, []);
-
   const stopVoicePlayback = useCallback(() => {
     episodeVoiceReader.stop();
     setIsAudioLoading(false);
     setPlayingCardId(null);
     setTypingCardId(null);
     setTypingQuestionProgress(1);
+    setIsSynopsisModalPlaying(false);
+    setIsSynopsisModalLoading(false);
   }, []);
+
+  const closeSynopsisModal = useCallback(() => {
+    stopVoicePlayback();
+    setSynopsisModalItem(null);
+  }, [stopVoicePlayback]);
 
   useEffect(() => {
     return () => {
@@ -634,6 +636,53 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     activeCastingCategory !== null &&
     !isSideSelectionLevel &&
     !selectedFinalChoice;
+  const isTrailerSynopsisModal = Boolean(
+    synopsisModalItem &&
+      isLevel1 &&
+      (activePillar?.id === 'focus' || activePillar?.id === 'duos')
+  );
+
+  useEffect(() => {
+    if (!isTrailerSynopsisModal || !synopsisModalItem?.subtitle) return;
+    episodeVoiceReader.preload(
+      {
+        mode: 'trailer',
+        synopsis: synopsisModalItem.subtitle,
+      },
+      { cacheOnly: false }
+    );
+  }, [isTrailerSynopsisModal, synopsisModalItem]);
+
+  const handleToggleSynopsisModalVoice = useCallback(() => {
+    if (!synopsisModalItem?.subtitle) return;
+    if (isSynopsisModalPlaying || isSynopsisModalLoading) {
+      stopVoicePlayback();
+      return;
+    }
+
+    stopVoicePlayback();
+    episodeVoiceReader.speak({
+      mode: 'trailer',
+      synopsis: synopsisModalItem.subtitle,
+      onLoadStart: () => {
+        setIsSynopsisModalLoading(true);
+        setIsSynopsisModalPlaying(false);
+      },
+      onStart: () => {
+        setIsSynopsisModalLoading(false);
+        setIsSynopsisModalPlaying(true);
+      },
+      onEnd: () => {
+        setIsSynopsisModalLoading(false);
+        setIsSynopsisModalPlaying(false);
+      },
+      onError: (msg) => {
+        setIsSynopsisModalLoading(false);
+        setIsSynopsisModalPlaying(false);
+        showToast(msg || "La lecture vocale n'est pas disponible.");
+      },
+    });
+  }, [synopsisModalItem, isSynopsisModalPlaying, isSynopsisModalLoading, stopVoicePlayback]);
 
   const chosenSeriesSide: SeriesSide | null =
     activeRegistrySeries && selectedSeriesSide
@@ -701,14 +750,16 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     if (!activeItem) return;
 
     const isPortraitQuestion = isLevel1 && activePillar?.id === 'soi';
+    const isTrailerSeriesCard =
+      isLevel1 && (activePillar?.id === 'focus' || activePillar?.id === 'duos');
     const timer = window.setTimeout(() => {
       if ((isLevel1 || isSideSelectionLevel) && !isPortraitQuestion && activeItem.subtitle) {
         episodeVoiceReader.preload(
           {
-            mode: 'synopsis',
+            mode: isLevel1 ? 'trailer' : 'synopsis',
             synopsis: activeItem.subtitle,
           },
-          { cacheOnly: true }
+          { cacheOnly: !isTrailerSeriesCard }
         );
       } else if ((isLevel2 || isPortraitQuestion) && activeItem.question) {
         episodeVoiceReader.preload(
@@ -1239,17 +1290,6 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                   </div>
                 )}
 
-                {selectedFinalChoice.consigne && (
-                  <div className="bg-[#A2482B]/5 border border-[#A2482B]/20 rounded-xl px-3 py-2 space-y-0.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block">
-                      Consigne aux participants
-                    </span>
-                    <p className="text-[11.5px] text-stone-700 leading-relaxed">
-                      {selectedFinalChoice.consigne}
-                    </p>
-                  </div>
-                )}
-
                 {selectedFinalChoice.roles && selectedFinalChoice.roles.length > 0 && (
                   <div className="space-y-1.5 pt-0.5">
                     <span className="text-[11px] font-semibold text-stone-600 block">
@@ -1639,18 +1679,15 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 </div>
 
                 {/* Bas de carte : Uniquement le bouton Choisir en bas à droite */}
-                <div className="relative z-10 w-full flex items-center justify-end pointer-events-auto pt-1 sm:pt-2">
-                  <button
-                    type="button"
-                    onClick={() => {
+                <div className="relative z-10 w-full flex items-end justify-end pointer-events-auto pt-1 sm:pt-2">
+                  <LegbaArchButton
+                    isCenterAction={true}
+                    resetKey="studio-duo-upload"
+                    onActivate={() => {
                       setIsUploadScreenActive(true);
                       setDuoPreviewVideo(null);
                     }}
-                    className="px-2.5 sm:px-3 py-1 sm:py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-[10.5px] sm:text-[12px] shadow-md flex items-center gap-1 sm:gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                  >
-                    <DoorOpen className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90" />
-                    <span>Choisir</span>
-                  </button>
+                  />
                 </div>
               </div>
 
@@ -1719,21 +1756,18 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 </div>
 
                 {/* Bas de carte : Uniquement le bouton Choisir en bas à droite */}
-                <div className="relative z-10 w-full flex items-center justify-end pointer-events-auto pt-1 sm:pt-2">
-                  <button
-                    type="button"
-                    onClick={() => onNavigate({ 
+                <div className="relative z-10 w-full flex items-end justify-end pointer-events-auto pt-1 sm:pt-2">
+                  <LegbaArchButton
+                    isCenterAction={true}
+                    resetKey="studio-duo-expert"
+                    onActivate={() => onNavigate({ 
                       type: 'request_videographer',
                       returnPillarId: activePillar?.id,
                       returnCastingCategoryId: activeCastingCategory?.id,
                       returnFinalChoiceId: selectedFinalChoice?.id,
                       returnPartId: selectedSeriesSide || selectedPartId
                     })}
-                    className="px-2.5 sm:px-3 py-1 sm:py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-[10.5px] sm:text-[12px] shadow-md flex items-center gap-1 sm:gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                  >
-                    <DoorOpen className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90" />
-                    <span>Choisir</span>
-                  </button>
+                  />
                 </div>
               </div>
 
@@ -1758,7 +1792,6 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
           showDesktopArrows={SHOW_CAROUSEL_ARROWS}
           prevAriaLabel="Direction précédente"
           nextAriaLabel="Direction suivante"
-          onActiveCardClick={(pillar) => handleSelectPillar(pillar)}
           renderCard={(pillar, idx, { isCenter }) => {
             const isPlaying = playingCardId === pillar.id && isCenter;
 
@@ -1845,7 +1878,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
                 {/* BAS : Papyrus (synopsis) à gauche + Choisir à droite */}
                 <div
-                  className="relative z-10 w-full flex items-center justify-between pointer-events-auto pt-2"
+                  className="relative z-10 w-full flex items-end justify-between pointer-events-auto pt-2"
                   onMouseDown={(e) => e.stopPropagation()}
                   onTouchStart={(e) => e.stopPropagation()}
                 >
@@ -1857,29 +1890,21 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       setSynopsisModalItem(pillar);
                       celestialAudio?.playOrbSelect?.();
                     }}
-                    className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title="Lire le synopsis"
                   >
                     <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                   </button>
 
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (!isCenter) {
-                        setSelectedPillarIndex(idx);
-                        setPlayingCardId(null);
-                      } else {
-                        handleSelectPillar(pillar);
-                      }
+                  <LegbaArchButton
+                    isCenterAction={isCenter}
+                    resetKey={`studio-level0-${pillar.id}`}
+                    onCenterCard={() => {
+                      setSelectedPillarIndex(idx);
+                      setPlayingCardId(null);
                     }}
-                    className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                  >
-                    <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                    <span>Choisir</span>
-                  </button>
+                    onActivate={() => handleSelectPillar(pillar)}
+                  />
                 </div>
               </div>
             );
@@ -1988,18 +2013,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                         didDragRef.current = false;
                         return;
                       }
-                      if (isCenter) {
-                        if (isLevel0) {
-                          handleSelectPillar(item as StudioPillar);
-                        } else if (isSideSelectionLevel) {
-                          handleSelectSeriesSide(item.id as 'part-a' | 'part-b');
-                        } else if (hasSubCategories) {
-                          handleSelectCastingCategory(item as StudioPillarItem);
-                        } else {
-                          // Pour les feuilles terminales (épisodes d'une série, Lumière, Portrait ou sous-thème Casting)
-                          handleSelectFinalChoice(item as StudioPillarItem);
-                        }
-                      } else {
+                      if (!isCenter) {
                         // Clic sur une carte latérale : la faire pivoter immédiatement au centre
                         stopVoicePlayback();
                         setCurrentIndex(idx);
@@ -2013,8 +2027,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       pointerEvents,
                       transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                     }}
-                    className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 cursor-pointer select-none bg-[#151513] text-white border transition-colors ${
-                      isCenter ? 'border-stone-200/90 ring-1 ring-white/30' : 'border-white/15 [&_*]:!pointer-events-none'
+                    className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#151513] text-white border transition-colors ${
+                      isCenter ? 'border-stone-200/90 ring-1 ring-white/30' : 'border-white/15 cursor-pointer [&_*]:!pointer-events-none'
                     }`}
                   >
                     {/* Image d'illustration cinéma OU Vidéo si lecture activée (affiche animée en zoom/dézoom pour cartes audio) */}
@@ -2134,7 +2148,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                                 episodeVoiceReader.speak(
                                   isSynopsisAudioMode
                                     ? {
-                                        mode: 'synopsis',
+                                        mode: isSeriesAudioCard ? 'trailer' : 'synopsis',
                                         synopsis: castingItem.subtitle,
                                         onLoadStart: () => setIsAudioLoading(true),
                                         onStart: () => setIsAudioLoading(false),
@@ -2284,7 +2298,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     {/* À droite : Bouton discret « Choisir » avec icône de porte */}
                     {/* ========================================================= */}
                     <div 
-                      className="relative z-10 w-full flex items-center justify-between pointer-events-auto pt-2"
+                      className="relative z-10 w-full flex items-end justify-between pointer-events-auto pt-2"
                       onMouseDown={(e) => e.stopPropagation()}
                       onTouchStart={(e) => e.stopPropagation()}
                     >
@@ -2298,7 +2312,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                             setSynopsisModalItem(item);
                             celestialAudio?.playOrbSelect?.();
                           }}
-                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                           title="Lire le synopsis"
                         >
                           <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
@@ -2318,7 +2332,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                               setCoproduceModalSeriesId(castingItem.seriesId || castingItem.id);
                               celestialAudio?.playOrbSelect?.();
                             }}
-                            className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                            className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                             title="Coproduire"
                             aria-label={`Coproduire ${item.title}`}
                           >
@@ -2331,82 +2345,42 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       <div>
                         {/* 1. Niveau 0 : Choisir */}
                         {isLevel0 && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (!isCenter) {
-                                setCurrentIndex(idx);
-                              } else {
-                                handleSelectPillar(item as StudioPillar);
-                              }
-                            }}
-                            className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                          >
-                            <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                            <span>Choisir</span>
-                          </button>
+                          <LegbaArchButton
+                            isCenterAction={isCenter}
+                            resetKey={`studio-c-l0-${item.id}`}
+                            onCenterCard={() => setCurrentIndex(idx)}
+                            onActivate={() => handleSelectPillar(item as StudioPillar)}
+                          />
                         )}
 
                         {/* 1b. Sélection du côté (A ou B) : Choisir */}
                         {isSideSelectionLevel && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (!isCenter) {
-                                setCurrentIndex(idx);
-                              } else {
-                                handleSelectSeriesSide(item.id as 'part-a' | 'part-b');
-                              }
-                            }}
-                            className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                          >
-                            <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                            <span>Choisir</span>
-                          </button>
+                          <LegbaArchButton
+                            isCenterAction={isCenter}
+                            resetKey={`studio-c-side-${activeCastingCategory?.id || ''}-${item.id}`}
+                            onCenterCard={() => setCurrentIndex(idx)}
+                            onActivate={() => handleSelectSeriesSide(item.id as 'part-a' | 'part-b')}
+                          />
                         )}
 
                         {/* 2. Niveau 1 (Séries / Casting avec sous-catégories) : Choisir */}
                         {hasSubCategories && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (!isCenter) {
-                                setCurrentIndex(idx);
-                              } else {
-                                handleSelectCastingCategory(item as StudioPillarItem);
-                              }
-                            }}
-                            className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                          >
-                            <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                            <span>Choisir</span>
-                          </button>
+                          <LegbaArchButton
+                            isCenterAction={isCenter}
+                            resetKey={`studio-c-sub-${activePillar?.id || ''}-${item.id}`}
+                            onCenterCard={() => setCurrentIndex(idx)}
+                            onActivate={() => handleSelectCastingCategory(item as StudioPillarItem)}
+                          />
                         )}
 
                         {/* 3. Choix final (Questions de série, Lumière, Portrait ou sous-thématiques Casting) */}
                         {(!isLevel0 && !isSideSelectionLevel && !hasSubCategories) && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (!isCenter) {
-                                setCurrentIndex(idx);
-                              } else {
-                                handleSelectFinalChoice(item as StudioPillarItem);
-                              }
-                            }}
-                            className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white font-medium text-xs sm:text-[12px] shadow-md flex items-center gap-1.5 transition-all duration-200 cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
-                          >
-                            <DoorOpen className="w-3.5 h-3.5 text-white/90" />
-                            <span>Choisir</span>
-                          </button>
+                          <LegbaArchButton
+                            isCenterAction={isCenter}
+                            resetKey={`studio-c-final-${activePillar?.id || ''}-${activeCastingCategory?.id || ''}-${item.id}`}
+                            onCenterCard={() => setCurrentIndex(idx)}
+                            onActivate={() => handleSelectFinalChoice(item as StudioPillarItem)}
+                          />
                         )}
                       </div>
                     </div>
@@ -2443,7 +2417,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
             className="w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] max-h-[78dvh] bg-[#FAF7F2] rounded-3xl p-4 sm:p-5 shadow-2xl border border-stone-200 flex flex-col gap-3 animate-modal-sheet text-stone-800"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header épuré : Papyrus + Nom de la carte + Fermer */}
+            {/* Header épuré : Papyrus + Nom de la carte + Lecture bande-annonce / Fermer */}
             <div className="flex items-center gap-2 border-b border-stone-200/80 pb-2.5 shrink-0">
               <div className="w-7 h-7 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
                 <Scroll className="w-3.5 h-3.5" />
@@ -2458,19 +2432,47 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                   </span>
                 )}
               </div>
-              <button
-                type="button"
-                onClick={closeSynopsisModal}
-                className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-                title="Fermer"
-                aria-label="Fermer"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
+              {isTrailerSynopsisModal ? (
+                <button
+                  type="button"
+                  onClick={handleToggleSynopsisModalVoice}
+                  className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
+                    isSynopsisModalPlaying || isSynopsisModalLoading
+                      ? 'bg-[#A2482B] border-[#A2482B] text-white'
+                      : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
+                  }`}
+                  title={
+                    isSynopsisModalLoading
+                      ? 'Chargement de la voix...'
+                      : isSynopsisModalPlaying
+                        ? 'Arrêter la lecture du synopsis'
+                        : 'Écouter le synopsis'
+                  }
+                  aria-label={isSynopsisModalPlaying ? 'Arrêter la lecture du synopsis' : 'Écouter le synopsis'}
+                >
+                  {isSynopsisModalLoading ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : isSynopsisModalPlaying ? (
+                    <Pause className="w-3.5 h-3.5 fill-current" />
+                  ) : (
+                    <TvPlayerIcon className="w-4 h-4" strokeWidth={1.75} />
+                  )}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={closeSynopsisModal}
+                  className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                  title="Fermer"
+                  aria-label="Fermer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
 
-            {/* Corps de la présentation textuelle : synopsis (+ consigne & question(s) si Focus) */}
-            <div className="py-1 space-y-2.5 overflow-y-auto pr-1 min-h-0">
+            {/* Corps de la présentation textuelle : uniquement le synopsis */}
+            <div className="py-1 overflow-y-auto pr-1 min-h-0">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-1">
                   Synopsis
@@ -2479,65 +2481,23 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                   {synopsisModalItem.subtitle}
                 </p>
               </div>
-
-              {'consigne' in synopsisModalItem && synopsisModalItem.consigne && (
-                <div className="pt-2 border-t border-stone-200/80">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block mb-1">
-                    Consigne aux participants
-                  </span>
-                  <p className="text-stone-700 text-[11.5px] sm:text-xs leading-relaxed">
-                    {synopsisModalItem.consigne}
-                  </p>
-                </div>
-              )}
-
-              {activePillar?.id === 'focus' && 'subCategories' in synopsisModalItem && Array.isArray(synopsisModalItem.subCategories) && synopsisModalItem.subCategories.length > 0 ? (
-                <div className="pt-2 border-t border-stone-200/80 space-y-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block">
-                    Les 4 questions
-                  </span>
-                  <div className="space-y-1.5">
-                    {synopsisModalItem.subCategories.map((sub) => (
-                      <div key={sub.id} className="rounded-xl bg-white/80 border border-stone-200/70 p-2 space-y-0.5">
-                        <div className="text-[10px] font-bold text-[#A2482B] uppercase tracking-wide">
-                          {[sub.badge, sub.episodeTitle].filter(Boolean).join(' · ')}
-                        </div>
-                        <p className="text-stone-800 text-[11.5px] sm:text-xs font-normal leading-relaxed">
-                          {sub.question}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (activePillar?.id === 'focus' || activePillar?.id === 'soi') && 'question' in synopsisModalItem && synopsisModalItem.question ? (
-                <div className="pt-2 border-t border-stone-200/80">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A2482B] block mb-1">
-                    {('badge' in synopsisModalItem && synopsisModalItem.badge && !/^question\b/i.test(synopsisModalItem.badge))
-                      ? `${synopsisModalItem.badge}${synopsisModalItem.episodeTitle && synopsisModalItem.episodeTitle !== synopsisModalItem.title ? ` · ${synopsisModalItem.episodeTitle}` : ''}`
-                      : (synopsisModalItem.episodeTitle && synopsisModalItem.episodeTitle !== synopsisModalItem.title ? synopsisModalItem.episodeTitle : 'Question')}
-                  </span>
-                  <p className="text-stone-800 text-xs sm:text-[12.5px] font-normal leading-relaxed">
-                    {synopsisModalItem.question}
-                  </p>
-                </div>
-              ) : null}
             </div>
           </div>
         </div>
       )}
 
       {/* ========================================================================= */}
-      {/* 4b. MODALE COPRODUCTION SÉRIE                                             */}
+      {/* 4b. MODALE PARTICIPATION SÉRIE                                            */}
       {/* ========================================================================= */}
       <CardWidthModal
         isOpen={Boolean(coproduceModalSeriesId)}
         onClose={() => setCoproduceModalSeriesId(null)}
-        ariaLabel="Coproduire une série"
+        ariaLabel="Soutenir cette série"
         className="p-4 sm:p-5 space-y-3 text-stone-800"
       >
         {coproduceModalSeriesId && (() => {
           const stats = getSeriesStats(coproduceModalSeriesId);
-          const totalAmount = coproduceShares * DEMO_SHARE_UNIT_EUR;
+          const totalAmount = coproduceShares * DEMO_SHARE_UNIT_FCFA;
 
           return (
             <>
@@ -2561,30 +2521,16 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 </button>
               </div>
 
-              <div className="grid grid-cols-3 gap-2">
-                <div className="rounded-xl bg-white border border-stone-200 p-2 text-center">
-                  <Eye className="w-3.5 h-3.5 text-[#A2482B] mx-auto mb-0.5" />
-                  <div className="text-xs font-bold text-stone-900">
-                    {formatViewsCompact(stats.viewsCount)}
-                  </div>
-                  <div className="text-[9.5px] text-stone-500">Vues</div>
-                </div>
-                <div className="rounded-xl bg-white border border-stone-200 p-2 text-center">
-                  <Users className="w-3.5 h-3.5 text-[#A2482B] mx-auto mb-0.5" />
-                  <div className="text-xs font-bold text-stone-900">{stats.duosCount}</div>
-                  <div className="text-[9.5px] text-stone-500">Duos</div>
-                </div>
-                <div className="rounded-xl bg-white border border-stone-200 p-2 text-center">
-                  <Film className="w-3.5 h-3.5 text-[#A2482B] mx-auto mb-0.5" />
-                  <div className="text-xs font-bold text-stone-900">{stats.videosCount}</div>
-                  <div className="text-[9.5px] text-stone-500">Vidéos</div>
-                </div>
+              <div className="rounded-xl bg-white border border-stone-200 p-3 text-center">
+                <p className="text-xs sm:text-[12.5px] text-stone-700 leading-relaxed font-medium">
+                  Devenez coproducteur de cette série et participez au partage d&apos;histoires importantes.
+                </p>
               </div>
 
               <div className="rounded-xl bg-white border border-stone-200 p-2.5 sm:p-3 space-y-2">
                 <div className="flex items-center justify-between text-[11px] text-stone-600">
                   <span>Prix de la part</span>
-                  <span className="font-semibold text-stone-900">{DEMO_SHARE_UNIT_EUR} €</span>
+                  <span className="font-semibold text-stone-900">{formatFcfa(DEMO_SHARE_UNIT_FCFA)}</span>
                 </div>
 
                 <div className="flex items-center justify-between gap-2">
@@ -2635,7 +2581,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
                 <div className="border-t border-stone-100 pt-2 flex items-center justify-between">
                   <span className="text-[11px] font-medium text-stone-600">Total</span>
-                  <span className="text-xs sm:text-sm font-bold text-stone-900">{totalAmount} €</span>
+                  <span className="text-xs sm:text-sm font-bold text-stone-900">{formatFcfa(totalAmount)}</span>
                 </div>
               </div>
 
@@ -2645,16 +2591,12 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                   addUserCoproduction(stats.seriesId, coproduceShares);
                   setCoproduceModalSeriesId(null);
                   celestialAudio?.playOrbSelect?.();
-                  showToast(`Coproduction ajoutée : ${stats.seriesTitle}`);
+                  showToast(`Participation enregistrée : ${stats.seriesTitle}`);
                 }}
                 className="w-full py-2.5 rounded-xl bg-[#A2482B] hover:bg-[#8A3B22] active:bg-[#7A321B] text-white text-xs font-semibold shadow-md transition-all cursor-pointer active:scale-[0.98]"
               >
                 Acquérir
               </button>
-
-              <p className="text-[9.5px] text-stone-400 text-center tracking-wide">
-                Coproduction
-              </p>
             </>
           );
         })()}

@@ -3,7 +3,9 @@ import {
   ChevronLeft, 
   ChevronRight, 
   X, 
-  Film
+  Film,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import { celestialAudio } from '../utils/celestialAudio';
 import { apiService } from '../services/api';
@@ -22,6 +24,22 @@ import { STAGE_CARD_DIMENSIONS_CLASS, STAGE_PERSPECTIVE, STAGE_CENTER_TRANSLATE_
 import { SHOW_CAROUSEL_ARROWS } from '../config/flags';
 
 const SHOW_TOP_STORIES_BANNER = false;
+const MIN_EVAL_WATCH_SECONDS = 5;
+const DUO_WATCH_STORAGE_KEY = 'yonywood_duo_watch_progress';
+
+type DuoWatchProgressMap = Record<string, { a: number; b: number }>;
+
+function loadDuoWatchProgress(): DuoWatchProgressMap {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = localStorage.getItem(DUO_WATCH_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+}
 
 interface DuoFeedScreenProps {
   onNavigate: (screen: ViewScreen) => void;
@@ -60,6 +78,11 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
   // Modales
   const [showQuestionModal, setShowQuestionModal] = useState(false);
   const [shareModalItem, setShareModalItem] = useState<{ title: string; id: string } | null>(null);
+
+  // Suivi du temps de visionnage réel par vidéo (A et B) pour autoriser l'évaluation (>= 60 s chacune)
+  const [watchProgressByDuo, setWatchProgressByDuo] = useState<DuoWatchProgressMap>(() => loadDuoWatchProgress());
+  const watchProgressRef = useRef<DuoWatchProgressMap>(watchProgressByDuo);
+  watchProgressRef.current = watchProgressByDuo;
 
   // Vidéos bloquées
   const [blockedIds, setBlockedIds] = useState<string[]>(() => getBlockedVideoIds());
@@ -290,21 +313,69 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isStoryViewerOpen, showQuestionModal, shareModalItem]);
 
-  // Synchronisation du curseur de progression pendant la lecture
+  // Synchronisation du curseur de progression et cumul du temps regardé réel (A et B)
+  const activeDuoId = currentItem?.type === 'duo' ? currentItem.data.id : undefined;
+
   useEffect(() => {
-    let interval: any;
-    if (isPlaying) {
-      interval = setInterval(() => {
-        if (videoRef.current && videoRef.current.duration) {
-          const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
-          setVideoProgress(pct);
-        }
-      }, 100);
-    } else {
+    if (!isPlaying) {
       setVideoProgress(0);
+      return;
     }
-    return () => clearInterval(interval);
-  }, [isPlaying]);
+
+    let lastTickMs = Date.now();
+    let lastSavedMs = Date.now();
+
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const vid = videoRef.current;
+
+      if (vid && vid.duration) {
+        const pct = (vid.currentTime / vid.duration) * 100;
+        setVideoProgress(pct);
+      }
+
+      const isActivelyPlaying =
+        Boolean(vid) &&
+        !vid!.paused &&
+        !vid!.ended &&
+        vid!.readyState >= 2;
+
+      if (activeDuoId && (slideIndex === 0 || slideIndex === 2) && isActivelyPlaying) {
+        const deltaSec = Math.min(0.5, Math.max(0, (now - lastTickMs) / 1000));
+        if (deltaSec > 0) {
+          const sideKey = slideIndex === 0 ? 'a' : 'b';
+          setWatchProgressByDuo((prev) => {
+            const current = prev[activeDuoId] || { a: 0, b: 0 };
+            const updatedEntry = {
+              ...current,
+              [sideKey]: current[sideKey] + deltaSec,
+            };
+            const next = { ...prev, [activeDuoId]: updatedEntry };
+            watchProgressRef.current = next;
+            if (now - lastSavedMs >= 1000) {
+              lastSavedMs = now;
+              try {
+                localStorage.setItem(DUO_WATCH_STORAGE_KEY, JSON.stringify(next));
+              } catch {
+                // ignore quota errors
+              }
+            }
+            return next;
+          });
+        }
+      }
+      lastTickMs = now;
+    }, 200);
+
+    return () => {
+      clearInterval(interval);
+      try {
+        localStorage.setItem(DUO_WATCH_STORAGE_KEY, JSON.stringify(watchProgressRef.current));
+      } catch {
+        // ignore quota errors
+      }
+    };
+  }, [isPlaying, activeDuoId, slideIndex]);
 
   // Touch Swipe avec retour visuel immédiat (drag)
   const handleCardTouchStart = (e: React.TouchEvent) => {
@@ -649,16 +720,26 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                   >
                     {idx === 1 ? (
                       /* VOLET 2 : LA CARTE D'ÉVALUATION ET DE RÉSONANCE AU CENTRE DU TRIPTYQUE */
-                      <ResonanceFaceToFaceCard
-                        protagonistA={pA}
-                        protagonistB={pB}
-                        seriesTitle={rawSeriesTitle}
-                        duoQuestion={duoQuestion}
-                        duoId={currentDuo.id}
-                        isActive={isCenter}
-                        onNavigateToSlide={goToSlide}
-                        onNavigateToPortrait={(id) => onNavigate({ type: 'profile', protagonistId: id })}
-                      />
+                      (() => {
+                        const duoWatch = watchProgressByDuo[currentDuo.id] || { a: 0, b: 0 };
+                        const canEvaluate =
+                          duoWatch.a >= MIN_EVAL_WATCH_SECONDS &&
+                          duoWatch.b >= MIN_EVAL_WATCH_SECONDS;
+
+                        return (
+                          <ResonanceFaceToFaceCard
+                            protagonistA={pA}
+                            protagonistB={pB}
+                            seriesTitle={rawSeriesTitle}
+                            duoQuestion={duoQuestion}
+                            duoId={currentDuo.id}
+                            isActive={isCenter}
+                            canEvaluate={canEvaluate}
+                            onNavigateToSlide={goToSlide}
+                            onNavigateToPortrait={(id) => onNavigate({ type: 'profile', protagonistId: id })}
+                          />
+                        );
+                      })()
                     ) : (
                       /* VOLET 1 (idx === 0, A) OU VOLET 3 (idx === 2, B) : CARTES VIDÉO DES PROTAGONISTES */
                       (() => {
@@ -735,10 +816,15 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                     e.stopPropagation();
                                     setIsMuted(m => !m);
                                   }}
-                                  className="w-8.5 h-8.5 rounded-xl bg-black/75 text-white hover:bg-[#A2482B] border border-white/15 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
+                                  className="w-8.5 h-8.5 rounded-xl bg-black/75 text-white hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 group"
                                   title={isMuted ? 'Activer le son' : 'Couper le son'}
+                                  aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                                 >
-                                  {isMuted ? <span className="text-xs">🔇</span> : <span className="text-xs">🔊</span>}
+                                  {isMuted ? (
+                                    <VolumeX className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
+                                  ) : (
+                                    <Volume2 className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
+                                  )}
                                 </button>
                               )}
 
