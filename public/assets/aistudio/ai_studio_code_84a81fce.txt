@@ -1,0 +1,165 @@
+# Tâche : Générer les 41 illustrations d'épisodes restantes (Focus & Duocumentaires) et les intégrer dans YonyWood
+
+## Contexte technique
+55 des 96 illustrations d'épisodes (9:16) ont déjà été générées dans `src/assets/images/` et branchées dans `src/data/episodePosters.ts` (utilisé uniquement côté client par `src/data/studioPillarsData.ts` et `src/components/SubmitStoryScreen.tsx`).
+Il reste **41 images à générer** (**6 pour Focus** + **35 pour Duocumentaires**, dont la régénération de `coach_b_ep1` qui contenait une bulle de BD blanche vide) + **1 régénération optionnelle** (`paroles_b_ep2`).
+
+⚠️ **Contraintes techniques d'intégration obligatoires** :
+1. Respecter la limite de requêtes de l'outil `generate_image` (par lots de 9 max / minute si nécessaire).
+2. Enregistrer les images générées et les importer en **ES imports statiques** dans `src/data/episodePosters.ts` (en remplaçant/ajoutant les entrées manquantes dans `FOCUS_EPISODE_POSTERS` et `DUO_EPISODE_POSTERS`).
+3. **Ne jamais** importer `episodePosters.ts` ni aucun `.jpg`/`.png` dans `server.ts`, `src/data/seriesRegistry.ts` ou `src/data/focusData.ts` (car `server.ts` importe dynamiquement `seriesRegistry.ts` et `focusData.ts` sous Node).
+4. Après intégration, lancer `compile_applet` et `lint_applet` pour vérifier le build Vite et TypeScript.
+
+---
+
+## Exigences graphiques & direction artistique (STRICTES)
+Pour **chaque** appel `generate_image`, passer impérativement l'affiche officielle correspondante dans `ImagePaths` (attention aux accents NFD exacts sur disque) et respecter ces règles :
+
+- **Format & Cadrage** : `AspectRatio: "9:16"` (portrait vertical). Une **seule scène unifiée plein cadre** (jamais de collage ni de double panneau haut/bas).
+- **Style visuel** : Illustration éditoriale vectorielle / semi-réaliste (« vector-comic » propre et lisse), contours nets, ombrages en aplats chaleureux, fidèle à 100 % au trait de l'affiche de référence passée dans `ImagePaths`.
+- **Palette & Identité** : Fond et atmosphère **terracotta brûlé / ambre chaud / ocre doré** (dans la continuité des affiches YonyWood), souvent accompagnés d'un **halo solaire doux** ou d'une lumière chaude dorée pour garder une identité commune entre toutes les affiches.
+- **Continuité des personnages** : Conserver **le ou les mêmes protagonistes** que sur l'affiche de référence (même visage, coiffure, lunettes, barbe, tenue emblématique ou accessoires), mais **placés dans une situation, une posture et un décor radicalement différents** de l'affiche principale pour illustrer concrètement la question posée.
+- **Lisibilité UI (important)** : La carte dans l'application affiche la question en texte blanc sur le tiers inférieur (avec un dégradé sombre). Garder la zone des visages et l'action principale dans les **deux tiers supérieurs / centraux**, avec le bas de l'image plus simple ou sans détail critique caché.
+- **Interdictions absolues** :
+  - **Zéro texte**, zéro lettre, zéro chiffre, zéro panneau écrit, zéro logo.
+  - **Zéro bulle de dialogue / bulle de BD** (même vide).
+  - **Zéro écran divisé** (pas de split-screen ni de cases multiples).
+
+---
+
+## A. Illustrations FOCUS restantes (6 images)
+
+### 1. Votre Honneur (`votre-honneur`) — Référence : `/public/Posters/Focus/Votre Honneur.png`
+- **`votre_honneur_q3`** (`q3` — *Cause perdue* : « Racontez la cause que vous avez défendue, ou voulu défendre, alors que tout semblait perdu d'avance, et ce qui vous a fait tenir. »)
+  - **Scène** : La même avocate en robe noire et rabat blanc, cheveux afro bouclés et perles aux oreilles, debout déterminée devant de hautes portes de palais de justice en bronze dans un vent doré au crépuscule, serrant d'épais dossiers contre sa poitrine sous un halo solaire ambre-terracotta.
+
+### 2. Hoxò (`hoxo`) — Référence : `/public/Posters/Focus/Hoxò.png` *(attention au `o\u0300`)*
+- **`hoxo_twins_q1`** (`q1` — *Premier souvenir* : « Racontez votre premier souvenir lié à des jumeaux, que vous en soyez un ou non. »)
+  - **Scène** : Version enfant des mêmes frères jumeaux de la référence, vêtus de tuniques traditionnelles assorties bleu cobalt et crème-doré avec colliers de perles en bois, passant malicieusement la tête autour d'une arche en terre cuite ensoleillée pendant qu'un aîné sourit en arrière-plan.
+
+### 3. Black To Roots (`diasporas`) — Référence : `/public/Posters/Focus/Diasporas.png`
+- **`diasporas_roots_q2`** (`q2` — *Héritage* : « Racontez ce qui vous a été transmis de vos origines (un plat, une langue, un nom, une habitude, un silence), et ce que cela représente pour vous. »)
+  - **Scène** : La jeune femme aux tresses relevées en chignon et casque audio autour du cou (issue du haut de la référence), cuisinant avec émotion dans une cour chaude en terre cuite, remuant une marmite en argile aux côtés d'une grand-mère en pagne traditionnel qui lui transmet un geste culinaire.
+- **`diasporas_roots_q3`** (`q3` — *D'où venez-vous ?* : « Racontez le jour où l'on vous a demandé « d'où venez-vous ? » et où vous n'avez pas su quoi répondre. »)
+  - **Scène** : Le jeune homme à lunettes noires, barbe et sac à dos orange (issu du bas de la référence), pensif dans un grand hall d'aéroport vitré baigné de lumière ambre-terracotta, avions décollant derrière les baies, regardant un bracelet tressé hérité à son poignet (carnet de voyage vierge sans aucun texte).
+
+### 4. Hall des arts (`artistes`) — Référence : `/public/Posters/Focus/Artistes.png`
+- **`hall_arts_q1`** (`q1` — *Œuvre marquante* : « Racontez l'œuvre (chanson, film, tableau, spectacle, livre) qui a changé quelque chose en vous, et où vous étiez ce jour-là. »)
+  - **Scène** : La jeune artiste aux longues tresses et kimono à motifs ocre-terracotta assise fascinée au balcon d'un petit théâtre ou cinéma intimiste dans la pénombre terracotta, visage éclairé par un faisceau doré venu de la scène en contrebas, une main sur le cœur.
+- **`hall_arts_q4`** (`q4` — *Que personne n'oublie* : « Racontez un artiste ou une œuvre que vous voudriez que le monde n'oublie jamais, et pourquoi. »)
+  - **Scène** : La même artiste aux longues tresses dans une cour de musée baignée de soleil terracotta, accrochant avec soin sur un mur d'exposition le portrait lumineux d'un vieux musicien joueur de kora.
+
+---
+
+## B. Illustrations DUOCUMENTAIRES restantes (35 images + 1 optionnelle)
+
+### 1. Modernité ‹ › Tradition (`modernite-tradition`)
+**Côté A — Modernité** — Référence : `/public/Posters/Sides/Modernité.png` *(attention au `e\u0301`)*
+- **`mod_a_ep2`** (`ep2` — *Quand ça lâche* : « Racontez le jour où ce en quoi vous aviez confiance (un remède, une méthode, un outil) vous a laissé tomber, et ce que vous avez fait ensuite. »)
+  - **Scène** : Le médecin barbu à lunettes en blouse blanche assis pensif sur un banc de couloir d'hôpital lors d'une coupure de courant (lumière chaude de secours terracotta), tête appuyée sur sa main tandis que sa collègue infirmière l'observe avec soutien depuis la porte.
+- **`mod_a_ep3`** (`ep3` — *Autre façon* : « Racontez la fois où vous avez vu quelqu'un s'y prendre autrement que vous, et réussir, et ce que cela a remué en vous. »)
+  - **Scène** : Le médecin à lunettes et la chercheuse en blouse de la référence observant avec respect et curiosité depuis le seuil d'une cour ensoleillée un maître artisan/guérisseur âgé réussir un soin ou un assemblage ancestral.
+
+**Côté B — Tradition** — Référence : `/public/Posters/Sides/Tradition.png`
+- **`trad_b_ep2`** (`ep2` — *Quand ça lâche*)
+  - **Scène** : La même tradipraticienne en robe et foulard pagne bleu/rouge/or et perles jaunes, agenouillée avec gravité dans une cour sèche près de bocaux vides et d'herbes fanées de saison sèche, avant de saisir son panier avec détermination.
+- **`trad_b_ep3`** (`ep3` — *Autre façon*)
+  - **Scène** : La même tradipraticienne en pagne coloré invitée dans un laboratoire ou une clinique lumineuse terracotta, se penchant avec curiosité et humilité pour regarder dans un microscope aux côtés d'un médecin en blouse blanche.
+- **`trad_b_ep4`** (`ep4` — *Pas question* : « Racontez ce que vous refusez de changer, même quand tout le monde vous dit que ce serait mieux, et pourquoi. »)
+  - **Scène** : La tradipraticienne serrant contre elle son mortier en bois sculpté et ses bouquets de plantes fraîches devant ses étagères de bocaux d'herbes, déclinant calmement de la main une boîte industrielle moderne posée sur la table.
+
+### 2. Jesus ‹ › Legba (`jesus-legba`)
+**Côté A — Jesus** — Référence : `/public/Posters/Sides/Jesus.png`
+- **`jesus_a_ep2`** (`ep2` — *Silence* : « Racontez un moment où vous avez demandé de l'aide à ce en quoi vous croyez, et où rien n'a semblé répondre. »)
+  - **Scène** : La même femme au voile blanc bordé de motifs dorés et boucles d'oreilles solaires dorées, agenouillée seule sur les marches d'une église au crépuscule dans de profonds ombrages terracotta, mains jointes et regard tourné vers un ciel calme et silencieux.
+- **`jesus_a_ep4`** (`ep4` — *Ce qui reste* : « Racontez ce que vous voudriez que ceux que vous aimez gardent de ce qui vous a tenu debout. »)
+  - **Scène** : La même femme en robe blanche bordée d'or enveloppant tendrement les épaules d'un jeune enfant de son châle blanc et or près d'une fenêtre ensoleillée laissant entrer une lumière dorée chaleureuse.
+
+**Côté B — Legba** — Référence : `/public/Posters/Sides/Legba.png`
+- **`legba_b_ep2`** (`ep2` — *Silence*)
+  - **Scène** : La même femme en turban et robe blanche bordée d'or avec colliers de perles, assise silencieusement seule au crépuscule dans une cour terracotta près de tambours immobiles et d'un récipient rituélique, fixant la flamme calme d'une lampe à huile.
+- **`legba_b_ep4`** (`ep4` — *Ce qui reste*)
+  - **Scène** : La même femme agenouillée dans une cour baignée de soleil et halo doré, guidant avec douceur les mains d'un jeune enfant sur un tambour traditionnel, transmise dans la sérénité.
+
+### 3. PhD ‹ › Apprentis (`phd-apprentis`)
+**Côté A — PhD** — Référence : `/public/Posters/Sides/PhD.png`
+- **`phd_a_ep3`** (`ep3` — *Encore apprendre* : « Racontez ce que vous voudriez encore apprendre dans votre vie, et ce qui vous en a empêché jusqu'ici. »)
+  - **Scène** : La chercheuse en tailleur crème à lunettes et chignon tressé et son collègue en costume bleu marine, carnets en main, observant avec humilité et admiration un vieux maître potier ou tisserand travailler dans un atelier ensoleillé terracotta.
+- **`phd_a_ep4`** (`ep4` — *Tenir bon* : « Racontez la personne grâce à qui vous n'avez pas abandonné, un jour où vous n'en pouviez plus. »)
+  - **Scène** : Tard le soir sous une lampe chaude ambre-terracotta, la chercheuse épuisée affaissée devant des piles de manuscrits et dossiers de recherche, tandis que son collègue en costume pose une main rassurante sur son épaule en lui tendant une tasse de thé chaud.
+
+**Côté B — Apprentis** — Référence : `/public/Posters/Sides/Apprentis.png`
+- **`appr_b_ep1`** (`ep1` — *Plus que tout* : « Racontez ce que vous avez voulu réussir plus que tout, et ce que vous avez mis de côté pour y arriver. »)
+  - **Scène** : Le jeune apprenti menuisier à lunettes de protection et tablier bleu travaillant seul tard le soir à l'établi sous une lampe chaude pour perfectionner un assemblage de bois, alors qu'à travers la fenêtre on aperçoit ses amis partir en ville au crépuscule.
+- **`appr_b_ep3`** (`ep3` — *Encore apprendre*)
+  - **Scène** : La jeune apprentie couturière (chignon tressé, mètre ruban jaune) et le jeune apprenti menuisier penchés ensemble après les heures d'atelier sur des croquis techniques et une tablette de modélisation 3D sur l'établi en bois.
+
+### 4. Blacks One ‹ › Wowmen (`blacks-one-wowmen`)
+**Côté A — Blacks One** — Référence : `/public/Posters/Sides/Blacks One.png`
+- **`blacks_a_ep1`** (`ep1` — *Se redresser* : « Racontez le jour où une personne (vous, ou quelqu'un que vous aimez) a été rabaissée à cause de ce qu'elle est, et ce qui l'a aidée à se redresser. »)
+  - **Scène** : L'homme âgé à barbe blanche, chapeau de paille et tunique blanche brodée (de la référence) se redressant avec noblesse et calme dans une rue ambre-terracotta, tandis qu'une jeune femme en foulard wax vert/orange se tient solidairement à ses côtés, main sur son bras.
+- **`blacks_a_ep3`** (`ep3` — *Dignité* : « Racontez la personne qui vous a appris la dignité, sans jamais prononcer ce mot. »)
+  - **Scène** : Le même aîné en chapeau de paille et tunique blanche entretenant avec calme et droiture sa cour baignée de soleil doré, observé en silence avec admiration par deux jeunes gens depuis l'entrée.
+- **`blacks_a_ep4`** (`ep4` — *Enfants d'aujourd'hui* : « Racontez ce que vous voudriez dire à un enfant d'aujourd'hui, pour qu'il sache qui il est avant que le monde ne décide pour lui. »)
+  - **Scène** : L'homme barbu portant le pendentif carte de l'Afrique et la femme aux longues tresses à cauris (de la référence) agenouillés avec bienveillance sur une terrasse ensoleillée aux côtés de jeunes enfants, leur montrant l'horizon doré avec un grand livre illustré vierge.
+
+**Côté B — Wowmen** — Référence : `/public/Posters/Sides/Wowmen.png`
+- **`wowmen_b_ep2`** (`ep2` — *Prendre parti* : « Racontez le jour où vous avez pris la défense de quelqu'un alors qu'il aurait été plus simple de vous taire, et ce que vous avez ressenti au moment de parler. »)
+  - **Scène** : La femme au chignon tressé, lunettes dorées et blazer crème (en haut à droite de la référence) se levant courageusement autour d'une table de réunion pour prendre la défense de la jeune femme au foulard violet à fleurs orange assise plus loin.
+- **`wowmen_b_ep3`** (`ep3` — *Dignité*)
+  - **Scène** : La grand-mère au foulard floral vert et jaune et collier de perles blanches (en haut à gauche de la référence) arrangeant calmement ses paniers au marché avec une grâce sereine dans la lumière dorée, tandis que la jeune femme aux cheveux bouclés l'observe avec respect.
+
+### 5. Bambous ‹ › Irokos (`bambous-irokos`)
+**Côté A — Bambous** — Référence : `/public/Posters/Sides/Bambous.png`
+- **`bambous_a_ep1`** (`ep1` — *Pris au sérieux* : « Racontez la première fois où quelqu'un d'une autre génération a pris au sérieux ce que vous disiez, et ce que cela vous a fait. »)
+  - **Scène** : La jeune femme en robe wax orange et bleue et le jeune homme en chemise blanche de la référence assis à une table de cour ombragée, présentant un carnet de croquis ouvert à un aîné qui hoche attentivement la tête avec respect.
+- **`bambous_a_ep2`** (`ep2` — *Écart* : « Racontez un moment où l'écart d'âge a failli vous séparer de quelqu'un que vous aimiez, et ce qui s'est passé ensuite. »)
+  - **Scène** : Le jeune homme en chemise blanche et pantalon sombre portant son sac à l'épaule, marquant un temps d'arrêt au milieu d'une cour ensoleillée terracotta, une distance silencieuse entre lui et un parent âgé tourné vers la fenêtre aux volets bleus.
+
+**Côté B — Irokos** — Référence : `/public/Posters/Sides/Irokos.png`
+- **`irokos_b_ep3`** (`ep3` — *Sans le vouloir* : « Racontez ce qu'une personne d'une autre génération vous a montré, sans même chercher à vous l'apprendre. »)
+  - **Scène** : Le grand-père en boubou crème brodé d'or et calot assorti avec sa canne en bois aidant discrètement un voisin dans la rue terracotta, sans remarquer derrière lui son petit-enfant qui imite spontanément sa démarche droite et bienveillante.
+
+### 6. Horizons ‹ › Benin (`horizons-benin`)
+**Côté A — Horizons** — Référence : `/public/Posters/Sides/Horizons.png`
+- **`horiz_a_ep1`** (`ep1` — *Chez soi* : « Racontez l'odeur, le bruit ou le goût qui vous ramène tout de suite chez vous, et l'histoire qui va avec. »)
+  - **Scène** : Un des jeunes voyageurs de la référence penché sur un balcon en pierre chaleureuse dominant une ville côtière aux toits terracotta et un coucher de soleil doré, fermant les yeux avec un sourire paisible en respirant la vapeur épicée d'une tasse fumante.
+- **`horiz_a_ep4`** (`ep4` — *Bienvenue* : « Racontez ce que vous voudriez construire chez vous pour que ceux qui y vivent, et ceux qui y arrivent, s'y sentent bien. »)
+  - **Scène** : Une grande cour ouverte lumineuse face à l'horizon doré, une longue table accueillante garnie de pain, thé et lanternes chaudes où les jeunes de la référence accueillent chaleureusement des voyageurs fraîchement arrivés.
+
+**Côté B — Benin** — Référence : `/public/Posters/Sides/Benin.png`
+- **`benin_b_ep2`** (`ep2` — *Bagages* : « Racontez ce que vous emporteriez partout avec vous de l'endroit qui vous a fait, et ce que vous ne pourriez jamais emporter. »)
+  - **Scène** : La femme béninoise en pagne ivoire/or (de la référence) agenouillée près d'un panier tressé ouvert, tenant délicatement entre ses mains un petit bol de terre rouge béninoise et un tissu plié tout en regardant vers le large soleil doré à l'horizon.
+- **`benin_b_ep4`** (`ep4` — *Bienvenue*)
+  - **Scène** : La même femme béninoise souriant chaleureusement sous l'arche fleurie d'une maison ouverte sur les palmiers et lanternes terracotta, accueillant bras ouverts des visiteurs et habitants dans la lumière dorée du soir.
+
+### 7. Builders ‹ › Coachs (`builders-coachs`)
+**Côté A — Builders** — Référence : `/public/Posters/Sides/Builders.png`
+- **`build_a_ep2`** (`ep2` — *Pari fou* : « Racontez le jour où vous avez pris un risque que tout le monde vous déconseillait, et ce que vous avez ressenti la veille. »)
+  - **Scène** : Le jeune bâtisseur barbu en chemise noire (de la référence) debout seul à la tombée du jour sur un terrain nu face à un soleil ambre couchant, serrant des plans roulés sous le bras tandis que deux silhouettes sceptiques s'éloignent à l'arrière-plan.
+- **`build_a_ep3`** (`ep3` — *Confiance* : « Racontez la personne qui a cru en vous avant vous-même, ou celle en qui vous avez cru avant qu'elle n'y croie. »)
+  - **Scène** : Le jeune bâtisseur en chemise noire et la femme en blazer bleu canard (de la référence) serrant avec gratitude la main d'un mentor plus âgé qui leur remet un trousseau de clés d'atelier devant une maquette de projet baignée de soleil.
+- **`build_a_ep4`** (`ep4` — *Chute* : « Racontez l'échec dont vous parlez le moins, et ce qu'il a laissé en vous. »)
+  - **Scène** : Le jeune bâtisseur barbu en chemise noire assis seul tard le soir dans un atelier sombre aux tons terracotta profonds, près d'un prototype ou d'une maquette endommagée sur l'établi, contemplant calmement les débris avec lucidité.
+
+**Côté B — Coachs** — Référence : `/public/Posters/Sides/Coachs.png`
+- **`coach_b_ep1`** *(régénération pour supprimer la bulle de BD blanche)* (`ep1` — *Phrase décisive* : « Racontez la phrase, reçue ou dite, qui a changé la direction d'une vie, la vôtre ou celle d'un autre. »)
+  - **Scène** : La coach en tailleur blanc et lunettes avec chignon tressé assise face à l'athlète barbu pensif en débardeur noir dans un bureau de sport lumineux terracotta, se penchant en avant avec un geste encourageant de la main (**strictement AUCUNE bulle de BD ni texte**).
+- **`coach_b_ep4`** (`ep4` — *Chute*)
+  - **Scène** : La même coach assise en silence sur un banc de vestiaire aux tons terracotta chaleureux aux côtés de l'athlète découragé tête baissée après une défaite, présence calme et soutenante sans aucun mot.
+
+### 8. Images ‹ › Paroles (`regards-paroles`)
+**Côté A — Images** — Référence : `/public/Posters/Sides/Images.png`
+- **`images_a_ep1`** (`ep1` — *Déclic* : « Racontez le moment où vous avez compris que vous aviez quelque chose à faire ressentir au monde, et que personne ne le ferait à votre place. »)
+  - **Scène** : Le photographe barbu avec appareil photo (de la référence) levant pour la première fois son boîtier dans une ruelle animée ensoleillée terracotta pour capturer un éclat de rire spontané de marchandes dans la lumière dorée.
+- **`images_a_ep3`** (`ep3` — *Souffle coupé* : « Racontez une image, un texte ou une voix qui vous a coupé le souffle, et ce qui a changé en vous ensuite. »)
+  - **Scène** : Le même photographe barbu debout immobile la nuit dans une rue chaude terracotta, appareil photo pendant à sa sangle, les yeux grands ouverts d'émotion face à une immense fresque lumineuse ou un écran de cinéma projetant une lumière dorée sur son visage.
+
+**Côté B — Paroles** — Référence : `/public/Posters/Sides/Paroles.png`
+- **`paroles_b_ep1`** (`ep1` — *Déclic*)
+  - **Scène** : La jeune femme aux cheveux afro bouclés, boucles d'oreilles créoles dorées et kimono bleu/terracotta à motifs de feuilles (de la référence), penchée d'urgence sur un balcon ensoleillé à écrire avec passion dans son carnet relié de cuir alors que la lumière dorée inonde la ville.
+- **`paroles_b_ep3`** (`ep3` — *Souffle coupé*)
+  - **Scène** : La même femme en kimono bleu/terracotta assise dans une cour intimiste éclairée à la lueur chaude, tenant un livre ouvert contre sa poitrine, les yeux brillants d'émotion, bouleversée et sans voix.
+- **`paroles_b_ep4`** (`ep4` — *Histoire cachée* : « Racontez l'histoire que vous portez en vous et que vous n'avez pas encore osé montrer ou dire au monde, et ce qui vous retient. »)
+  - **Scène** : La même femme tard le soir à son bureau sous une lampe ambre-terracotta, ouvrant doucement un tiroir verrouillé pour en sortir un vieux manuscrit noué d'un ruban (aucun texte visible), regard intense et hésitant.
+- *(Optionnel — `paroles_b_ep2` — Pas compris : l'image actuelle `src/assets/images/paroles_b_ep2_1795775527222.jpg` est coupée en 2 panneaux haut/bas ; si souhaité, la régénérer en une **seule scène unifiée plein cadre** montrant la femme au pupitre avec son carnet face à un petit public silencieux et perplexe).*
