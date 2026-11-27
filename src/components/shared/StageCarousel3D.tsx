@@ -206,7 +206,7 @@ export function StageCarousel3D<T>({
           }}
           onMouseDown={(e) => e.stopPropagation()}
           onTouchStart={(e) => e.stopPropagation()}
-          className={`${arrowVisibilityClass} absolute left-1 sm:left-3 lg:left-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95`}
+          className={`${arrowVisibilityClass} absolute left-1 sm:left-3 lg:left-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95`}
           aria-label={prevAriaLabel}
           title={prevAriaLabel}
         >
@@ -266,7 +266,7 @@ export function StageCarousel3D<T>({
 
             const customCls = cardClassName
               ? cardClassName(item, idx, isCenter)
-              : `bg-[#151513] text-white ${defaultRing}`;
+              : `bg-[#121F4B] text-white ${defaultRing}`;
 
             return (
               <div
@@ -322,7 +322,7 @@ export function StageCarousel3D<T>({
           }}
           onMouseDown={(e) => e.stopPropagation()}
           onTouchStart={(e) => e.stopPropagation()}
-          className={`${arrowVisibilityClass} absolute right-1 sm:right-3 lg:right-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95`}
+          className={`${arrowVisibilityClass} absolute right-1 sm:right-3 lg:right-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95`}
           aria-label={nextAriaLabel}
           title={nextAriaLabel}
         >

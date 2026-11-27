@@ -855,8 +855,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
   const renderStudioPillarsHeader = () => (
     <div
-      className="w-full shrink-0 z-30 border-none shadow-none rounded-none bg-black"
-      style={{ backgroundColor: '#000000' }}
+      className="w-full shrink-0 z-30 border-none shadow-none rounded-none bg-[#1F44A8]"
+      style={{ backgroundColor: '#1F44A8' }}
     >
       <div className="w-full mx-auto px-2 pt-1.5 pb-2 shrink-0 h-[68px] sm:h-[76px] flex items-center justify-center overflow-hidden">
         <div
@@ -876,14 +876,14 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 title={pillar.title}
               >
                 <div
-                  className={`w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-2xl p-0.5 border transition-all group-hover:scale-105 bg-stone-900 ${
+                  className={`w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-2xl p-0.5 border transition-all group-hover:scale-105 bg-[#163385] ${
                     isSelected
                       ? 'border-[#A2482B] ring-1 ring-[#A2482B]'
-                      : 'border-stone-800/80 group-hover:border-[#A2482B]'
+                      : 'border-white/25 group-hover:border-[#A2482B]'
                   }`}
-                  style={{ boxShadow: 'var(--story-ring-shadow, 0 1px 8px rgba(0, 0, 0, 0.6))' }}
+                  style={{ boxShadow: 'var(--story-ring-shadow, 0 1px 8px rgba(31, 68, 168, 0.45))' }}
                 >
-                  <div className="w-full h-full rounded-xl overflow-hidden bg-stone-900 relative">
+                  <div className="w-full h-full rounded-xl overflow-hidden bg-[#163385] relative">
                     <img
                       src={pillar.posterUrl}
                       alt={pillar.title}
@@ -1053,8 +1053,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     const isPortraitSubmission = activePillar?.id === 'soi';
     const titleClean = isPortraitSubmission
       ? (selectedFinalChoice?.title || 'Mon Portrait')
-      : (selectedFileName.replace(/\.[^/.]+$/, "") || selectedFinalChoice?.title || 'Récit YonyWood');
-    const authorName = currentUser?.name || 'Créateur YonyWood';
+      : (selectedFileName.replace(/\.[^/.]+$/, "") || selectedFinalChoice?.title || 'Récit Gbadoo');
+    const authorName = currentUser?.name || 'Créateur Gbadoo';
     const authorAvatar = currentUser?.avatarUrl || '/assets/duos/kwame-mensah.jpg';
 
     const resolvedProfileTab = resolveSubmissionProfileTab({
@@ -1131,7 +1131,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
               className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
               title="Revenir au choix précédent"
             >
-              <ArrowLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+              <ArrowLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform" />
               <span className="text-xs sm:text-sm font-medium">Retour</span>
             </button>
 
@@ -1466,7 +1466,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title="Revenir au choix Studio"
               >
-                <ChevronLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+                <ChevronLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform" />
                 <span className="text-xs sm:text-sm">Retour</span>
               </button>
 
@@ -1494,7 +1494,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title={`Revenir à ${activePillar?.title || 'Duocumentaires'}`}
               >
-                <ChevronLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+                <ChevronLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform" />
                 <span className="text-[11px] sm:text-sm font-medium whitespace-nowrap">{activePillar?.title || 'Duocumentaires'}</span>
               </button>
 
@@ -1545,7 +1545,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title={activeRegistrySeries ? 'Revenir au choix du côté' : `Revenir à ${activePillar?.title || 'Rush'}`}
               >
-                <ChevronLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+                <ChevronLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform" />
                 <span className="text-[11px] sm:text-sm font-medium whitespace-nowrap">
                   {activeRegistrySeries ? 'Côtés' : (activePillar?.title || 'Rush')}
                 </span>
@@ -1573,7 +1573,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
                 title="Changer de thématique"
               >
-                <ArrowLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+                <ArrowLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform" />
                 <span className="text-[11px] sm:text-sm font-medium whitespace-nowrap">
                   <span className="hidden sm:inline">Changer de question</span>
                   <span className="sm:hidden">Retour</span>
@@ -1624,7 +1624,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
               
               {/* CARTE 1 : TÉLÉCHARGER SA VIDÉO */}
               <div 
-                className="relative aspect-[9/16] w-[min(calc((100vw-28px)/2),calc((100dvh-230px)*9/16))] max-w-[185px] max-h-[min(480px,calc(100dvh-230px))] sm:max-w-none sm:max-h-none sm:w-[min(280px,calc((100dvh-210px)*9/16))] sm:h-[min(520px,calc(100dvh-210px))] lg:w-[min(310px,calc((100dvh-200px)*9/16))] lg:h-[min(550px,calc(100dvh-200px))] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between p-2.5 sm:p-4 bg-[#151513] text-white border border-stone-200/90 group shrink-0"
+                className="relative aspect-[9/16] w-[min(calc((100vw-28px)/2),calc((100dvh-230px)*9/16))] max-w-[185px] max-h-[min(480px,calc(100dvh-230px))] sm:max-w-none sm:max-h-none sm:w-[min(280px,calc((100dvh-210px)*9/16))] sm:h-[min(520px,calc(100dvh-210px))] lg:w-[min(310px,calc((100dvh-200px)*9/16))] lg:h-[min(550px,calc(100dvh-200px))] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between p-2.5 sm:p-4 bg-[#121F4B] text-white border border-stone-200/90 group shrink-0"
               >
                 {/* Image selfie vidéo afro-futuriste OU Vidéo si lecture */}
                 {duoPreviewVideo === 'upload' ? (
@@ -1646,11 +1646,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none group-hover:scale-105 transition-transform duration-500"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55 pointer-events-none" />
 
                 {/* Haut de carte : Titre à gauche + Lecteur & Mute à droite */}
                 <div className="relative z-10 flex items-center justify-between w-full min-w-0">
-                  <span className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-black/80 border border-white/20 text-[9px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-60px)] truncate">
+                  <span className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[9px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-60px)] truncate">
                     <span className="hidden sm:inline">Télécharger sa vidéo</span>
                     <span className="sm:hidden">Télécharger</span>
                   </span>
@@ -1664,7 +1664,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           e.stopPropagation();
                           setIsMuted(prev => !prev);
                         }}
-                        className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                        className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                         title={isMuted ? 'Activer le son' : 'Couper le son'}
                       >
                         {isMuted ? <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" /> : <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />}
@@ -1674,7 +1674,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     <button
                       type="button"
                       onClick={() => setDuoPreviewVideo(prev => prev === 'upload' ? null : 'upload')}
-                      className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-black/72 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                      className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                       title={duoPreviewVideo === 'upload' ? "Arrêter la vidéo" : "Visionner l'exemple"}
                     >
                       {duoPreviewVideo === 'upload' ? (
@@ -1701,7 +1701,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
               {/* CARTE 2 : CHOISIR UN EXPERT */}
               <div 
-                className="relative aspect-[9/16] w-[min(calc((100vw-28px)/2),calc((100dvh-230px)*9/16))] max-w-[185px] max-h-[min(480px,calc(100dvh-230px))] sm:max-w-none sm:max-h-none sm:w-[min(280px,calc((100dvh-210px)*9/16))] sm:h-[min(520px,calc(100dvh-210px))] lg:w-[min(310px,calc((100dvh-200px)*9/16))] lg:h-[min(550px,calc(100dvh-200px))] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between p-2.5 sm:p-4 bg-[#151513] text-white border border-stone-200/90 group shrink-0"
+                className="relative aspect-[9/16] w-[min(calc((100vw-28px)/2),calc((100dvh-230px)*9/16))] max-w-[185px] max-h-[min(480px,calc(100dvh-230px))] sm:max-w-none sm:max-h-none sm:w-[min(280px,calc((100dvh-210px)*9/16))] sm:h-[min(520px,calc(100dvh-210px))] lg:w-[min(310px,calc((100dvh-200px)*9/16))] lg:h-[min(550px,calc(100dvh-200px))] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between p-2.5 sm:p-4 bg-[#121F4B] text-white border border-stone-200/90 group shrink-0"
               >
                 {/* Image personne filmée par un pro OU Vidéo si lecture */}
                 {duoPreviewVideo === 'expert' ? (
@@ -1723,11 +1723,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none group-hover:scale-105 transition-transform duration-500"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55 pointer-events-none" />
 
                 {/* Haut de carte : Titre à gauche + Lecteur & Mute à droite */}
                 <div className="relative z-10 flex items-center justify-between w-full min-w-0">
-                  <span className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-black/80 border border-white/20 text-[9px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-60px)] truncate">
+                  <span className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[9px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-60px)] truncate">
                     <span className="hidden sm:inline">Choisir un expert</span>
                     <span className="sm:hidden">Un expert</span>
                   </span>
@@ -1741,7 +1741,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           e.stopPropagation();
                           setIsMuted(prev => !prev);
                         }}
-                        className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                        className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                         title={isMuted ? 'Activer le son' : 'Couper le son'}
                       >
                         {isMuted ? <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" /> : <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />}
@@ -1751,7 +1751,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     <button
                       type="button"
                       onClick={() => setDuoPreviewVideo(prev => prev === 'expert' ? null : 'expert')}
-                      className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-black/72 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                      className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                       title={duoPreviewVideo === 'expert' ? "Arrêter la vidéo" : "Visionner l'exemple"}
                     >
                       {duoPreviewVideo === 'expert' ? (
@@ -1804,7 +1804,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
             const isPlaying = playingCardId === pillar.id && isCenter;
 
             return (
-              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
+              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#121F4B]">
                 {isPlaying ? (
                   <video
                     src={pillar.videoUrl}
@@ -1827,11 +1827,11 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                   />
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/15 to-black/85 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55 pointer-events-none" />
 
                 {/* HAUT : Pastille Titre à gauche + Lecteur & Mute à droite */}
                 <div className="relative z-10 flex items-center justify-between gap-1.5 pointer-events-auto w-full min-w-0">
-                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/75 border border-white/20 shadow-md">
+                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                     <span
                       className="font-editorial text-[9.5px] sm:text-xs font-semibold text-white leading-none whitespace-nowrap tracking-wide select-none truncate"
                       title={pillar.title}
@@ -1853,7 +1853,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           e.stopPropagation();
                           setIsMuted((prev) => !prev);
                         }}
-                        className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                        className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                         title={isMuted ? 'Activer le son' : 'Couper le son'}
                       >
                         {isMuted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -1872,7 +1872,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           setPlayingCardId(isPlaying ? null : pillar.id);
                         }
                       }}
-                      className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-black/72 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                      className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                       title={isPlaying ? 'Mettre en pause' : `Visionner ${pillar.title}`}
                     >
                       {isPlaying ? (
@@ -1898,7 +1898,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       setSynopsisModalItem(pillar);
                       celestialAudio?.playOrbSelect?.();
                     }}
-                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title="Lire le synopsis"
                   >
                     <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
@@ -1937,7 +1937,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
           {SHOW_CAROUSEL_ARROWS && (
           <button
             onClick={goToPrev}
-            className="flex absolute left-1 sm:left-3 lg:left-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+            className="flex absolute left-1 sm:left-3 lg:left-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
             title="Précédent"
             id="prev-carousel-btn"
           >
@@ -2041,7 +2041,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       pointerEvents,
                       transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                     }}
-                    className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#151513] text-white border transition-colors ${
+                    className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#121F4B] text-white border transition-colors ${
                       isCenter ? 'border-stone-200/90 ring-1 ring-white/30' : 'border-white/15 cursor-pointer [&_*]:!pointer-events-none'
                     }`}
                   >
@@ -2082,20 +2082,20 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       />
                     )}
 
-                    {/* Voile cinématographique : transparent en haut pour laisser vivre l'illustration, puis dégradé sombre en bas */}
+                    {/* Voile cinématographique : transparent en haut pour laisser vivre l'illustration, puis dégradé nuit indigo en bas */}
                     <div
                       style={
                         isEpisodeAudioCard
                           ? {
                               background:
-                                'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.42) 66%, rgba(0,0,0,0.78) 84%, rgba(0,0,0,0.92) 100%)'
+                                'linear-gradient(to bottom, rgba(18,31,75,0) 0%, rgba(18,31,75,0) 50%, rgba(18,31,75,0.45) 66%, rgba(18,31,75,0.78) 84%, rgba(18,31,75,0.92) 100%)'
                             }
                           : undefined
                       }
                       className={`absolute inset-0 pointer-events-none ${
                         isEpisodeAudioCard
                           ? ''
-                          : 'bg-gradient-to-b from-black/60 via-transparent to-black/85'
+                          : 'bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55'
                       }`}
                     />
 
@@ -2103,7 +2103,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     {/* HAUT : Titre série/côté sur une seule ligne + Lecture à droite */}
                     {/* ========================================================= */}
                     <div className="relative z-10 flex items-center justify-between gap-1 pointer-events-auto w-full min-w-0">
-                      <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 rounded-full px-2 sm:px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                      <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 rounded-full px-2 sm:px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                         <span
                           className="font-editorial text-[8px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none"
                           title={item.title}
@@ -2136,7 +2136,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                             }}
                             onMouseDown={(e) => e.stopPropagation()}
                             onTouchStart={(e) => e.stopPropagation()}
-                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                             title={isMuted ? 'Activer le son' : 'Couper le son'}
                           >
                             {isMuted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -2212,7 +2212,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl text-white border flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0 ${
                             isPlaying && isAudioCard
                               ? 'bg-[#A2482B] border-[#F3C677]/60 hover:bg-[#8A3B22]'
-                              : 'bg-black/72 hover:bg-[#A2482B] active:bg-[#8A3B22] border-white/20 hover:border-[#A2482B]'
+                              : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] border-white/20 hover:border-[#A2482B]'
                           }`}
                           title={
                             isSynopsisAudioMode
@@ -2331,7 +2331,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                             setSynopsisModalItem(item);
                             celestialAudio?.playOrbSelect?.();
                           }}
-                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                           title={
                             isLevel2 && (activePillar?.id === 'duos' || activePillar?.id === 'focus')
                               ? 'Rappel de la série'
@@ -2355,7 +2355,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                               setCoproduceModalSeriesId(castingItem.seriesId || castingItem.id);
                               celestialAudio?.playOrbSelect?.();
                             }}
-                            className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                            className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                             title="Coproduire"
                             aria-label={`Coproduire ${item.title}`}
                           >
@@ -2422,7 +2422,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
           {SHOW_CAROUSEL_ARROWS && (
           <button
             onClick={goToNext}
-            className="flex absolute right-1 sm:right-3 lg:right-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+            className="flex absolute right-1 sm:right-3 lg:right-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
             title="Suivant"
             id="next-carousel-btn"
           >
@@ -2437,7 +2437,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
       {/* ========================================================================= */}
       {synopsisModalItem && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/25 backdrop-blur-[2px] animate-modal-backdrop"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/45 backdrop-blur-[2px] animate-modal-backdrop"
           onClick={closeSynopsisModal}
         >
           {/* Largeur strictement égale à la largeur d'une carte vidéo */}
@@ -2467,7 +2467,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                   <button
                     type="button"
                     onClick={closeSynopsisModal}
-                    className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                    className="w-6.5 h-6.5 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
                     title="Fermer"
                     aria-label="Fermer"
                   >
@@ -2503,7 +2503,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 )}
 
                 <div className="flex-1 min-h-0 flex items-center justify-center py-0.5">
-                  <div className="h-[min(44dvh,305px)] max-w-full aspect-[9/16] rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-[#151513] relative">
+                  <div className="h-[min(44dvh,305px)] max-w-full aspect-[9/16] rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-[#1F44A8] relative">
                     <img
                       src={
                         chosenSeriesSide && seriesReminderView === 'side'
@@ -2545,7 +2545,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
                         isSynopsisModalPlaying || isSynopsisModalLoading
                           ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                          : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
+                          : 'bg-[#1F44A8] hover:bg-[#A2482B] border-[#1F44A8]/20 hover:border-[#A2482B] text-white'
                       }`}
                       title={
                         isSynopsisModalLoading
@@ -2568,7 +2568,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     <button
                       type="button"
                       onClick={closeSynopsisModal}
-                      className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                      className="w-6.5 h-6.5 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
                       title="Fermer"
                       aria-label="Fermer"
                     >
@@ -2621,7 +2621,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 <button
                   type="button"
                   onClick={() => setCoproduceModalSeriesId(null)}
-                  className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                  className="w-7 h-7 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
                   title="Fermer"
                   aria-label="Fermer"
                 >
@@ -2712,7 +2712,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
       {/* Toast de succès téléversement */}
       {uploadSuccessToast && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-[#1C1917] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-2xl border border-stone-700 flex items-center gap-2 animate-in fade-in duration-200">
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-[#1F44A8] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-2xl border border-white/20 flex items-center gap-2 animate-in fade-in duration-200">
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>Votre vidéo sera vérifiée par le comité de validation avant sa publication officielle.</span>
         </div>

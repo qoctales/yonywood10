@@ -129,7 +129,7 @@ const MatrixCell: React.FC<MatrixCellProps> = React.memo(({
               ? 'ring-1 ring-[#C89B3C] z-20 shadow-xs'
               : 'hover:scale-120 hover:z-30 hover:shadow-lg hover:ring-2 hover:ring-[#A2482B]'
       }`}
-      style={{ backgroundColor: '#0E0D0B' }}
+      style={{ backgroundColor: '#1F44A8' }}
       title={displayName}
     >
       {/* Photo : fondu au noir très lent (1400ms) et réémergence douce selon le tempo dynamique de cette case */}
@@ -167,7 +167,7 @@ const MatrixCell: React.FC<MatrixCellProps> = React.memo(({
       />
 
       {/* Voile doré au survol */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/cell:opacity-100 transition-opacity duration-150 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/45 via-transparent to-transparent opacity-0 group-hover/cell:opacity-100 transition-opacity duration-150 pointer-events-none" />
 
       {/* Halo terracotta si contrepoint */}
       {isCounterpoint && (
@@ -467,7 +467,7 @@ export const LivingMatrixWall: React.FC<LivingMatrixWallProps> = ({
         {/* INFOBULLE ÉPURÉE AU SURVOL : STRICTEMENT LE PRÉNOM SEUL SANS ENCOMBREMENT */}
         {hoveredProfile && tooltipPos && (
           <div 
-            className="absolute pointer-events-none z-40 bg-black/85 text-white backdrop-blur-md px-2.5 py-0.5 rounded-full shadow-lg border border-white/20 text-center animate-in fade-in duration-100 transform -translate-x-1/2"
+            className="absolute pointer-events-none z-40 bg-[#121F4B]/85 text-white backdrop-blur-md px-2.5 py-0.5 rounded-full shadow-lg border border-white/25 text-center animate-in fade-in duration-100 transform -translate-x-1/2"
             style={{
               left: `${tooltipPos.x}px`,
               top: `${tooltipPos.y}px`

@@ -47,12 +47,12 @@ export const DocumentariesListScreen: React.FC<DocumentariesListScreenProps> = (
                 loading="lazy"
                 decoding="async"
               />
-              {/* Voile léger pour préserver la clarté et l'éclat de l'affiche */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+              {/* Voile indigo léger pour préserver la clarté et l'éclat de l'affiche */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-transparent" />
               
-              {/* Title only */}
-              <div className="absolute bottom-5 left-5 right-5 text-white drop-shadow-md">
-                <h2 className="font-editorial text-base sm:text-xl md:text-2xl font-bold tracking-tight leading-snug group-hover:text-[#D9AF52] transition-colors">
+              {/* Series title on smoky midnight-blue glass pill */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-end">
+                <h2 className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md font-editorial text-sm sm:text-base md:text-lg font-bold tracking-tight leading-snug text-white group-hover:bg-[#A2482B] transition-colors">
                   {doc.title}
                 </h2>
               </div>

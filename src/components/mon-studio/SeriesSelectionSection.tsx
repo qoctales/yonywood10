@@ -156,7 +156,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
             const isPlaying = isCenter && playingSeriesId === series.id && hasVideo;
 
             return (
-              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
+              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#121F4B]">
                 {isPlaying && doc?.teaserVideoUrl ? (
                   <video
                     src={doc.teaserVideoUrl}
@@ -183,11 +183,11 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                   />
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55 pointer-events-none" />
 
                 {/* HAUT : Pastille titre en haut à gauche + Lecture vidéo si disponible */}
                 <div className="relative z-10 flex items-center justify-between gap-1 w-full min-w-0">
-                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                     <span
                       className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none truncate"
                       title={series.title}
@@ -210,7 +210,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                             e.stopPropagation();
                             setIsMuted((prev) => !prev);
                           }}
-                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                           aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
@@ -238,7 +238,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
                           isPlaying
                             ? 'bg-[#A2482B] border-[#F3C677]/60'
-                            : 'bg-black/75 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
+                            : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
                         }`}
                         title={isPlaying ? 'Mettre en pause' : `Aperçu de ${series.title}`}
                         aria-label={isPlaying ? 'Mettre en pause' : `Aperçu de ${series.title}`}
@@ -266,7 +266,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                       e.stopPropagation();
                       setSynopsisSeries(series);
                     }}
-                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                     title="Lire le synopsis"
                     aria-label={`Synopsis de ${series.title}`}
                   >
@@ -297,7 +297,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                       className={`w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center transition-all duration-200 border shadow-sm group-hover/check:scale-110 group-active/check:scale-95 ${
                         isChecked
                           ? 'bg-[#A2482B]/90 border-[#F3C677]/75 text-white'
-                          : 'bg-black/45 group-hover/check:bg-black/75 border-white/35 text-transparent group-hover/check:text-white/55'
+                          : 'bg-[#121F4B]/45 backdrop-blur-sm group-hover/check:bg-[#121F4B]/70 border-white/35 text-transparent group-hover/check:text-white/65'
                       }`}
                     >
                       <Check className="w-3 h-3 stroke-[2.5]" />
@@ -331,7 +331,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                 className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
                   isSynopsisPlaying || isSynopsisLoading
                     ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                    : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
+                    : 'bg-[#1F44A8] hover:bg-[#A2482B] border-[#1F44A8]/20 hover:border-[#A2482B] text-white'
                 }`}
                 title={
                   isSynopsisLoading

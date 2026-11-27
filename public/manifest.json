@@ -1,10 +1,10 @@
 {
-  "short_name": "YonyWood",
-  "name": "YonyWood — Des histoires qui nous relient",
+  "short_name": "Gbadoo",
+  "name": "Gbadoo — Des histoires qui nous relient",
   "description": "Plateforme documentaire d'auteur et réseau de transmission humaine",
   "icons": [
     {
-      "src": "/YonyWood_logotype.svg",
+      "src": "/gbadoo_logo.svg",
       "sizes": "192x192 512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"

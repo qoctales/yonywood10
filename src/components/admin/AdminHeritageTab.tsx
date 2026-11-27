@@ -322,7 +322,7 @@ export const AdminHeritageTab: React.FC<AdminHeritageTabProps> = ({
                 className="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-xs hover:border-[#A2482B]/40 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-32 w-full relative bg-stone-900">
+                  <div className="h-32 w-full relative bg-[#1F44A8]">
                     <img 
                       src={them.coverImage} 
                       alt={them.title} 
@@ -417,7 +417,7 @@ export const AdminHeritageTab: React.FC<AdminHeritageTabProps> = ({
 
       {/* MODAL D'EXAMEN APPROFONDI D'UNE HISTOIRE */}
       {examiningStory && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-stone-200 my-8 space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
               <div>
@@ -430,7 +430,7 @@ export const AdminHeritageTab: React.FC<AdminHeritageTabProps> = ({
               </div>
               <button 
                 onClick={() => setExaminingStory(null)}
-                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center cursor-pointer"
+                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>

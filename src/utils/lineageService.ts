@@ -382,7 +382,7 @@ export function resolveLineageMember(input: string | AffiliationPerson | Protago
           question: compFound.manifestoQuestion || 'Quelle mémoire choisissons-nous de léguer à travers notre entreprise ?',
           answer: compFound.tagline || 'Créer de la valeur ancrée dans le terroir et la transmission.'
         },
-        invitationStory: compFound.description || `Organisation ${compFound.companyName} parrainée et mise en lumière sur YonyWood.`,
+        invitationStory: compFound.description || `Organisation ${compFound.companyName} parrainée et mise en lumière sur Gbadoo.`,
         entityType: 'organization',
         organizationId: compFound.id,
         sector: compFound.category
@@ -551,7 +551,7 @@ export function resolveLineageMember(input: string | AffiliationPerson | Protago
       country: 'Bénin',
       flag: '🇧🇯',
       photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
-      universeTag: 'YonyWood',
+      universeTag: 'Gbadoo',
       quote: '« Chaque être lié à la lignée nourrit la sève commune. »',
       questionAnswered: {
         question: 'Quelle promesse faites-vous à la communauté ?',
@@ -580,7 +580,7 @@ export function resolveLineageMember(input: string | AffiliationPerson | Protago
         question: comp.manifestoQuestion || 'Quelle mémoire choisissons-nous de léguer à travers notre entreprise ?',
         answer: comp.tagline || 'Créer de la valeur ancrée dans le terroir et la transmission.'
       },
-      invitationStory: comp.description || `Organisation ${comp.companyName} parrainée et mise en lumière sur YonyWood.`,
+      invitationStory: comp.description || `Organisation ${comp.companyName} parrainée et mise en lumière sur Gbadoo.`,
       entityType: 'organization',
       organizationId: comp.id,
       sector: comp.category

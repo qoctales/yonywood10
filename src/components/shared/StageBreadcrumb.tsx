@@ -40,7 +40,7 @@ export const StageBreadcrumb: React.FC<StageBreadcrumbProps> = ({
                 title={`Revenir à ${item.label}`}
               >
                 {idx === 0 && (
-                  <ChevronLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform shrink-0" />
+                  <ChevronLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform shrink-0" />
                 )}
                 <span className="text-[11px] sm:text-sm font-medium whitespace-nowrap">
                   {item.label}

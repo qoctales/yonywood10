@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex items-center justify-between relative bg-white">
-          {/* Logo officiel YonyWood aligné à gauche (dimensions inchangées) */}
+          {/* Logo officiel Gbadoo aligné à gauche (dimensions inchangées) */}
           <div
             onClick={() => {
               setIsCriteriaOpen(false);
@@ -124,16 +124,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
             className="flex items-center justify-start cursor-pointer group select-none transition-transform active:scale-[0.99] shrink-0"
             id="nav-logo"
-            title="YonyWood"
+            title="Gbadoo"
           >
             <img
-              src="/YonyWood_logotype.svg"
-              alt="YonyWood"
-              width={1452}
-              height={384}
+              src="/gbadoo_logo.svg"
+              alt="Gbadoo"
+              width={420}
+              height={110}
               loading="eager"
               decoding="async"
-              className="yonywood-header-logo object-contain select-none group-hover:opacity-90 transition-opacity"
+              className="gbadoo-header-logo object-contain select-none group-hover:opacity-90 transition-opacity"
             />
           </div>
 
@@ -147,8 +147,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label="Critères des séries"
                 aria-expanded={isCriteriaOpen}
                 title="Critères des séries"
-                className={`relative w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-stone-100/80 active:scale-95 ${
-                  isCriteriaOpen ? 'text-[#A2482B]' : 'text-[#2E1A12]'
+                className={`relative w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-[#A2482B]/10 active:scale-95 ${
+                  isCriteriaOpen ? 'text-[#A2482B]' : 'text-[#A2482B]'
                 }`}
               >
                 <SlidersHorizontal className="w-5 h-5" strokeWidth={1.75} />
@@ -171,13 +171,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label="Portrait"
               aria-current={isOwnPortraitActive ? 'page' : undefined}
               title="Portrait"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-stone-100/80 active:scale-95 group"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-[#A2482B]/10 active:scale-95 group"
             >
               <div
                 className={`w-8 h-8 sm:w-10 sm:h-10 aspect-square shrink-0 rounded-full flex items-center justify-center transition-all duration-200 ${
                   isOwnPortraitActive
                     ? 'bg-[#A2482B] text-white shadow-sm'
-                    : 'bg-transparent text-[#2E1A12]'
+                    : 'bg-transparent text-[#A2482B]'
                 }`}
               >
                 <ProfileSoloIcon
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {SHOW_SERIES_FILTER_IN_HEADER && isCriteriaOpen && isDuocumentairesScreen && (
         <div
           id="series-criteria-backdrop"
-          className="fixed inset-0 z-[70] flex items-end justify-center bg-black/60 select-none"
+          className="fixed inset-0 z-[70] flex items-end justify-center bg-[#121F4B]/60 select-none"
           onClick={() => setIsCriteriaOpen(false)}
         >
           <div

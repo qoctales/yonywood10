@@ -15,21 +15,21 @@
     --color-accent-earth: #8B6845;
     --color-clairiere-tint: #FAFAF9;
     
-    --color-bg-dark: #0E0D0B;
-    --color-surface-dark: #1B1916;
+    --color-bg-dark: #1F44A8;
+    --color-surface-dark: #163385;
     --color-text-dark: #F5F1E8;
-    --color-text-dark-secondary: #A8A399;
+    --color-text-dark-secondary: #DCE4FA;
 
     --color-terracotta: #A2482B;
     --color-terracotta-hover: #8A3B22;
 
-    /* Couleurs de l'en-tête officielles YonyWood */
+    /* Couleurs de l'en-tête officielles Gbadoo */
     --color-header-logo: #FFFFFF;
-    --color-header-stories: #000000;
-    --color-header-stories-gradient: #000000;
+    --color-header-stories: #1F44A8;
+    --color-header-stories-gradient: #1F44A8;
     --color-header-bg: #FFFFFF;
-    /* Ombre très légère préservant la netteté des anneaux blancs sur fond noir */
-    --story-ring-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    /* Ombre très légère préservant la netteté des anneaux blancs sur fond bleu indigo */
+    --story-ring-shadow: 0 1px 8px rgba(31, 68, 168, 0.45);
 
     /* Design tokens Lumières & Organisation */
     --gold: #c9962b;
@@ -39,7 +39,7 @@
 
     /* Variables de style des icônes de dimensions */
     --icon-stroke-width: 1.75;
-    --icon-color-idle: #4A3F38; /* gris-brun foncé au repos */
+    --icon-color-idle: #A2482B; /* terracotta au repos */
     --icon-color-active: #FFFFFF;
     --icon-bg-active: #A2482B; /* pastille ronde terracotta signature */
     --icon-size-default: 24px;
@@ -314,17 +314,19 @@
   -webkit-overflow-scrolling: auto !important;
 }
 
-/* Logo officiel YonyWood — Redimensionnement réactif fluide via clamp() */
+/* Logo officiel Gbadoo — Redimensionnement réactif fluide via clamp() */
+.gbadoo-header-logo,
 .yonywood-header-logo {
   /* Mobile (< 600px) : 50 à 55 % de la largeur, max 240px */
   width: clamp(195px, 56vw, 240px);
   height: auto;
-  aspect-ratio: 1452 / 384;
+  aspect-ratio: 420 / 110;
   max-width: 100%;
 }
 
 @media (min-width: 600px) {
   /* Tablette (600 à 1024px) : 240 à 280px */
+  .gbadoo-header-logo,
   .yonywood-header-logo {
     width: clamp(240px, 32vw, 280px);
   }
@@ -332,6 +334,7 @@
 
 @media (min-width: 1024px) {
   /* Web / Desktop (> 1024px) : 270 à 305px */
+  .gbadoo-header-logo,
   .yonywood-header-logo {
     width: clamp(270px, 22vw, 305px);
   }
@@ -360,8 +363,9 @@
 
 /* Bouton validation : claquette épurée entrouverte au repos (blanc/crème sur sombre), claquement + terracotta (#A2482B) */
 .legba-arch-btn {
-  background-color: rgba(0, 0, 0, 0.7);
-  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(18, 31, 75, 0.58);
+  backdrop-filter: blur(4px);
+  border-color: rgba(255, 255, 255, 0.22);
   color: #F0E8DC;
   transition:
     background-color 0.2s ease 0s,

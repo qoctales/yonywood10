@@ -246,7 +246,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
     >
       {/* Toast de confirmation */}
       {toastMessage && (
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold shadow-xl border border-stone-700 animate-in fade-in flex items-center gap-2">
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-2xl bg-[#1F44A8] text-white text-xs font-semibold shadow-xl border border-white/25 animate-in fade-in flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
@@ -295,7 +295,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                 setExpandedChildId(null);
                 setExpandedGrandchildId(null);
               }}
-              className="p-1.5 text-stone-400 hover:text-stone-800 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
+              className="p-1.5 text-[#A2482B] hover:text-[#8A3B22] rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
               title="Revenir au profil initial"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -306,7 +306,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 rounded-full text-stone-400 hover:text-stone-800 hover:bg-stone-100 transition-colors cursor-pointer"
+              className="p-1.5 rounded-full text-[#A2482B] hover:text-[#8A3B22] hover:bg-stone-100 transition-colors cursor-pointer"
               title="Fermer"
             >
               <X className="w-4 h-4" />
@@ -352,7 +352,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   >
                     {/* Bulle info au survol */}
                     {isHovered && !isActionOpen && (
-                      <div className="absolute -top-7 px-3 py-0.5 rounded-full text-[11px] font-semibold bg-[#1C1917] text-white border border-stone-700 shadow-md pointer-events-none whitespace-nowrap z-30 animate-in fade-in">
+                      <div className="absolute -top-7 px-3 py-0.5 rounded-full text-[11px] font-semibold bg-[#1F44A8] text-white border border-white/25 shadow-md pointer-events-none whitespace-nowrap z-30 animate-in fade-in">
                         {ascendant.name}
                         {isFounder && <span className="ml-1 text-[9px] uppercase text-[#E07A5F]">· Fondateur</span>}
                       </div>
@@ -361,7 +361,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     {/* Menu d'action au clic sur l'ascendant : Explorer sa branche ou Voir sa vidéo */}
                     {isActionOpen && (
                       <div 
-                        className="absolute -top-11 z-40 flex items-center gap-1.5 p-1 rounded-full bg-[#1C1917] text-white shadow-xl border border-amber-400/50 animate-in zoom-in-95 duration-150"
+                        className="absolute -top-11 z-40 flex items-center gap-1.5 p-1 rounded-full bg-[#1F44A8] text-white shadow-xl border border-amber-400/50 animate-in zoom-in-95 duration-150"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <button
@@ -379,7 +379,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                             setActiveAscendantActionId(null);
                             openVideoCard(ascendant);
                           }}
-                          className="px-2 py-1 rounded-full bg-stone-800 hover:bg-stone-700 text-[10px] font-medium text-stone-200 flex items-center gap-1 cursor-pointer transition-colors"
+                          className="px-2 py-1 rounded-full bg-white/15 hover:bg-white/25 text-[10px] font-medium text-white flex items-center gap-1 cursor-pointer transition-colors"
                           title="Regarder son témoignage vidéo"
                         >
                           <Play className="w-2.5 h-2.5 fill-white" />
@@ -407,7 +407,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                           loading="lazy"
                           decoding="async" 
                         />
-                        <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-black/70 text-amber-300">
+                        <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-300">
                           <Sparkles className="w-2.5 h-2.5" />
                         </div>
                       </button>
@@ -499,7 +499,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   loading="lazy"
                   decoding="async" 
                 />
-                <div className="absolute bottom-1 right-1 p-0.5 rounded-xs bg-black/75 text-amber-300">
+                <div className="absolute bottom-1 right-1 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-300">
                   <Sparkles className="w-3 h-3" />
                 </div>
               </button>
@@ -579,7 +579,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   className={`absolute top-3.5 left-1 z-30 w-7 h-7 rounded-full bg-white border border-stone-300 shadow-sm flex items-center justify-center transition-all ${
                     descendantPageIndex === 0 
                       ? 'opacity-30 cursor-not-allowed text-stone-400' 
-                      : 'hover:bg-[#A2482B] hover:text-white hover:border-[#A2482B] cursor-pointer text-stone-700 active:scale-90'
+                      : 'hover:bg-[#A2482B] hover:text-white hover:border-[#A2482B] cursor-pointer text-[#A2482B] active:scale-90'
                   }`}
                   title="Voir les 3 cooptés précédents"
                 >
@@ -593,7 +593,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   className={`absolute top-3.5 right-1 z-30 w-7 h-7 rounded-full bg-white border border-stone-300 shadow-sm flex items-center justify-center transition-all ${
                     descendantPageIndex >= totalDescendantPages - 1 
                       ? 'opacity-30 cursor-not-allowed text-stone-400' 
-                      : 'hover:bg-[#A2482B] hover:text-white hover:border-[#A2482B] cursor-pointer text-stone-700 active:scale-90'
+                      : 'hover:bg-[#A2482B] hover:text-white hover:border-[#A2482B] cursor-pointer text-[#A2482B] active:scale-90'
                   }`}
                   title="Voir les 3 cooptés suivants"
                 >
@@ -665,7 +665,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                             loading="lazy"
                             decoding="async" 
                           />
-                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-black/75 text-amber-200">
+                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-200">
                             <Sparkles className="w-2.5 h-2.5" />
                           </div>
                         </button>
@@ -765,7 +765,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     className={`absolute top-4 left-1 z-30 w-6 h-6 rounded-full bg-white border border-stone-300 shadow-2xs flex items-center justify-center transition-all ${
                       grandchildPageIndex === 0 
                         ? 'opacity-30 cursor-not-allowed text-stone-400' 
-                        : 'hover:bg-[#A2482B] hover:text-white cursor-pointer text-stone-700'
+                        : 'hover:bg-[#A2482B] hover:text-white cursor-pointer text-[#A2482B]'
                     }`}
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
@@ -777,7 +777,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     className={`absolute top-4 right-1 z-30 w-6 h-6 rounded-full bg-white border border-stone-300 shadow-2xs flex items-center justify-center transition-all ${
                       grandchildPageIndex >= totalGrandchildPages - 1 
                         ? 'opacity-30 cursor-not-allowed text-stone-400' 
-                        : 'hover:bg-[#A2482B] hover:text-white cursor-pointer text-stone-700'
+                        : 'hover:bg-[#A2482B] hover:text-white cursor-pointer text-[#A2482B]'
                     }`}
                   >
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -819,7 +819,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                             loading="lazy"
                             decoding="async" 
                           />
-                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-black/75 text-amber-200">
+                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-200">
                             <Sparkles className="w-2 h-2" />
                           </div>
                         </button>
@@ -879,7 +879,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
       {/* ========================================================= */}
       {videoModalMember && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
           onClick={() => {
             setVideoModalMember(null);
             setIsQuestionModalOpen(false);
@@ -895,14 +895,14 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
               setIsPlaying(false);
               setIsQuestionModalOpen(false);
             }}
-            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/75 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all cursor-pointer shadow-xl hover:scale-105 active:scale-95 shrink-0"
+            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/25 hover:border-[#A2482B] flex items-center justify-center transition-all cursor-pointer shadow-xl hover:scale-105 active:scale-95 shrink-0"
             title="Fermer"
           >
             <X className="w-5 h-5 text-white" />
           </button>
 
           <div 
-            className="h-[min(490px,calc(100dvh-210px))] sm:h-[min(540px,calc(100dvh-190px))] lg:h-[min(570px,calc(100dvh-180px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-2xl border border-stone-200/40 relative flex flex-col justify-between p-4 sm:p-5 select-none shrink-0 animate-in zoom-in-95 duration-200"
+            className="h-[min(490px,calc(100dvh-210px))] sm:h-[min(540px,calc(100dvh-190px))] lg:h-[min(570px,calc(100dvh-180px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl border border-stone-200/40 relative flex flex-col justify-between p-4 sm:p-5 select-none shrink-0 animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Poster de fond */}
@@ -930,7 +930,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
             )}
 
             {/* Gradient sombre pour lisibilité cinématographique */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/65 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut de carte : Son et Pause */}
             <div 
@@ -946,7 +946,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     e.stopPropagation();
                     setIsMuted((prev) => !prev);
                   }}
-                  className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                  className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                   title={isMuted ? 'Activer le son' : 'Couper le son'}
                 >
                   {isMuted ? <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" /> : <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />}
@@ -960,7 +960,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   e.stopPropagation();
                   togglePlayback();
                 }}
-                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-lg sm:rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                 title={isPlaying ? "Mettre en pause" : "Regarder"}
               >
                 {isPlaying ? (
@@ -980,7 +980,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
               <button
                 id={`lineage-btn-question-${videoModalMember.id}`}
                 onClick={() => setIsQuestionModalOpen(true)}
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                 title="Découvrir la question"
               >
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -1007,7 +1007,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     }
                   }
                 }}
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                 title={
                   videoModalMember.entityType === 'organization' 
                     ? `Découvrir la mise en lumière de ${videoModalMember.name}` 
@@ -1027,7 +1027,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   if (navigator.share) {
                     navigator.share({
                       title: videoModalMember.name,
-                      text: `Découvrez la lignée de ${videoModalMember.name} sur YonyWood`,
+                      text: `Découvrez la lignée de ${videoModalMember.name} sur Gbadoo`,
                       url: window.location.href,
                     }).catch(() => {});
                   } else {
@@ -1039,7 +1039,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                 className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                   copied
                     ? 'bg-emerald-700/85 border-emerald-600 text-white'
-                    : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                    : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                 }`}
                 title="Partager ce témoignage"
               >
@@ -1080,7 +1080,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
           {/* Modale Question existentielle */}
           {isQuestionModalOpen && (
             <div 
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/85 animate-in fade-in duration-200"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsQuestionModalOpen(false);
@@ -1093,7 +1093,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsQuestionModalOpen(false)}
-                  className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
+                  className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-stone-100 text-[#A2482B] hover:text-[#8A3B22] transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1124,7 +1124,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
       {/* MODALE D'INVITATION & TAG DANS LA LIGNÉE (Ascendant / Descendant & Individu / Organisation) */}
       {isTagModalOpen && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/92 animate-in fade-in duration-200 overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#121F4B]/85 animate-in fade-in duration-200 overflow-y-auto"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsTagModalOpen(false);
           }}
@@ -1150,7 +1150,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
               <button
                 type="button"
                 onClick={() => setIsTagModalOpen(false)}
-                className="p-1.5 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
+                className="p-1.5 rounded-full hover:bg-stone-100 text-[#A2482B] hover:text-[#8A3B22] transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1225,7 +1225,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
               {/* 3. Recherche par Tag (Membre ou Organisation existante) */}
               <div>
                 <label className="block text-xs font-medium text-stone-700 mb-1">
-                  Trouver et taguer un membre ou une organisation sur YonyWood
+                  Trouver et taguer un membre ou une organisation sur Gbadoo
                 </label>
                 <div className="relative">
                   <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />

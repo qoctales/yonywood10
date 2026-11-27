@@ -116,7 +116,7 @@ export const ResonanceModal: React.FC<ResonanceModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-3 sm:p-4 pointer-events-auto transition-opacity duration-200"
+      className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-4 pointer-events-auto transition-opacity duration-200"
       onClick={(e) => {
         e.stopPropagation();
         onClose();
@@ -146,7 +146,7 @@ export const ResonanceModal: React.FC<ResonanceModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-500 hover:text-stone-800 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+            className="w-7 h-7 rounded-full bg-stone-100 hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
             title="Fermer"
           >
             <X className="w-3.5 h-3.5" />

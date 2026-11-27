@@ -71,13 +71,13 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
       <header className="sticky top-0 z-40 w-full bg-white/95 border-b border-stone-200">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
           
-          {/* Gauche : Logo officiel YonyWood */}
+          {/* Gauche : Logo officiel Gbadoo */}
           <div className="flex items-center gap-3">
             <img 
-              src="/YonyWood_logotype.svg" 
-              alt="YonyWood" 
-              width={1452}
-              height={384}
+              src="/gbadoo_logo.svg" 
+              alt="Gbadoo" 
+              width={420}
+              height={110}
               className="h-9 sm:h-11 md:h-12 w-auto object-contain cursor-pointer hover:opacity-90 transition-all select-none"
               onClick={() => setActiveDemoTab('studio')}
             loading="eager"
@@ -99,7 +99,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate({ type: 'participate' })}
                 className="px-3.5 sm:px-4.5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold text-white bg-[#A2482B] hover:bg-[#8A3B22] shadow-xs hover:shadow-sm transition-all cursor-pointer flex items-center justify-center active:scale-95 whitespace-nowrap hover:scale-105"
               >
-                <span>Co-construire Yonywood</span>
+                <span>Co-construire Gbadoo</span>
               </button>
             )}
           </div>

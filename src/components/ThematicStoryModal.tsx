@@ -41,11 +41,11 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
     <>
       {/* Modale Story affichée à z-[100] bien au-dessus de la barre de navigation (z-50) */}
       <div 
-        className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 bg-black/95 select-none animate-in fade-in duration-200"
+        className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 bg-[#121F4B]/85 select-none animate-in fade-in duration-200"
         onClick={onClose}
       >
         <div 
-          className="relative w-full max-w-[340px] sm:max-w-[360px] h-[min(600px,calc(100dvh-40px))] aspect-[9/16] bg-[#12110F] text-white rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between border border-stone-800"
+          className="relative w-full max-w-[340px] sm:max-w-[360px] h-[min(600px,calc(100dvh-40px))] aspect-[9/16] bg-[#121F4B] text-white rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between border border-white/25"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header épuré sans timing chiffré */}
@@ -74,7 +74,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
               <button
                 type="button"
                 onClick={() => setIsMuted(m => !m)}
-                className="w-8 h-8 rounded-full bg-black/70 text-white/90 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+                className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white/95 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 title={isMuted ? 'Activer le son' : 'Couper le son'}
               >
                 {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -82,7 +82,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-black/70 text-white/90 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+                className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white/95 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 title="Fermer"
               >
                 <X className="w-4 h-4" />
@@ -108,13 +108,13 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
               preload="metadata"
               />
             ) : (
-              <div className="w-full h-full bg-stone-900 flex items-center justify-center">
-                <Sparkles className="w-10 h-10 text-amber-400" />
+              <div className="w-full h-full bg-[#121F4B] flex items-center justify-center">
+                <Sparkles className="w-10 h-10 text-[#FFE7A3]" />
               </div>
             )}
 
             {/* Dégradé discret pour laisser le champ libre à la vidéo */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
           </div>
 
           {/* Bas de carte : Juste l'onglet "Questions" épuré */}
@@ -122,16 +122,16 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
             <button
               type="button"
               onClick={() => setShowQuestionSheet(true)}
-              className="px-3.5 py-1.5 rounded-full bg-black/60 text-white border border-white/20 text-xs font-semibold flex items-center gap-1.5 hover:bg-black/80 transition-all cursor-pointer shadow-md"
+              className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 text-xs font-semibold flex items-center gap-1.5 hover:bg-[#A2482B] transition-all cursor-pointer shadow-md"
             >
-              <HelpCircle className="w-3.5 h-3.5 text-amber-300" />
+              <HelpCircle className="w-3.5 h-3.5 text-[#FFE7A3]" />
               <span>Questions</span>
             </button>
 
             <button
               type="button"
               onClick={() => setShowShareModal(true)}
-              className="w-8 h-8 rounded-full bg-black/60 text-white border border-white/20 flex items-center justify-center hover:bg-black/80 transition-all cursor-pointer shadow-md"
+              className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center hover:bg-[#A2482B] transition-all cursor-pointer shadow-md"
               title="Partager cette story"
             >
               <Share2 className="w-3.5 h-3.5" />
@@ -151,14 +151,14 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
                 <div className="flex items-center gap-1">
                   <button 
                     onClick={() => setShowShareModal(true)} 
-                    className="p-1 rounded-full text-stone-500 hover:text-stone-900 hover:bg-stone-100"
+                    className="p-1 rounded-full text-[#A2482B] hover:text-[#8A3B22] hover:bg-[#A2482B]/10"
                     title="Partager"
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => setShowQuestionSheet(false)} 
-                    className="p-1 rounded-full text-stone-400 hover:text-stone-700 hover:bg-stone-100"
+                    className="p-1 rounded-full text-[#A2482B] hover:text-[#8A3B22] hover:bg-[#A2482B]/10"
                     title="Fermer"
                   >
                     <X className="w-4 h-4" />

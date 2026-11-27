@@ -40,7 +40,7 @@ const REPORT_REASONS = [
   {
     id: 'other',
     label: 'Autre préoccupation',
-    desc: 'Tout autre motif sérieux méritant un examen par l’équipe de veille YonyWood.'
+    desc: 'Tout autre motif sérieux méritant un examen par l’équipe de veille Gbadoo.'
   }
 ];
 
@@ -73,7 +73,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
         reason: selectedReason,
         reasonLabel: selectedReasonObj?.label || selectedReason,
         details: details.trim(),
-        reportedBy: currentUser?.email || 'spectateur_anonyme@yonywood.com'
+        reportedBy: currentUser?.email || 'spectateur_anonyme@gbadoo.com'
       });
       setSubmittedSuccess(true);
       setTimeout(() => {
@@ -97,26 +97,26 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-4 bg-black/90 animate-fadeIn"
+      className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-4 bg-[#121F4B]/85 animate-fadeIn"
       onClick={(e) => {
         if (e.target === e.currentTarget && !isSubmitting) onClose();
       }}
     >
       <div 
-        className="relative w-full max-w-lg rounded-2xl bg-[#171614] border border-stone-800 text-stone-200 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-lg rounded-2xl bg-[#1F44A8] border border-white/25 text-white shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête */}
-        <div className="flex items-start justify-between p-4 sm:p-5 border-b border-stone-800/80 bg-stone-900/40 shrink-0">
+        <div className="flex items-start justify-between p-4 sm:p-5 border-b border-white/15 bg-[#121F4B]/55 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-950/40 border border-red-800/50 flex items-center justify-center text-red-400 shrink-0">
-              <ShieldAlert className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-[#A2482B]/25 border border-[#A2482B]/50 flex items-center justify-center text-[#FFE7A3] shrink-0">
+              <ShieldAlert className="w-5 h-5 text-[#A2482B]" />
             </div>
             <div>
-              <h3 className="font-editorial text-lg sm:text-xl font-bold text-stone-100 leading-tight">
+              <h3 className="font-editorial text-lg sm:text-xl font-bold text-white leading-tight">
                 Signaler ce contenu
               </h3>
-              <p className="text-xs text-stone-400 mt-0.5 line-clamp-1">
+              <p className="text-xs text-white/75 mt-0.5 line-clamp-1">
                 {targetTitle}
               </p>
             </div>
@@ -125,7 +125,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
             type="button"
             onClick={onClose}
             disabled={isSubmitting}
-            className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/60 transition-colors"
+            className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-[#A2482B] transition-colors"
             title="Fermer"
           >
             <X className="w-5 h-5" />
@@ -138,17 +138,17 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
             <div className="w-12 h-12 rounded-full bg-emerald-950/60 border border-emerald-700/60 flex items-center justify-center text-emerald-400">
               <CheckCircle2 className="w-6 h-6" />
             </div>
-            <h4 className="font-editorial text-lg font-bold text-stone-100">
+            <h4 className="font-editorial text-lg font-bold text-white">
               Signalement transmis
             </h4>
-            <p className="text-xs sm:text-sm text-stone-400 max-w-sm leading-relaxed">
+            <p className="text-xs sm:text-sm text-white/80 max-w-sm leading-relaxed">
               Merci pour votre vigilance. Notre équipe éditoriale examine attentivement chaque remontée pour garantir l’authenticité et le respect des récits.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-white/75 mb-2">
                 Motif principal du signalement
               </label>
               <div className="space-y-2">
@@ -159,8 +159,8 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
                       key={r.id}
                       className={`flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all ${
                         isSelected 
-                          ? 'bg-amber-950/20 border-[#D9AF52]/60 text-stone-100 shadow-xs' 
-                          : 'bg-stone-900/30 hover:bg-stone-900/60 border-stone-800/80 text-stone-300'
+                          ? 'bg-[#A2482B]/25 border-[#FFE7A3]/70 text-white shadow-xs' 
+                          : 'bg-[#121F4B]/45 hover:bg-[#121F4B]/70 border-white/15 text-white/90'
                       }`}
                     >
                       <input
@@ -169,13 +169,13 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
                         value={r.id}
                         checked={isSelected}
                         onChange={() => setSelectedReason(r.id)}
-                        className="mt-0.5 text-[#D9AF52] focus:ring-[#D9AF52]/40 bg-stone-800 border-stone-700"
+                        className="mt-0.5 text-[#FFE7A3] focus:ring-[#FFE7A3]/40 bg-[#121F4B] border-white/30"
                       />
                       <div className="flex-1 text-xs">
-                        <div className={`font-medium ${isSelected ? 'text-[#FFE7A3]' : 'text-stone-200'}`}>
+                        <div className={`font-medium ${isSelected ? 'text-[#FFE7A3]' : 'text-white'}`}>
                           {r.label}
                         </div>
-                        <div className="text-[11px] text-stone-400 mt-0.5 leading-snug">
+                        <div className="text-[11px] text-white/70 mt-0.5 leading-snug">
                           {r.desc}
                         </div>
                       </div>
@@ -187,7 +187,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
 
             {/* Précision optionnelle */}
             <div>
-              <label htmlFor="report-details" className="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1.5">
+              <label htmlFor="report-details" className="block text-xs font-semibold uppercase tracking-wider text-white/75 mb-1.5">
                 Précisions utiles (facultatif)
               </label>
               <textarea
@@ -197,28 +197,28 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
                 onChange={(e) => setDetails(e.target.value)}
                 placeholder="Ex : Passage concerné, horodatage approximatif ou contexte..."
                 maxLength={300}
-                className="w-full px-3 py-2 rounded-xl bg-stone-900/70 border border-stone-800 focus:border-[#D9AF52] focus:ring-1 focus:ring-[#D9AF52] text-xs text-stone-200 placeholder-stone-500 outline-none resize-none transition-colors"
+                className="w-full px-3 py-2 rounded-xl bg-[#121F4B]/65 border border-white/20 focus:border-[#FFE7A3] focus:ring-1 focus:ring-[#FFE7A3] text-xs text-white placeholder-white/50 outline-none resize-none transition-colors"
               />
-              <div className="text-[10px] text-stone-500 text-right mt-1">
+              <div className="text-[10px] text-white/60 text-right mt-1">
                 {details.length}/300 caractères
               </div>
             </div>
 
             {/* Note d'information */}
-            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-stone-900/40 border border-stone-800 text-[11px] text-stone-400 leading-relaxed">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-[#121F4B]/50 border border-white/15 text-[11px] text-white/75 leading-relaxed">
+              <AlertTriangle className="w-4 h-4 text-[#FFE7A3] shrink-0 mt-0.5" />
               <span>
                 Les signalements abusifs répétés peuvent entraîner une restriction d'accès aux contributions communautaires.
               </span>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-stone-800/80 shrink-0">
+            <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-white/15 shrink-0">
               <button
                 type="button"
                 onClick={onClose}
                 disabled={isSubmitting}
-                className="px-4 py-2 rounded-xl text-xs font-medium text-stone-300 hover:text-white hover:bg-stone-800 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-medium text-white/80 hover:text-white hover:bg-[#121F4B]/60 transition-colors"
               >
                 Annuler
               </button>

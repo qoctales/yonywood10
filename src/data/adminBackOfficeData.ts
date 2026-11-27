@@ -17,7 +17,7 @@ export const INITIAL_ADMIN_USERS: AdminUserAccount[] = [
     email: 'qoctales@gmail.com',
     name: 'Romeo Nonvide',
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-    bio: 'Fondateur & Directeur éditorial de YonyWood.',
+    bio: 'Fondateur & Directeur éditorial de Gbadoo.',
     territory: 'Cotonou & Paris',
     country: 'Bénin',
     accountStatus: 'VERIFIE',
@@ -36,7 +36,7 @@ export const INITIAL_ADMIN_USERS: AdminUserAccount[] = [
   },
   {
     id: 'usr-creator-amina',
-    email: 'amina.traore@yonywood.com',
+    email: 'amina.traore@gbadoo.com',
     name: 'Amina Traoré',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     bio: 'Passeuse de mémoires sonores et artisane du tissage traditionnel.',
@@ -58,7 +58,7 @@ export const INITIAL_ADMIN_USERS: AdminUserAccount[] = [
   },
   {
     id: 'usr-creator-koffi',
-    email: 'koffi.mensah@yonywood.com',
+    email: 'koffi.mensah@gbadoo.com',
     name: 'Koffi Mensah',
     avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
     bio: 'Maître forgeron et gardien du feu sacré à Ouidah.',
@@ -80,7 +80,7 @@ export const INITIAL_ADMIN_USERS: AdminUserAccount[] = [
   },
   {
     id: 'usr-coopt-malik',
-    email: 'malik.diop@yonywood.com',
+    email: 'malik.diop@gbadoo.com',
     name: 'Malik Diop',
     avatarUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
     bio: 'Architecte en terre crue et transmetteur bioclimatique.',
@@ -144,7 +144,7 @@ export const INITIAL_ADMIN_USERS: AdminUserAccount[] = [
   },
   {
     id: 'usr-mod-carine',
-    email: 'carine.kouassi@yonywood.com',
+    email: 'carine.kouassi@gbadoo.com',
     name: 'Carine Kouassi',
     avatarUrl: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80',
     bio: 'Spécialiste de la conformité audiovisuelle et modératrice communautaire.',
@@ -300,7 +300,7 @@ export const INITIAL_SUBMITTED_STORIES: HeritageSubmittedStory[] = [
       rightsGranted: true,
       authorIdentityVerified: true,
       contractSignedDate: '2026-10-10',
-      rightsScope: 'Diffusion non-exclusive mondiale YonyWood & conservation patrimoniale'
+      rightsScope: 'Diffusion non-exclusive mondiale Gbadoo & conservation patrimoniale'
     },
     circleHighlight: 'DECOUVERTE',
     isSponsored: false,
@@ -815,7 +815,7 @@ export const INITIAL_ADVERTISING_CAMPAIGNS: AdvertisingCampaign[] = [
     id: 'camp-1',
     title: 'Sponsoring Majeur — Transmission Vivante',
     brandName: 'Maison Dixeat & Artisans',
-    brandLogo: '/yonywoodlogo.jpg',
+    brandLogo: '/gbadoo_logo.svg',
     targetThematiqueId: 'th-competences',
     targetThematiqueTitle: 'Compétences & Métiers d\'Art',
     targetSeriesId: 'bambous-irokos',
@@ -890,7 +890,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
     module: 'CONFIGURATION',
     action: 'Audit de démarrage de session administrative',
     targetId: 'sys-core',
-    targetTitle: 'Plateforme YonyWood',
+    targetTitle: 'Plateforme Gbadoo',
     justification: 'Vérification de l\'intégrité des données et des flux financiers.'
   },
   {
@@ -909,7 +909,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
     id: 'log-3',
     timestamp: '2026-10-06T15:20:10Z',
     authorName: 'Amina Traoré',
-    authorEmail: 'amina.traore@yonywood.com',
+    authorEmail: 'amina.traore@gbadoo.com',
     authorRole: 'Responsable éditoriale',
     module: 'HERITAGE',
     action: 'Validation d\'histoire soumise',

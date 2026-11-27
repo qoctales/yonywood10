@@ -196,17 +196,17 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
           {/* Mute toggle */}
           <button
             onClick={() => setIsMuted(m => !m)}
-            className="w-8.5 h-8.5 rounded-full bg-white/90 hover:bg-stone-100 text-stone-700 border border-stone-200/80 shadow-xs flex items-center justify-center transition-all cursor-pointer"
+            className="w-8.5 h-8.5 rounded-full bg-white/95 hover:bg-[#A2482B]/10 text-[#A2482B] border border-stone-200/80 shadow-xs flex items-center justify-center transition-all cursor-pointer"
             title={isMuted ? 'Activer le son' : 'Couper le son'}
           >
-            {isMuted ? <VolumeX className="w-4 h-4 text-stone-500" /> : <Volume2 className="w-4 h-4 text-stone-700" />}
+            {isMuted ? <VolumeX className="w-4 h-4 text-[#A2482B]" /> : <Volume2 className="w-4 h-4 text-[#A2482B]" />}
           </button>
         </div>
 
         {/* La croix suffit pour revenir aux publications normales */}
         <button
           onClick={onClose}
-          className="w-9 h-9 rounded-full bg-white/90 hover:bg-[#A2482B] text-stone-700 hover:text-white border border-stone-200/80 shadow-md flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+          className="w-9 h-9 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200/80 shadow-md flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
           title="Fermer et revenir aux publications normales"
         >
           <X className="w-4.5 h-4.5 text-current" />
@@ -222,7 +222,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
         {SHOW_CAROUSEL_ARROWS && (
         <button
           onClick={goToPrev}
-          className="hidden sm:flex absolute left-2 sm:left-4 md:left-8 z-40 w-10 h-10 rounded-full bg-white/90 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="hidden sm:flex absolute left-2 sm:left-4 md:left-8 z-40 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Story précédente"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -233,7 +233,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
         {SHOW_CAROUSEL_ARROWS && (
         <button
           onClick={goToNext}
-          className="hidden sm:flex absolute right-2 sm:right-4 md:right-8 z-40 w-10 h-10 rounded-full bg-white/90 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="hidden sm:flex absolute right-2 sm:right-4 md:right-8 z-40 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Story suivante"
         >
           <ChevronRight className="w-5 h-5" />
@@ -323,8 +323,8 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                     pointerEvents,
                     transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                   }}
-                  className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-3 sm:p-4 cursor-pointer select-none bg-[#151513] text-white shadow-2xl transition-all ${
-                    isCenter ? 'border-none ring-0 shadow-[0_12px_40px_rgba(0,0,0,0.85)]' : 'border-none ring-0 opacity-55 [&_*]:!pointer-events-none'
+                  className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-3 sm:p-4 cursor-pointer select-none bg-[#121F4B] text-white shadow-2xl transition-all ${
+                    isCenter ? 'border-none ring-0 shadow-[0_12px_40px_rgba(31,68,168,0.45)]' : 'border-none ring-0 opacity-55 [&_*]:!pointer-events-none'
                   }`}
                 >
                   
@@ -352,7 +352,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                       />
                     )}
                     {/* Voile subtil pour la lisibilité */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/40 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
                   </div>
 
                   {/* ========================================================================= */}
@@ -361,7 +361,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                   {/* ========================================================================= */}
                   <div className="relative z-20 w-full flex items-center justify-between gap-1 pointer-events-auto">
                     {/* Titre thématique en haut à gauche */}
-                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/75 border border-white/20 shadow-md shrink-0">
+                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md shrink-0">
                       <span className="font-editorial text-[8.5px] sm:text-[10.5px] font-semibold text-white whitespace-nowrap leading-none tracking-wide select-none">
                         {formatFirstLetterOnly(storyThemeTitle)}
                       </span>
@@ -377,7 +377,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                       className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
                         isPlaying && isCenter
                           ? 'bg-[#A2482B] text-white border border-[#8A3B22]' 
-                          : 'bg-black/75 text-white border border-white/20 hover:bg-black/85'
+                          : 'bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
                       }`}
                       title={isPlaying && isCenter ? 'Mettre en pause' : 'Lancer la vidéo'}
                     >
@@ -424,7 +424,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                             onNavigateToDuo(story);
                           }
                         }}
-                        className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-black/75 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/25 hover:border-[#A2482B] flex items-center justify-center shadow-lg transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                        className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center shadow-lg transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                         title={`Entrer dans les vidéos de la thématique ${storyThemeTitle}`}
                       >
                         <DoorArchIcon className="w-4 h-4 text-white" strokeWidth={1.75} />

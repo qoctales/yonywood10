@@ -28,15 +28,15 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-2 sm:p-4 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-2 sm:p-4 animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl bg-stone-900 border border-[#C89B3C]/50 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl flex flex-col gap-3 max-h-[92dvh] overflow-y-auto no-scrollbar"
+        className="relative w-full max-w-4xl bg-[#1F44A8] border border-white/25 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl flex flex-col gap-3 max-h-[92dvh] overflow-y-auto no-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête : Question existentielle commune */}
-        <div className="flex items-center justify-between pb-2 border-b border-white/10 gap-2">
+        <div className="flex items-center justify-between pb-2 border-b border-white/15 gap-2">
           <div className="min-w-0">
             <span className="text-[10px] sm:text-xs font-bold text-[#FFE7A3] uppercase tracking-wider">
               Duo &lt;&gt; Face-à-face
@@ -47,7 +47,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-stone-300 hover:text-white transition-colors cursor-pointer shrink-0"
+            className="p-1.5 rounded-full bg-white/15 hover:bg-[#A2482B] text-white transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
@@ -57,7 +57,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 my-auto">
           
           {/* CARTE 1 : LE SOLEIL */}
-          <div className="relative aspect-[9/16] max-h-[460px] sm:max-h-[500px] rounded-2xl overflow-hidden bg-black border-2 border-[#C89B3C] shadow-lg flex flex-col justify-between p-3 select-none">
+          <div className="relative aspect-[9/16] max-h-[460px] sm:max-h-[500px] rounded-2xl overflow-hidden bg-[#163385] border-2 border-[#C89B3C] shadow-lg flex flex-col justify-between p-3 select-none">
             {/* Vidéo ou photo */}
             {isPlayingSun ? (
               <video
@@ -80,17 +80,17 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut */}
             <div className="relative z-10 flex items-center justify-between">
-              <span className="px-2.5 py-0.5 rounded-full bg-black/75 text-[10px] font-bold text-[#FFE7A3] border border-white/20">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-[10px] font-bold text-[#FFE7A3] border border-white/20">
                 Soleil · {sun.flag}
               </span>
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => setIsMutedSun(prev => !prev)}
-                  className="p-1 rounded-full bg-black/50 hover:bg-[#A2482B] text-white"
+                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isMutedSun ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
@@ -100,7 +100,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                     if (next) setIsPlayingCounter(false);
                     return next;
                   })}
-                  className="p-1 rounded-full bg-black/50 hover:bg-[#A2482B] text-white"
+                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isPlayingSun ? <Pause className="w-3.5 h-3.5" /> : <TvPlayerIcon className="w-3.5 h-3.5" />}
                 </button>
@@ -115,7 +115,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
           </div>
 
           {/* CARTE 2 : LE CONTREPOINT */}
-          <div className="relative aspect-[9/16] max-h-[460px] sm:max-h-[500px] rounded-2xl overflow-hidden bg-black border-2 border-[#A2482B] shadow-lg flex flex-col justify-between p-3 select-none">
+          <div className="relative aspect-[9/16] max-h-[460px] sm:max-h-[500px] rounded-2xl overflow-hidden bg-[#163385] border-2 border-[#A2482B] shadow-lg flex flex-col justify-between p-3 select-none">
             {/* Vidéo ou photo */}
             {isPlayingCounter ? (
               <video
@@ -138,17 +138,17 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut */}
             <div className="relative z-10 flex items-center justify-between">
-              <span className="px-2.5 py-0.5 rounded-full bg-black/75 text-[10px] font-bold text-white border border-white/20">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-[10px] font-bold text-white border border-white/20">
                 Contrepoint · {counterpoint.flag}
               </span>
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => setIsMutedCounter(prev => !prev)}
-                  className="p-1 rounded-full bg-black/50 hover:bg-[#A2482B] text-white"
+                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isMutedCounter ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
@@ -158,7 +158,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                     if (next) setIsPlayingSun(false);
                     return next;
                   })}
-                  className="p-1 rounded-full bg-black/50 hover:bg-[#A2482B] text-white"
+                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isPlayingCounter ? <Pause className="w-3.5 h-3.5" /> : <TvPlayerIcon className="w-3.5 h-3.5" />}
                 </button>

@@ -67,7 +67,7 @@ export const VerticalZoomSlider: React.FC<VerticalZoomSliderProps> = ({
         type="button"
         onClick={() => stepZoom(0.1)}
         onDoubleClick={resetZoom}
-        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-stone-700 hover:text-[#A2482B] hover:bg-stone-50 transition-colors cursor-pointer"
+        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#A2482B] hover:text-[#8A3B22] hover:bg-stone-50 transition-colors cursor-pointer"
         aria-label="Zoomer"
       >
         <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -107,7 +107,7 @@ export const VerticalZoomSlider: React.FC<VerticalZoomSliderProps> = ({
         type="button"
         onClick={() => stepZoom(-0.1)}
         onDoubleClick={resetZoom}
-        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-stone-700 hover:text-[#A2482B] hover:bg-stone-50 transition-colors cursor-pointer"
+        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#A2482B] hover:text-[#8A3B22] hover:bg-stone-50 transition-colors cursor-pointer"
         aria-label="Dézoomer"
       >
         <ZoomOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />

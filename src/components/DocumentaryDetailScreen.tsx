@@ -74,7 +74,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
         <div className="flex items-center justify-between pb-3">
           <button
             onClick={() => onNavigate({ type: 'documentaries' })}
-            className="text-xs font-semibold text-[#8B6845] hover:text-[#1C1917] flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="text-xs font-semibold text-[#A2482B] hover:text-[#8A3B22] flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Toutes les séries</span>
@@ -113,8 +113,8 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                 }}
                 className={`px-3.5 py-1 rounded-full text-xs whitespace-nowrap transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-[#1C1917] text-[#FFFFFF] font-semibold shadow-xs'
-                    : 'text-[#68655D] hover:text-[#1C1917] hover:bg-[#E7E5E4]/50 border border-transparent'
+                    ? 'bg-[#1F44A8] text-[#FFFFFF] font-semibold shadow-xs'
+                    : 'text-[#68655D] hover:text-[#1F44A8] hover:bg-[#1F44A8]/8 border border-transparent'
                 }`}
               >
                 {item.title}
@@ -128,7 +128,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
       <div className="py-8 sm:py-12 text-center space-y-6 max-w-3xl mx-auto flex flex-col items-center">
         
         {/* AFFICHE OFFICIELLE 9/16 */}
-        <div className="relative w-44 sm:w-56 aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-200 bg-stone-900 group">
+        <div className="relative w-44 sm:w-56 aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-200 bg-[#121F4B] group">
           <img 
             src={doc.posterUrl || doc.coverImage} 
             alt={doc.title} 
@@ -140,13 +140,13 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
           loading="lazy"
           decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
           
           <span className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-[#A2482B] text-white text-[9px] font-mono font-bold tracking-widest uppercase">
             9:16
           </span>
 
-          <span className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/75 border border-white/20 text-[10px] font-mono tracking-widest text-white uppercase whitespace-nowrap">
+          <span className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] font-mono tracking-widest text-white uppercase whitespace-nowrap">
             AFFICHE OFFICIELLE
           </span>
         </div>
@@ -157,8 +157,8 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
           <span>Thématique • {doc.centralQuestion}</span>
         </div>
 
-        {/* Titre officiel de la série */}
-        <h1 className="font-editorial text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#1C1917] leading-tight px-2">
+        {/* Titre officiel de la série sur fond bleu indigo */}
+        <h1 className="font-editorial text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white bg-[#1F44A8] px-6 py-2.5 rounded-full shadow-md leading-tight mx-2">
           {doc.title}
         </h1>
 
@@ -391,7 +391,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
 
           {/* Recherche rapide par nom */}
           <div className="relative w-full sm:w-64">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#A2482B]/70" />
             <input
               type="text"
               placeholder="Rechercher un producteur..."
@@ -483,14 +483,14 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                         e.stopPropagation();
                         setActiveProducerVideo(producer);
                       }}
-                      className="p-2 rounded-full bg-stone-100 hover:bg-[#A2482B] text-stone-700 hover:text-white transition-colors cursor-pointer"
+                      className="p-2 rounded-full bg-[#A2482B]/10 hover:bg-[#A2482B] text-[#A2482B] hover:text-white transition-colors cursor-pointer"
                       title="Regarder la vidéo de présentation"
                     >
                       <Play className="w-3.5 h-3.5 fill-current" />
                     </button>
                   )}
 
-                  <span className="text-stone-300 group-hover:text-[#A2482B] transition-colors">
+                  <span className="text-[#A2482B]/50 group-hover:text-[#A2482B] transition-colors">
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
@@ -549,7 +549,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                 </h3>
               </div>
               <p className="text-xs text-stone-500">
-                Partenaires soutenant financièrement la série selon la clé 84% Série / 16% YonyWood.
+                Partenaires soutenant financièrement la série selon la clé 84% Série / 16% Gbadoo.
               </p>
 
               <div className="space-y-2 pt-1">
@@ -605,7 +605,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                 className="bg-white rounded-3xl border border-stone-200 hover:border-[#A2482B] overflow-hidden shadow-xs hover:shadow-lg transition-all flex flex-col group"
               >
                 {/* AFFICHE OU LECTEUR MINI-VIDÉO VERTICALE 9/16 */}
-                <div className="relative aspect-[9/16] w-full overflow-hidden bg-stone-950">
+                <div className="relative aspect-[9/16] w-full overflow-hidden bg-[#121F4B]">
                   {isPlaying && q.videoUrl ? (
                     <video
                       src={q.videoUrl}
@@ -629,7 +629,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
                   
                   {/* Badge numéro d'épisode */}
                   <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#A2482B] text-white text-[10px] font-mono font-bold tracking-wider shadow-sm">
@@ -637,7 +637,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                   </div>
 
                   {q.audioDuration && (
-                    <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-black/60 text-[9px] font-mono text-white flex items-center gap-1">
+                    <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[9px] font-mono text-white flex items-center gap-1">
                       <Clock className="w-2.5 h-2.5" />
                       <span>{q.audioDuration}</span>
                     </div>
@@ -648,7 +648,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                     <button
                       type="button"
                       onClick={() => setPlayingVideoIndex(isPlaying ? null : idx)}
-                      className="absolute top-3 right-3 z-30 w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-black/65 hover:bg-[#A2482B] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer border border-white/20"
+                      className="absolute top-3 right-3 z-30 w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer border border-white/20"
                       title={isPlaying ? "Mettre en pause" : "Lancer la mini-vidéo de la question"}
                     >
                       {isPlaying ? (
@@ -664,7 +664,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                     <button
                       type="button"
                       onClick={() => setIsMuted(!isMuted)}
-                      className="absolute bottom-16 right-3 w-8 h-8 rounded-full bg-black/70 text-white flex items-center justify-center cursor-pointer"
+                      className="absolute bottom-16 right-3 w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center cursor-pointer border border-white/20"
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     </button>
@@ -721,11 +721,11 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
       {/* 7. MODALE VIDÉO DU PRODUCTEUR (DÉCLENCHÉE AU DOUBLE-CLIC) */}
       {activeProducerVideo && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/90 animate-in fade-in duration-200"
           onClick={() => setActiveProducerVideo(null)}
         >
           <div 
-            className="relative w-full max-w-sm aspect-[9/16] bg-stone-950 rounded-3xl overflow-hidden shadow-2xl border border-stone-800 flex flex-col justify-between"
+            className="relative w-full max-w-sm aspect-[9/16] bg-[#121F4B] rounded-3xl overflow-hidden shadow-2xl border border-white/20 flex flex-col justify-between"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Vidéo 9:16 */}
@@ -738,7 +738,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
               className="absolute inset-0 w-full h-full object-cover"
             preload="metadata"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut */}
             <div className="relative z-10 p-4 flex items-center justify-between">
@@ -749,14 +749,14 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsProducerVideoMuted(!isProducerVideoMuted)}
-                  className="w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 >
                   {isProducerVideoMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
 
                 <button
                   onClick={() => setActiveProducerVideo(null)}
-                  className="w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -812,7 +812,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
 
       {/* 9. FOOTER SOBRE */}
       <div className="text-center text-[11px] text-[#8B6845]/70 pt-6 pb-2">
-        YONYWOOD • Récits d'humanité et de transmission
+        GBADOO • Récits d'humanité et de transmission
       </div>
 
     </div>

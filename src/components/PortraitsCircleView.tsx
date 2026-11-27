@@ -328,10 +328,10 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
               <button
                 type="button"
                 onClick={exit}
-                className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1"
+                className="font-normal text-stone-500 hover:text-[#A2482B] transition-colors cursor-pointer flex items-center gap-1 group py-1"
                 title="Revenir à Lumières (constellation des 16 organisations)"
               >
-                <ChevronLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+                <ChevronLeft className="w-4 h-4 text-[#A2482B] group-hover:-translate-x-0.5 transition-transform" />
                 <span>Lumières</span>
               </button>
               <span className="text-stone-300 font-light text-xs" aria-hidden="true">
@@ -367,7 +367,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
                 type="button"
                 onClick={() => setIsContactCompanyModalOpen(true)}
                 id="btn-contact-organisation"
-                className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-white hover:bg-[#A2482B] border border-stone-200 hover:border-[#A2482B] text-stone-700 hover:text-white flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95 shrink-0"
+                className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-white hover:bg-[#A2482B] border border-stone-200 hover:border-[#A2482B] text-[#A2482B] hover:text-white flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95 shrink-0"
                 title={`Contacter ${curOrg.companyName}`}
                 aria-label={`Contacter ${curOrg.companyName}`}
               >
@@ -379,7 +379,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
                 type="button"
                 onClick={() => handleShareCompany(curOrg)}
                 id="btn-share-organisation-space"
-                className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-white hover:bg-[#A2482B] border border-stone-200 hover:border-[#A2482B] text-stone-700 hover:text-white flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95 shrink-0"
+                className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-white hover:bg-[#A2482B] border border-stone-200 hover:border-[#A2482B] text-[#A2482B] hover:text-white flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95 shrink-0"
                 title={`Partager l'espace Lumière de ${curOrg.companyName}`}
                 aria-label={`Partager l'espace Lumière de ${curOrg.companyName}`}
               >
@@ -846,11 +846,11 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
       {activeStakeholderModal && (
         <div
           onClick={() => setActiveStakeholderModal(null)}
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
+            className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
               aspect-[9/16] 
               w-[min(calc(100vw-32px),calc((100dvh-200px)*9/16))] 
               max-w-[280px] sm:max-w-[290px] 
@@ -879,7 +879,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
             )}
 
             {/* Dégradé cinématique sombre */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Overlay standardisé */}
             <UnifiedVideoCardOverlay
@@ -926,11 +926,11 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
             setActiveCompanyModal(null);
             setIsCompanyPlaying(false);
           }}
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
+            className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
               aspect-[9/16] 
               w-[min(calc(100vw-32px),calc((100dvh-200px)*9/16))] 
               max-w-[280px] sm:max-w-[290px] 
@@ -959,7 +959,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
             )}
 
             {/* Dégradé cinématique sombre */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Overlay standardisé identique à celui d'une personne :
                 - En haut à gauche : le domaine d'activité
@@ -1014,7 +1014,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
       {/* MODALE DE PRISE DE CONTACT AVEC L'ORGANISATION                           */}
       {/* ========================================================================= */}
       {isContactCompanyModalOpen && curOrg && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 animate-in fade-in">
+        <div className="fixed inset-0 z-50 bg-[#121F4B]/80 flex items-center justify-center p-4 animate-in fade-in">
           <div className="bg-white max-w-md w-full rounded-3xl p-5 sm:p-6 shadow-2xl border border-stone-200 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-stone-200">
               <div className="flex items-center gap-3">
@@ -1039,7 +1039,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
               <button 
                 type="button"
                 onClick={() => setIsContactCompanyModalOpen(false)} 
-                className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 cursor-pointer"
+                className="p-1.5 text-[#A2482B] hover:text-[#8A3B22] rounded-full hover:bg-stone-100 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1143,7 +1143,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
 
       {/* Toast de confirmation */}
       {toastMessage && (
-        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-stone-900/95 text-white border border-white/20 px-4 py-2 rounded-full text-xs font-semibold shadow-2xl animate-in fade-in pointer-events-none">
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#1F44A8] text-white border border-white/25 px-4 py-2 rounded-full text-xs font-semibold shadow-2xl animate-in fade-in pointer-events-none">
           {toastMessage}
         </div>
       )}

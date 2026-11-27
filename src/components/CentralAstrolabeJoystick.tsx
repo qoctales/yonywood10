@@ -194,7 +194,7 @@ export const CentralAstrolabeJoystick: React.FC<CentralAstrolabeJoystickProps> =
         activeCategory === 'series' && (hoveredCoverImage || activeCoverImage) ? (
           /* SÉRIE CHOISIE : AFFICHE OFFICIELLE DE LA SÉRIE AU MILIEU DE LA ROUE AVEC CERCLAGE D'OR D'ASTROLABE */
           <div 
-            className={`relative w-22 h-22 sm:w-26 sm:h-26 rounded-full border-2 border-[#C89B3C] shadow-[0_6px_30px_rgba(200,155,60,0.55)] transition-all duration-150 flex items-center justify-center overflow-hidden bg-[#1C1917] ${
+            className={`relative w-22 h-22 sm:w-26 sm:h-26 rounded-full border-2 border-[#C89B3C] shadow-[0_6px_30px_rgba(200,155,60,0.55)] transition-all duration-150 flex items-center justify-center overflow-hidden bg-[#121F4B] ${
               isRefreshing ? 'scale-90 rotate-180' : 'group-hover:scale-105'
             }`}
             style={{
@@ -212,10 +212,10 @@ export const CentralAstrolabeJoystick: React.FC<CentralAstrolabeJoystickProps> =
 
             {/* Cerclage or précieux astrolabe */}
             <div className="absolute inset-0 rounded-full border-2 border-[#FFE7A3]/90 shadow-inner pointer-events-none" />
-            <div className="absolute inset-1 rounded-full border border-black/40 pointer-events-none" />
+            <div className="absolute inset-1 rounded-full border border-[#121F4B]/40 pointer-events-none" />
 
             {/* Pastille de rafraîchissement au survol */}
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none z-20">
+            <div className="absolute inset-0 bg-[#121F4B]/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none z-20">
               <RefreshCw className={`w-4 h-4 text-white mb-0.5 ${isRefreshing ? 'animate-spin' : ''}`} />
               <span className="text-[8.5px] font-semibold tracking-wider uppercase text-white">
                 Relancer
@@ -242,7 +242,7 @@ export const CentralAstrolabeJoystick: React.FC<CentralAstrolabeJoystickProps> =
             </div>
 
             {/* Pastille de rafraîchissement au survol */}
-            <div className="absolute inset-0 bg-black/65 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none">
+            <div className="absolute inset-0 bg-[#121F4B]/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none">
               <RefreshCw className={`w-4 h-4 text-white mb-0.5 ${isRefreshing ? 'animate-spin' : ''}`} />
               <span className="text-[8.5px] font-semibold tracking-wider uppercase text-white">
                 Relancer

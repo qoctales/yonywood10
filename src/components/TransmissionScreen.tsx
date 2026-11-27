@@ -55,7 +55,7 @@ export const TransmissionScreen: React.FC<TransmissionScreenProps> = ({
           </h1>
 
           <p className="text-sm sm:text-base text-[#68655D] max-w-2xl mx-auto leading-relaxed">
-            Dans YonyWood, aucune histoire n'existe en autarcie. Chaque récit prend racine dans une transmission antérieure et ouvre un chemin vers une nouvelle rencontre.
+            Dans Gbadoo, aucune histoire n'existe en autarcie. Chaque récit prend racine dans une transmission antérieure et ouvre un chemin vers une nouvelle rencontre.
           </p>
         </div>
 

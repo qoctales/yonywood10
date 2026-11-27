@@ -127,17 +127,17 @@ export const DemoEntrepriseSection: React.FC = () => {
         {/* Flèche gauche */}
         <button
           onClick={handlePrev}
-          className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+          className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
           title="Carte précédente"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
 
         {/* Carte 9:16 : hauteur bornée pour rester au-dessus de la nav bar */}
-        <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
+        <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
 
           {isPlaying && currentCard.videoUrl ? (
-            <div className="absolute inset-0 z-20 bg-black flex flex-col justify-between p-4">
+            <div className="absolute inset-0 z-20 bg-[#121F4B] flex flex-col justify-between p-4">
               <video
                 src={currentCard.videoUrl}
                 autoPlay
@@ -148,19 +148,19 @@ export const DemoEntrepriseSection: React.FC = () => {
               preload="metadata"
               />
               <div className="relative z-30 flex justify-between items-center">
-                <span className="px-3 py-1 rounded-full bg-black/60 text-xs font-bold tracking-wide text-white">
+                <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold tracking-wide text-white">
                   {currentCard.companyName}
                 </span>
                 <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => setIsMuted(!isMuted)}
-                    className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-white cursor-pointer"
+                    className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer"
                   >
                     {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                   </button>
                   <button
                     onClick={() => setIsPlaying(false)}
-                    className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-white cursor-pointer"
+                    className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -182,11 +182,11 @@ export const DemoEntrepriseSection: React.FC = () => {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/65 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
               {/* Haut : Nom de l'entreprise "Africafun" & Déclencheur lecture */}
               <div className="relative z-10 flex justify-between items-center pointer-events-auto">
-                <span className="px-3.5 py-1 rounded-full bg-black/60 border border-white/20 text-xs font-bold text-white tracking-wider">
+                <span className="px-3.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wider">
                   {currentCard.companyName}
                 </span>
 
@@ -196,7 +196,7 @@ export const DemoEntrepriseSection: React.FC = () => {
                       e.stopPropagation();
                       setIsPlaying(!isPlaying);
                     }}
-                    className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title={isPlaying ? "Mettre en pause" : `Regarder la vidéo de ${currentCard.firstName}`}
                   >
                     {isPlaying ? (
@@ -230,8 +230,8 @@ export const DemoEntrepriseSection: React.FC = () => {
                       </h4>
                     </div>
 
-                    <div className="bg-black/60 rounded-2xl p-3 border border-white/15">
-                      <p className="text-xs text-stone-200 leading-relaxed">
+                    <div className="bg-[#121F4B]/65 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
+                      <p className="text-xs text-white/90 leading-relaxed">
                         {currentCard.quote}
                       </p>
                     </div>
@@ -247,8 +247,8 @@ export const DemoEntrepriseSection: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="bg-black/60 rounded-2xl p-3 border border-white/15">
-                      <p className="text-xs text-stone-100 leading-relaxed italic">
+                    <div className="bg-[#121F4B]/65 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
+                      <p className="text-xs text-white/95 leading-relaxed italic">
                         {currentCard.quote}
                       </p>
                     </div>
@@ -263,7 +263,7 @@ export const DemoEntrepriseSection: React.FC = () => {
         {/* Flèche droite */}
         <button
           onClick={handleNext}
-          className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+          className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
           title="Carte suivante"
         >
           <ChevronRight className="w-5 h-5" />

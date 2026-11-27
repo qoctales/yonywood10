@@ -142,7 +142,7 @@ export const AdminFinancesTab: React.FC<AdminFinancesTabProps> = ({
           {tempPlatformFee !== platformFee && (
             <button
               onClick={handleSaveFee}
-              className="px-3.5 py-1.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold transition-all cursor-pointer shadow-xs"
+              className="px-3.5 py-1.5 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-bold transition-all cursor-pointer shadow-xs"
             >
               Appliquer & Tracer
             </button>
@@ -219,7 +219,7 @@ export const AdminFinancesTab: React.FC<AdminFinancesTabProps> = ({
                     ) : (
                       <button
                         onClick={() => onUpdatePayoutStatus(earning.id, 'PROCESSING', `Mise en paiement virement ${earning.dividendEarned} € à ${earning.coproducerName}`)}
-                        className="px-2.5 py-1 rounded-xl bg-stone-900 text-white text-[10px] font-bold hover:bg-stone-800 cursor-pointer shadow-xs"
+                        className="px-2.5 py-1 rounded-xl bg-[#1F44A8] text-white text-[10px] font-bold hover:bg-[#163385] cursor-pointer shadow-xs"
                       >
                         Lancer le virement
                       </button>

@@ -190,7 +190,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['modernite-tradition'].mainPosterUrl,
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
-    bgGradient: 'from-emerald-600 via-teal-700 to-stone-900'
+    bgGradient: 'from-emerald-600 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'series/jesus-legba',
@@ -206,7 +206,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['jesus-legba'].mainPosterUrl,
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
-    bgGradient: 'from-amber-600 via-orange-700 to-stone-900'
+    bgGradient: 'from-amber-600 via-orange-700 to-[#121F4B]'
   },
   {
     id: 'series/phd-apprentis',
@@ -222,7 +222,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['phd-apprentis'].mainPosterUrl,
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
-    bgGradient: 'from-amber-500 via-yellow-700 to-stone-900'
+    bgGradient: 'from-amber-500 via-yellow-700 to-[#121F4B]'
   },
   {
     id: 'series/blacks-one-wowmen',
@@ -238,7 +238,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['blacks-one-wowmen'].mainPosterUrl,
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.6)',
-    bgGradient: 'from-pink-600 via-rose-700 to-stone-900'
+    bgGradient: 'from-pink-600 via-rose-700 to-[#121F4B]'
   },
   {
     id: 'series/bambous-irokos',
@@ -254,7 +254,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['bambous-irokos'].mainPosterUrl,
     accentColor: '#EAB308',
     glowColor: 'rgba(234, 179, 8, 0.6)',
-    bgGradient: 'from-yellow-600 via-amber-700 to-stone-900'
+    bgGradient: 'from-yellow-600 via-amber-700 to-[#121F4B]'
   },
   {
     id: 'series/horizons-benin',
@@ -270,7 +270,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl,
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
-    bgGradient: 'from-blue-600 via-indigo-700 to-stone-900'
+    bgGradient: 'from-blue-600 via-indigo-700 to-[#121F4B]'
   },
   {
     id: 'series/builders-coachs',
@@ -286,7 +286,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['builders-coachs'].mainPosterUrl,
     accentColor: '#84CC16',
     glowColor: 'rgba(132, 204, 22, 0.6)',
-    bgGradient: 'from-lime-600 via-green-700 to-stone-900'
+    bgGradient: 'from-lime-600 via-green-700 to-[#121F4B]'
   },
   {
     id: 'series/regards-paroles',
@@ -302,7 +302,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: SERIES_POSTER_FILES['regards-paroles'].mainPosterUrl,
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
-    bgGradient: 'from-purple-600 via-violet-700 to-stone-900'
+    bgGradient: 'from-purple-600 via-violet-700 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -334,7 +334,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/athlete-hurdle.jpg',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
-    bgGradient: 'from-amber-500 via-orange-600 to-stone-950'
+    bgGradient: 'from-amber-500 via-orange-600 to-[#121F4B]'
   },
   {
     id: 'sagesses/amour',
@@ -349,7 +349,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Wowmen.png',
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.6)',
-    bgGradient: 'from-pink-500 via-rose-600 to-stone-950'
+    bgGradient: 'from-pink-500 via-rose-600 to-[#121F4B]'
   },
   {
     id: 'sagesses/solidarite',
@@ -364,7 +364,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Onboardings/coproductions-hero.jpg',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
-    bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
+    bgGradient: 'from-orange-500 via-amber-700 to-[#121F4B]'
   },
   {
     id: 'sagesses/gratitude',
@@ -379,7 +379,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Hoxo%CC%80.png',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
-    bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
+    bgGradient: 'from-emerald-500 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'sagesses/perseverance',
@@ -394,7 +394,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/tobi-ganvie.jpg',
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
-    bgGradient: 'from-blue-500 via-indigo-700 to-stone-950'
+    bgGradient: 'from-blue-500 via-indigo-700 to-[#121F4B]'
   },
   {
     id: 'sagesses/bienveillance',
@@ -409,7 +409,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/care-mireille.jpg',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
-    bgGradient: 'from-cyan-500 via-teal-700 to-stone-950'
+    bgGradient: 'from-cyan-500 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'sagesses/pardon',
@@ -424,7 +424,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Jesus.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
-    bgGradient: 'from-violet-500 via-purple-700 to-stone-950'
+    bgGradient: 'from-violet-500 via-purple-700 to-[#121F4B]'
   },
   {
     id: 'sagesses/humilite',
@@ -439,7 +439,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Irokos.png',
     accentColor: '#EAB308',
     glowColor: 'rgba(234, 179, 8, 0.6)',
-    bgGradient: 'from-yellow-500 via-amber-700 to-stone-950'
+    bgGradient: 'from-yellow-500 via-amber-700 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -466,7 +466,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Benin.png',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
-    bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
+    bgGradient: 'from-amber-600 via-yellow-800 to-[#121F4B]'
   },
   {
     id: 'territoires/traditions',
@@ -481,7 +481,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Tradition.png',
     accentColor: '#E11D48',
     glowColor: 'rgba(225, 29, 72, 0.6)',
-    bgGradient: 'from-rose-500 via-red-700 to-stone-950'
+    bgGradient: 'from-rose-500 via-red-700 to-[#121F4B]'
   },
   {
     id: 'territoires/culture',
@@ -496,7 +496,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Legba.png',
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
-    bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
+    bgGradient: 'from-purple-500 via-violet-700 to-[#121F4B]'
   },
   {
     id: 'territoires/histoire',
@@ -511,7 +511,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/dah-zounon.jpg',
     accentColor: '#2563EB',
     glowColor: 'rgba(37, 99, 235, 0.6)',
-    bgGradient: 'from-blue-600 via-indigo-800 to-stone-950'
+    bgGradient: 'from-blue-600 via-indigo-800 to-[#121F4B]'
   },
   {
     id: 'territoires/terroirs',
@@ -526,7 +526,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/E%20Vivi.png',
     accentColor: '#16A34A',
     glowColor: 'rgba(22, 163, 74, 0.6)',
-    bgGradient: 'from-green-600 via-emerald-800 to-stone-950'
+    bgGradient: 'from-green-600 via-emerald-800 to-[#121F4B]'
   },
   {
     id: 'territoires/langues',
@@ -541,7 +541,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Paroles.png',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
-    bgGradient: 'from-orange-600 via-amber-800 to-stone-950'
+    bgGradient: 'from-orange-600 via-amber-800 to-[#121F4B]'
   },
   {
     id: 'territoires/diaspora',
@@ -556,7 +556,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Diasporas.png',
     accentColor: '#0EA5E9',
     glowColor: 'rgba(14, 165, 233, 0.6)',
-    bgGradient: 'from-sky-500 via-cyan-700 to-stone-950'
+    bgGradient: 'from-sky-500 via-cyan-700 to-[#121F4B]'
   },
   {
     id: 'territoires/habitudes',
@@ -571,7 +571,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Horizons.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
-    bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
+    bgGradient: 'from-amber-500 via-orange-700 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -598,7 +598,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Apprentis.png',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
-    bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
+    bgGradient: 'from-amber-600 via-yellow-800 to-[#121F4B]'
   },
   {
     id: 'expertises/education',
@@ -613,7 +613,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/PhD.png',
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
-    bgGradient: 'from-blue-500 via-indigo-700 to-stone-950'
+    bgGradient: 'from-blue-500 via-indigo-700 to-[#121F4B]'
   },
   {
     id: 'expertises/numerique',
@@ -628,7 +628,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Modernite%CC%81.png',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
-    bgGradient: 'from-cyan-500 via-teal-700 to-stone-950'
+    bgGradient: 'from-cyan-500 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'expertises/business',
@@ -643,7 +643,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Builders.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
-    bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
+    bgGradient: 'from-amber-500 via-orange-700 to-[#121F4B]'
   },
   {
     id: 'expertises/justice',
@@ -658,7 +658,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Votre%20Honneur.png',
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.6)',
-    bgGradient: 'from-sky-600 via-blue-800 to-stone-950'
+    bgGradient: 'from-sky-600 via-blue-800 to-[#121F4B]'
   },
   {
     id: 'expertises/sante',
@@ -673,7 +673,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/care-mireille.jpg',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
-    bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
+    bgGradient: 'from-emerald-500 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'expertises/securite',
@@ -688,7 +688,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Onboardings/securite-hero.jpg',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
-    bgGradient: 'from-red-600 via-rose-700 to-stone-950'
+    bgGradient: 'from-red-600 via-rose-700 to-[#121F4B]'
   },
   {
     id: 'expertises/design',
@@ -703,7 +703,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Images.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
-    bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
+    bgGradient: 'from-purple-500 via-violet-700 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -730,7 +730,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Wowmen.png',
     accentColor: '#F43F5E',
     glowColor: 'rgba(244, 63, 94, 0.6)',
-    bgGradient: 'from-rose-500 via-pink-700 to-stone-950'
+    bgGradient: 'from-rose-500 via-pink-700 to-[#121F4B]'
   },
   {
     id: 'produits-services/restauration',
@@ -745,7 +745,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/chef-koffi.jpg',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
-    bgGradient: 'from-orange-500 via-red-700 to-stone-950'
+    bgGradient: 'from-orange-500 via-red-700 to-[#121F4B]'
   },
   {
     id: 'produits-services/mode',
@@ -760,7 +760,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/fatou-diallo.jpg',
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
-    bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
+    bgGradient: 'from-purple-500 via-violet-700 to-[#121F4B]'
   },
   {
     id: 'produits-services/bien-etre',
@@ -775,7 +775,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/mawuna-medium.jpg',
     accentColor: '#14B8A6',
     glowColor: 'rgba(20, 184, 166, 0.6)',
-    bgGradient: 'from-teal-500 via-emerald-700 to-stone-950'
+    bgGradient: 'from-teal-500 via-emerald-700 to-[#121F4B]'
   },
   {
     id: 'produits-services/tourisme',
@@ -790,7 +790,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Horizons.png',
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.6)',
-    bgGradient: 'from-sky-500 via-blue-700 to-stone-950'
+    bgGradient: 'from-sky-500 via-blue-700 to-[#121F4B]'
   },
   {
     id: 'produits-services/garde-enfants',
@@ -805,7 +805,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Hoxo%CC%80.png',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
-    bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
+    bgGradient: 'from-emerald-500 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'produits-services/conciergerie',
@@ -820,7 +820,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Coachs.png',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
-    bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
+    bgGradient: 'from-amber-600 via-yellow-800 to-[#121F4B]'
   },
   {
     id: 'produits-services/immobilier',
@@ -835,7 +835,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Builders.png',
     accentColor: '#6366F1',
     glowColor: 'rgba(99, 102, 241, 0.6)',
-    bgGradient: 'from-indigo-500 via-blue-700 to-stone-950'
+    bgGradient: 'from-indigo-500 via-blue-700 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -862,7 +862,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Fou%20Rire.png',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.6)',
-    bgGradient: 'from-amber-500 via-orange-700 to-stone-950'
+    bgGradient: 'from-amber-500 via-orange-700 to-[#121F4B]'
   },
   {
     id: 'projets/ecologie',
@@ -877,7 +877,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Irokos.png',
     accentColor: '#22C55E',
     glowColor: 'rgba(34, 197, 94, 0.6)',
-    bgGradient: 'from-green-500 via-emerald-700 to-stone-950'
+    bgGradient: 'from-green-500 via-emerald-700 to-[#121F4B]'
   },
   {
     id: 'projets/culture',
@@ -892,7 +892,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Artistes.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
-    bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
+    bgGradient: 'from-purple-500 via-violet-700 to-[#121F4B]'
   },
   {
     id: 'projets/social',
@@ -907,7 +907,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/tobi-houndegla.jpg',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
-    bgGradient: 'from-red-500 via-rose-700 to-stone-950'
+    bgGradient: 'from-red-500 via-rose-700 to-[#121F4B]'
   },
   {
     id: 'projets/communautaire',
@@ -922,7 +922,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Onboardings/coproductions-hero.jpg',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
-    bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
+    bgGradient: 'from-orange-500 via-amber-700 to-[#121F4B]'
   },
   {
     id: 'projets/innovation',
@@ -937,7 +937,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Modernite%CC%81.png',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
-    bgGradient: 'from-cyan-500 via-sky-700 to-stone-950'
+    bgGradient: 'from-cyan-500 via-sky-700 to-[#121F4B]'
   },
   {
     id: 'projets/entreprise',
@@ -952,7 +952,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Builders.png',
     accentColor: '#3B82F6',
     glowColor: 'rgba(59, 130, 246, 0.6)',
-    bgGradient: 'from-blue-500 via-indigo-700 to-stone-950'
+    bgGradient: 'from-blue-500 via-indigo-700 to-[#121F4B]'
   },
   {
     id: 'projets/aventure',
@@ -967,7 +967,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/sayri-quispe.jpg',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
-    bgGradient: 'from-orange-600 via-amber-800 to-stone-950'
+    bgGradient: 'from-orange-600 via-amber-800 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -994,7 +994,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Fiat%20Luxe.png',
     accentColor: '#C89B3C',
     glowColor: 'rgba(200, 155, 60, 0.6)',
-    bgGradient: 'from-amber-500 via-yellow-700 to-stone-950'
+    bgGradient: 'from-amber-500 via-yellow-700 to-[#121F4B]'
   },
   {
     id: 'marques/mode',
@@ -1009,7 +1009,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/fatou-diallo.jpg',
     accentColor: '#EC4899',
     glowColor: 'rgba(236, 72, 153, 0.6)',
-    bgGradient: 'from-pink-500 via-rose-700 to-stone-950'
+    bgGradient: 'from-pink-500 via-rose-700 to-[#121F4B]'
   },
   {
     id: 'marques/beaute',
@@ -1024,7 +1024,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Wowmen.png',
     accentColor: '#F43F5E',
     glowColor: 'rgba(244, 63, 94, 0.6)',
-    bgGradient: 'from-rose-500 via-pink-700 to-stone-950'
+    bgGradient: 'from-rose-500 via-pink-700 to-[#121F4B]'
   },
   {
     id: 'marques/tech',
@@ -1039,7 +1039,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Modernite%CC%81.png',
     accentColor: '#06B6D4',
     glowColor: 'rgba(6, 182, 212, 0.6)',
-    bgGradient: 'from-cyan-500 via-sky-700 to-stone-950'
+    bgGradient: 'from-cyan-500 via-sky-700 to-[#121F4B]'
   },
   {
     id: 'marques/alimentation',
@@ -1054,7 +1054,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/E%20Vivi.png',
     accentColor: '#F97316',
     glowColor: 'rgba(249, 115, 22, 0.6)',
-    bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
+    bgGradient: 'from-orange-500 via-amber-700 to-[#121F4B]'
   },
   {
     id: 'marques/sport',
@@ -1069,7 +1069,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/athlete-hurdle.jpg',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
-    bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
+    bgGradient: 'from-orange-500 via-amber-700 to-[#121F4B]'
   },
   {
     id: 'marques/finance',
@@ -1084,7 +1084,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Coachs.png',
     accentColor: '#0284C7',
     glowColor: 'rgba(2, 132, 199, 0.6)',
-    bgGradient: 'from-sky-500 via-blue-700 to-stone-950'
+    bgGradient: 'from-sky-500 via-blue-700 to-[#121F4B]'
   },
   {
     id: 'marques/services',
@@ -1099,7 +1099,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Mon%20histoire%20fera%20le%20job.png',
     accentColor: '#6366F1',
     glowColor: 'rgba(99, 102, 241, 0.6)',
-    bgGradient: 'from-indigo-500 via-blue-700 to-stone-950'
+    bgGradient: 'from-indigo-500 via-blue-700 to-[#121F4B]'
   },
 
   // -----------------------------------------------------------------------
@@ -1126,7 +1126,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Blacks%20One.png',
     accentColor: '#EF4444',
     glowColor: 'rgba(239, 68, 68, 0.6)',
-    bgGradient: 'from-red-600 via-rose-700 to-stone-950'
+    bgGradient: 'from-red-600 via-rose-700 to-[#121F4B]'
   },
   {
     id: 'personnalites/legendes',
@@ -1141,7 +1141,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Irokos.png',
     accentColor: '#C89B3C',
     glowColor: 'rgba(200, 155, 60, 0.6)',
-    bgGradient: 'from-amber-500 via-yellow-700 to-stone-950'
+    bgGradient: 'from-amber-500 via-yellow-700 to-[#121F4B]'
   },
   {
     id: 'personnalites/musique',
@@ -1156,7 +1156,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Focus/Artistes.png',
     accentColor: '#A855F7',
     glowColor: 'rgba(168, 85, 247, 0.6)',
-    bgGradient: 'from-purple-500 via-violet-700 to-stone-950'
+    bgGradient: 'from-purple-500 via-violet-700 to-[#121F4B]'
   },
   {
     id: 'personnalites/cinema',
@@ -1171,7 +1171,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Images.png',
     accentColor: '#E11D48',
     glowColor: 'rgba(225, 29, 72, 0.6)',
-    bgGradient: 'from-rose-500 via-red-700 to-stone-950'
+    bgGradient: 'from-rose-500 via-red-700 to-[#121F4B]'
   },
   {
     id: 'personnalites/arts',
@@ -1186,7 +1186,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/performers-yede.jpg',
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.6)',
-    bgGradient: 'from-amber-600 via-yellow-800 to-stone-950'
+    bgGradient: 'from-amber-600 via-yellow-800 to-[#121F4B]'
   },
   {
     id: 'personnalites/sport',
@@ -1201,7 +1201,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/assets/duos/athlete-hurdle.jpg',
     accentColor: '#EA580C',
     glowColor: 'rgba(234, 88, 12, 0.6)',
-    bgGradient: 'from-orange-500 via-amber-700 to-stone-950'
+    bgGradient: 'from-orange-500 via-amber-700 to-[#121F4B]'
   },
   {
     id: 'personnalites/influenceurs',
@@ -1216,7 +1216,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Bambous.png',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.6)',
-    bgGradient: 'from-emerald-500 via-teal-700 to-stone-950'
+    bgGradient: 'from-emerald-500 via-teal-700 to-[#121F4B]'
   },
   {
     id: 'personnalites/foi',
@@ -1231,7 +1231,7 @@ export const SOUS_CATEGORIES: SousCategorie[] = [
     photoUrl: '/Posters/Sides/Jesus.png',
     accentColor: '#8B5CF6',
     glowColor: 'rgba(139, 92, 246, 0.6)',
-    bgGradient: 'from-purple-500 via-indigo-700 to-stone-950'
+    bgGradient: 'from-purple-500 via-indigo-700 to-[#121F4B]'
   }
 ];
 

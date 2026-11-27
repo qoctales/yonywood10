@@ -221,7 +221,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
             className="font-normal text-stone-500 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1 group py-1 shrink-0"
             title="Revenir au choix précédent (Télécharger sa vidéo ou Choisir un expert)"
           >
-            <ArrowLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft className="w-4 h-4 text-[#A2482B] group-hover:text-[#8A3B22] group-hover:-translate-x-0.5 transition-transform" />
             <span className="text-xs sm:text-sm font-medium">Retour</span>
           </button>
 
@@ -261,7 +261,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
         <button
           onClick={handlePrev}
           aria-label="Vidéaste précédent"
-          className="flex absolute left-1 sm:left-3 lg:left-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="flex absolute left-1 sm:left-3 lg:left-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Précédent"
         >
           <ChevronLeft className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
@@ -273,7 +273,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
         <button
           onClick={handleNext}
           aria-label="Vidéaste suivant"
-          className="flex absolute right-1 sm:right-3 lg:right-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="flex absolute right-1 sm:right-3 lg:right-6 z-40 w-8.5 h-8.5 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Suivant"
         >
           <ChevronRight className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
@@ -293,7 +293,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
               : 'translateX(0px) rotate(0deg)',
             transition: isDragging ? 'none' : 'transform 0.25s ease-out',
           }}
-          className="relative aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between p-3 sm:p-4 bg-black text-white border border-stone-200/90 group cursor-grab active:cursor-grabbing"
+          className="relative aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between p-3 sm:p-4 bg-[#121F4B] text-white border border-stone-200/90 group cursor-grab active:cursor-grabbing"
         >
           {/* Lecteur Vidéo */}
           <video
@@ -309,12 +309,12 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
           />
 
           {/* Dégradé cinématographique pour garantir la lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/40 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
           {/* HAUT GAUCHE : Badge Note & Nombre de tournages (ex. ★ 4.8 - 9 tournages) */}
           <div className="relative z-10 flex items-center justify-between w-full min-w-0 pointer-events-auto">
             <span 
-              className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/70 border border-white/20 text-[10px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-48px)] truncate"
+              className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-48px)] truncate"
               title={`${currentVideographer.rating || 4.8} - ${currentVideographer.storiesShot || 9} tournages`}
             >
               ★ {currentVideographer.rating || 4.8} - {currentVideographer.storiesShot || currentVideographer.completedShoots || 9} tournages
@@ -327,7 +327,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
                 e.stopPropagation();
                 togglePlay(e);
               }}
-              className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-black/55 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+              className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
               title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
             >
               <TvPlayerIcon className="w-4 h-4 text-white" strokeWidth={1.6} />
@@ -346,7 +346,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
                 e.stopPropagation();
                 setIsSpecsModalOpen(true);
               }}
-              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
               title={`Matériel & conditions de ${firstName}`}
               aria-label={`Matériel et conditions de ${firstName}`}
             >
@@ -357,7 +357,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
             <button
               type="button"
               onClick={handleOpenProfile}
-              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
               title={`Voir le portrait de ${firstName}`}
               aria-label={`Profil de ${firstName}`}
             >
@@ -371,7 +371,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
                 e.stopPropagation();
                 setIsShareModalOpen(true);
               }}
-              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Partager"
               aria-label="Partager"
             >
@@ -396,7 +396,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
       {/* 3. MODALE DÉCLENCHÉE PAR LE VISEUR D'OBJECTIF : CALQUÉE SUR LA FORME DE LA CARTE VIDÉO */}
       {isSpecsModalOpen && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/85 animate-in fade-in duration-200"
           onClick={() => setIsSpecsModalOpen(false)}
         >
           {/* Même gabarit épuré que la carte vidéo / modale synopsis */}
@@ -420,7 +420,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
               <button
                 type="button"
                 onClick={() => setIsSpecsModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-stone-200/70 hover:bg-stone-300 text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                className="w-7 h-7 rounded-full bg-stone-200/70 hover:bg-[#A2482B]/15 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
                 title="Fermer"
               >
                 <X className="w-3.5 h-3.5" />
@@ -519,7 +519,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
       <VideoCardShareModal
         isOpen={isShareModalOpen}
         onClose={() => setIsShareModalOpen(false)}
-        videoTitle={`Vidéaste documentaire YonyWood — ${currentVideographer.name}`}
+        videoTitle={`Vidéaste documentaire Gbadoo — ${currentVideographer.name}`}
         videoId={currentVideographer.id}
       />
 

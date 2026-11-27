@@ -122,14 +122,14 @@ const getScreenRouteInfo = (screen: ViewScreen): { path: string; title: string }
     case 'matrix_view':
     case 'documentaries':
     case 'documentary_detail':
-      return { path: '/dialogue', title: 'Duocumentaires — YonyWood' };
+      return { path: '/dialogue', title: 'Duocumentaires — Gbadoo' };
     case 'focus':
     case 'enterprise':
     case 'marketplace':
-      return { path: '/focus', title: 'Focus — YonyWood' };
+      return { path: '/focus', title: 'Focus — Gbadoo' };
     case 'submit_story':
     case 'request_videographer':
-      return { path: '/studio', title: 'Studio — YonyWood' };
+      return { path: '/studio', title: 'Studio — Gbadoo' };
     case 'profile':
     case 'settings':
     case 'portfolio':
@@ -138,11 +138,11 @@ const getScreenRouteInfo = (screen: ViewScreen): { path: string; title: string }
     case 'my_forest':
     case 'messaging':
     case 'editorial_backoffice':
-      return { path: '/portrait', title: 'Portrait — YonyWood' };
+      return { path: '/portrait', title: 'Portrait — Gbadoo' };
     case 'participate':
-      return { path: '/presentation', title: 'Présentation — YonyWood' };
+      return { path: '/presentation', title: 'Présentation — Gbadoo' };
     default:
-      return { path: '/dialogue', title: 'Duocumentaires — YonyWood' };
+      return { path: '/dialogue', title: 'Duocumentaires — Gbadoo' };
   }
 };
 
@@ -434,10 +434,10 @@ export default function App() {
 
   return (
     <div className={`h-[100dvh] max-h-[100dvh] w-full overflow-hidden flex flex-col font-sans antialiased selection:bg-[#C89B3C]/20 selection:text-[#1C1917] relative ${
-      isDarkScreen ? 'bg-[#0E0D0B] text-white' : 'bg-white text-[#1C1917]'
+      isDarkScreen ? 'bg-[#1F44A8] text-white' : 'bg-white text-[#1C1917]'
     }`}>
       
-      {/* Header universel YonyWood avec Logo et Nom de marque au centre */}
+      {/* Header universel Gbadoo avec Logo et Nom de marque au centre */}
       {!isVideoPlayer && (
         <Navbar 
           currentScreen={currentScreen} 
@@ -460,7 +460,7 @@ export default function App() {
         {!isDarkScreen && <BeninMotifWatermark />}
         <div className="relative z-10 flex-1 min-h-0 flex flex-col overflow-hidden">
         <ChunkErrorBoundary resetKey={currentScreen.type}>
-        <Suspense fallback={<div className={`w-full h-full ${isDarkScreen ? 'bg-[#0E0D0B]' : 'bg-transparent'}`} />}>
+        <Suspense fallback={<div className={`w-full h-full ${isDarkScreen ? 'bg-[#1F44A8]' : 'bg-transparent'}`} />}>
         {currentScreen.type === 'landing' && (
           <DuoFeedScreen 
             onNavigate={setCurrentScreen} 

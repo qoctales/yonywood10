@@ -9,8 +9,8 @@ export const DEFAULT_ADMIN_USER: UserAccount = {
   accountType: 'INDIVIDUAL',
   handle: '@romeo',
   avatarUrl: '/assets/duos/paroles-armel.jpg',
-  bio: 'Béninois de retour d’expatriation après 8 années passées à l’étranger. Réalisateur & Fondateur YonyWood à Cotonou.',
-  catchphrase: 'Béninois de retour d’expatriation après 8 années à l’étranger. Réalisateur & Fondateur YonyWood à Cotonou.',
+  bio: 'Béninois de retour d’expatriation après 8 années passées à l’étranger. Réalisateur & Fondateur Gbadoo à Cotonou.',
+  catchphrase: 'Béninois de retour d’expatriation après 8 années à l’étranger. Réalisateur & Fondateur Gbadoo à Cotonou.',
   city: 'Cotonou',
   territory: 'Cotonou',
   country: 'Bénin',
@@ -73,7 +73,7 @@ export const INITIAL_DEMO_USERS: UserAccount[] = [
   },
   {
     id: 'usr-creator-amina',
-    email: 'amina.traore@yonywood.com',
+    email: 'amina.traore@gbadoo.com',
     name: 'Amina Traoré',
     role: 'CREATOR',
     accountType: 'INDIVIDUAL',
@@ -92,7 +92,7 @@ export const INITIAL_DEMO_USERS: UserAccount[] = [
   },
   {
     id: 'usr-creator-koffi',
-    email: 'koffi.mensah@yonywood.com',
+    email: 'koffi.mensah@gbadoo.com',
     name: 'Koffi Mensah',
     role: 'CREATOR',
     accountType: 'INDIVIDUAL',

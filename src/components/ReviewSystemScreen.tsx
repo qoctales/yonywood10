@@ -41,9 +41,9 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
       <div className="flex items-center justify-between">
         <button
           onClick={() => onNavigate({ type: 'home' })}
-          className="text-xs font-semibold text-[#8B6845] hover:text-[#1C1917] flex items-center gap-1.5"
+          className="text-xs font-semibold text-[#8B6845] hover:text-[#1F44A8] flex items-center gap-1.5"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4 text-[#A2482B]" />
           <span>Retour à la forêt</span>
         </button>
 
@@ -51,7 +51,7 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
           onClick={() => onNavigate({ type: 'editorial_backoffice' })}
           className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors flex items-center gap-1.5"
         >
-          <ShieldCheck className="w-3.5 h-3.5 text-[#C89B3C]" />
+          <ShieldCheck className="w-3.5 h-3.5 text-[#A2482B]" />
           <span>Back-Office Éditorial</span>
         </button>
       </div>
@@ -59,7 +59,7 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
       {/* Header Banner */}
       <div className="bg-[#FFFFFF] rounded-3xl border border-[#E7E5E4] p-6 sm:p-8 shadow-card space-y-3 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C89B3C]/12 text-[#8B6845] text-xs font-semibold">
-          <TreePine className="w-3.5 h-3.5" />
+          <TreePine className="w-3.5 h-3.5 text-[#A2482B]" />
           Gouvernance Vivante • ÉCRAN 11
         </div>
 
@@ -68,7 +68,7 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
         </h1>
 
         <p className="text-xs sm:text-sm text-[#68655D] leading-relaxed max-w-xl mx-auto">
-          À YonyWood, la validation d'une histoire ne dépend ni d'un algorithme secret ni d'un nombre de vues.
+          À Gbadoo, la validation d'une histoire ne dépend ni d'un algorithme secret ni d'un nombre de vues.
           Ce sont les protagonistes déjà intégrés et les pairs du territoire qui veillent à l'authenticité, à la dignité et à la résonance du corpus.
         </p>
 
@@ -99,7 +99,7 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
             </div>
 
             {/* Video preview simulation */}
-            <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden bg-black group">
+            <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden bg-[#121F4B] group">
               <img
                 src={selectedCandidate.videoCoverUrl}
                 alt={selectedCandidate.storyTitle}
@@ -107,12 +107,12 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+              <div className="absolute inset-0 bg-[#121F4B]/30 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-full bg-[#A2482B] flex items-center justify-center text-white shadow-lg">
                   <Play className="w-7 h-7 fill-white text-white ml-0.5" />
                 </div>
               </div>
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3 py-1.5 rounded-lg bg-black/60">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3 py-1.5 rounded-lg bg-[#121F4B]/60 backdrop-blur-sm border border-white/15">
                 <span>Candidat : {selectedCandidate.candidateName}</span>
                 <span className="font-mono">{selectedCandidate.duration}</span>
               </div>
@@ -271,7 +271,7 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
                 {/* Criterion 4: Respect de la charte */}
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-[#1C1917]">4. Dignité & esprit YonyWood</span>
+                    <span className="font-bold text-[#1C1917]">4. Dignité & esprit Gbadoo</span>
                     <span className="text-[#C89B3C] font-mono font-bold">{ratings.charterRespect}/5</span>
                   </div>
                   <p className="text-[11px] text-[#68655D]">

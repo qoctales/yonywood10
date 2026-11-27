@@ -18,7 +18,7 @@ export const CardWidthModal: React.FC<CardWidthModalProps> = ({
   ariaLabel,
   children,
   className = '',
-  backdropClassName = 'bg-black/35 backdrop-blur-[2px]'
+  backdropClassName = 'bg-[#121F4B]/45 backdrop-blur-[2px]'
 }) => {
   useEffect(() => {
     if (!isOpen) return;

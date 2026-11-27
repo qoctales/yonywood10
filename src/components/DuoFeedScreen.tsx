@@ -560,9 +560,9 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
       {/* ========================================================================= */}
       {SHOW_TOP_STORIES_BANNER && (
       <div 
-        className="w-full shrink-0 z-30 border-none shadow-none rounded-none bg-black"
+        className="w-full shrink-0 z-30 border-none shadow-none rounded-none bg-[#1F44A8]"
         style={{ 
-          backgroundColor: '#000000'
+          backgroundColor: '#1F44A8'
         }}
       >
         <div className="w-full max-w-3xl mx-auto px-3 sm:px-4 pt-1.5 pb-2 shrink-0 h-[68px] sm:h-[76px] flex items-center overflow-hidden">
@@ -583,10 +583,10 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                 title={`${story.authorName} — Story ${story.themeLabel}`}
               >
                 <div 
-                  className="w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-2xl p-0.5 border border-stone-800/80 group-hover:border-[#A2482B] transition-all group-hover:scale-105 bg-stone-900"
-                  style={{ boxShadow: 'var(--story-ring-shadow, 0 1px 8px rgba(0, 0, 0, 0.6))' }}
+                  className="w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-2xl p-0.5 border border-white/25 group-hover:border-[#A2482B] transition-all group-hover:scale-105 bg-[#163385]"
+                  style={{ boxShadow: 'var(--story-ring-shadow, 0 1px 8px rgba(31, 68, 168, 0.45))' }}
                 >
-                  <div className="w-full h-full rounded-xl overflow-hidden bg-stone-900 relative">
+                  <div className="w-full h-full rounded-xl overflow-hidden bg-[#163385] relative">
                     <img 
                       src={story.authorAvatar} 
                       alt="" 
@@ -612,7 +612,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
         {SHOW_CAROUSEL_ARROWS && (
         <button
           onClick={prevSlide}
-          className="hidden md:flex absolute left-4 lg:left-8 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#1C1917] text-stone-800 hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="hidden md:flex absolute left-4 lg:left-8 z-30 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Précédent"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -623,7 +623,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
         {SHOW_CAROUSEL_ARROWS && (
         <button
           onClick={nextSlide}
-          className="hidden md:flex absolute right-4 lg:right-8 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#1C1917] text-stone-800 hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="hidden md:flex absolute right-4 lg:right-8 z-30 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Suivant"
         >
           <ChevronRight className="w-5 h-5" />
@@ -709,7 +709,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                       transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.26s ease'
                     }}
                     className={`absolute ${STAGE_CARD_DIMENSIONS_CLASS} rounded-2xl sm:rounded-3xl overflow-hidden border ${
-                      idx === 1 ? 'bg-[#A2482B]' : 'bg-[#12110F]'
+                      idx === 1 ? 'bg-[#A2482B]' : 'bg-[#1F44A8]'
                     } text-white flex flex-col justify-between select-none ${
                       isCenter 
                         ? idx === 1
@@ -755,7 +755,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                           <>
                             {/* EN-TÊTE DE CARTE : TITRE DE LA SÉRIE EN HAUT À GAUCHE & BOUTON TÉLÉ EN HAUT À DROITE */}
                             <div className="relative z-20 pt-3.5 px-3 flex items-center justify-between gap-1 pointer-events-auto min-w-0">
-                              <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-black/75 border border-white/20 shadow-md">
+                              <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                                 <span className="font-editorial text-[8px] sm:text-[10px] font-semibold text-white tracking-wide leading-tight select-none">
                                   {formatFirstLetterOnly(rawSeriesTitle)}
                                 </span>
@@ -771,7 +771,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                 className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
                                   isThisVideoPlaying 
                                     ? 'bg-[#A2482B] text-white border border-[#8A3B22]' 
-                                    : 'bg-black/75 text-white border border-white/20 hover:bg-black/85'
+                                    : 'bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
                                 }`}
                                 title={isThisVideoPlaying ? 'Mettre en pause' : 'Lancer la vidéo'}
                               >
@@ -803,7 +803,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   className="w-full h-full object-cover pointer-events-none"
                                 />
                               )}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
                             </div>
 
                             {/* COLONNE D'ACTIONS LATÉRALE DROITE (ÉPURÉE : MUTE, PROTAGONISTE MIROIR, PORTRAIT, PARTAGE) */}
@@ -816,7 +816,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                     e.stopPropagation();
                                     setIsMuted(m => !m);
                                   }}
-                                  className="w-8.5 h-8.5 rounded-xl bg-black/75 text-white hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 group"
+                                  className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 group"
                                   title={isMuted ? 'Activer le son' : 'Couper le son'}
                                   aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                                 >
@@ -835,7 +835,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   e.stopPropagation();
                                   goToSlide(otherSlideTarget as 0 | 2);
                                 }}
-                                className="w-9 h-9 rounded-xl overflow-hidden p-0.5 border border-white/30 hover:border-[#A2482B] shadow-md flex items-center justify-center transition-all cursor-pointer group active:scale-95 bg-black/75"
+                                className="w-9 h-9 rounded-xl overflow-hidden p-0.5 border border-white/30 hover:border-[#A2482B] shadow-md flex items-center justify-center transition-all cursor-pointer group active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm"
                                 title={`Passer à la vidéo de ${otherFirstName}`}
                               >
                                 <img 
@@ -855,7 +855,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   e.stopPropagation();
                                   onNavigate({ type: 'profile', protagonistId: protagonist.id });
                                 }}
-                                className="w-8.5 h-8.5 rounded-xl bg-black/75 text-white hover:bg-[#A2482B] border border-white/15 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
+                                className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
                                 title={`Portrait de ${pFirstName}`}
                               >
                                 <ProfileSoloIcon className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
@@ -868,7 +868,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   e.stopPropagation();
                                   setShareModalItem({ title: `Duo : ${protagonist.name}`, id: protagonist.id });
                                 }}
-                                className="w-8.5 h-8.5 rounded-xl bg-black/75 text-white hover:bg-[#A2482B] border border-white/15 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
+                                className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
                                 title="Partager"
                               >
                                 <ShareIcon className="w-4 h-4" />
@@ -923,7 +923,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
       {/* ========================================================================= */}
       {showQuestionModal && (
         <div 
-          className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/80 select-none"
+          className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-[#121F4B]/75 select-none"
           onClick={() => setShowQuestionModal(false)}
         >
           <div 
@@ -934,7 +934,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
               <span className="text-xs font-bold text-[#A2482B] uppercase tracking-wider">
                 Question
               </span>
-              <button onClick={() => setShowQuestionModal(false)} className="text-stone-400 hover:text-stone-700">
+              <button onClick={() => setShowQuestionModal(false)} className="text-[#A2482B]/70 hover:text-[#A2482B]">
                 <X className="w-4 h-4" />
               </button>
             </div>

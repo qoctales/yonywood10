@@ -71,7 +71,7 @@ export const DemoStudioSection: React.FC = () => {
                 setIsVideoPlaying(false);
                 setStep((prev) => (prev - 1) as 1 | 2);
               }}
-              className="p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors cursor-pointer"
+              className="p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-[#A2482B] transition-colors cursor-pointer"
               title="Retour à l'étape précédente"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -91,13 +91,13 @@ export const DemoStudioSection: React.FC = () => {
 
           <button
             onClick={handlePrevDoor}
-            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
+            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
             title="Porte précédente"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
+          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
 
             <img
               src={currentDoor.posterUrl || '/Posters/Sides/Irokos.png'}
@@ -106,11 +106,11 @@ export const DemoStudioSection: React.FC = () => {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut : Badge Porte & Déclencheur lecture */}
             <div className="relative z-10 flex items-center justify-between pointer-events-auto">
-              <span className="px-3 py-1 rounded-full bg-black/60 border border-white/20 text-xs font-bold text-white tracking-wide">
+              <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                 {currentDoor.label}
               </span>
 
@@ -120,7 +120,7 @@ export const DemoStudioSection: React.FC = () => {
                   e.stopPropagation();
                   setIsVideoPlaying(!isVideoPlaying);
                 }}
-                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                 title={isVideoPlaying ? "Mettre en pause" : "Lire la vidéo"}
               >
                 {isVideoPlaying ? (
@@ -136,7 +136,7 @@ export const DemoStudioSection: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowAdvantagesModal(true)}
-                  className="px-3.5 py-2 rounded-full bg-black/60 border border-white/20 text-xs font-semibold text-white hover:bg-black/80 transition-colors cursor-pointer"
+                  className="px-3.5 py-2 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white hover:bg-[#121F4B]/75 transition-colors cursor-pointer"
                 >
                   Avantages
                 </button>
@@ -145,7 +145,7 @@ export const DemoStudioSection: React.FC = () => {
                     setIsVideoPlaying(false);
                     setStep(2);
                   }}
-                  className="flex-1 py-2 rounded-full bg-black/80 hover:bg-[#A2482B] border border-white/30 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+                  className="flex-1 py-2 rounded-full bg-[#121F4B]/65 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
                 >
                   <span>Choisir cette porte</span>
                   <span>→</span>
@@ -155,19 +155,19 @@ export const DemoStudioSection: React.FC = () => {
 
             {/* Modale interne Avantages */}
             {showAdvantagesModal && (
-              <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-4 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
-                <div className="flex justify-between items-center mb-2 pb-1 border-b border-white/10">
+              <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                <div className="flex justify-between items-center mb-2 pb-1 border-b border-white/15">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFE7A3]">
                     Avantages : {currentDoor.label}
                   </span>
                   <button
                     onClick={() => setShowAdvantagesModal(false)}
-                    className="text-stone-400 hover:text-white cursor-pointer"
+                    className="text-white/80 hover:text-white cursor-pointer"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <ul className="text-xs text-stone-200 space-y-1.5 leading-relaxed">
+                <ul className="text-xs text-white/90 space-y-1.5 leading-relaxed">
                   {currentDoor.advantages.map((adv, i) => (
                     <li key={i} className="flex items-start gap-1.5">
                       <span className="text-[#FFE7A3] shrink-0">•</span>
@@ -182,7 +182,7 @@ export const DemoStudioSection: React.FC = () => {
 
           <button
             onClick={handleNextDoor}
-            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
+            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
             title="Porte suivante"
           >
             <ChevronRight className="w-5 h-5" />
@@ -198,13 +198,13 @@ export const DemoStudioSection: React.FC = () => {
 
           <button
             onClick={handlePrevSeries}
-            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
+            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
             title="Série précédente"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
+          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 select-none shrink-0">
 
             <img
               src={currentSeries.coverImage || currentSeries.posterUrl || SERIES_POSTER_FILES['horizons-benin'].mainPosterUrl}
@@ -213,11 +213,11 @@ export const DemoStudioSection: React.FC = () => {
             loading="lazy"
             decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut : Badge Titre de la série & Déclencheur lecture */}
             <div className="relative z-10 flex items-center justify-between pointer-events-auto">
-              <span className="px-3 py-1 rounded-full bg-black/60 border border-white/20 text-xs font-bold text-white tracking-wide">
+              <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                 {currentSeries.title}
               </span>
 
@@ -227,7 +227,7 @@ export const DemoStudioSection: React.FC = () => {
                   e.stopPropagation();
                   setIsVideoPlaying(!isVideoPlaying);
                 }}
-                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                 title={isVideoPlaying ? "Mettre en pause" : "Lire la vidéo"}
               >
                 {isVideoPlaying ? (
@@ -240,13 +240,13 @@ export const DemoStudioSection: React.FC = () => {
 
             {/* Icônes d'action latérales */}
             <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
-              <div className="w-9 h-9 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white text-xs">
+              <div className="w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
                 <Layers className="w-4 h-4" />
               </div>
-              <div className="w-9 h-9 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white text-xs">
+              <div className="w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
                 <Film className="w-4 h-4" />
               </div>
-              <div className="w-9 h-9 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white text-xs">
+              <div className="w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
                 <Sparkles className="w-4 h-4" />
               </div>
             </div>
@@ -258,7 +258,7 @@ export const DemoStudioSection: React.FC = () => {
                   setIsVideoPlaying(false);
                   setStep(3);
                 }}
-                className="w-full py-2.5 rounded-full bg-black/80 hover:bg-[#A2482B] border border-white/30 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+                className="w-full py-2.5 rounded-full bg-[#121F4B]/65 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
               >
                 <span>Choisir cette série</span>
                 <span>→</span>
@@ -269,7 +269,7 @@ export const DemoStudioSection: React.FC = () => {
 
           <button
             onClick={handleNextSeries}
-            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
+            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
             title="Série suivante"
           >
             <ChevronRight className="w-5 h-5" />
@@ -328,14 +328,14 @@ export const DemoStudioSection: React.FC = () => {
             {/* Option B : Recruter un vidéaste */}
             <div className="bg-stone-50 rounded-3xl p-6 border border-stone-200 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-stone-200 text-stone-800 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center mb-4">
                   <Camera className="w-6 h-6" />
                 </div>
                 <h5 className="font-editorial text-xl font-bold text-stone-900">
                   Recruter un vidéaste
                 </h5>
                 <p className="text-xs text-stone-600 mt-2 leading-relaxed">
-                  Faites appel à l'un des cinéastes et directeurs de la photographie accrédités YonyWood sur votre territoire.
+                  Faites appel à l'un des cinéastes et directeurs de la photographie accrédités Gbadoo sur votre territoire.
                 </p>
               </div>
 
@@ -365,7 +365,7 @@ export const DemoStudioSection: React.FC = () => {
       {detailModalMode && (
         <div
           onClick={() => setDetailModalMode(null)}
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -373,11 +373,11 @@ export const DemoStudioSection: React.FC = () => {
           >
             <div className="flex justify-between items-start mb-4">
               <span className="text-xs font-bold uppercase tracking-wider text-[#A2482B]">
-                Comprendre le Studio YonyWood
+                Comprendre le Studio Gbadoo
               </span>
               <button
                 onClick={() => setDetailModalMode(null)}
-                className="p-1 rounded-full text-stone-400 hover:text-stone-700 cursor-pointer"
+                className="p-1 rounded-full text-[#A2482B] hover:text-[#8A3B22] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -389,7 +389,7 @@ export const DemoStudioSection: React.FC = () => {
                   Comment fonctionne « J'ai ma vidéo » ?
                 </h4>
                 <p className="text-xs text-stone-600 leading-relaxed mb-3">
-                  Cette option permet à tout témoin, artisan ou narrateur de déposer un fichier vidéo 9:16 déjà capté. Le comité éditorial YonyWood vérifie la résonance avec la question officielle de la série, étalonne le son et l'intègre au catalogue.
+                  Cette option permet à tout témoin, artisan ou narrateur de déposer un fichier vidéo 9:16 déjà capté. Le comité éditorial Gbadoo vérifie la résonance avec la question officielle de la série, étalonne le son et l'intègre au catalogue.
                 </p>
                 <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 text-xs text-stone-700 space-y-1">
                   <div>✓ Format vertical 9:16 privilégié</div>
@@ -403,7 +403,7 @@ export const DemoStudioSection: React.FC = () => {
                   Comment fonctionne « Recruter un vidéaste » ?
                 </h4>
                 <p className="text-xs text-stone-600 leading-relaxed mb-3">
-                  YonyWood dispose d'un réseau de cinéastes formés au cinéma du réel sur 12 territoires (Bénin, Pérou, Sénégal, France, etc.). Vous pouvez réserver une session de tournage clé-en-main avec caméra professionnelle et son haute fidélité.
+                  Gbadoo dispose d'un réseau de cinéastes formés au cinéma du réel sur 12 territoires (Bénin, Pérou, Sénégal, France, etc.). Vous pouvez réserver une session de tournage clé-en-main avec caméra professionnelle et son haute fidélité.
                 </p>
                 <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 text-xs text-stone-700 space-y-1">
                   <div>✓ Tournage in-situ (atelier, lagune, domicile)</div>

@@ -106,9 +106,9 @@ export const ReportModal: React.FC<ReportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/92 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#121F4B]/85 animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-md bg-[#1C1917] border border-stone-800 rounded-3xl shadow-2xl overflow-hidden text-white"
+        className="relative w-full max-w-md bg-[#1F44A8] border border-white/25 rounded-3xl shadow-2xl overflow-hidden text-white"
         onClick={(e) => e.stopPropagation()}
       >
         {isSubmitted ? (
@@ -117,30 +117,30 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-bold font-serif text-white">Signalement transmis</h3>
-            <p className="text-xs text-stone-300 max-w-xs">
+            <p className="text-xs text-white/80 max-w-xs">
               Merci pour votre vigilance. Notre équipe de modération éditoriale va examiner ce contenu dans les plus brefs délais.
             </p>
           </div>
         ) : (
           <>
             {/* Header */}
-            <div className="px-6 pt-6 pb-3 border-b border-stone-800 flex items-start justify-between">
+            <div className="px-6 pt-6 pb-3 border-b border-white/15 flex items-start justify-between bg-[#121F4B]/45">
               <div>
-                <div className="flex items-center gap-1.5 text-amber-500 text-xs font-mono font-bold uppercase mb-1">
-                  <AlertTriangle className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 text-[#FFE7A3] text-xs font-mono font-bold uppercase mb-1">
+                  <AlertTriangle className="w-3.5 h-3.5 text-[#A2482B]" />
                   <span>Modération & Sécurité</span>
                 </div>
                 <h3 className="text-xl font-serif font-bold text-white tracking-tight">
                   Signaler ce contenu
                 </h3>
-                <p className="text-xs text-stone-400 mt-0.5 line-clamp-1">
+                <p className="text-xs text-white/75 mt-0.5 line-clamp-1">
                   Vidéo : <span className="text-white font-medium">{targetTitle}</span>
                 </p>
               </div>
 
               <button
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-stone-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#A2482B] text-white flex items-center justify-center transition-all cursor-pointer"
                 title="Fermer"
               >
                 <X className="w-4 h-4" />
@@ -150,7 +150,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
             {/* Formulaire */}
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div className="space-y-2">
-                <label className="block text-xs font-medium text-stone-300">
+                <label className="block text-xs font-medium text-white/85">
                   Motif principal du signalement
                 </label>
                 <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
@@ -164,14 +164,14 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                         onClick={() => setSelectedReason(r.id)}
                         className={`w-full p-2.5 rounded-xl border text-left flex items-start gap-2.5 transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-[#A2482B]/20 border-[#A2482B] text-white shadow-xs'
-                            : 'bg-stone-900/60 border-stone-800/80 text-stone-300 hover:bg-stone-900 hover:border-stone-700'
+                            ? 'bg-[#A2482B]/25 border-[#A2482B] text-white shadow-xs'
+                            : 'bg-[#121F4B]/55 border-white/15 text-white/90 hover:bg-[#121F4B]/80 hover:border-white/30'
                         }`}
                       >
-                        <Icon className={`w-4 h-4 mt-0.5 shrink-0 ${isSelected ? 'text-[#E8926F]' : 'text-stone-400'}`} />
+                        <Icon className={`w-4 h-4 mt-0.5 shrink-0 ${isSelected ? 'text-[#FFE7A3]' : 'text-white/70'}`} />
                         <div>
                           <div className="text-xs font-semibold">{r.label}</div>
-                          <div className="text-[11px] text-stone-400 leading-tight mt-0.5">{r.description}</div>
+                          <div className="text-[11px] text-white/70 leading-tight mt-0.5">{r.description}</div>
                         </div>
                       </button>
                     );
@@ -180,7 +180,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-stone-300 mb-1">
+                <label className="block text-xs font-medium text-white/85 mb-1">
                   Précisions complémentaires (facultatif)
                 </label>
                 <textarea
@@ -188,7 +188,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                   onChange={(e) => setDetails(e.target.value)}
                   placeholder="Décrivez brièvement le passage ou le motif précis..."
                   rows={2}
-                  className="w-full p-3 rounded-xl bg-stone-900 border border-stone-800 focus:border-[#A2482B] text-white text-xs placeholder:text-stone-500 outline-hidden resize-none transition-all"
+                  className="w-full p-3 rounded-xl bg-[#121F4B]/65 border border-white/20 focus:border-[#FFE7A3] text-white text-xs placeholder:text-white/50 outline-hidden resize-none transition-all"
                 />
               </div>
 
@@ -196,7 +196,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium cursor-pointer transition-all"
+                  className="px-4 py-2 rounded-xl bg-[#121F4B]/70 hover:bg-[#121F4B] text-white/85 hover:text-white text-xs font-medium cursor-pointer transition-all"
                 >
                   Annuler
                 </button>

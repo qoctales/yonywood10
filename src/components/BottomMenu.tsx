@@ -104,12 +104,12 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
                   : 'text-stone-500 hover:text-stone-800'
               }`}
             >
-              {/* Capsule changeante : icône en Terre Cuite (#A2482B) pour rubriques actives */}
+              {/* Capsule changeante : icône en Terre Cuite (#A2482B) */}
               <div 
                 className={`w-8 h-8 sm:w-10 sm:h-10 aspect-square shrink-0 rounded-full flex items-center justify-center transition-all duration-200 ${
                   item.isActive 
                     ? 'bg-[#A2482B] text-white shadow-sm' 
-                    : 'bg-transparent text-stone-600 group-hover:bg-stone-100/80'
+                    : 'bg-transparent text-[#A2482B] group-hover:bg-[#A2482B]/10'
                 }`}
               >
                 <Icon 

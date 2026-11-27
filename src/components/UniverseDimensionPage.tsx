@@ -162,7 +162,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
     {
       id: 'prod-3',
       title: 'Hors-Série : Les Voix de l’Eau et du Feu',
-      seriesTitle: 'Constellation YonyWood',
+      seriesTitle: 'Constellation Gbadoo',
       role: 'Contribution patrimoniale',
       episodeQuestion: '« Ce que les aïeux murmurent dans la matière »',
       summary: 'Table ronde et performance immersive enregistrée lors de la rencontre de Porto-Novo avec les maîtres teinturiers et les apprentis de la lagune.',
@@ -281,7 +281,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
       id: 'parc-3',
       year: '2018 — Présent',
       title: 'Chapitre 3 : La liberté créative et l’accueil de la relève',
-      location: 'International & YonyWood',
+      location: 'International & Gbadoo',
       role: 'Fondateur d’atelier & Mentor',
       quote: '« On ne garde un savoir que lorsqu’on le donne à quelqu’un qui ira plus loin que nous. »',
       description: 'Comment l’entrée sur la plateforme et la rencontre avec son alter ego ont déclenché l’ouverture de l’Atelier Solidaire pour la jeunesse déscolarisée.',
@@ -498,7 +498,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             id="btn-back-universe"
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F5F4] hover:bg-[#EAE4D5] text-xs font-semibold text-[#1C1917] transition-colors cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4 text-[#8B6845]" />
+            <ArrowLeft className="w-4 h-4 text-[#A2482B]" />
             <span>Retour</span>
           </button>
 
@@ -509,9 +509,9 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 photoUrl={protagonist.photoUrl} 
                 alt={protagonist.name} 
                 className="w-10 h-10 sm:w-11 sm:h-11"
-                strokeColor="#1C1917"
+                strokeColor="#1F44A8"
               />
-              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#1C1917] border-2 border-white flex items-center justify-center text-[9px] text-white font-bold">
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#1F44A8] border-2 border-white flex items-center justify-center text-[9px] text-white font-bold">
                 ✓
               </span>
             </div>
@@ -522,7 +522,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 </h2>
               </div>
               <p className="text-[11px] text-[#68655D] flex items-center gap-1">
-                <MapPin className="w-3 h-3 text-[#C89B3C]" />
+                <MapPin className="w-3 h-3 text-[#A2482B]" />
                 <span>{protagonist.territory || 'Artisan de tradition'}</span>
               </p>
             </div>
@@ -536,7 +536,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 showToast("Lien de l'Univers copié !");
               }}
               title="Partager cet univers"
-              className="p-2 rounded-full border border-[#E7E5E4] bg-white hover:bg-[#FAFAF9] text-[#68655D] transition-colors"
+              className="p-2 rounded-full border border-[#E7E5E4] bg-white hover:bg-[#FAFAF9] text-[#A2482B] transition-colors cursor-pointer"
             >
               <ShareIcon className="w-3.5 h-3.5" />
             </button>
@@ -558,11 +558,11 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 id={`tab-dim-${dim.key}`}
                 className={`shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#1C1917] text-white shadow-sm'
+                    ? 'bg-[#1F44A8] text-white shadow-sm'
                     : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917] hover:bg-[#EAE4D5]'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#8B6845]'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#A2482B]'}`} />
                 <span>{dim.label}</span>
               </button>
             );
@@ -572,7 +572,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
       {/* TOAST NOTIFICATION */}
       {toastMessage && (
-        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm w-full px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">
+        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm w-full px-4 py-2.5 rounded-2xl bg-[#1F44A8] text-white text-xs font-semibold flex items-center gap-2 shadow-xl border border-white/20 animate-in fade-in">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
@@ -596,7 +596,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handlePrev}
-              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
               title="Production précédente"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -616,7 +616,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-black border border-[#C89B3C]/40 select-none"
+                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-[#121F4B] border border-[#C89B3C]/40 select-none"
                 >
                   <video
                     ref={videoRef}
@@ -632,7 +632,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-3 py-1.5 rounded-full bg-black/60 border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
+                    <span className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
                       {formatFirstLetterOnly(item.seriesTitle)}
                     </span>
                     <div className="flex items-center gap-2">
@@ -649,7 +649,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                             setIsPlaying(!isPlaying);
                           }
                         }}
-                        className="w-8.5 h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
+                        className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
                         title={isPlaying ? "Mettre en pause" : "Regarder la vidéo"}
                       >
                         {isPlaying ? (
@@ -662,7 +662,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   </div>
 
                   {/* Bottom Content Gradient */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/85 to-transparent p-5 text-white z-10 space-y-3">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121F4B] via-[#121F4B]/85 to-transparent p-5 text-white z-10 space-y-3">
                     <div className="space-y-1">
                       <span className="text-[10px] text-[#C89B3C] font-mono uppercase tracking-wider block">
                         Rôle : {item.role}
@@ -705,7 +705,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handleNext}
-              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
               title="Production suivante"
             >
               <ChevronRight className="w-5 h-5" />
@@ -720,7 +720,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 key={i}
                 onClick={() => setHistoireIdx(i)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  i === histoireIdx ? 'w-6 bg-[#1C1917]' : 'w-2 bg-[#E7E5E4]'
+                  i === histoireIdx ? 'w-6 bg-[#1F44A8]' : 'w-2 bg-[#E7E5E4]'
                 }`}
               />
             ))}
@@ -746,7 +746,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handlePrev}
-              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -765,7 +765,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-black border border-[#C89B3C]/40 select-none"
+                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-[#121F4B] border border-[#C89B3C]/40 select-none"
                 >
                   <video
                     src={proj.videoUrl}
@@ -780,7 +780,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       Crowdfunding Solidaire
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-[#C89B3C] text-[#FFFFFF] text-[10px] font-bold shadow-xs">
@@ -789,7 +789,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   </div>
 
                   {/* Bottom Content with Progress Gauge */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-5 text-white z-10 space-y-3">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121F4B] via-[#121F4B]/90 to-transparent p-5 text-white z-10 space-y-3">
                     <div className="space-y-1">
                       <span className="text-[10px] text-[#C89B3C] font-mono uppercase tracking-wider block">
                         {proj.category}
@@ -803,7 +803,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                     </div>
 
                     {/* Financial Gauge */}
-                    <div className="bg-stone-900/75 rounded-2xl p-3 border border-white/15 space-y-2">
+                    <div className="bg-[#121F4B]/60 backdrop-blur-sm rounded-2xl p-3 border border-white/20 space-y-2">
                       <div className="flex justify-between items-end text-xs">
                         <div>
                           <span className="text-base font-bold text-[#C89B3C] font-mono">
@@ -853,7 +853,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handleNext}
-              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -866,7 +866,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 key={i}
                 onClick={() => setProjectIdx(i)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  i === projectIdx ? 'w-6 bg-[#1C1917]' : 'w-2 bg-[#E7E5E4]'
+                  i === projectIdx ? 'w-6 bg-[#1F44A8]' : 'w-2 bg-[#E7E5E4]'
                 }`}
               />
             ))}
@@ -892,7 +892,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handlePrev}
-              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -910,7 +910,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-black border border-[#C89B3C]/40 select-none"
+                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-[#121F4B] border border-[#C89B3C]/40 select-none"
                 >
                   <video
                     src={offer.videoUrl}
@@ -925,7 +925,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       {offer.categoryLabel}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-emerald-800 text-emerald-100 text-[10px] font-semibold">
@@ -934,7 +934,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-5 text-white z-10 space-y-3">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121F4B] via-[#121F4B]/90 to-transparent p-5 text-white z-10 space-y-3">
                     <div className="space-y-1">
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-xl font-bold font-mono text-[#C89B3C]">
@@ -963,7 +963,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       id="btn-buy-offer"
                       className="w-full py-2.5 rounded-xl bg-white hover:bg-stone-100 text-[#1C1917] text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-xl border border-white/40"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5 text-[#C89B3C]" />
+                      <ShoppingBag className="w-3.5 h-3.5 text-[#A2482B]" />
                       <span>Commander / Réserver cette offre</span>
                     </button>
                   </div>
@@ -974,7 +974,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handleNext}
-              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -987,7 +987,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 key={i}
                 onClick={() => setOfferIdx(i)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  i === offerIdx ? 'w-6 bg-[#1C1917]' : 'w-2 bg-[#E7E5E4]'
+                  i === offerIdx ? 'w-6 bg-[#1F44A8]' : 'w-2 bg-[#E7E5E4]'
                 }`}
               />
             ))}
@@ -1013,7 +1013,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handlePrev}
-              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -1031,7 +1031,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-black border border-[#C89B3C]/40 select-none"
+                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-[#121F4B] border border-[#C89B3C]/40 select-none"
                 >
                   <video
                     src={step.videoUrl}
@@ -1046,7 +1046,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       {step.year}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-[#C89B3C] text-[#FFFFFF] text-[10px] font-bold shadow-xs">
@@ -1055,7 +1055,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-5 text-white z-10 space-y-3">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121F4B] via-[#121F4B]/90 to-transparent p-5 text-white z-10 space-y-3">
                     <div className="space-y-1.5">
                       <span className="text-[10px] text-[#C89B3C] font-mono uppercase tracking-wider block">
                         Rôle : {step.role}
@@ -1063,7 +1063,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       <h3 className="font-editorial text-lg font-bold leading-tight">
                         {step.title}
                       </h3>
-                      <div className="p-2.5 rounded-xl bg-stone-900/75 border border-white/15 text-xs text-[#E7E5E4] italic">
+                      <div className="p-2.5 rounded-xl bg-[#121F4B]/60 backdrop-blur-sm border border-white/20 text-xs text-[#E7E5E4] italic">
                         {step.quote}
                       </div>
                       <p className="text-[11px] text-white/80 line-clamp-2 font-light leading-relaxed pt-1">
@@ -1084,7 +1084,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       id="btn-listen-parcours"
                       className="w-full py-2.5 rounded-xl bg-white hover:bg-stone-100 text-[#1C1917] text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-xl border border-white/40"
                     >
-                      <Play className="w-3.5 h-3.5 fill-current text-[#1C1917]" />
+                      <Play className="w-3.5 h-3.5 fill-current text-[#A2482B]" />
                       <span>Écouter le témoignage complet</span>
                     </button>
                   </div>
@@ -1095,7 +1095,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handleNext}
-              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -1108,7 +1108,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 key={i}
                 onClick={() => setParcoursIdx(i)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  i === parcoursIdx ? 'w-6 bg-[#1C1917]' : 'w-2 bg-[#E7E5E4]'
+                  i === parcoursIdx ? 'w-6 bg-[#1F44A8]' : 'w-2 bg-[#E7E5E4]'
                 }`}
               />
             ))}
@@ -1134,7 +1134,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handlePrev}
-              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute left-2 md:left-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -1152,7 +1152,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-black border border-[#C89B3C]/40 select-none"
+                  className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-[#121F4B] border border-[#C89B3C]/40 select-none"
                 >
                   <video
                     src={need.videoUrl}
@@ -1167,7 +1167,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       {need.category}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-amber-600/90 text-white text-[10px] font-bold shadow-xs">
@@ -1176,7 +1176,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-5 text-white z-10 space-y-3">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121F4B] via-[#121F4B]/90 to-transparent p-5 text-white z-10 space-y-3">
                     <div className="space-y-1.5">
                       <span className="text-[10px] text-[#C89B3C] font-mono uppercase tracking-wider block">
                         Statut : {need.status || 'Appel ouvert'}
@@ -1187,7 +1187,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       <p className="text-[11px] text-white/80 line-clamp-3 font-light leading-relaxed">
                         {need.description}
                       </p>
-                      <div className="p-2 rounded-xl bg-stone-900/75 text-[10px] text-emerald-300">
+                      <div className="p-2 rounded-xl bg-[#121F4B]/60 backdrop-blur-sm text-[10px] text-emerald-300">
                         ✦ Impact : {need.impact}
                       </div>
                     </div>
@@ -1200,7 +1200,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       id="btn-reply-need"
                       className="w-full py-2.5 rounded-xl bg-white hover:bg-stone-100 text-[#1C1917] text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-xl border border-white/40"
                     >
-                      <HeartHandshake className="w-3.5 h-3.5 text-[#C89B3C]" />
+                      <HeartHandshake className="w-3.5 h-3.5 text-[#A2482B]" />
                       <span>Répondre à ce besoin / Apporter mon aide</span>
                     </button>
                   </div>
@@ -1211,7 +1211,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
             {SHOW_CAROUSEL_ARROWS && (
             <button
               onClick={handleNext}
-              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
+              className="hidden sm:flex absolute right-2 md:right-10 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-md items-center justify-center transition-all cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -1224,7 +1224,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 key={i}
                 onClick={() => setNeedIdx(i)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
-                  i === needIdx ? 'w-6 bg-[#1C1917]' : 'w-2 bg-[#E7E5E4]'
+                  i === needIdx ? 'w-6 bg-[#1F44A8]' : 'w-2 bg-[#E7E5E4]'
                 }`}
               />
             ))}
@@ -1244,7 +1244,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
           {/* Header Banner */}
           <div className="bg-[#FFFFFF] rounded-3xl border border-[#E7E5E4] p-4 sm:p-6 shadow-xs space-y-3 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C89B3C]/15 text-[#8B6845] text-xs font-bold">
-              <BookOpen className="w-3.5 h-3.5" />
+              <BookOpen className="w-3.5 h-3.5 text-[#A2482B]" />
               <span>La Frise de Transmission & Chaîne de Filiation</span>
             </div>
             <h2 className="font-editorial text-xl sm:text-2xl font-bold text-[#1C1917]">
@@ -1259,7 +1259,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               <button
                 onClick={() => scrollToFriseSection('passeurs')}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-                  friseFocus === 'passeurs' ? 'bg-[#1C1917] text-white shadow-xs' : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917]'
+                  friseFocus === 'passeurs' ? 'bg-[#1F44A8] text-white shadow-xs' : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917]'
                 }`}
               >
                 ← 1. Ceux qui l'ont précédé ({passeursList.length})
@@ -1267,7 +1267,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               <button
                 onClick={() => scrollToFriseSection('central')}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-                  friseFocus === 'central' ? 'bg-[#1C1917] text-white shadow-xs' : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917]'
+                  friseFocus === 'central' ? 'bg-[#1F44A8] text-white shadow-xs' : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917]'
                 }`}
               >
                 ✦ 2. Vidéo Principale (Centre)
@@ -1275,7 +1275,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               <button
                 onClick={() => scrollToFriseSection('heritiers')}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-                  friseFocus === 'heritiers' ? 'bg-[#1C1917] text-white shadow-xs' : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917]'
+                  friseFocus === 'heritiers' ? 'bg-[#1F44A8] text-white shadow-xs' : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917]'
                 }`}
               >
                 3. Ceux qu'il a fait rentrer ({heritiersList.length}) →
@@ -1313,7 +1313,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                           loading="lazy"
                           decoding="async"
                         />
-                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/70 text-white text-[9px] font-mono">
+                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-white text-[9px] font-mono">
                           {pass.introYear}
                         </span>
                       </div>
@@ -1359,7 +1359,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   <span>Transmet</span>
                   <span>➔</span>
                 </div>
-                <div className="w-16 sm:w-24 h-0.5 bg-gradient-to-r from-[#E7E5E4] via-[#C89B3C] to-[#1C1917] my-2" />
+                <div className="w-16 sm:w-24 h-0.5 bg-gradient-to-r from-[#E7E5E4] via-[#C89B3C] to-[#1F44A8] my-2" />
                 <span className="text-[9px] text-[#8B6845] bg-[#FAF7EF] px-2 py-0.5 rounded-full border border-[#E7E5E4]">
                   Filiation
                 </span>
@@ -1369,13 +1369,13 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               {/* CENTRE : LE PERSONNAGE AVEC SA VIDÉO DE PRÉSENTATION PRINCIPALE   */}
               {/* =============================================================== */}
               <div className="flex flex-col items-center space-y-3">
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1917] text-white text-xs font-bold uppercase tracking-wider ring-2 ring-[#1C1917]/20 shadow-xs">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#1F44A8] text-white text-xs font-bold uppercase tracking-wider ring-2 ring-[#1F44A8]/20 shadow-xs">
                   <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
                   <span>Le Personnage Central</span>
                 </div>
 
                 {/* 9:16 VERTICAL VIDEO CARD IN GLORY */}
-                <div className="w-[280px] sm:w-[320px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-black border-2 border-[#C89B3C] ring-4 ring-[#C89B3C]/30 select-none">
+                <div className="w-[280px] sm:w-[320px] aspect-[9/16] rounded-3xl overflow-hidden relative shadow-2xl bg-[#121F4B] border-2 border-[#C89B3C] ring-4 ring-[#C89B3C]/30 select-none">
                   <video
                     ref={videoRef}
                     src={protagonist.documentaryId ? DOCUMENTARIES.find(d => d.id === protagonist.documentaryId)?.teaserVideoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' : 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
@@ -1390,7 +1390,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badge & Déclencheur Vidéo */}
                   <div className="absolute top-4 inset-x-4 flex justify-between items-center z-10">
-                    <span className="px-3 py-1.5 rounded-full bg-black/60 border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
+                    <span className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
                       {formatFirstLetterOnly('Vidéo de présentation principale')}
                     </span>
                     <button
@@ -1403,7 +1403,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                           setIsPlaying(!isPlaying);
                         }
                       }}
-                      className="w-8.5 h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
+                      className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
                       title={isPlaying ? "Mettre en pause" : "Regarder la vidéo"}
                     >
                       {isPlaying ? (
@@ -1415,7 +1415,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/85 to-transparent p-5 text-white z-10 space-y-2 text-center">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121F4B] via-[#121F4B]/85 to-transparent p-5 text-white z-10 space-y-2 text-center">
                     <h3 className="font-editorial text-xl font-bold leading-tight">
                       {protagonist.name}
                     </h3>
@@ -1441,7 +1441,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   <span>Passe le relais</span>
                   <span>➔</span>
                 </div>
-                <div className="w-16 sm:w-24 h-0.5 bg-gradient-to-r from-[#1C1917] via-[#C89B3C] to-emerald-600 my-2" />
+                <div className="w-16 sm:w-24 h-0.5 bg-gradient-to-r from-[#1F44A8] via-[#C89B3C] to-emerald-600 my-2" />
                 <span className="text-[9px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                   Relève
                 </span>
@@ -1520,7 +1520,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
       {/* ===================================================================== */}
       {contributingProject && (
         <div 
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4"
           onClick={() => setContributingProject(null)}
         >
           <div 
@@ -1536,7 +1536,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               </div>
               <button 
                 onClick={() => setContributingProject(null)}
-                className="p-1 text-[#7A756B] hover:text-[#1C1917]"
+                className="p-1 text-[#A2482B] hover:text-[#8A3B22] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1560,7 +1560,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                         onClick={() => setContributionAmount(amt)}
                         className={`py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                           contributionAmount === amt 
-                            ? 'bg-[#1C1917] text-white shadow-xs' 
+                            ? 'bg-[#1F44A8] text-white shadow-xs' 
                             : 'bg-[#F5F5F4] text-[#1C1917] hover:bg-[#EAE4D5]'
                         }`}
                       >
@@ -1582,7 +1582,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setPledgeConfirmed(true)}
-                  className="w-full py-3 rounded-xl bg-[#1C1917] hover:bg-stone-800 text-white text-xs font-bold transition-colors cursor-pointer shadow-md"
+                  className="w-full py-3 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-bold transition-colors cursor-pointer shadow-md"
                 >
                   Confirmer ma contribution de {contributionAmount} €
                 </button>
@@ -1601,7 +1601,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setContributingProject(null)}
-                  className="px-6 py-2 rounded-full bg-[#1C1917] text-white text-xs font-semibold cursor-pointer"
+                  className="px-6 py-2 rounded-full bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-semibold cursor-pointer"
                 >
                   Fermer
                 </button>
@@ -1616,7 +1616,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
       {/* ===================================================================== */}
       {purchasingOffer && (
         <div 
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4"
           onClick={() => setPurchasingOffer(null)}
         >
           <div 
@@ -1632,7 +1632,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               </div>
               <button 
                 onClick={() => setPurchasingOffer(null)}
-                className="p-1 text-[#7A756B] hover:text-[#1C1917]"
+                className="p-1 text-[#A2482B] hover:text-[#8A3B22] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1683,7 +1683,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       type="button"
                       onClick={() => setPaymentMethod('mobile_money')}
                       className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer ${
-                        paymentMethod === 'mobile_money' ? 'bg-[#1C1917] text-white border-[#1C1917]' : 'bg-[#FAF7EF] text-[#68655D] border-[#E7E5E4]'
+                        paymentMethod === 'mobile_money' ? 'bg-[#1F44A8] text-white border-[#1F44A8]' : 'bg-[#FAF7EF] text-[#68655D] border-[#E7E5E4]'
                       }`}
                     >
                       <Smartphone className="w-3.5 h-3.5" />
@@ -1693,7 +1693,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       type="button"
                       onClick={() => setPaymentMethod('card')}
                       className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer ${
-                        paymentMethod === 'card' ? 'bg-[#1C1917] text-white border-[#1C1917]' : 'bg-[#FAF7EF] text-[#68655D] border-[#E7E5E4]'
+                        paymentMethod === 'card' ? 'bg-[#1F44A8] text-white border-[#1F44A8]' : 'bg-[#FAF7EF] text-[#68655D] border-[#E7E5E4]'
                       }`}
                     >
                       <CreditCard className="w-3.5 h-3.5" />
@@ -1704,7 +1704,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-[#1C1917] hover:bg-stone-800 text-white text-xs font-bold transition-colors cursor-pointer shadow-md mt-2"
+                  className="w-full py-3 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-bold transition-colors cursor-pointer shadow-md mt-2"
                 >
                   Valider la commande ({purchasingOffer.pricing})
                 </button>
@@ -1723,7 +1723,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setPurchasingOffer(null)}
-                  className="px-6 py-2 rounded-full bg-[#1C1917] text-white text-xs font-semibold cursor-pointer"
+                  className="px-6 py-2 rounded-full bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-semibold cursor-pointer"
                 >
                   Fermer
                 </button>
@@ -1738,7 +1738,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
       {/* ===================================================================== */}
       {respondingToNeed && (
         <div 
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4"
           onClick={() => setRespondingToNeed(null)}
         >
           <div 
@@ -1754,7 +1754,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
               </div>
               <button 
                 onClick={() => setRespondingToNeed(null)}
-                className="p-1 text-[#7A756B] hover:text-[#1C1917]"
+                className="p-1 text-[#A2482B] hover:text-[#8A3B22] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1807,7 +1807,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-[#1C1917] hover:bg-stone-800 text-white text-xs font-bold transition-colors cursor-pointer shadow-md mt-2"
+                  className="w-full py-3 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-bold transition-colors cursor-pointer shadow-md mt-2"
                 >
                   Envoyer ma proposition à l'artisan
                 </button>
@@ -1826,7 +1826,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setRespondingToNeed(null)}
-                  className="px-6 py-2 rounded-full bg-[#1C1917] text-white text-xs font-semibold cursor-pointer"
+                  className="px-6 py-2 rounded-full bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-semibold cursor-pointer"
                 >
                   Fermer
                 </button>

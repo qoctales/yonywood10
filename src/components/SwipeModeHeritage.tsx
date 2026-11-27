@@ -301,7 +301,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
             <button
               id="swipe-prev-door-btn"
               onClick={onPrevDoor}
-              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Porte précédente"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -330,7 +330,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                 celestialAudio.playOrbSelect();
               }}
               style={{ transform: `translateX(${swipeOffset}px)` }}
-              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl flex flex-col justify-between p-3.5 sm:p-4.5 relative select-none shrink-0 transition-transform duration-100 cursor-pointer"
+              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl flex flex-col justify-between p-3.5 sm:p-4.5 relative select-none shrink-0 transition-transform duration-100 cursor-pointer"
             >
               {/* Fond visuel permanent de la Porte */}
               <img
@@ -361,11 +361,11 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               )}
 
               {/* Voile cinématographique clair (modèle Studio / Coproduction) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
               {/* HAUT : Titre seul de la porte dans une pilule sobre + Déclencheur vidéo en haut à droite */}
               <div className="relative z-20 flex items-center justify-between pointer-events-auto">
-                <div className="px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide">
+                <div className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide">
                   <span>{currentSwipeDoor.label}</span>
                 </div>
 
@@ -373,7 +373,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                   {isPlayingStep1 && (
                     <button
                       onClick={toggleMute}
-                      className="p-1.5 rounded-full bg-black/60 hover:bg-[#A2482B] text-white border border-white/15 hover:border-[#A2482B] transition-colors cursor-pointer"
+                      className="p-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] transition-colors cursor-pointer"
                       title={isMuted ? 'Activer le son' : 'Couper le son'}
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -385,7 +385,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                       e.stopPropagation();
                       togglePlay1();
                     }}
-                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title={isPlayingStep1 ? 'Mettre en pause' : 'Lire la vidéo'}
                   >
                     {isPlayingStep1 ? (
@@ -403,7 +403,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
             <button
               id="swipe-next-door-btn"
               onClick={onNextDoor}
-              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Porte suivante"
             >
               <ChevronRight className="w-5 h-5" />
@@ -424,7 +424,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
             <button
               id="swipe-prev-sub-btn"
               onClick={onPrevSub}
-              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Direction précédente"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -455,7 +455,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                 celestialAudio.playOrbSelect();
               }}
               style={{ transform: `translateX(${swipeOffset}px)` }}
-              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl flex flex-col justify-between p-3.5 sm:p-4.5 relative select-none shrink-0 transition-transform duration-100 cursor-pointer"
+              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl flex flex-col justify-between p-3.5 sm:p-4.5 relative select-none shrink-0 transition-transform duration-100 cursor-pointer"
             >
               {/* Image d'art céleste composée de la Direction */}
               <img
@@ -485,11 +485,11 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               )}
 
               {/* Voile cinématographique */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/35 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
               {/* HAUT : Icône + Titre de la direction dans une pilule sobre */}
               <div className="relative z-20 flex items-center justify-between">
-                <div className="px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide flex items-center gap-1.5 max-w-[85%]">
+                <div className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide flex items-center gap-1.5 max-w-[85%]">
                   <DimensionIcon 
                     name={effectiveSubcategory.icone} 
                     size={14} 
@@ -502,7 +502,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                   {isPlayingStep2 && (
                     <button
                       onClick={toggleMute}
-                      className="p-1.5 rounded-full bg-black/60 hover:bg-[#A2482B] text-white border border-white/15 hover:border-[#A2482B] transition-colors cursor-pointer shrink-0"
+                      className="p-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] transition-colors cursor-pointer shrink-0"
                       title={isMuted ? 'Activer le son' : 'Couper le son'}
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -514,7 +514,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                       e.stopPropagation();
                       togglePlay2();
                     }}
-                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title={isPlayingStep2 ? 'Mettre en pause' : 'Lire la vidéo'}
                   >
                     {isPlayingStep2 ? (
@@ -532,7 +532,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
             <button
               id="swipe-next-sub-btn"
               onClick={onNextSub}
-              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Direction suivante"
             >
               <ChevronRight className="w-5 h-5" />
@@ -553,7 +553,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
             <button
               id="swipe-prev-person-btn"
               onClick={onPrevPerson}
-              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="hidden sm:flex absolute left-4 lg:left-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Protagoniste précédent"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -571,7 +571,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
               style={{ transform: `translateX(${swipeOffset}px)` }}
-              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between relative select-none shrink-0 transition-transform duration-100"
+              className="group aspect-[9/16] w-[min(calc(100vw-72px),calc((100dvh-240px)*9/16))] max-w-[218px] sm:max-w-[260px] md:max-w-[280px] h-[min(388px,calc(100dvh-240px))] sm:h-[min(460px,calc(100dvh-210px))] md:h-[min(500px,calc(100dvh-190px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between relative select-none shrink-0 transition-transform duration-100"
             >
               {/* Vidéo ou photo du protagoniste */}
               <img
@@ -601,7 +601,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               )}
 
               {/* Gradient pour contraste cinématographique */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/85 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/60 pointer-events-none" />
 
               {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
               <UnifiedVideoCardOverlay
@@ -663,7 +663,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
             <button
               id="swipe-next-person-btn"
               onClick={onNextPerson}
-              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-stone-800 hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="hidden sm:flex absolute right-4 lg:right-12 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-stone-200 shadow-xl items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Protagoniste suivant"
             >
               <ChevronRight className="w-5 h-5" />

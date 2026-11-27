@@ -198,7 +198,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
         
         {/* 1. Titre de la série centré au sommet */}
         <div className="flex items-center justify-center w-full shrink-0 min-w-0 px-1">
-          <div className="bg-black/65 px-2.5 sm:px-3.5 py-1 rounded-full border border-white/20 shadow-xs max-w-full">
+          <div className="bg-[#121F4B]/60 backdrop-blur-sm px-2.5 sm:px-3.5 py-1 rounded-full border border-white/20 shadow-xs max-w-full">
             <span className="font-editorial text-[8px] sm:text-[10px] font-semibold text-white tracking-wide leading-tight block text-center drop-shadow-xs">
               {formatFirstLetterOnly(seriesTitle) || 'Duocumentaires'}
             </span>
@@ -214,7 +214,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
             className="group flex flex-col items-center cursor-pointer transition-transform active:scale-95"
             title={`Voir la vidéo de ${displayNameA}`}
           >
-            <div className="relative w-19 sm:w-23 md:w-25 aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-white/95 shadow-xl bg-black/40 group-hover:scale-105 transition-transform">
+            <div className="relative w-19 sm:w-23 md:w-25 aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-white/95 shadow-xl bg-[#121F4B]/30 group-hover:scale-105 transition-transform">
               <img 
                 src={protagonistA.photoUrl} 
                 alt={displayNameA}
@@ -243,7 +243,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
             className="group flex flex-col items-center cursor-pointer transition-transform active:scale-95"
             title={`Voir la vidéo de ${displayNameB}`}
           >
-            <div className="relative w-19 sm:w-23 md:w-25 aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-white/95 shadow-xl bg-black/40 group-hover:scale-105 transition-transform">
+            <div className="relative w-19 sm:w-23 md:w-25 aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-white/95 shadow-xl bg-[#121F4B]/30 group-hover:scale-105 transition-transform">
               <img 
                 src={protagonistB.photoUrl} 
                 alt={displayNameB}
@@ -290,7 +290,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
                 className={`p-1.5 rounded-full transition-all cursor-pointer ${
                   activeTab === 'question'
                     ? 'bg-[#A2482B] text-white shadow-xs'
-                    : 'text-stone-400 hover:text-stone-700'
+                    : 'text-[#A2482B]/75 hover:text-[#A2482B]'
                 }`}
                 title="Afficher le thème"
                 aria-label="Afficher le thème"
@@ -313,7 +313,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
                     ? 'text-stone-300 opacity-45 cursor-not-allowed'
                     : activeTab === 'evaluation'
                       ? 'bg-[#A2482B] text-white shadow-xs cursor-pointer'
-                      : 'text-stone-400 hover:text-stone-700 cursor-pointer'
+                      : 'text-[#A2482B]/75 hover:text-[#A2482B] cursor-pointer'
                 }`}
                 title={
                   canEvaluate

@@ -23,7 +23,7 @@ const POSTER_SLIDES: PosterSlide[] = [
   {
     id: 1,
     bgTheme: 'deep_blue',
-    title: 'YONYWOOD',
+    title: 'GBADOO',
     subtitle: 'RÉSEAU DOCUMENTAIRE VIVANT',
     tagline: 'Des histoires qui nous relient',
     renderIllustration: () => (
@@ -141,7 +141,7 @@ const POSTER_SLIDES: PosterSlide[] = [
       </div>
     ),
     renderDataViz: () => (
-      <div className="w-full bg-black/25 rounded-xl p-2 border border-white/15">
+      <div className="w-full bg-[#121F4B]/30 rounded-xl p-2 border border-white/15">
         <div className="flex items-center justify-between text-[8px] font-mono text-amber-200 mb-1">
           <span>0s • DÉPART</span>
           <span>128s • ÉPREUVE</span>
@@ -217,7 +217,7 @@ const POSTER_SLIDES: PosterSlide[] = [
     renderIllustration: () => (
       <div className="w-full flex items-center justify-center py-1">
         {/* Grille 4x4 de pastilles colorées comme page 5 & 7 du PDF */}
-        <div className="grid grid-cols-4 gap-1.5 p-1.5 bg-black/20 rounded-2xl border border-white/10">
+        <div className="grid grid-cols-4 gap-1.5 p-1.5 bg-[#121F4B]/25 rounded-2xl border border-white/10">
           {[
             '#EF4444', '#F97316', '#F59E0B', '#10B981',
             '#06B6D4', '#3B82F6', '#6366F1', '#8B5CF6',
@@ -437,19 +437,19 @@ export const ParticipateScreen: React.FC<ParticipateScreenProps> = () => {
     }
   };
 
-  // Styles de fond harmonisés avec le PDF de référence
+  // Styles de fond harmonisés avec l'identité indigo
   const getThemeBg = () => {
     switch (slide.bgTheme) {
       case 'deep_blue':
-        return 'bg-[#002B7A] text-white border-blue-900/60 shadow-[0_12px_40px_rgba(0,43,122,0.45)]';
+        return 'bg-[#1F44A8] text-white border-[#121F4B]/60 shadow-[0_12px_40px_rgba(31,68,168,0.45)]';
       case 'light_ivory':
-        return 'bg-[#FAFAF9] text-[#1C1917] border-stone-200/90 shadow-[0_12px_40px_rgba(0,0,0,0.12)]';
+        return 'bg-[#FAFAF9] text-[#1C1917] border-stone-200/90 shadow-[0_12px_40px_rgba(18,31,75,0.12)]';
       case 'terracotta':
-        return 'bg-[#9A3412] text-white border-amber-900/60 shadow-[0_12px_40px_rgba(154,52,18,0.45)]';
+        return 'bg-[#A2482B] text-white border-[#8A3B22]/60 shadow-[0_12px_40px_rgba(162,72,43,0.45)]';
       case 'emerald_night':
         return 'bg-[#064E3B] text-white border-emerald-900/60 shadow-[0_12px_40px_rgba(6,78,59,0.45)]';
       default:
-        return 'bg-[#002B7A] text-white';
+        return 'bg-[#1F44A8] text-white';
     }
   };
 

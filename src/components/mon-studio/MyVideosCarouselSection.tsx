@@ -344,17 +344,17 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
           renderCard={(slot, idx, { isCenter }) => {
             if (slot.kind === 'add') {
               return (
-                <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513] cursor-pointer">
+                <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#121F4B] cursor-pointer">
                   <img
                     src="/Posters/Onboardings/mes-videos-hero.jpg"
                     alt="Ajouter une vidéo"
                     referrerPolicy="no-referrer"
                     className="absolute inset-0 w-full h-full object-cover opacity-45 pointer-events-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/90 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/20 via-[#121F4B]/25 to-[#121F4B]/70 pointer-events-none" />
 
                   <div className="relative z-10 flex items-center justify-between gap-1 w-full">
-                    <div className="inline-flex items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                    <div className="inline-flex items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                       <span className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide">
                         Déposer
                       </span>
@@ -391,7 +391,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                         }
                         openAddModal();
                       }}
-                      className="px-3 py-1.5 sm:py-2 rounded-xl bg-black/70 hover:bg-[#A2482B] text-white font-medium text-xs shadow-md flex items-center gap-1.5 transition-all cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
+                      className="px-3 py-1.5 sm:py-2 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white font-medium text-xs shadow-md flex items-center gap-1.5 transition-all cursor-pointer border border-white/20 hover:border-[#A2482B] hover:scale-105 active:scale-95"
                     >
                       <LegbaDoorIcon className="w-3.5 h-3.5 text-white/90" />
                       <span>Déposer</span>
@@ -406,7 +406,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
             const isPlaying = isCenter && playingVideoId === video.id;
 
             return (
-              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
+              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#121F4B]">
                 {isPlaying ? (
                   <video
                     src={video.videoUrl || '/sample.mp4'}
@@ -431,11 +431,11 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                   />
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/90 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/60 pointer-events-none" />
 
                 {/* HAUT : Pastille titre en haut à gauche + TvPlayerIcon en haut à droite */}
                 <div className="relative z-10 flex items-center justify-between gap-1.5 w-full min-w-0">
-                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                     <span
                       className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide block w-full min-w-0 truncate"
                       title={video.title}
@@ -457,7 +457,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                           e.stopPropagation();
                           setIsMuted((prev) => !prev);
                         }}
-                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/75 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
                         title={isMuted ? 'Activer le son' : 'Couper le son'}
                         aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                       >
@@ -483,7 +483,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
                         isPlaying
                           ? 'bg-[#A2482B] border-[#F3C677]/60'
-                          : 'bg-black/75 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
+                          : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
                       }`}
                       title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
                       aria-label={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
@@ -515,11 +515,11 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       }
                       openCoverModal(video);
                     }}
-                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                     aria-label="Changer la couverture"
                   >
                     <ImageIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-black/85 border border-white/15 text-[10px] font-medium tracking-wide text-white shadow-lg">
+                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-[#121F4B]/85 backdrop-blur-sm border border-white/20 text-[10px] font-medium tracking-wide text-white shadow-lg">
                       Changer la couverture
                     </span>
                   </button>
@@ -535,11 +535,11 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       }
                       openTitleModal(video);
                     }}
-                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                     aria-label="Modifier le titre"
                   >
                     <Edit3 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-black/85 border border-white/15 text-[10px] font-medium tracking-wide text-white shadow-lg">
+                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-[#121F4B]/85 backdrop-blur-sm border border-white/20 text-[10px] font-medium tracking-wide text-white shadow-lg">
                       Modifier le titre
                     </span>
                   </button>
@@ -555,11 +555,11 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                       }
                       setDeleteConfirmVideo(video);
                     }}
-                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                    className="group/action relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                     aria-label="Supprimer"
                   >
                     <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-black/85 border border-white/15 text-[10px] font-medium tracking-wide text-white shadow-lg">
+                    <span className="pointer-events-none opacity-0 translate-x-1 group-hover/action:opacity-100 group-hover/action:translate-x-0 group-focus-visible/action:opacity-100 group-focus-visible/action:translate-x-0 transition-all duration-150 absolute right-full mr-2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-[#121F4B]/85 backdrop-blur-sm border border-white/20 text-[10px] font-medium tracking-wide text-white shadow-lg">
                       Supprimer
                     </span>
                   </button>
@@ -567,7 +567,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
 
                 {/* BAS GAUCHE : Statut discret et élégant */}
                 <div className="relative z-10 w-full flex items-end justify-start pt-2 pointer-events-none">
-                  <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 bg-black/55 border border-white/15 text-[9px] sm:text-[9.5px] font-medium tracking-wide text-white/90 shadow-xs whitespace-nowrap">
+                  <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[9px] sm:text-[9.5px] font-medium tracking-wide text-white/95 shadow-xs whitespace-nowrap">
                     <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusMeta.dotClassName}`} />
                     <span>{statusMeta.label}</span>
                   </span>
@@ -596,7 +596,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
               <button
                 type="button"
                 onClick={() => setCoverModalVideo(null)}
-                className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center cursor-pointer shrink-0"
+                className="w-7 h-7 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center cursor-pointer shrink-0 transition-colors"
                 aria-label="Fermer"
               >
                 <X className="w-3.5 h-3.5" />
@@ -604,7 +604,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
             </div>
 
             <div className="p-3 sm:p-3.5 space-y-2.5">
-              <div className="relative w-full aspect-[9/11] max-h-[210px] sm:max-h-[235px] rounded-2xl overflow-hidden bg-black border border-stone-200 flex items-center justify-center">
+              <div className="relative w-full aspect-[9/11] max-h-[210px] sm:max-h-[235px] rounded-2xl overflow-hidden bg-[#121F4B] border border-stone-200 flex items-center justify-center">
                 <video
                   ref={videoPreviewRef}
                   src={coverModalVideo.videoUrl || '/sample.mp4'}
@@ -627,7 +627,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                 <button
                   type="button"
                   onClick={handleTogglePreviewPlay}
-                  className="absolute bottom-2.5 left-2.5 w-8 h-8 rounded-full bg-black/75 hover:bg-[#A2482B] text-white border border-white/25 flex items-center justify-center cursor-pointer transition-colors"
+                  className="absolute bottom-2.5 left-2.5 w-8 h-8 rounded-full bg-[#121F4B]/60 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                   aria-label={isPreviewPlaying ? 'Pause' : 'Lecture'}
                 >
                   {isPreviewPlaying ? (
@@ -709,7 +709,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
               <button
                 type="button"
                 onClick={() => setTitleModalVideo(null)}
-                className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center cursor-pointer shrink-0"
+                className="w-7 h-7 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center cursor-pointer shrink-0 transition-colors"
                 aria-label="Fermer"
               >
                 <X className="w-3.5 h-3.5" />
@@ -823,7 +823,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                   setAddStep('category');
                   setAddError(null);
                 }}
-                className="w-6 h-6 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-900 flex items-center justify-center cursor-pointer shrink-0"
+                className="w-6 h-6 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center cursor-pointer shrink-0 transition-colors"
                 aria-label="Changer de catégorie"
               >
                 <ChevronLeft className="w-3.5 h-3.5" />
@@ -836,7 +836,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
           <button
             type="button"
             onClick={() => setAddModalOpen(false)}
-            className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-stone-800 flex items-center justify-center cursor-pointer shrink-0"
+            className="w-7 h-7 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center cursor-pointer shrink-0 transition-colors"
             aria-label="Fermer"
           >
             <X className="w-3.5 h-3.5" />
@@ -884,7 +884,7 @@ export const MyVideosCarouselSection: React.FC<MyVideosCarouselSectionProps> = (
                   setAddModalOpen(false);
                   onOpenStudioSubmit();
                 }}
-                className="w-full p-2.5 rounded-2xl bg-[#1C1917] hover:bg-[#A2482B] text-white text-left flex items-center justify-between gap-2 transition-colors cursor-pointer"
+                className="w-full p-2.5 rounded-2xl bg-[#1F44A8] hover:bg-[#A2482B] text-white text-left flex items-center justify-between gap-2 transition-colors cursor-pointer"
               >
                 <div className="min-w-0">
                   <p className="text-xs font-bold truncate">Répondre à une série</p>

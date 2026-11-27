@@ -418,7 +418,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
         seriesTitle: selectedProduction.title,
         userId: currentUser?.id || 'usr-anonymous',
         userName: currentUser?.name || 'Coproducteur',
-        userEmail: currentUser?.email || 'coproducteur@yonywood.com',
+        userEmail: currentUser?.email || 'coproducteur@gbadoo.com',
         sharesCount: purchaseQuantity,
         pricePerShare: selectedProduction.sharePrice,
         totalAmount: total,
@@ -475,12 +475,12 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
     <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-white">
       
       {/* ========================================================================= */}
-      {/* 1. EN-TÊTE STORIES PRODUCTIONS : FOND NOIR, CENTRÉES PAR RAPPORT AU LOGO  */}
+      {/* 1. EN-TÊTE STORIES PRODUCTIONS : FOND INDIGO, CENTRÉES PAR RAPPORT AU LOGO */}
       {/* ========================================================================= */}
       <div 
-        className="w-full shrink-0 z-30 border-none shadow-none rounded-none bg-black"
+        className="w-full shrink-0 z-30 border-none shadow-none rounded-none bg-[#1F44A8]"
         style={{ 
-          backgroundColor: '#000000'
+          backgroundColor: '#1F44A8'
         }}
       >
         <div className="w-full mx-auto px-2 pt-1.5 pb-2 shrink-0 h-[68px] sm:h-[76px] flex items-center justify-center overflow-hidden">
@@ -502,14 +502,14 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                 title={st.title}
               >
                 <div 
-                  className={`w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-2xl p-0.5 border transition-all group-hover:scale-105 bg-stone-900 ${
+                  className={`w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-2xl p-0.5 border transition-all group-hover:scale-105 bg-[#121F4B] ${
                     activeTab === 'coproduire' && currentIndex === st.prodIndex
                       ? 'border-[#A2482B] ring-1 ring-[#A2482B]'
-                      : 'border-stone-800/80 group-hover:border-[#A2482B]'
+                      : 'border-white/25 group-hover:border-[#A2482B]'
                   }`}
-                  style={{ boxShadow: 'var(--story-ring-shadow, 0 1px 8px rgba(0, 0, 0, 0.6))' }}
+                  style={{ boxShadow: 'var(--story-ring-shadow, 0 1px 8px rgba(18, 31, 75, 0.5))' }}
                 >
-                  <div className="w-full h-full rounded-xl overflow-hidden bg-stone-900 relative">
+                  <div className="w-full h-full rounded-xl overflow-hidden bg-[#121F4B] relative">
                     <img 
                       src={st.img} 
                       alt="" 
@@ -527,7 +527,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
 
       {/* TOAST SUCCÈS LUDIQUE */}
       {successToast && (
-        <div className="fixed top-14 z-50 max-w-sm mx-auto px-4 py-2 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">
+        <div className="fixed top-14 z-50 max-w-sm mx-auto px-4 py-2 rounded-2xl bg-[#1F44A8] text-white text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{successToast}</span>
         </div>
@@ -548,7 +548,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
         {/* Flèche Gauche */}
         <button
           onClick={handlePrev}
-          className="hidden md:flex absolute left-2 lg:left-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="hidden md:flex absolute left-2 lg:left-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Précédent"
           id="prev-poster-btn"
         >
@@ -558,7 +558,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
         {/* Flèche Droite */}
         <button
           onClick={handleNext}
-          className="hidden md:flex absolute right-2 lg:right-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#1C1917] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+          className="hidden md:flex absolute right-2 lg:right-6 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-[#A2482B] text-[#A2482B] hover:text-white border border-[#E7E5E4] hover:border-[#A2482B] shadow-lg items-center justify-center transition-all cursor-pointer transform hover:scale-105 active:scale-95"
           title="Suivant"
           id="next-poster-btn"
         >
@@ -650,7 +650,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     pointerEvents,
                     transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                   }}
-                  className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#151513] text-white border transition-colors ${
+                  className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#121F4B] text-white border transition-colors ${
                     isCenter ? 'border-stone-200/90 ring-1 ring-white/30 cursor-pointer shadow-2xl' : 'border-white/15 cursor-pointer [&_*]:!pointer-events-none'
                   }`}
                   id={`card-coproduire-${prod.id}`}
@@ -680,11 +680,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                   )}
 
                   {/* Voile cinématographique */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
                   {/* HAUT : Titre de la série à gauche + Déclencheur Petite Télé en haut à droite */}
                   <div className="relative z-10 flex items-center justify-between gap-1.5 pointer-events-auto w-full min-w-0">
-                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/75 border border-white/20 shadow-md max-w-[calc(100%-80px)]">
+                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md max-w-[calc(100%-80px)]">
                       <span 
                         className="font-editorial text-[11px] sm:text-xs font-semibold text-white whitespace-nowrap tracking-wide select-none truncate block"
                         title={prod.title}
@@ -710,7 +710,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                           }}
                           onMouseDown={(e) => e.stopPropagation()}
                           onTouchStart={(e) => e.stopPropagation()}
-                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
                           {isMuted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -730,7 +730,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                         }}
                         onMouseDown={(e) => e.stopPropagation()}
                         onTouchStart={(e) => e.stopPropagation()}
-                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                         title={isPlaying && isCenter ? 'Mettre en pause' : `Visionner le teaser de ${prod.title}`}
                       >
                         {isPlaying && isCenter ? (
@@ -748,8 +748,8 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                   {/* BAS : JAUGE MINIMALE SANS LÉGENDES TEXTUELLES & BOUTON D'ACQUISITION */}
                   <div className="relative z-10 w-full flex items-center justify-between gap-2 pt-0.5">
                     {/* Jauge fine épurée sans légende */}
-                    <div className="flex-1 bg-black/75 rounded-full p-1 border border-white/15 shadow-sm">
-                      <div className="w-full h-1.5 rounded-full bg-stone-900/90 overflow-hidden relative">
+                    <div className="flex-1 bg-[#121F4B]/55 backdrop-blur-sm rounded-full p-1 border border-white/20 shadow-sm">
+                      <div className="w-full h-1.5 rounded-full bg-[#121F4B]/90 overflow-hidden relative">
                         <div 
                           className="h-full rounded-full bg-gradient-to-r from-[#A2482B] via-[#C89B3C] to-[#FFE7A3] transition-all duration-700"
                           style={{ width: `${percent}%` }}
@@ -772,9 +772,9 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                       className="h-8 sm:h-8.5 px-3.5 sm:px-4 rounded-full bg-white hover:bg-[#A2482B] text-stone-900 hover:text-white text-[11px] sm:text-xs font-bold transition-all flex items-center gap-1.5 shadow-md border border-stone-200/80 hover:border-[#A2482B] cursor-pointer shrink-0 active:scale-95 group/coprod"
                       title="Acquérir des parts pour cette série"
                     >
-                      <Coins className="w-3.5 h-3.5 text-[#C89B3C] group-hover/coprod:text-white transition-colors" />
+                      <Coins className="w-3.5 h-3.5 text-[#A2482B] group-hover/coprod:text-white transition-colors" />
                       <span>{prod.sharePrice} €</span>
-                      <ArrowRight className="w-3 h-3 text-stone-600 group-hover/coprod:text-white transition-colors ml-0.5" />
+                      <ArrowRight className="w-3 h-3 text-[#A2482B] group-hover/coprod:text-white transition-colors ml-0.5" />
                     </button>
                   </div>
                 </div>
@@ -842,7 +842,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     pointerEvents,
                     transition: isDraggingRef.current ? 'none' : 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease'
                   }}
-                  className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#151513] text-white border transition-colors ${
+                  className={`absolute aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between p-2.5 sm:p-4 select-none bg-[#121F4B] text-white border transition-colors ${
                     isCenter ? 'border-stone-200/90 ring-1 ring-white/30 cursor-pointer shadow-2xl' : 'border-white/15 cursor-pointer [&_*]:!pointer-events-none'
                   }`}
                   id={`card-marche-${offer.id}`}
@@ -871,11 +871,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
                   {/* HAUT */}
                   <div className="relative z-10 flex items-center justify-between pointer-events-auto">
-                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/75 border border-white/20 shadow-md max-w-[calc(100%-80px)]">
+                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md max-w-[calc(100%-80px)]">
                       <span 
                         className="font-editorial text-[11px] sm:text-xs font-semibold text-white whitespace-nowrap tracking-wide select-none truncate block"
                         title={offer.seriesTitle}
@@ -899,7 +899,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                           }}
                           onMouseDown={(e) => e.stopPropagation()}
                           onTouchStart={(e) => e.stopPropagation()}
-                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-black/70 hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
                           {isMuted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -919,7 +919,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                         }}
                         onMouseDown={(e) => e.stopPropagation()}
                         onTouchStart={(e) => e.stopPropagation()}
-                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                         title={isPlaying && isCenter ? 'Mettre en pause' : `Visionner le teaser de ${offer.seriesTitle}`}
                       >
                         {isPlaying && isCenter ? (
@@ -936,10 +936,10 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                   {/* BAS */}
                   <div className="relative z-10 flex items-end justify-between gap-1.5 pt-0.5">
                     <div className="flex flex-col gap-1.5">
-                      <div className="h-7.5 sm:h-8.5 px-2.5 sm:px-3 rounded-full bg-black/75 hover:bg-black/90 text-white/95 text-[10.5px] sm:text-[11px] font-medium transition-all flex items-center gap-1.5 border border-white/20 shadow-sm w-fit">
+                      <div className="h-7.5 sm:h-8.5 px-2.5 sm:px-3 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#121F4B]/75 text-white/95 text-[10.5px] sm:text-[11px] font-medium transition-all flex items-center gap-1.5 border border-white/20 shadow-sm w-fit">
                         <span className="font-bold text-white">{offer.sharesCount} part{offer.sharesCount > 1 ? 's' : ''}</span>
                         <span className="text-white/40">•</span>
-                        <span className="font-bold text-[#C89B3C]">{offer.unitPrice} €</span>
+                        <span className="font-bold text-[#FFE7A3]">{offer.unitPrice} €</span>
                         <span className="text-[9.5px] text-white/70">/ part</span>
                       </div>
 
@@ -961,7 +961,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                             }
                           });
                         }}
-                        className="h-7 sm:h-7.5 px-2 sm:px-2.5 rounded-full bg-black/75 hover:bg-black/90 text-white text-[10.5px] font-medium transition-all flex items-center gap-1.5 border border-white/20 cursor-pointer shadow-sm group/user text-left w-fit active:scale-95"
+                        className="h-7 sm:h-7.5 px-2 sm:px-2.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#121F4B]/75 text-white text-[10.5px] font-medium transition-all flex items-center gap-1.5 border border-white/20 cursor-pointer shadow-sm group/user text-left w-fit active:scale-95"
                         title={`Découvrir l’univers de ${offer.sellerName}`}
                       >
                         <img 
@@ -971,7 +971,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                           decoding="async"
                           className="w-4.5 h-4.5 rounded-full object-cover ring-1 ring-[#C89B3C]"
                         />
-                        <span className="font-bold text-white group-hover/user:text-[#C89B3C] transition-colors truncate max-w-[85px]">
+                        <span className="font-bold text-white group-hover/user:text-[#FFE7A3] transition-colors truncate max-w-[85px]">
                           {offer.sellerName}
                         </span>
                       </button>
@@ -991,7 +991,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                       title="Racheter ces parts"
                     >
                       <span>Racheter</span>
-                      <ArrowRight className="w-3 h-3 text-stone-600 group-hover/racheter:text-white transition-colors" />
+                      <ArrowRight className="w-3 h-3 text-[#A2482B] group-hover/racheter:text-white transition-colors" />
                     </button>
                   </div>
                 </div>
@@ -1000,8 +1000,8 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
 
             {/* Si Marché vide */}
             {activeTab === 'marche' && peerOffers.length === 0 && (
-              <div className="w-[min(calc(100vw-64px),290px)] h-[min(410px,calc(100dvh-230px))] rounded-3xl overflow-hidden bg-[#151513] text-white/80 flex flex-col items-center justify-center p-6 text-center space-y-3 border border-stone-200/80 shadow-2xl">
-                <Coins className="w-12 h-12 text-[#C89B3C] opacity-60" />
+              <div className="w-[min(calc(100vw-64px),290px)] h-[min(410px,calc(100dvh-230px))] rounded-3xl overflow-hidden bg-[#121F4B] text-white/80 flex flex-col items-center justify-center p-6 text-center space-y-3 border border-stone-200/80 shadow-2xl">
+                <Coins className="w-12 h-12 text-[#FFE7A3] opacity-80" />
                 <h3 className="font-editorial text-lg font-bold text-white">Marché au repos</h3>
                 <p className="text-xs text-white/70">Toutes les parts ont été rachetées par la communauté.</p>
               </div>
@@ -1016,7 +1016,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
       {selectedProduction && (
         <div 
           onClick={() => setSelectedProduction(null)}
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 animate-in fade-in"
+          className="fixed inset-0 z-50 bg-[#121F4B]/80 flex items-center justify-center p-4 animate-in fade-in"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
@@ -1093,11 +1093,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     onClick={() => setPaymentMethod('card')}
                     className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
                       paymentMethod === 'card'
-                        ? 'bg-[#1C1917] text-white border-[#1C1917] shadow-xs'
+                        ? 'bg-[#1F44A8] text-white border-[#1F44A8] shadow-xs'
                         : 'bg-white hover:bg-[#FAF7EF] text-stone-700 border-stone-200'
                     }`}
                   >
-                    <CreditCard className="w-3.5 h-3.5" />
+                    <CreditCard className={`w-3.5 h-3.5 ${paymentMethod === 'card' ? 'text-white' : 'text-[#A2482B]'}`} />
                     <span className="font-semibold">Carte</span>
                   </button>
 
@@ -1106,11 +1106,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     onClick={() => setPaymentMethod('mobile_money')}
                     className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
                       paymentMethod === 'mobile_money'
-                        ? 'bg-[#1C1917] text-white border-[#1C1917] shadow-xs'
+                        ? 'bg-[#1F44A8] text-white border-[#1F44A8] shadow-xs'
                         : 'bg-white hover:bg-[#FAF7EF] text-stone-700 border-stone-200'
                     }`}
                   >
-                    <Smartphone className="w-3.5 h-3.5" />
+                    <Smartphone className={`w-3.5 h-3.5 ${paymentMethod === 'mobile_money' ? 'text-white' : 'text-[#A2482B]'}`} />
                     <span className="font-semibold">Mobile Money</span>
                   </button>
 
@@ -1119,11 +1119,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     onClick={() => setPaymentMethod('free_starter')}
                     className={`p-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
                       paymentMethod === 'free_starter'
-                        ? 'bg-[#1C1917] text-white border-[#1C1917] shadow-xs'
+                        ? 'bg-[#1F44A8] text-white border-[#1F44A8] shadow-xs'
                         : 'bg-white hover:bg-[#FAF7EF] text-stone-700 border-stone-200'
                     }`}
                   >
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <Sparkles className={`w-3.5 h-3.5 ${paymentMethod === 'free_starter' ? 'text-white' : 'text-[#A2482B]'}`} />
                     <span className="font-semibold">Test Gratuit</span>
                   </button>
                 </div>
@@ -1150,9 +1150,9 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                 type="submit"
                 disabled={isSubmitting}
                 id="btn-confirm-buy-shares"
-                className="w-full py-3 rounded-2xl bg-[#1C1917] hover:bg-stone-800 disabled:opacity-50 text-white font-bold text-xs transition-transform active:scale-95 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 rounded-2xl bg-[#1F44A8] hover:bg-[#A2482B] disabled:opacity-50 text-white font-bold text-xs transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Coins className="w-4 h-4 text-[#C89B3C]" />
+                <Coins className="w-4 h-4 text-[#FFE7A3]" />
                 <span>
                   {isSubmitting 
                     ? 'Enregistrement sécurisé...' 

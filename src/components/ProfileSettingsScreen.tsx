@@ -177,7 +177,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             photoUrl: p.photoUrl,
             teaserVideoUrl: p.teaserVideoUrl || '/sample.mp4',
             quote: p.teaserPitch,
-            bio: p.teaserPitch ? p.teaserPitch.replace(/«|»/g, '').trim() : `Passeur de savoirs et créateur dans la transmission ${p.universeTag || 'YonyWood'}.`,
+            bio: p.teaserPitch ? p.teaserPitch.replace(/«|»/g, '').trim() : `Passeur de savoirs et créateur dans la transmission ${p.universeTag || 'Gbadoo'}.`,
             universeTag: p.universeTag,
             documentaryId: 'yonywood-explorer',
             stories: []
@@ -698,7 +698,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
           normalizedCategory === 'parcours'
             ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-            : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+            : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
         }`}
         title="Parcours de vie"
         aria-label="Parcours de vie"
@@ -717,7 +717,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
             activeCategory === 'produits' || activeCategory === 'offre' || activeCategory === 'production'
               ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-              : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+              : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
           }`}
           title="Produits et services"
           aria-label="Produits et services"
@@ -736,7 +736,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
           normalizedCategory === 'projets'
             ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-            : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+            : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
         }`}
         title="Initiative personnelle"
         aria-label="Initiative personnelle"
@@ -755,7 +755,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
             activeCategory === 'besoins' || activeCategory === 'appel'
               ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-              : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+              : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
           }`}
           title="Besoins exprimés"
           aria-label="Besoins exprimés"
@@ -771,7 +771,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           e.stopPropagation();
           onNavigate({ type: 'messaging' });
         }}
-        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90"
+        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
         title="Messagerie"
         aria-label="Messagerie"
       >
@@ -786,7 +786,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             e.stopPropagation();
             onNavigate({ type: 'settings', returnTo: 'profile' });
           }}
-          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90"
+          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
           title="Paramètres"
           aria-label="Paramètres"
         >
@@ -801,7 +801,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           e.stopPropagation();
           handleShareVideo();
         }}
-        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90"
+        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
         title="Partager"
         aria-label="Partager"
       >
@@ -871,7 +871,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
     <div className="w-full h-full max-h-full pb-20 sm:pb-24 pt-safe overflow-hidden flex flex-col justify-between text-[#1C1917] select-none bg-transparent">
       {/* TOAST SUCCÈS */}
       {shareToast && (
-        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm w-full px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">
+        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm w-full px-4 py-2.5 rounded-2xl bg-[#1F44A8] text-white border border-white/20 text-xs font-semibold flex items-center gap-2 shadow-xl animate-in fade-in">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{shareToast}</span>
         </div>
@@ -881,7 +881,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
 
         {totalItemsInActiveCategory === 0 || !currentSimulationItem ? (
           <div className="flex-1 flex items-center justify-center min-h-0 py-1">
-            <div className="aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white border border-stone-200/40 relative flex flex-col justify-between p-4 sm:p-5 text-center my-auto">
+            <div className="aspect-[9/16] w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] h-[min(410px,calc(100dvh-230px))] sm:h-[min(480px,calc(100dvh-200px))] md:h-[min(520px,calc(100dvh-180px))] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white border border-white/25 relative flex flex-col justify-between p-4 sm:p-5 text-center my-auto">
               <div className="my-auto flex flex-col items-center justify-center space-y-3 px-2">
                 <div className="w-12 h-12 rounded-full bg-[#A2482B]/20 text-[#A2482B] flex items-center justify-center border border-[#A2482B]/40">
                   <Video className="w-6 h-6 text-[#A2482B]" />
@@ -944,12 +944,12 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
                   <UnifiedVideoCardOverlay
                     titleBadge={getBadgeTitleForItem(item)}
                     topLeftSlot={
-                      <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                      <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                         <span
                           className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none truncate"
                           title={formatFirstLetterOnly(getBadgeTitleForItem(item))}
@@ -997,7 +997,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       {/* ========================================================================= */}
       {isShareModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3 sm:p-4 animate-in fade-in"
+          className="fixed inset-0 z-50 bg-[#121F4B]/75 flex items-center justify-center p-3 sm:p-4 animate-in fade-in"
           onClick={() => setIsShareModalOpen(false)}
         >
           <div
@@ -1006,7 +1006,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           >
             <div className="flex items-center justify-between pb-2 border-b border-stone-200">
               <div className="flex items-center gap-2 min-w-0">
-                <ShareIcon className="w-4 h-4 text-[#C89B3C] shrink-0" />
+                <ShareIcon className="w-4 h-4 text-[#A2482B] shrink-0" />
                 <h3 className="font-editorial text-xs sm:text-sm font-bold text-[#1C1917] truncate">
                   {shareContentType === 'video' ? 'Partager la vidéo' : 'Partager le profil'}
                 </h3>
@@ -1014,7 +1014,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               <button
                 type="button"
                 onClick={() => setIsShareModalOpen(false)}
-                className="p-1 text-stone-400 hover:text-stone-700 cursor-pointer shrink-0"
+                className="p-1 text-[#A2482B] hover:text-[#8A3B22] cursor-pointer shrink-0"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1038,8 +1038,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               <a
                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
                   shareContentType === 'video'
-                    ? `Regardez la vidéo « ${currentSimulationItem?.title || ''} » de ${profileDisplayName} sur Yonywood : ${window.location.origin}?protagonist=${protagonistId || 'romeo'}&category=${normalizedCategory}&video=${currentSimulationItem?.id || ''}`
-                    : `Découvrez le profil de ${profileDisplayName} sur Yonywood : ${window.location.origin}?protagonist=${protagonistId || 'romeo'}`
+                    ? `Regardez la vidéo « ${currentSimulationItem?.title || ''} » de ${profileDisplayName} sur Gbadoo : ${window.location.origin}?protagonist=${protagonistId || 'romeo'}&category=${normalizedCategory}&video=${currentSimulationItem?.id || ''}`
+                    : `Découvrez le profil de ${profileDisplayName} sur Gbadoo : ${window.location.origin}?protagonist=${protagonistId || 'romeo'}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1064,7 +1064,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 p-3 rounded-2xl bg-stone-100 hover:bg-stone-200 border border-stone-300 text-stone-900 text-xs font-bold transition-all"
               >
-                <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-[10px] font-black">𝕏</span>
+                <span className="w-6 h-6 rounded-full bg-[#1F44A8] text-white flex items-center justify-center text-[10px] font-black">𝕏</span>
                 <span>Twitter / X</span>
               </a>
 
@@ -1134,9 +1134,9 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                   );
                   setTimeout(() => setShareToast(null), 3000);
                 }}
-                className="w-full h-11 px-4 rounded-xl bg-[#1C1917] hover:bg-stone-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer active:scale-[0.98]"
+                className="w-full h-11 px-4 rounded-xl bg-[#1F44A8] hover:bg-[#A2482B] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer active:scale-[0.98]"
               >
-                <Copy className="w-4 h-4 text-[#C89B3C]" />
+                <Copy className="w-4 h-4 text-white" />
                 <span>
                   {shareContentType === 'video' ? 'Copier le lien direct de la vidéo' : 'Copier le lien de la page'}
                 </span>
@@ -1151,7 +1151,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
       {/* ========================================================================= */}
       {isInviteModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3 sm:p-4 animate-in fade-in"
+          className="fixed inset-0 z-50 bg-[#121F4B]/75 flex items-center justify-center p-3 sm:p-4 animate-in fade-in"
           onClick={() => setIsInviteModalOpen(false)}
         >
           <div
@@ -1181,7 +1181,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               <button 
                 type="button"
                 onClick={() => setIsInviteModalOpen(false)} 
-                className="p-1 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 cursor-pointer shrink-0"
+                className="p-1 text-[#A2482B] hover:text-[#8A3B22] rounded-full hover:bg-[#A2482B]/10 cursor-pointer shrink-0"
               >
                 <X className="w-4 h-4" />
               </button>

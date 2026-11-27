@@ -145,7 +145,7 @@ export const TransactionsScreen: React.FC<TransactionsScreenProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={handleBack}
-            className="w-8 h-8 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-[#1C1917] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 shrink-0"
+            className="w-8 h-8 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-[#A2482B] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 shrink-0"
             title="Retour"
             id="btn-back-from-transactions"
           >
@@ -221,7 +221,7 @@ export const TransactionsScreen: React.FC<TransactionsScreenProps> = ({
 
       {/* TOAST SUCCÈS CONFIRMATION */}
       {confirmToast && (
-        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center gap-2 shadow-2xl animate-in fade-in">
+        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-sm px-4 py-2.5 rounded-2xl bg-[#1F44A8] text-white text-xs font-semibold flex items-center gap-2 shadow-2xl animate-in fade-in">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{confirmToast}</span>
         </div>
@@ -394,15 +394,15 @@ export const TransactionsScreen: React.FC<TransactionsScreenProps> = ({
         {activeTab === 'parts' && (
           <div className="space-y-3">
             {/* Résumé de portefeuille */}
-            <div className="bg-[#1C1917] text-white p-4 rounded-2xl flex items-center justify-between shadow-lg">
+            <div className="bg-[#1F44A8] text-white p-4 rounded-2xl flex items-center justify-between shadow-lg">
               <div>
-                <p className="text-xs text-stone-400 uppercase tracking-wider font-semibold">Portefeuille Coproductions</p>
+                <p className="text-xs text-white/75 uppercase tracking-wider font-semibold">Portefeuille Coproductions</p>
                 <h3 className="font-editorial text-2xl font-bold text-white mt-0.5">
                   14 parts actives
                 </h3>
               </div>
               <div className="text-right">
-                <span className="text-xs text-stone-400">Valeur totale estimée</span>
+                <span className="text-xs text-white/75">Valeur totale estimée</span>
                 <p className="font-editorial text-xl font-bold text-[#FFE7A3]">
                   600,00 €
                 </p>

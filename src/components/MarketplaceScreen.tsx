@@ -105,7 +105,7 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
         territory: 'Cotonou',
         country: 'Bénin',
         flag: '🇧🇯',
-        universeTag: person.series[0] || 'YonyWood',
+        universeTag: person.series[0] || 'Gbadoo',
         photoUrl: person.photo,
         badge: 'Coproducteur',
         invitationStory: person.phrase,
@@ -179,7 +179,7 @@ const ActionShareholdersFeed: React.FC<{ onNavigate: (screen: ViewScreen) => voi
 
       {seriesModalPerson && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/80 animate-in fade-in duration-200"
           onClick={(e) => {
             e.stopPropagation();
             setSeriesModalPerson(null);

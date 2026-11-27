@@ -55,10 +55,10 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#0E0D0B] text-[#FAFAF9] flex flex-col justify-between overflow-hidden transition-all duration-700 animate-fadeIn">
+    <div className="fixed inset-0 z-50 bg-[#121F4B] text-[#FAFAF9] flex flex-col justify-between overflow-hidden transition-all duration-700 animate-fadeIn">
       
       {/* 1. TOP BAR (DISCREET CONTROLS) */}
-      <div className="p-4 sm:p-6 flex items-center justify-between z-30 bg-gradient-to-b from-black/80 to-transparent">
+      <div className="p-4 sm:p-6 flex items-center justify-between z-30 bg-gradient-to-b from-[#121F4B]/90 to-transparent">
         
         {/* Return Button : Quitter l'immersion et revenir à la forêt */}
         <button
@@ -69,7 +69,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
               onNavigate({ type: 'protagonist_profile', protagonistId: protagonist.id });
             }
           }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-stone-900/75 hover:bg-black/60 text-xs sm:text-sm font-medium transition-all text-[#FAFAF9] border border-white/10"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#121F4B]/60 backdrop-blur-sm hover:bg-[#A2482B] text-xs sm:text-sm font-medium transition-all text-[#FAFAF9] border border-white/20 cursor-pointer"
           id="video-return-btn"
         >
           <ArrowLeft className="w-4 h-4 text-[#A2482B]" />
@@ -115,7 +115,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
         
         {/* Simulated Film Feed with warm documentary tone in Vertical Video Format 9:16 */}
         <div className="relative w-full h-full max-w-sm sm:max-w-md max-h-[84vh] aspect-[9/16] flex items-center justify-center p-2 sm:p-4">
-          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#1B1916] group/player">
+          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-[#121F4B] group/player">
             
             {isPlaying ? (
               <video
@@ -138,12 +138,12 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
             )}
             
             {/* Cinematic grain and subtle vignette */}
-            <div className="absolute inset-0 bg-radial from-transparent via-black/20 to-black/70 pointer-events-none" />
+            <div className="absolute inset-0 bg-radial from-transparent via-[#121F4B]/20 to-[#121F4B]/70 pointer-events-none" />
 
             {/* Subtitles Overlay */}
             {showSubtitles && isPlaying && (
               <div className="absolute bottom-8 left-6 right-6 text-center z-20 pointer-events-none">
-                <p className="inline-block px-4 py-2 rounded-lg bg-black/75 text-sm sm:text-base font-medium text-white/95 leading-relaxed max-w-2xl border border-white/10">
+                <p className="inline-block px-4 py-2 rounded-lg bg-[#121F4B]/70 backdrop-blur-sm text-sm sm:text-base font-medium text-white/95 leading-relaxed max-w-2xl border border-white/20">
                   « {protagonist.quote.replace(/[«»]/g, '')} »
                 </p>
               </div>
@@ -156,7 +156,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
             >
               {/* Centre : Bouton Play / Pause blanc au centre exact */}
               <div 
-                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/65 border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-200 pointer-events-none ${
+                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-200 pointer-events-none ${
                   isPlaying ? 'opacity-0 group-hover/player:opacity-100 hover:scale-105' : 'opacity-100 scale-100'
                 }`}
               >
@@ -173,7 +173,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
 
         {/* Slide-over Credits Panel (Cahier des charges section 30) */}
         {showCredits && (
-          <aside className="absolute right-0 top-0 bottom-0 w-80 sm:w-96 bg-[#1B1916]/95 border-l border-white/10 p-6 z-40 overflow-y-auto space-y-6 shadow-2xl animate-fadeIn">
+          <aside className="absolute right-0 top-0 bottom-0 w-80 sm:w-96 bg-[#121F4B]/95 border-l border-white/15 p-6 z-40 overflow-y-auto space-y-6 shadow-2xl animate-fadeIn">
             
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2">
@@ -192,7 +192,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
 
             <div className="space-y-4 text-xs">
               <p className="text-white/60 leading-relaxed italic">
-                Chaque histoire de YonyWood est traitée comme un film à part entière, avec une direction de regard, une signature sonore et une mémoire d'équipe.
+                Chaque histoire de Gbadoo est traitée comme un film à part entière, avec une direction de regard, une signature sonore et une mémoire d'équipe.
               </p>
 
               {story.credits.map((c, i) => (
@@ -226,7 +226,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
       </div>
 
       {/* 3. BOTTOM CINEMA CONTROLS */}
-      <div className="p-4 sm:p-6 z-30 bg-gradient-to-t from-black/90 to-transparent space-y-3">
+      <div className="p-4 sm:p-6 z-30 bg-gradient-to-t from-[#121F4B]/90 to-transparent space-y-3">
         
         {/* Interactive Scrubber Bar */}
         <div className="max-w-5xl mx-auto flex items-center gap-3">

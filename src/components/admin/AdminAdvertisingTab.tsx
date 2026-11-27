@@ -270,7 +270,7 @@ export const AdminAdvertisingTab: React.FC<AdminAdvertisingTabProps> = ({
 
       {/* MODAL CAMPAGNE */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-stone-200 space-y-4 my-8">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
               <h3 className="text-base font-bold text-stone-900 font-serif">
@@ -278,7 +278,7 @@ export const AdminAdvertisingTab: React.FC<AdminAdvertisingTabProps> = ({
               </h3>
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-stone-100 text-stone-600 flex items-center justify-center cursor-pointer"
+                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>

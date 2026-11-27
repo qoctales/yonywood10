@@ -110,7 +110,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
         <div className="flex justify-center">
           <button
             onClick={handleNextDuo}
-            className="px-4 py-1.5 rounded-full bg-[#A2482B] text-white text-xs font-bold shadow-xs hover:bg-[#8A3B22] transition-colors cursor-pointer tracking-wide"
+            className="px-4 py-1.5 rounded-full bg-[#1F44A8] text-white text-xs font-bold shadow-xs hover:bg-[#163385] transition-colors cursor-pointer tracking-wide"
             title="Cliquer pour afficher la série suivante"
           >
             {currentDuo.documentaryTitle}
@@ -124,7 +124,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
         {/* Flèche gauche */}
         <button
           onClick={handlePrevDuo}
-          className="absolute -left-1 sm:-left-3 md:-left-6 lg:-left-10 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+          className="absolute -left-1 sm:-left-3 md:-left-6 lg:-left-10 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-[#A2482B]/10 hover:text-[#8A3B22] transition-all cursor-pointer hover:scale-105 active:scale-95"
           title="Duo précédent"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -136,10 +136,10 @@ export const DemoDuocumentairesSection: React.FC = () => {
           {/* ========================================================================= */}
           {/* CARTE GAUCHE : Protagoniste A (Prénom à gauche & Icône vidéo à droite)    */}
           {/* ========================================================================= */}
-          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
+          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-xl border border-white/25 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
 
             {playingSide === 'A' ? (
-              <div className="absolute inset-0 z-20 bg-black flex flex-col justify-between p-4">
+              <div className="absolute inset-0 z-20 bg-[#121F4B] flex flex-col justify-between p-4">
                 <video
                   src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
                   autoPlay
@@ -150,19 +150,19 @@ export const DemoDuocumentairesSection: React.FC = () => {
                 preload="metadata"
                 />
                 <div className="relative z-30 flex justify-between items-center">
-                  <span className="px-2.5 py-0.5 rounded-full bg-black/60 text-[10px] font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] font-bold">
                     {pA.universeTag || 'Univers A'}
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setIsMuted(!isMuted)}
-                      className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-white cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     </button>
                     <button
                       onClick={() => setPlayingSide(null)}
-                      className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-white cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -183,11 +183,11 @@ export const DemoDuocumentairesSection: React.FC = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/35 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
                 {/* Badge univers en haut */}
                 <div className="relative z-10 flex justify-between items-center">
-                  <span className="px-3 py-1 rounded-full bg-black/60 border border-white/20 text-xs font-bold text-white tracking-wide">
+                  <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                     {pA.universeTag || 'Univers A'}
                   </span>
                 </div>
@@ -205,7 +205,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       evaluatedScore.A !== undefined
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Évaluer la résonance"
                   >
@@ -222,7 +222,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showQuestionCard === 'A'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Découvrir la question"
                   >
@@ -239,7 +239,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showProfileCard === 'A'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title={`Découvrir le profil de ${firstNameA}`}
                   >
@@ -252,7 +252,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       copiedSide === 'A'
                         ? 'bg-emerald-700/85 border-emerald-600 text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Partager"
                   >
@@ -277,7 +277,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                       e.stopPropagation();
                       setPlayingSide(playingSide === 'A' ? null : 'A');
                     }}
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/50 hover:bg-[#A2482B] border border-white/25 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
                     title={playingSide === 'A' ? "Mettre en pause" : `Regarder le témoignage de ${firstNameA}`}
                   >
                     {playingSide === 'A' ? (
@@ -290,7 +290,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
 
                 {/* MODALE QUESTION (Confinée à l'intérieur de la carte vidéo) */}
                 {showQuestionCard === 'A' && (
-                  <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-4 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                  <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
                     <div className="flex justify-between items-center mb-1.5">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFE7A3]">
                         Question de l'épisode
@@ -310,8 +310,8 @@ export const DemoDuocumentairesSection: React.FC = () => {
 
                 {/* MODALE PROFIL (Confinée à l'intérieur de la carte vidéo) */}
                 {showProfileCard === 'A' && (
-                  <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
-                    <div className="flex justify-between items-center mb-2 pb-1 border-b border-white/10">
+                  <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                    <div className="flex justify-between items-center mb-2 pb-1 border-b border-white/15">
                       <div className="flex items-center gap-1.5">
                         <ProfileSoloIcon className="w-3.5 h-3.5 text-[#FFE7A3]" />
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFE7A3]">
@@ -320,17 +320,17 @@ export const DemoDuocumentairesSection: React.FC = () => {
                       </div>
                       <button
                         onClick={() => setShowProfileCard(null)}
-                        className="text-stone-400 hover:text-white cursor-pointer"
+                        className="text-white/70 hover:text-white cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <div className="text-xs text-stone-200 space-y-1 leading-relaxed">
+                    <div className="text-xs text-white/90 space-y-1 leading-relaxed">
                       <p className="font-semibold text-white">{pA.name}</p>
-                      <p className="text-[11px] text-stone-300 font-medium">{pA.role}</p>
-                      <p className="text-[10px] text-stone-400">{pA.territory || pA.country}</p>
+                      <p className="text-[11px] text-white/80 font-medium">{pA.role}</p>
+                      <p className="text-[10px] text-white/70">{pA.territory || pA.country}</p>
                       {pA.bio && (
-                        <p className="italic text-[10px] text-stone-200 mt-1 line-clamp-3">
+                        <p className="italic text-[10px] text-white/90 mt-1 line-clamp-3">
                           « {pA.bio} »
                         </p>
                       )}
@@ -340,7 +340,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
 
                 {/* MODALE ÉVALUATION AVEC LES 3 CURSEURS (Confinée strictement à la carte vidéo) */}
                 {resonanceTarget === 'A' && (
-                  <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                  <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
                     <div className="flex justify-between items-center mb-2 pb-1.5 border-b border-white/10">
                       <div className="flex items-center gap-1.5">
                         <Award className="w-3.5 h-3.5 text-[#FFE7A3]" />
@@ -438,10 +438,10 @@ export const DemoDuocumentairesSection: React.FC = () => {
           {/* ========================================================================= */}
           {/* CARTE DROITE : Protagoniste B (Prénom à gauche & Icône vidéo à droite)   */}
           {/* ========================================================================= */}
-          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
+          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-xl border border-white/25 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
 
             {playingSide === 'B' ? (
-              <div className="absolute inset-0 z-20 bg-black flex flex-col justify-between p-4">
+              <div className="absolute inset-0 z-20 bg-[#121F4B] flex flex-col justify-between p-4">
                 <video
                   src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
                   autoPlay
@@ -452,19 +452,19 @@ export const DemoDuocumentairesSection: React.FC = () => {
                 preload="metadata"
                 />
                 <div className="relative z-30 flex justify-between items-center">
-                  <span className="px-2.5 py-0.5 rounded-full bg-black/60 text-[10px] font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] font-bold">
                     {pB.universeTag || 'Univers B'}
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setIsMuted(!isMuted)}
-                      className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-white cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     </button>
                     <button
                       onClick={() => setPlayingSide(null)}
-                      className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-white cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -485,11 +485,11 @@ export const DemoDuocumentairesSection: React.FC = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/35 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
                 {/* Badge univers en haut */}
                 <div className="relative z-10 flex justify-between items-center">
-                  <span className="px-3 py-1 rounded-full bg-black/60 border border-white/20 text-xs font-bold text-white tracking-wide">
+                  <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                     {pB.universeTag || 'Univers B'}
                   </span>
                 </div>
@@ -507,7 +507,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       evaluatedScore.B !== undefined
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Évaluer la résonance"
                   >
@@ -524,7 +524,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showQuestionCard === 'B'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Découvrir la question"
                   >
@@ -541,7 +541,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showProfileCard === 'B'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title={`Découvrir le profil de ${firstNameB}`}
                   >
@@ -554,7 +554,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       copiedSide === 'B'
                         ? 'bg-emerald-700/85 border-emerald-600 text-white'
-                        : 'bg-black/45 hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Partager"
                   >
@@ -579,7 +579,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                       e.stopPropagation();
                       setPlayingSide(playingSide === 'B' ? null : 'B');
                     }}
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/50 hover:bg-[#A2482B] border border-white/25 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
                     title={playingSide === 'B' ? "Mettre en pause" : `Regarder le témoignage de ${firstNameB}`}
                   >
                     {playingSide === 'B' ? (
@@ -592,19 +592,19 @@ export const DemoDuocumentairesSection: React.FC = () => {
 
                 {/* MODALE QUESTION (Confinée à l'intérieur de la carte vidéo) */}
                 {showQuestionCard === 'B' && (
-                  <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-4 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                  <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
                     <div className="flex justify-between items-center mb-1.5">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFE7A3]">
                         Question de l'épisode
                       </span>
                       <button
                         onClick={() => setShowQuestionCard(null)}
-                        className="text-stone-400 hover:text-white cursor-pointer"
+                        className="text-white/70 hover:text-white cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <p className="text-xs italic leading-relaxed text-stone-100">
+                    <p className="text-xs italic leading-relaxed text-white/95">
                       « {currentDuo.centralQuestion} »
                     </p>
                   </div>
@@ -612,8 +612,8 @@ export const DemoDuocumentairesSection: React.FC = () => {
 
                 {/* MODALE PROFIL (Confinée à l'intérieur de la carte vidéo) */}
                 {showProfileCard === 'B' && (
-                  <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
-                    <div className="flex justify-between items-center mb-2 pb-1 border-b border-white/10">
+                  <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                    <div className="flex justify-between items-center mb-2 pb-1 border-b border-white/15">
                       <div className="flex items-center gap-1.5">
                         <ProfileSoloIcon className="w-3.5 h-3.5 text-[#FFE7A3]" />
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFE7A3]">
@@ -622,17 +622,17 @@ export const DemoDuocumentairesSection: React.FC = () => {
                       </div>
                       <button
                         onClick={() => setShowProfileCard(null)}
-                        className="text-stone-400 hover:text-white cursor-pointer"
+                        className="text-white/70 hover:text-white cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <div className="text-xs text-stone-200 space-y-1 leading-relaxed">
+                    <div className="text-xs text-white/90 space-y-1 leading-relaxed">
                       <p className="font-semibold text-white">{pB.name}</p>
-                      <p className="text-[11px] text-stone-300 font-medium">{pB.role}</p>
-                      <p className="text-[10px] text-stone-400">{pB.territory || pB.country}</p>
+                      <p className="text-[11px] text-white/80 font-medium">{pB.role}</p>
+                      <p className="text-[10px] text-white/70">{pB.territory || pB.country}</p>
                       {pB.bio && (
-                        <p className="italic text-[10px] text-stone-200 mt-1 line-clamp-3">
+                        <p className="italic text-[10px] text-white/90 mt-1 line-clamp-3">
                           « {pB.bio} »
                         </p>
                       )}
@@ -642,7 +642,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
 
                 {/* MODALE ÉVALUATION AVEC LES 3 CURSEURS (Confinée strictement à la carte vidéo) */}
                 {resonanceTarget === 'B' && (
-                  <div className="absolute inset-x-2 bottom-2 z-30 bg-stone-900/95 rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
+                  <div className="absolute inset-x-2 bottom-2 z-30 bg-[#121F4B]/85 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-white shadow-2xl animate-in fade-in duration-200">
                     <div className="flex justify-between items-center mb-2 pb-1.5 border-b border-white/10">
                       <div className="flex items-center gap-1.5">
                         <Award className="w-3.5 h-3.5 text-[#FFE7A3]" />
@@ -742,7 +742,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
         {/* Flèche droite */}
         <button
           onClick={handleNextDuo}
-          className="absolute -right-1 sm:-right-3 md:-right-6 lg:-right-10 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+          className="absolute -right-1 sm:-right-3 md:-right-6 lg:-right-10 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-[#A2482B]/10 hover:text-[#8A3B22] transition-all cursor-pointer hover:scale-105 active:scale-95"
           title="Duo suivant"
         >
           <ChevronRight className="w-5 h-5" />

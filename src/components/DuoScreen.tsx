@@ -32,9 +32,9 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
         <div className="flex items-center justify-between border-b border-[#E7E5E4] pb-4">
           <button
             onClick={() => onNavigate({ type: 'documentary_detail', documentaryId: duo.documentaryId })}
-            className="text-xs font-semibold text-[#8B6845] hover:text-[#1C1917] flex items-center gap-1.5 transition-colors"
+            className="text-xs font-semibold text-[#8B6845] hover:text-[#1F44A8] flex items-center gap-1.5 transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 text-[#A2482B]" />
             <span>Retour à la série {displaySeriesTitle}</span>
           </button>
 
@@ -62,7 +62,7 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
           </div>
 
           <div className="space-y-1">
-            <span className="inline-block px-3 py-1 rounded-full bg-[#A2482B] text-white font-bold text-[10px] sm:text-xs leading-tight shadow-xs mb-2">
+            <span className="inline-block px-3 py-1 rounded-full bg-[#1F44A8] text-white font-bold text-[10px] sm:text-xs leading-tight shadow-xs mb-2">
               {displaySeriesTitle}
             </span>
             <h1 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C1917]">
@@ -127,9 +127,9 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 rounded-2xl bg-black/20 group-hover/thumb:bg-black/40 transition-colors flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-black/70 group-hover/thumb:bg-black/70 border border-transparent group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
-                        <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover/thumb:scale-110 transition-transform" />
+                    <div className="absolute inset-0 rounded-2xl bg-[#121F4B]/25 group-hover/thumb:bg-[#121F4B]/45 transition-colors flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#121F4B]/55 backdrop-blur-sm group-hover/thumb:bg-[#A2482B] border border-white/20 group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
+                        <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-[0_2px_8px_rgba(18,31,75,0.9)] group-hover/thumb:scale-110 transition-transform" />
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-[#FFFFFF] border border-[#E7E5E4] shadow flex items-center justify-center text-sm z-10">
@@ -188,11 +188,11 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
                   duoId: duo.id,
                   documentaryTitle: duo.documentaryTitle
                 })}
-                className="w-full py-3.5 rounded-xl bg-[#1C1917] hover:bg-[#0E0D0B] text-[#FFFFFF] font-medium text-sm transition-all shadow-md flex items-center justify-center gap-2.5 group"
+                className="w-full py-3.5 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-[#FFFFFF] font-medium text-sm transition-all shadow-md flex items-center justify-center gap-2.5 group cursor-pointer"
                 id="duo-watch-a-btn"
               >
-                <div className="w-8 h-8 rounded-full bg-black/60 border border-[#C89B3C] ring-2 ring-[#C89B3C]/30 flex items-center justify-center text-[#C89B3C] group-hover:scale-110 transition-transform shadow-[0_0_12px_rgba(200,155,60,0.5)]">
-                  <Play className="w-4 h-4 fill-[#C89B3C] text-[#C89B3C] ml-0.5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]" />
+                <div className="w-8 h-8 rounded-full bg-[#121F4B]/70 border border-[#C89B3C] ring-2 ring-[#C89B3C]/30 flex items-center justify-center text-[#C89B3C] group-hover:scale-110 transition-transform shadow-[0_0_12px_rgba(200,155,60,0.5)]">
+                  <Play className="w-4 h-4 fill-[#C89B3C] text-[#C89B3C] ml-0.5 drop-shadow-[0_2px_6px_rgba(18,31,75,0.9)]" />
                 </div>
                 <span>Regarder l'histoire de {duo.protagonistA.name.split(' ')[0]}</span>
               </button>
@@ -235,9 +235,9 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 rounded-2xl bg-black/20 group-hover/thumb:bg-black/40 transition-colors flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-black/70 group-hover/thumb:bg-black/70 border border-transparent group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
-                        <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover/thumb:scale-110 transition-transform" />
+                    <div className="absolute inset-0 rounded-2xl bg-[#121F4B]/25 group-hover/thumb:bg-[#121F4B]/45 transition-colors flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#121F4B]/55 backdrop-blur-sm group-hover/thumb:bg-[#A2482B] border border-white/20 group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
+                        <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-[0_2px_8px_rgba(18,31,75,0.9)] group-hover/thumb:scale-110 transition-transform" />
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-[#FFFFFF] border border-[#E7E5E4] shadow flex items-center justify-center text-sm z-10">
@@ -296,11 +296,11 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
                   duoId: duo.id,
                   documentaryTitle: duo.documentaryTitle
                 })}
-                className="w-full py-3.5 rounded-xl bg-[#1C1917] hover:bg-[#0E0D0B] text-[#FFFFFF] font-medium text-sm transition-all shadow-md flex items-center justify-center gap-2.5 group"
+                className="w-full py-3.5 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-[#FFFFFF] font-medium text-sm transition-all shadow-md flex items-center justify-center gap-2.5 group cursor-pointer"
                 id="duo-watch-b-btn"
               >
-                <div className="w-8 h-8 rounded-full bg-black/60 border border-[#C89B3C] ring-2 ring-[#C89B3C]/30 flex items-center justify-center text-[#C89B3C] group-hover:scale-110 transition-transform shadow-[0_0_12px_rgba(200,155,60,0.5)]">
-                  <Play className="w-4 h-4 fill-[#C89B3C] text-[#C89B3C] ml-0.5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]" />
+                <div className="w-8 h-8 rounded-full bg-[#121F4B]/70 border border-[#C89B3C] ring-2 ring-[#C89B3C]/30 flex items-center justify-center text-[#C89B3C] group-hover:scale-110 transition-transform shadow-[0_0_12px_rgba(200,155,60,0.5)]">
+                  <Play className="w-4 h-4 fill-[#C89B3C] text-[#C89B3C] ml-0.5 drop-shadow-[0_2px_6px_rgba(18,31,75,0.9)]" />
                 </div>
                 <span>Regarder l'histoire de {duo.protagonistB.name.split(' ')[0]}</span>
               </button>
@@ -323,7 +323,7 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
               className="px-4 py-2 rounded-xl bg-[#FAFAF9] hover:bg-[#E7E5E4] text-[#1C1917] transition-colors flex items-center gap-1.5"
             >
               <span>Explorer la transmission de {duo.protagonistA.name.split(' ')[0]}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#A2482B]" />
             </button>
             
             <button
@@ -331,7 +331,7 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
               className="px-4 py-2 rounded-xl bg-[#FAFAF9] hover:bg-[#E7E5E4] text-[#1C1917] transition-colors flex items-center gap-1.5"
             >
               <span>Ouvrir l'arbre de {duo.protagonistB.name.split(' ')[0]}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#A2482B]" />
             </button>
           </div>
         </div>

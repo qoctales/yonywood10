@@ -281,7 +281,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                 {/* En-tête carte + Bouton explicite Modifier / Valider */}
                 <div className="shrink-0 px-3.5 sm:px-4 py-2.5 sm:py-3 border-b border-stone-100 flex items-center justify-between gap-2 bg-white">
                   <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
                       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]" />
                     </div>
                     <h2 className="text-xs sm:text-sm font-bold text-stone-900 truncate">
@@ -300,7 +300,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                           <button
                             type="button"
                             onClick={handleCancelEdit}
-                            className="w-7 h-7 rounded-xl border border-stone-200 text-stone-500 hover:text-stone-800 hover:bg-stone-50 flex items-center justify-center cursor-pointer transition-colors"
+                            className="w-7 h-7 rounded-xl border border-stone-200 text-[#A2482B] hover:text-[#8A3B22] hover:bg-[#A2482B]/10 flex items-center justify-center cursor-pointer transition-colors"
                             aria-label="Annuler les modifications"
                             title="Annuler"
                           >
@@ -519,7 +519,7 @@ export const SecuritySwipeSection: React.FC<SecuritySwipeSectionProps> = ({
                           {!isChangingPassword ? (
                             <div className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200/80 bg-stone-50/70 text-xs text-stone-600 flex items-center justify-between">
                               <span className="tracking-widest">••••••••••</span>
-                              <Lock className="w-3 h-3 text-stone-400" />
+                              <Lock className="w-3 h-3 text-[#A2482B]/70" />
                             </div>
                           ) : (
                             <div className="space-y-1.5 p-2.5 rounded-xl bg-stone-50 border border-stone-200">

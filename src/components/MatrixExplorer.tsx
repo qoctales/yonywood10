@@ -1091,15 +1091,15 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
       {isQuestionModalOpen && (activeTopicItem?.question || activeTopicItem?.subtitle) && (
         <div 
           id="topic-question-popover"
-          className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2 z-40 max-w-[92vw] sm:max-w-xl p-4 sm:p-5 rounded-2xl bg-stone-900/95 border border-[#C89B3C]/70 shadow-2xl text-center pointer-events-auto animate-in fade-in duration-200"
+          className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2 z-40 max-w-[92vw] sm:max-w-xl p-4 sm:p-5 rounded-2xl bg-[#121F4B]/88 backdrop-blur-md border border-white/25 shadow-2xl text-center pointer-events-auto animate-in fade-in duration-200"
         >
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
-            <span className="text-xs uppercase tracking-wider text-[#F5D88C] font-semibold">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/15">
+            <span className="text-xs uppercase tracking-wider text-[#FFE7A3] font-semibold">
               {activeCategoryConfig.shortLabel} · {activeTopicItem?.title}
             </span>
             <button
               onClick={() => setIsQuestionModalOpen(false)}
-              className="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 text-stone-300 flex items-center justify-center cursor-pointer transition-colors text-xs"
+              className="w-6 h-6 rounded-full bg-white/15 hover:bg-[#A2482B] text-white flex items-center justify-center cursor-pointer transition-colors text-xs"
               title="Fermer"
             >
               ✕
@@ -1409,16 +1409,16 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
 
                       {/* Icône de la Porte :
                           État au survol : blanc
-                          État au repos : gris-brun foncé (#4A3F38) */}
+                          État au repos : terracotta (#A2482B) */}
                       <foreignObject x={x - 14} y={y - 14} width="28" height="28" className="pointer-events-none">
                         <div className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                          isHovered ? 'scale-115 text-white' : 'scale-100 text-[#4A3F38]'
+                          isHovered ? 'scale-115 text-white' : 'scale-100 text-[#A2482B]'
                         }`}>
                           <DimensionIcon 
                             name={cat.iconName || (cat.id === 'series' ? '16-series/_dimension' : `${cat.id}/_dimension`)} 
                             size={22} 
                             strokeWidth={1.75}
-                            className={isHovered ? 'text-white drop-shadow-xs' : 'text-[#4A3F38]'} 
+                            className={isHovered ? 'text-white drop-shadow-xs' : 'text-[#A2482B]'} 
                           />
                         </div>
                       </foreignObject>
@@ -1530,12 +1530,12 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                               className={isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 transition-opacity duration-200'}
                             />
 
-                            {/* Disque d'arrière-plan en bronze sombre */}
+                            {/* Disque d'arrière-plan indigo */}
                             <circle 
                               cx={x} 
                               cy={y} 
                               r="21" 
-                              fill="#1C1917" 
+                              fill="#1F44A8" 
                               stroke={isSelected ? '#FFE7A3' : '#8B6845'} 
                               strokeWidth={isSelected ? '2.5' : '1.2'} 
                               filter="drop-shadow(0 3px 8px rgba(0,0,0,0.25))" 
@@ -1603,7 +1603,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                               className="pointer-events-none"
                             />
 
-                            {/* Icône SVG officielle en noir permanent (#1C1917) */}
+                            {/* Icône SVG officielle en terracotta (#A2482B) */}
                             <foreignObject x={x - 14} y={y - 14} width="28" height="28" className="pointer-events-none">
                               <div className={`w-full h-full flex items-center justify-center transition-transform duration-200 ${
                                 isSelected ? 'scale-110' : 'scale-100'
@@ -1612,7 +1612,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                                   name={(topic as any).iconName || `${activeCategory}/${topic.id}`} 
                                   size={20} 
                                   strokeWidth={1.8}
-                                  className="text-[#1C1917]" 
+                                  className="text-[#A2482B]" 
                                 />
                               </div>
                             </foreignObject>
@@ -1790,10 +1790,10 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                             width="72" 
                             height="22" 
                             rx="6" 
-                            fill="#1C1917" 
+                            fill="#1F44A8" 
                             stroke="#C89B3C"
                             strokeWidth="1"
-                            filter="drop-shadow(0 2px 8px rgba(0,0,0,0.35))"
+                            filter="drop-shadow(0 2px 8px rgba(18,31,75,0.35))"
                           />
                           <text 
                             x="0" 
@@ -1873,7 +1873,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
       {modalPerson && (
         <div 
           id="person-detail-modal-backdrop"
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
           onClick={() => {
             setModalPerson(null);
             setIsPlaying(false);
@@ -1881,7 +1881,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
         >
           <div 
             id="person-detail-modal"
-            className="group relative aspect-[9/16] w-[min(340px,calc((100dvh-200px)*9/16))] h-[min(604px,calc(100dvh-200px))] max-w-[calc(100vw-28px)] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl flex flex-col justify-between animate-in zoom-in-95 duration-200 select-none shrink-0"
+            className="group relative aspect-[9/16] w-[min(340px,calc((100dvh-200px)*9/16))] h-[min(604px,calc(100dvh-200px))] max-w-[calc(100vw-28px)] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl flex flex-col justify-between animate-in zoom-in-95 duration-200 select-none shrink-0"
           >
             {/* Poster de fond & Vidéo fluide */}
             <img 
@@ -1908,12 +1908,12 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
             )}
 
             {/* Gradient pour lisibilité */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/60 pointer-events-none" />
 
             {/* HAUT : Titre du sujet à gauche & Déclencheur vidéo en haut à droite */}
             <div className="relative z-20 p-4 flex items-center justify-between pointer-events-auto">
               <div 
-                className="px-3.5 py-1.5 rounded-full bg-black/60 border border-white/20 text-xs text-white font-medium shadow-md tracking-wide max-w-[65%] sm:max-w-[75%] flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs text-white font-medium shadow-md tracking-wide max-w-[65%] sm:max-w-[75%] flex items-center gap-1.5"
               >
                 <span className="truncate block font-semibold text-white">
                   {activeTopicItem?.title || modalPerson.universeTag}
@@ -1927,7 +1927,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                   e.stopPropagation();
                   toggleVideoPlayback();
                 }}
-                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-black/70 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                 title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
               >
                 {isPlaying ? (
@@ -1945,7 +1945,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
             >
               {/* 1. Question (icône livre ouvert) */}
               <div className="relative group/modalbtn flex items-center">
-                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-black/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 shadow-xl">
+                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-[#121F4B]/85 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/20 shadow-xl">
                   Découvrir la question
                 </div>
                 <button
@@ -1954,7 +1954,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                     e.stopPropagation();
                     setIsPersonQuestionModalOpen(true);
                   }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                   title="Découvrir la question"
                 >
                   <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -1963,7 +1963,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
 
               {/* 2. Évaluation résonance (Award en Terre Cuite) */}
               <div className="relative group/modalbtn flex items-center">
-                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-black/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 shadow-xl">
+                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-[#121F4B]/85 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/20 shadow-xl">
                   {personResonancePct !== null ? `Résonance : ${personResonancePct}%` : "Évaluer la résonance"}
                 </div>
                 <button
@@ -1975,7 +1975,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     personResonancePct !== null
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_14px_rgba(162,72,43,0.5)]'
-                      : 'bg-black/45 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
                   }`}
                   title={personResonancePct !== null ? `Résonance : ${personResonancePct}%` : "Évaluer la résonance"}
                 >
@@ -1985,7 +1985,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
 
               {/* 3. Découvrir son univers complet (icône profil de la barre de navigation) */}
               <div className="relative group/modalbtn flex items-center">
-                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-black/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 shadow-xl">
+                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-[#121F4B]/85 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/20 shadow-xl">
                   Découvrir son univers complet
                 </div>
                 <button
@@ -1994,7 +1994,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                     e.stopPropagation();
                     handleOpenUniverse(modalPerson);
                   }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                   title="Découvrir son univers complet"
                 >
                   <ProfileSoloIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -2003,7 +2003,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
 
               {/* 4. Bouton Partager (en dessous de l'icône découvrir son univers complet) */}
               <div className="relative group/modalbtn flex items-center">
-                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-black/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 shadow-xl">
+                <div className="absolute right-12 top-1/2 -translate-y-1/2 z-40 pointer-events-none opacity-0 group-hover/modalbtn:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-[#121F4B]/85 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/20 shadow-xl">
                   {isShareCopied ? "Lien copié !" : "Partager"}
                 </div>
                 <button
@@ -2012,7 +2012,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     isShareCopied 
                       ? 'bg-emerald-700/85 border-emerald-600 text-white' 
-                      : 'bg-black/45 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
                   }`}
                   title={isShareCopied ? "Lien copié !" : "Partager"}
                 >
@@ -2043,7 +2043,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
               {/* Bas droite : Note globale en pourcentage (Casting) + Bouton Muet */}
               <div className="flex items-center gap-2">
                 <div 
-                  className="px-2.5 py-1 rounded-full bg-black/60 border border-white/20 shadow-md flex items-center gap-1 text-white"
+                  className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md flex items-center gap-1 text-white"
                   title="Note moyenne d'évaluation du public"
                 >
                   <Star className="w-3.5 h-3.5 text-[#FFE7A3] fill-[#FFE7A3]" />
@@ -2057,7 +2057,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/70 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center cursor-pointer transition-all shadow-md hover:scale-105 active:scale-95 shrink-0"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center cursor-pointer transition-all shadow-md hover:scale-105 active:scale-95 shrink-0"
                   title={isMuted ? 'Activer le son' : 'Couper le son'}
                 >
                   {isMuted ? (
@@ -2085,7 +2085,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
             {/* Modale Question (au clic sur l'icône question) */}
             {isPersonQuestionModalOpen && (
               <div 
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/85 animate-in fade-in duration-200"
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsPersonQuestionModalOpen(false);
@@ -2097,7 +2097,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                 >
                   <button
                     onClick={() => setIsPersonQuestionModalOpen(false)}
-                    className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-700 transition-colors"
+                    className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-stone-100 text-[#A2482B] hover:text-[#8A3B22] transition-colors cursor-pointer"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -2123,7 +2123,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
       {/* Modale Question en Mode Swipe */}
       {swipeQuestionModalData && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/85 animate-in fade-in duration-200"
           onClick={() => setSwipeQuestionModalData(null)}
         >
           <div 
@@ -2132,7 +2132,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
           >
             <button
               onClick={() => setSwipeQuestionModalData(null)}
-              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-stone-100 text-[#A2482B] hover:text-[#8A3B22] transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>

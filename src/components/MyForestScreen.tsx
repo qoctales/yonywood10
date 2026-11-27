@@ -34,7 +34,7 @@ export const MyForestScreen: React.FC<MyForestScreenProps> = ({ onNavigate }) =>
         
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C89B3C]/12 text-[#8B6845] text-xs font-semibold">
-            <TreePine className="w-3.5 h-3.5" />
+            <TreePine className="w-3.5 h-3.5 text-[#A2482B]" />
             Espace Membre • Ma Forêt Personnelle
           </div>
           <h1 className="font-editorial text-3xl sm:text-4xl font-normal text-[#1C1917]">
@@ -75,7 +75,7 @@ export const MyForestScreen: React.FC<MyForestScreenProps> = ({ onNavigate }) =>
               onClick={() => setActiveTab(tab.key as any)}
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
                 activeTab === tab.key
-                  ? 'bg-[#1C1917] text-white shadow-xs'
+                  ? 'bg-[#1F44A8] text-white shadow-xs'
                   : 'bg-[#FFFFFF] text-[#68655D] hover:bg-[#E7E5E4]/50 border border-[#E7E5E4]'
               }`}
             >

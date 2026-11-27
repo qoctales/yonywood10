@@ -109,7 +109,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/92 animate-in fade-in duration-200 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#121F4B]/85 animate-in fade-in duration-200 overflow-y-auto">
       <div 
         className="relative w-full max-w-md bg-white border border-stone-200 rounded-3xl shadow-2xl overflow-hidden text-stone-900 my-auto max-h-[90dvh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
@@ -118,7 +118,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         <div className="relative px-6 pt-6 pb-2 shrink-0">
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-500 hover:text-stone-900 flex items-center justify-center transition-all cursor-pointer"
+            className="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-all cursor-pointer"
             title="Fermer"
           >
             <X className="w-4 h-4" />

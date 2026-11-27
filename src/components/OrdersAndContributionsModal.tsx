@@ -175,7 +175,7 @@ export const OrdersAndContributionsModal: React.FC<OrdersAndContributionsModalPr
   return (
     <div 
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-3 sm:p-5 animate-in fade-in"
+      className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-5 animate-in fade-in"
     >
       <div 
         onClick={(e) => e.stopPropagation()}
@@ -183,8 +183,8 @@ export const OrdersAndContributionsModal: React.FC<OrdersAndContributionsModalPr
       >
         {/* Toast Feedback */}
         {actionSuccessMsg && (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#1C1917] text-white text-xs font-semibold shadow-xl flex items-center gap-2 border border-white/20 animate-in fade-in slide-in-from-top-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#1F44A8] text-white text-xs font-semibold shadow-xl flex items-center gap-2 border border-white/25 animate-in fade-in slide-in-from-top-2">
+            <CheckCircle2 className="w-4 h-4 text-[#FFE7A3] shrink-0" />
             <span>{actionSuccessMsg}</span>
           </div>
         )}
@@ -202,7 +202,7 @@ export const OrdersAndContributionsModal: React.FC<OrdersAndContributionsModalPr
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer"
               title="Fermer"
             >
               <X className="w-4 h-4" />
@@ -649,7 +649,7 @@ export const OrdersAndContributionsModal: React.FC<OrdersAndContributionsModalPr
         {isIssueModalOpen && (
           <div 
             onClick={() => setIsIssueModalOpen(false)}
-            className="fixed inset-0 z-60 bg-black/80 flex items-center justify-center p-4"
+            className="fixed inset-0 z-60 bg-[#121F4B]/80 flex items-center justify-center p-4"
           >
             <div 
               onClick={(e) => e.stopPropagation()}
@@ -662,7 +662,7 @@ export const OrdersAndContributionsModal: React.FC<OrdersAndContributionsModalPr
                     Signaler un problème
                   </h4>
                 </div>
-                <button onClick={() => setIsIssueModalOpen(false)} className="text-stone-400 hover:text-stone-700">
+                <button onClick={() => setIsIssueModalOpen(false)} className="text-[#A2482B] hover:text-[#8A3B22]">
                   <X className="w-4 h-4" />
                 </button>
               </div>

@@ -164,7 +164,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
         <div className="flex items-center justify-between border-b border-[#E7E5E4] pb-3">
           <button
             onClick={() => onNavigate({ type: 'duo_feed' })}
-            className="text-xs font-semibold text-[#8B6845] hover:text-[#1C1917] flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="text-xs font-semibold text-[#A2482B] hover:text-[#8A3B22] flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Duos</span>
@@ -186,7 +186,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
             <button
               onClick={handleShare}
               title="Partager le profil"
-              className="p-1.5 rounded-full border border-[#E7E5E4] bg-[#FFFFFF] hover:bg-[#FAFAF9] text-[#68655D] transition-colors cursor-pointer"
+              className="p-1.5 rounded-full border border-[#E7E5E4] bg-[#FFFFFF] hover:bg-[#FAFAF9] text-[#A2482B] transition-colors cursor-pointer"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <ShareIcon className="w-4 h-4" />}
             </button>
@@ -233,7 +233,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
               photoUrl={protagonist.photoUrl}
               alt={protagonist.name}
               className="w-24 h-24 sm:w-28 sm:h-28"
-              strokeColor="#1C1917"
+              strokeColor="#1F44A8"
             />
 
             {/* Prénom harmonisé avec les cartes vidéo, sans coupure de lettre */}
@@ -281,7 +281,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
                   className="group flex flex-col items-center justify-center p-2.5 rounded-2xl bg-[#FFFFFF] hover:bg-[#FAFAF9] border border-[#C89B3C]/35 hover:border-[#C89B3C] shadow-xs hover:shadow-md transition-all hover:scale-105 active:scale-95 text-center w-28 cursor-pointer"
                   title={petal.label}
                 >
-                  <div className="w-9 h-9 rounded-2xl bg-[#C89B3C]/10 group-hover:bg-[#C89B3C] text-[#8B6845] group-hover:text-[#FFFFFF] flex items-center justify-center transition-colors">
+                  <div className="w-9 h-9 rounded-2xl bg-[#A2482B]/10 group-hover:bg-[#A2482B] text-[#A2482B] group-hover:text-[#FFFFFF] flex items-center justify-center transition-colors">
                     <Icon className="w-4.5 h-4.5" />
                   </div>
                 </button>
@@ -298,7 +298,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
               photoUrl={protagonist.photoUrl}
               alt={protagonist.name}
               className="w-20 h-20 sm:w-24 sm:h-24"
-              strokeColor="#1C1917"
+              strokeColor="#1F44A8"
             />
             <h2 className="font-editorial text-xl sm:text-2xl font-semibold text-[#1C1917] tracking-normal leading-tight pb-0.5 mt-2">
               {protagonist.name.split(' ')[0]}
@@ -325,7 +325,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
                   className="flex items-center justify-center p-3 rounded-2xl bg-[#FFFFFF] border border-[#E7E5E4] hover:border-[#C89B3C] transition-all active:scale-95 shadow-xs cursor-pointer"
                   title={petal.label}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#C89B3C]/10 text-[#8B6845] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5" />
                   </div>
                 </button>
@@ -339,9 +339,9 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
           <button
             onClick={() => setShowDuosModal(true)}
             id="btn-see-in-duos"
-            className="px-5 py-2.5 rounded-full bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold shadow-md flex items-center gap-2 transition-all hover:scale-102 active:scale-98 mx-auto cursor-pointer"
+            className="px-5 py-2.5 rounded-full bg-[#1F44A8] hover:bg-[#A2482B] text-[#FFFFFF] text-xs font-semibold shadow-md flex items-center gap-2 transition-all hover:scale-102 active:scale-98 mx-auto cursor-pointer"
           >
-            <Link2 className="w-3.5 h-3.5 text-[#C89B3C] group-hover:text-[#FFFFFF]" />
+            <Link2 className="w-3.5 h-3.5 text-[#FFE7A3]" />
             <span>Le voir dans des duos</span>
           </button>
         </div>
@@ -350,20 +350,20 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
 
       {/* 3. MODAL: LE VOIR DANS DES DUOS */}
       {showDuosModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1C1917]/75">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/80">
           <div className="w-full max-w-xl max-h-[85vh] bg-[#FFFFFF] rounded-3xl border border-[#E7E5E4] shadow-2xl overflow-y-auto flex flex-col">
             
             {/* Modal Header */}
             <div className="px-6 py-4 border-b border-[#E7E5E4] flex items-center justify-between sticky top-0 bg-[#FFFFFF] z-30">
               <div className="flex items-center gap-2">
-                <Link2 className="w-4 h-4 text-[#C89B3C]" />
+                <Link2 className="w-4 h-4 text-[#A2482B]" />
                 <h3 className="text-sm font-bold text-[#1C1917]">
                   {protagonist.name.split(' ')[0]} dans les duos
                 </h3>
               </div>
               <button
                 onClick={() => setShowDuosModal(false)}
-                className="p-1.5 rounded-full hover:bg-[#E7E5E4]/50 text-[#68655D] transition-colors cursor-pointer"
+                className="p-1.5 rounded-full hover:bg-[#E7E5E4]/50 text-[#A2482B] transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -429,7 +429,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
                               documentaryTitle: duo.documentaryTitle 
                             });
                           }}
-                          className="flex-1 py-2 px-3 rounded-xl bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                          className="flex-1 py-2 px-3 rounded-xl bg-[#1F44A8] hover:bg-[#A2482B] text-[#FFFFFF] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                         >
                           <Play className="w-3.5 h-3.5 fill-current" />
                           <span>Visionner ce duo</span>
@@ -462,7 +462,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
       {/* MODALE DÉTAIL DES 3 CRITÈRES DU CASTING */}
       {showCastingDetails && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121F4B]/85 animate-in fade-in duration-200"
           onClick={() => setShowCastingDetails(false)}
         >
           <div 
@@ -471,7 +471,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
           >
             <button
               onClick={() => setShowCastingDetails(false)}
-              className="absolute top-4 right-4 w-7 h-7 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute top-4 right-4 w-7 h-7 rounded-full bg-stone-100 hover:bg-stone-200 text-[#A2482B] flex items-center justify-center cursor-pointer transition-colors"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -488,12 +488,12 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
               </p>
             </div>
 
-            <div className="mt-4 p-3.5 rounded-2xl bg-stone-900 text-white flex items-center justify-between">
+            <div className="mt-4 p-3.5 rounded-2xl bg-[#1F44A8] text-white flex items-center justify-between">
               <div>
-                <p className="text-[10px] text-stone-400 uppercase font-semibold">Note Globale</p>
-                <p className="text-xs text-stone-300">Éligible Matrice</p>
+                <p className="text-[10px] text-white/80 uppercase font-semibold">Note Globale</p>
+                <p className="text-xs text-white/95">Éligible Matrice</p>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/10 border border-white/20">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/15 border border-white/25">
                 <Star className="w-3.5 h-3.5 text-[#FFE7A3] fill-[#FFE7A3]" />
                 <span className="text-lg font-bold text-[#FFE7A3]">
                   {castingScores.globalAverage}%
@@ -528,7 +528,7 @@ export const ProtagonistProfileScreen: React.FC<ProtagonistProfileScreenProps> =
                   <span className="font-bold text-stone-900">{castingScores.cinematography}%</span>
                 </div>
                 <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-stone-800 h-full rounded-full" style={{ width: `${castingScores.cinematography}%` }} />
+                  <div className="bg-[#1F44A8] h-full rounded-full" style={{ width: `${castingScores.cinematography}%` }} />
                 </div>
               </div>
             </div>

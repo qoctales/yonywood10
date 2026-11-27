@@ -125,7 +125,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 const isImageFailed = Boolean(failedPosterIds[entry.id]);
 
                 return (
-                  <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
+                  <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#121F4B]">
                     {!isImageFailed && (
                       <img
                         src={entry.posterUrl}
@@ -142,11 +142,11 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                       />
                     )}
 
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/75 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#121F4B]/60 pointer-events-none" />
 
                     {/* HAUT : Pastille titre en haut à gauche */}
                     <div className="relative z-10 flex items-center justify-between gap-1 w-full min-w-0">
-                      <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                      <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                         <span className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none truncate">
                           {entry.title}
                         </span>
@@ -166,7 +166,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                           e.stopPropagation();
                           setSynopsisModalEntry(entry);
                         }}
-                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                         title="En savoir plus"
                         aria-label={`Présentation — ${entry.title}`}
                       >
@@ -204,7 +204,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setSynopsisModalEntry(null)}
-                    className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-[#1C1917] flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                    className="w-7 h-7 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
                     title="Fermer"
                     aria-label="Fermer"
                   >
@@ -261,7 +261,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       )}
 
       {savedToast && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] bg-[#1C1917] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-2xl border border-stone-700 flex items-center gap-2">
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] bg-[#1F44A8] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-2xl border border-white/20 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{savedToast}</span>
         </div>

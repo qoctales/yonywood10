@@ -245,7 +245,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         targetType: 'duo',
         targetId: 'duo-1',
         targetTitle: 'Koffi Mensah <> Amara Diop (Duo 1)',
-        reportedBy: 'utilisateur_veille@yonywood.com',
+        reportedBy: 'utilisateur_veille@gbadoo.com',
         createdAt: '2026-03-24T14:22:00Z',
         status: 'PENDING'
       },
@@ -637,8 +637,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     <div className="min-h-screen bg-[#FDFBF7] text-stone-900 pb-24">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-stone-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold border border-stone-800 animate-in fade-in slide-in-from-bottom-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1F44A8] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold border border-white/20 animate-in fade-in slide-in-from-bottom-2">
+          <CheckCircle2 className="w-4 h-4 text-[#FFE7A3] shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -648,7 +648,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={() => onNavigate({ type: 'profile' })}
-            className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B] text-stone-700 hover:text-white flex items-center justify-center transition-all cursor-pointer border border-stone-200"
+            className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B] text-[#A2482B] hover:text-white flex items-center justify-center transition-all cursor-pointer border border-stone-200"
             title="Revenir au Profil"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -660,7 +660,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </div>
             <div>
               <span className="text-sm font-serif font-black text-stone-900 tracking-tight block">
-                YonyWood • Back-Office Central & Administration
+                Gbadoo • Back-Office Central & Administration
               </span>
               <p className="text-[10px] text-stone-500">
                 Connecté : <span className="text-stone-800 font-semibold">{currentUser?.name || 'Romeo Nonvide'}</span> (Superadministrateur)

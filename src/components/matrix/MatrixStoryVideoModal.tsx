@@ -99,16 +99,16 @@ export const MatrixStoryVideoModal: React.FC<MatrixStoryVideoModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-3 sm:p-4 select-none animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-3 sm:p-4 select-none animate-in fade-in duration-200"
       onClick={onClose}
     >
       {/* Bouton Fermer discret en haut à droite de l'écran */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-50 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+        className="absolute top-4 right-4 z-50 w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
         title="Fermer et revenir à la Matrice"
       >
-        <X className="w-5 h-5" />
+        <X className="w-5 h-5 text-white" />
       </button>
 
       {/* CARTE VIDÉO VERTICALE AU GABARIT STANDARD (CONFORME À LA CAPTURE MODÈLE) */}
@@ -118,7 +118,7 @@ export const MatrixStoryVideoModal: React.FC<MatrixStoryVideoModalProps> = ({
           if ((e.target as HTMLElement).closest('button, a')) return;
           togglePlay();
         }}
-        className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#151513] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
+        className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-2xl border border-stone-200/40 flex flex-col justify-between 
           aspect-[9/16] 
           w-[min(calc(100vw-32px),calc((100dvh-200px)*9/16))] 
           max-w-[280px] sm:max-w-[290px] 
@@ -148,7 +148,7 @@ export const MatrixStoryVideoModal: React.FC<MatrixStoryVideoModalProps> = ({
         )}
 
         {/* Voile cinématographique pour lisibilité optimale */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/50 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
         {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
         <UnifiedVideoCardOverlay

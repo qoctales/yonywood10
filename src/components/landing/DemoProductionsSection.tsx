@@ -97,14 +97,14 @@ export const DemoProductionsSection: React.FC = () => {
 
           <button
             onClick={handlePrev}
-            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
+            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
             title="Série précédente"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
           {/* Carte 9:16 avec jauge de coproduction bornée au-dessus de la nav bar */}
-          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
+          <div className="h-[min(490px,calc(100vh-220px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-[#121F4B] text-white shadow-xl border border-stone-200 relative flex flex-col justify-between p-3.5 sm:p-4 shrink-0">
 
             <img
               src={currentProd.posterImage}
@@ -113,25 +113,25 @@ export const DemoProductionsSection: React.FC = () => {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
             {/* Haut : Badge Titre & Déclencheur lecture */}
             <div className="relative z-10 flex items-start justify-between gap-2 pointer-events-auto">
-              <span className="px-2.5 sm:px-3 py-1 rounded-2xl sm:rounded-full bg-black/60 border border-white/20 text-[10.5px] sm:text-xs font-bold text-white tracking-wide max-w-[calc(100%-44px)] leading-snug">
+              <span className="px-2.5 sm:px-3 py-1 rounded-2xl sm:rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10.5px] sm:text-xs font-bold text-white tracking-wide max-w-[calc(100%-44px)] leading-snug">
                 {currentProd.title}
               </span>
 
               <button
                 type="button"
-                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-black/65 hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                 title={`Regarder le teaser de ${currentProd.title}`}
               >
                 <TvPlayerIcon className="w-5 h-5 text-white transition-transform" strokeWidth={1.6} />
               </button>
             </div>
 
-            {/* Bas : Bloc de coproduction semi-transparent (identique Capture 4) */}
-            <div className="relative z-10 bg-black/65 rounded-2xl p-3.5 border border-white/15 space-y-2.5">
+            {/* Bas : Bloc de coproduction semi-transparent */}
+            <div className="relative z-10 bg-[#121F4B]/65 backdrop-blur-sm rounded-2xl p-3.5 border border-white/20 space-y-2.5">
 
               <div className="flex justify-between items-baseline text-xs">
                 <div>
@@ -171,7 +171,7 @@ export const DemoProductionsSection: React.FC = () => {
 
           <button
             onClick={handleNext}
-            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
+            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer"
             title="Série suivante"
           >
             <ChevronRight className="w-5 h-5" />
@@ -229,7 +229,7 @@ export const DemoProductionsSection: React.FC = () => {
       {showDemoModal && (
         <div
           onClick={() => setShowDemoModal(false)}
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4 animate-in fade-in duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -241,7 +241,7 @@ export const DemoProductionsSection: React.FC = () => {
               </span>
               <button
                 onClick={() => setShowDemoModal(false)}
-                className="p-1 rounded-full text-stone-400 hover:text-stone-700 cursor-pointer"
+                className="p-1 rounded-full text-[#A2482B] hover:text-[#8A3B22] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

@@ -55,7 +55,7 @@ export const INITIAL_DEMO_SUBMISSIONS: UserVideoSubmission[] = [
     authorName: 'Romeo Nonvide',
     authorAvatarUrl: '/assets/duos/paroles-armel.jpg',
     title: 'Origines & Ancrage à Cotonou',
-    synopsis: 'Roméo raconte ses huit années passées à l’étranger, le sentiment de l’éloignement et l’évidence intérieure de revenir à Cotonou pour fonder YonyWood.',
+    synopsis: 'Roméo raconte ses huit années passées à l’étranger, le sentiment de l’éloignement et l’évidence intérieure de revenir à Cotonou pour fonder Gbadoo.',
     universe: 'casting',
     videoUrl: '/sample.mp4',
     thumbnailUrl: '/assets/duos/paroles-armel.jpg',

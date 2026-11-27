@@ -23,7 +23,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'mireille-akplogan'
     },
     screenwriter: {
@@ -64,7 +64,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'pere-matthieu'
     },
     screenwriter: {
@@ -157,7 +157,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'researcher-eleonore'
     },
     screenwriter: {
@@ -204,7 +204,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'malik-diop'
     },
     screenwriter: {
@@ -261,7 +261,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'kpedetin-houndegla'
     },
     screenwriter: {
@@ -317,7 +317,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'awa-ndiaye'
     },
     screenwriter: {
@@ -389,7 +389,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'senami-houndete'
     },
     screenwriter: {
@@ -445,7 +445,7 @@ export const ALL_SERIES_TEAMS: Record<string, SeriesTeamBundle> = {
     author: {
       name: 'Romeo Nonvide',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Fondateur & Concepteur documentaire de YonyWood',
+      bio: 'Fondateur & Concepteur documentaire de Gbadoo',
       protagonistId: 'photographer-chancelle'
     },
     screenwriter: {

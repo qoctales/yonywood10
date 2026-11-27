@@ -132,7 +132,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
             const totalSimulated = entry.sharesCount * (entry.unitAmountFcfa || DEMO_SHARE_UNIT_FCFA);
 
             return (
-              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#151513]">
+              <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 text-white bg-[#121F4B]">
                 <img
                   src={entry.posterUrl}
                   alt={entry.seriesTitle}
@@ -140,11 +140,11 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                   decoding="async"
                   className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/15 to-black/85 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/60 pointer-events-none" />
 
                 {/* HAUT : Titre série */}
                 <div className="relative z-10 flex items-center justify-between gap-1.5 w-full min-w-0">
-                  <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-black/75 border border-white/20 shadow-md">
+                  <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
                     <span className="font-editorial text-[8.5px] sm:text-[10px] font-semibold text-white truncate">
                       {entry.seriesTitle}
                     </span>
@@ -164,14 +164,14 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                       e.stopPropagation();
                       setDetailEntry(entry);
                     }}
-                    className="w-8 h-8 rounded-xl bg-black/75 hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center shadow-md transition-all cursor-pointer"
+                    className="w-8 h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center shadow-md transition-all cursor-pointer"
                     title="Détails de la coproduction"
                     aria-label={`Détails de ${entry.seriesTitle}`}
                   >
                     <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </button>
 
-                  <div className="text-right bg-black/75 border border-white/20 rounded-xl px-2.5 py-1.5 shadow-md">
+                  <div className="text-right bg-[#121F4B]/65 backdrop-blur-sm border border-white/20 rounded-xl px-2.5 py-1.5 shadow-md">
                     <div className="text-[11px] sm:text-xs font-bold text-white leading-tight">
                       {entry.sharesCount} {entry.sharesCount > 1 ? 'parts' : 'part'} ({formatFcfa(totalSimulated)})
                     </div>
@@ -211,7 +211,7 @@ export const CoproductionsSection: React.FC<CoproductionsSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => setDetailEntry(null)}
-                  className="w-7 h-7 rounded-lg hover:bg-stone-200/70 text-stone-500 hover:text-[#1C1917] flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                  className="w-7 h-7 rounded-lg hover:bg-[#A2482B]/10 text-[#A2482B] hover:text-[#8A3B22] flex items-center justify-center transition-colors cursor-pointer shrink-0"
                   aria-label="Fermer"
                 >
                   <X className="w-3.5 h-3.5" />

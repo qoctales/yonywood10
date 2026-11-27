@@ -323,7 +323,7 @@ export const AdminUsersTab: React.FC<AdminUsersTabProps> = ({
 
       {/* MODAL D'ÉDITION DES RÔLES & PERMISSIONS */}
       {editingUser && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-stone-200 my-8 space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
               <div className="flex items-center gap-3">

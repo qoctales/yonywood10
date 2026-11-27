@@ -90,7 +90,7 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
             {historyBreadcrumbs.length > 1 && (
               <button
                 onClick={onBackToPreviousSun}
-                className="flex items-center gap-1 text-[11px] text-stone-600 hover:text-stone-900 transition-colors"
+                className="flex items-center gap-1 text-[11px] text-[#A2482B] hover:text-[#8A3B22] transition-colors cursor-pointer"
                 title="Soleil précédent"
               >
                 <RotateCcw className="w-3 h-3" />
@@ -106,7 +106,7 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
             </span>
             <button
               onClick={handleShare}
-              className="p-1.5 rounded-lg border border-stone-200 hover:bg-stone-100 text-stone-600 hover:text-stone-900 transition-all cursor-pointer"
+              className="p-1.5 rounded-lg border border-stone-200 hover:bg-stone-100 text-[#A2482B] hover:text-[#8A3B22] transition-all cursor-pointer"
               title="Partager ce Soleil"
             >
               {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <ShareIcon className="w-3.5 h-3.5" />}
@@ -238,7 +238,7 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
                       boxShadow: isCenterActive ? `0 0 12px ${theme.accentColor}40` : undefined
                     }}
                   >
-                    <DimensionIcon name={theme.iconName} size={16} className="text-stone-700 group-hover:text-stone-900" />
+                    <DimensionIcon name={theme.iconName} size={16} className="text-[#A2482B] group-hover:text-[#8A3B22]" />
                   </div>
                 </div>
               );
@@ -282,14 +282,14 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
                 <div className="flex items-center gap-1.5 mt-2">
                   <button
                     onClick={() => onOpenStoryModal(sun)}
-                    className="px-2.5 py-1 rounded-full bg-stone-900 hover:bg-[#A2482B] text-white text-[10.5px] font-medium transition-all shadow-xs cursor-pointer"
+                    className="px-2.5 py-1 rounded-full bg-[#1F44A8] hover:bg-[#A2482B] text-white text-[10.5px] font-medium transition-all shadow-xs cursor-pointer"
                   >
                     Voir l'histoire
                   </button>
                   {counterpointPerson && (
                     <button
                       onClick={() => onOpenDuoModal(sun, counterpointPerson)}
-                      className="p-1 rounded-full border border-stone-300 hover:border-[#A2482B] text-stone-700 hover:text-[#A2482B] bg-white transition-all shadow-2xs cursor-pointer"
+                      className="p-1 rounded-full border border-stone-300 hover:border-[#A2482B] text-[#A2482B] bg-white transition-all shadow-2xs cursor-pointer"
                       title={`Voir le duo avec ${counterpointPerson.name}`}
                     >
                       <HeartHandshake className="w-3.5 h-3.5 text-[#A2482B]" />
@@ -302,7 +302,7 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
               <div className="relative z-20 flex flex-col items-center text-center max-w-[200px] bg-white/95 backdrop-blur-md p-3 rounded-2xl border border-stone-200/90 shadow-xl animate-in zoom-in-95 duration-200">
                 <button
                   onClick={() => setActiveCenterTheme(null)}
-                  className="absolute top-2 right-2 text-stone-600 hover:text-stone-700 cursor-pointer"
+                  className="absolute top-2 right-2 text-[#A2482B] hover:text-[#8A3B22] cursor-pointer"
                   title="Fermer la thématique"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -335,7 +335,7 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
                       }`}
                       title={sub.label}
                     >
-                      <DimensionIcon name={sub.icone || activeCenterTheme.iconName} size={12} className="text-stone-700" />
+                      <DimensionIcon name={sub.icone || activeCenterTheme.iconName} size={12} className="text-[#A2482B]" />
                       <span className="text-[8px] text-stone-600 truncate w-full mt-0.5">{sub.label.split(' ')[0]}</span>
                     </button>
                   ))}
@@ -355,7 +355,7 @@ export const SunCrownView: React.FC<SunCrownViewProps> = ({
 
           {/* INFOBULLE ÉPURÉE AU SURVOL D'UN SATELLITE (SANS TEXTE PERMANENT) */}
           {hoveredSatellite && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 pointer-events-none bg-stone-900/90 text-white backdrop-blur-md px-3 py-1 rounded-full text-center shadow-lg border border-white/10 animate-in fade-in duration-150">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 pointer-events-none bg-[#121F4B]/85 text-white backdrop-blur-md px-3 py-1 rounded-full text-center shadow-lg border border-white/20 animate-in fade-in duration-150">
               <span className="text-xs font-semibold">{hoveredSatellite.title}</span>
               {hoveredSatellite.subtitle && (
                 <span className="text-[10px] text-amber-300 ml-1.5 font-normal">· {hoveredSatellite.subtitle}</span>

@@ -26,7 +26,7 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
   const screensList = [
     {
       id: '01',
-      title: 'Accueil Onboarding YonyWood (3 Vidéos)',
+      title: 'Accueil Onboarding Gbadoo (3 Vidéos)',
       desc: "Page d'entrée avec le logo blanc officiel, inscription/connexion et les 3 vidéos explicatives 9:16 de présentation du projet.",
       target: { type: 'landing' } as ViewScreen,
       icon: TreePine,
@@ -67,7 +67,7 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
     {
       id: '05',
       title: 'Lecteur Vidéo / Immersion',
-      desc: 'Ambiance sombre (#0E0D0B), cinématographique, centrée sur le regard, sous-titres, contrôle fluide et générique complet.',
+      desc: 'Ambiance bleu indigo (#1F44A8), cinématographique, centrée sur le regard, sous-titres, contrôle fluide et générique complet.',
       target: {
         type: 'video_player',
         story: PROTAGONISTS[0].stories[0],
@@ -129,7 +129,7 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
     {
       id: '12',
       title: 'Navigation & Architecture',
-      desc: 'Le plan complet de l’expérience, lexique philosophique YonyWood et synthèse des 3 niveaux d’atmosphère.',
+      desc: 'Le plan complet de l’expérience, lexique philosophique Gbadoo et synthèse des 3 niveaux d’atmosphère.',
       target: { type: 'site_map' } as ViewScreen,
       icon: Compass,
       level: 'Vue Synoptique'
@@ -155,7 +155,7 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
         </div>
 
         <h1 className="font-editorial text-4xl sm:text-5xl font-normal text-[#1C1917]">
-          L'Architecture Vivante de YonyWood
+          L'Architecture Vivante de Gbadoo
         </h1>
 
         <p className="text-[#68655D] text-base sm:text-lg max-w-3xl leading-relaxed">
@@ -195,8 +195,8 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <IconComponent className="w-5 h-5 text-[#C89B3C] group-hover:scale-110 transition-transform" />
-                    <h3 className="font-editorial font-bold text-lg text-[#1C1917] group-hover:text-[#C89B3C] transition-colors">
+                    <IconComponent className="w-5 h-5 text-[#A2482B] group-hover:scale-110 transition-transform" />
+                    <h3 className="font-editorial font-bold text-lg text-[#1C1917] group-hover:text-[#1F44A8] transition-colors">
                       {s.title}
                     </h3>
                   </div>
@@ -223,7 +223,7 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
             Alignement Conceptuel
           </span>
           <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-[#1C1917] mt-0.5">
-            Le Vocabulaire Sacré de YonyWood
+            Le Vocabulaire Sacré de Gbadoo
           </h2>
         </div>
 
@@ -315,15 +315,15 @@ export const NavigationScreen: React.FC<NavigationScreenProps> = ({ onNavigate }
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#0E0D0B] text-white space-y-2">
+          <div className="p-5 rounded-2xl bg-[#1F44A8] text-white space-y-2">
             <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-white font-bold text-[10px]">
               NIVEAU 3
             </span>
-            <h4 className="font-editorial font-bold text-base text-[#D9AF52]">
-              L'Immersion (Sombre & Cinéma)
+            <h4 className="font-editorial font-bold text-base text-[#FFE7A3]">
+              L'Immersion (Indigo & Cinéma)
             </h4>
-            <p className="text-xs text-[#A8A399] leading-relaxed">
-              Fond noir mat (#0E0D0B), concentration exclusive sur le regard et la voix, générique documentaire d'auteur.
+            <p className="text-xs text-[#DCE4FA] leading-relaxed">
+              Fond bleu indigo (#1F44A8), concentration exclusive sur le regard et la voix, générique documentaire d'auteur.
             </p>
           </div>
         </div>

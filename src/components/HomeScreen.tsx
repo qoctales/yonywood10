@@ -88,11 +88,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
               id="btn-explore-mode-tree"
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition-all cursor-pointer ${
                 exploreMode === 'tree'
-                  ? 'bg-[#1C1917] text-[#FFFFFF] shadow-md'
+                  ? 'bg-[#1F44A8] text-[#FFFFFF] shadow-md'
                   : 'text-[#57534E] hover:text-[#1C1917]'
               }`}
             >
-              <GitFork className="w-4 h-4 text-[#C89B3C]" />
+              <GitFork className={`w-4 h-4 ${exploreMode === 'tree' ? 'text-white' : 'text-[#A2482B]'}`} />
               <span>Arbre des filiations</span>
             </button>
             <button
@@ -100,11 +100,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
               id="btn-explore-mode-duos"
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition-all cursor-pointer ${
                 exploreMode === 'duos'
-                  ? 'bg-[#1C1917] text-[#FFFFFF] shadow-md'
+                  ? 'bg-[#1F44A8] text-[#FFFFFF] shadow-md'
                   : 'text-[#57534E] hover:text-[#1C1917]'
               }`}
             >
-              <Link2 className="w-4 h-4 text-[#C89B3C]" />
+              <Link2 className={`w-4 h-4 ${exploreMode === 'duos' ? 'text-white' : 'text-[#A2482B]'}`} />
               <span>Explorer par Duos</span>
             </button>
           </div>
@@ -136,14 +136,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                     id={`series-tab-${tree.seriesId}`}
                     className={`text-left p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between gap-3 ${
                       isSelected
-                        ? 'bg-[#1C1917] text-[#FFFFFF] border-[#1C1917] shadow-md ring-2 ring-[#C89B3C]/50'
+                        ? 'bg-[#1F44A8] text-[#FFFFFF] border-[#1F44A8] shadow-md ring-2 ring-[#C89B3C]/50'
                         : 'bg-[#FFFFFF] text-[#1C1917] border-[#E7E5E4] hover:border-[#C89B3C]/60 hover:bg-[#FAF7EF]'
                     }`}
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <span className={`text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                          isSelected ? 'bg-[#FFFFFF]/15 text-[#C89B3C]' : 'bg-[#EAE4D5] text-[#8B6845]'
+                          isSelected ? 'bg-[#FFFFFF]/15 text-[#FFE7A3]' : 'bg-[#EAE4D5] text-[#8B6845]'
                         }`}>
                           Thème : {tree.centralQuestion}
                         </span>
@@ -171,7 +171,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
           <div className="bg-[#FFFFFF] rounded-3xl border border-[#E7E5E4] p-6 sm:p-8 space-y-5 shadow-xs overflow-hidden">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-5">
               <div className="flex gap-4 sm:gap-5 items-start">
-                <div className="relative w-16 sm:w-20 aspect-[3/4] rounded-xl overflow-hidden shrink-0 border border-[#E7E5E4] shadow-sm bg-stone-900">
+                <div className="relative w-16 sm:w-20 aspect-[3/4] rounded-xl overflow-hidden shrink-0 border border-[#E7E5E4] shadow-sm bg-[#121F4B]">
                   <img 
                     src={currentDocInfo.posterUrl || currentDocInfo.coverImage} 
                     alt={currentSeriesTree.seriesTitle} 
@@ -203,7 +203,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                 <button
                   onClick={() => onNavigate({ type: 'duo_feed', selectedDocId: selectedSeriesId })}
                   id="btn-see-duos-for-series"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1F44A8] hover:bg-[#A2482B] text-[#FFFFFF] text-xs font-semibold transition-colors cursor-pointer"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Voir les duos vidéo de cette série</span>
@@ -228,11 +228,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                 <strong>Première effigie</strong> (Pionnier fondateur qui a ouvert la série)
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-[#1C1917]"></span>
+                <span className="w-3 h-3 rounded-full bg-[#1F44A8]"></span>
                 <strong>Invité(e)</strong> (Personne cooptée par un protagoniste)
               </span>
               <span className="flex items-center gap-1.5">
-                <Link2 className="w-3.5 h-3.5 text-[#8B6845]" />
+                <Link2 className="w-3.5 h-3.5 text-[#A2482B]" />
                 <strong>Duo miroir</strong> (La rencontre filmée)
               </span>
             </div>
@@ -242,7 +242,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="font-editorial text-xl font-bold text-[#1C1917] flex items-center gap-2">
-                <GitFork className="w-5 h-5 text-[#C89B3C]" />
+                <GitFork className="w-5 h-5 text-[#A2482B]" />
                 <span>La toile des cooptations : qui a fait entrer qui</span>
               </h3>
               <span className="text-xs text-[#78716C]">
@@ -279,7 +279,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                   <div className="relative">
                     <div 
                       onClick={() => setInspectedPerson(pioneer)}
-                      className="group cursor-pointer rounded-2xl bg-[#1C1917] text-[#FFFFFF] p-5 border border-[#C89B3C]/40 shadow-lg hover:border-[#C89B3C] transition-all"
+                      className="group cursor-pointer rounded-2xl bg-[#1F44A8] text-[#FFFFFF] p-5 border border-[#C89B3C]/40 shadow-lg hover:border-[#C89B3C] transition-all"
                     >
                       <div className="flex items-start gap-4">
                         <div className="relative shrink-0">
@@ -291,7 +291,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                             loading="lazy"
                             decoding="async"
                           />
-                          <span className="absolute -bottom-1 -right-1 bg-[#C89B3C] text-[#1C1917] p-1 rounded-full text-[10px] font-bold shadow-xs">
+                          <span className="absolute -bottom-1 -right-1 bg-[#C89B3C] text-[#121F4B] p-1 rounded-full text-[10px] font-bold shadow-xs">
                             👑
                           </span>
                         </div>
@@ -438,7 +438,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                                         {level3Person.role} • {level3Person.territory}
                                       </p>
                                     </div>
-                                    <ChevronRight className="w-4 h-4 text-[#78716C] group-hover:text-[#1C1917] shrink-0" />
+                                    <ChevronRight className="w-4 h-4 text-[#A2482B] group-hover:text-[#1F44A8] shrink-0" />
                                   </div>
                                 </div>
                               ))}
@@ -466,7 +466,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
           <div className="bg-[#FFFFFF] rounded-2xl border border-[#E7E5E4] p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search className="w-4 h-4 text-[#78716C] absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#A2482B] absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={duoSearchQuery}
@@ -477,7 +477,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
               {duoSearchQuery && (
                 <button 
                   onClick={() => setDuoSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#78716C] hover:text-[#1C1917]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#A2482B] hover:text-[#1F44A8]"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -542,7 +542,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
 
                   {/* Golden Link Symbol */}
                   <div className="px-3 shrink-0 flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-[#F5F5F4] border border-[#C89B3C]/40 flex items-center justify-center text-[#8B6845] group-hover:bg-[#1C1917] group-hover:text-[#C89B3C] transition-all shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-[#F5F5F4] border border-[#C89B3C]/40 flex items-center justify-center text-[#A2482B] group-hover:bg-[#1F44A8] group-hover:text-white transition-all shadow-xs">
                       <Link2 className="w-5 h-5" />
                     </div>
                     <span className="text-[10px] font-bold text-[#8B6845] mt-1">Miroir</span>
@@ -590,7 +590,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                       documentaryTitle: duo.documentaryTitle 
                     })}
                     id={`btn-watch-duo-${duo.id}`}
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold transition-colors cursor-pointer shadow-xs"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1F44A8] hover:bg-[#A2482B] text-[#FFFFFF] text-xs font-semibold transition-colors cursor-pointer shadow-xs"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
                     <span>Lancer le duo vidéo</span>
@@ -602,7 +602,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                       protagonistId: duo.protagonistA.id 
                     })}
                     title="Voir l'univers de ce protagoniste"
-                    className="p-2.5 rounded-xl bg-[#F5F5F4] hover:bg-[#EAE4D5] text-[#1C1917] transition-colors cursor-pointer"
+                    className="p-2.5 rounded-xl bg-[#F5F5F4] hover:bg-[#EAE4D5] text-[#A2482B] transition-colors cursor-pointer"
                   >
                     <User className="w-4 h-4" />
                   </button>
@@ -618,7 +618,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
       {/* 4. MODAL INSPECTEUR D'AFFILIATION */}
       {inspectedPerson && (
         <div 
-          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4"
           onClick={() => setInspectedPerson(null)}
         >
           <div 
@@ -649,7 +649,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                   </p>
                   <span className={`inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                     inspectedPerson.badge === 'Première effigie'
-                      ? 'bg-[#1C1917] text-[#C89B3C]'
+                      ? 'bg-[#1F44A8] text-[#FFE7A3]'
                       : 'bg-[#EAE4D5] text-[#8B6845]'
                   }`}>
                     {inspectedPerson.badge}
@@ -659,7 +659,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
 
               <button
                 onClick={() => setInspectedPerson(null)}
-                className="p-1.5 rounded-full text-[#78716C] hover:text-[#1C1917] hover:bg-[#F5F5F4] cursor-pointer"
+                className="p-1.5 rounded-full text-[#A2482B] hover:text-[#1F44A8] hover:bg-[#F5F5F4] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -735,7 +735,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onNavigate }) => {
                     });
                   }}
                   id="btn-modal-watch-duo"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-[#1C1917] hover:bg-[#C89B3C] text-[#FFFFFF] text-xs font-semibold transition-colors cursor-pointer shadow-md"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-[#1F44A8] hover:bg-[#A2482B] text-[#FFFFFF] text-xs font-semibold transition-colors cursor-pointer shadow-md"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Écouter le Duo en vidéo {'< >'}</span>

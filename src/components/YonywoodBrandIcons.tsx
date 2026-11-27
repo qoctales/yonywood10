@@ -414,7 +414,7 @@ export const DuocumentairesTvIcon: React.FC<DuoIconProps> = ({
       strokeWidth={strokeWidth} 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>Duocumentaires</title>
@@ -458,7 +458,7 @@ export const ProfileSoloIcon: React.FC<ProfileSoloIconProps> = ({
       strokeWidth={strokeWidth} 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>Portrait</title>
@@ -594,7 +594,7 @@ export const DirectorChairIcon: React.FC<StudioChairIconProps> = ({
       strokeWidth={strokeWidth} 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>Studio</title>
@@ -633,7 +633,7 @@ export const BriefcaseIcon: React.FC<BriefcaseIconProps> = ({
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>{title}</title>
@@ -671,7 +671,7 @@ export const ActionClapperboardIcon: React.FC<ActionClapperProps> = ({
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>{title}</title>
@@ -1024,7 +1024,7 @@ export const EntrepriseFilmDuoIcon: React.FC<IconProps & { isActive?: boolean }>
       strokeWidth={strokeWidth} 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>Focus</title>
@@ -1103,7 +1103,7 @@ export const CameraLensFocusIcon: React.FC<IconProps & { isActive?: boolean; tit
       strokeWidth={strokeWidth} 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#6E6254]' : ''} ${className}`.trim()}
+      className={`${isActive === true ? 'text-white' : isActive === false ? 'text-[#A2482B]' : ''} ${className}`.trim()}
       aria-hidden="true"
     >
       <title>{title}</title>

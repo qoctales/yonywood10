@@ -106,7 +106,7 @@ export const MessagingScreen: React.FC<MessagingScreenProps> = ({ onNavigate }) 
     },
     {
       id: 'thread-2',
-      senderName: 'Comité Yonywood',
+      senderName: 'Comité Gbadoo',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
       lastMessage: 'Votre proposition de vidéo « Le souffle de la poterie rouge » a été validée.',
       time: 'Hier',
@@ -218,12 +218,12 @@ export const MessagingScreen: React.FC<MessagingScreenProps> = ({ onNavigate }) 
       
       {/* Toast de notification */}
       {toastMessage && (
-        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-md w-full px-4 py-2.5 rounded-2xl bg-[#1C1917] text-white text-xs font-semibold flex items-center justify-between shadow-2xl animate-in fade-in">
+        <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 max-w-md w-full px-4 py-2.5 rounded-2xl bg-[#1F44A8] text-white text-xs font-semibold flex items-center justify-between shadow-2xl animate-in fade-in">
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-[#E5C16C] shrink-0" />
+            <Check className="w-4 h-4 text-[#FFE7A3] shrink-0" />
             <span>{toastMessage}</span>
           </div>
-          <button onClick={() => setToastMessage(null)} className="p-1 text-stone-400 hover:text-white">
+          <button onClick={() => setToastMessage(null)} className="p-1 text-white/70 hover:text-white">
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -234,7 +234,7 @@ export const MessagingScreen: React.FC<MessagingScreenProps> = ({ onNavigate }) 
         <div className="flex items-center gap-3">
           <button
             onClick={() => onNavigate({ type: 'profile' })}
-            className="w-8 h-8 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-[#1C1917] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 shrink-0"
+            className="w-8 h-8 rounded-full bg-white hover:bg-[#A2482B]/10 border border-stone-200 text-[#A2482B] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 shrink-0"
             title="Retour au profil"
             id="btn-back-to-profile"
           >
@@ -481,7 +481,7 @@ export const MessagingScreen: React.FC<MessagingScreenProps> = ({ onNavigate }) 
                     <div
                       className={`max-w-[85%] sm:max-w-md p-3 sm:p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed ${
                         isMe
-                          ? 'bg-[#1C1917] text-[#FFFFFF] rounded-br-xs shadow-xs'
+                          ? 'bg-[#1F44A8] text-[#FFFFFF] rounded-br-xs shadow-xs'
                           : 'bg-[#FAFAF9] text-[#1C1917] rounded-bl-xs border border-[#E7E5E4]'
                       }`}
                     >

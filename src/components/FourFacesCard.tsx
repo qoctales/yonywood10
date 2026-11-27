@@ -194,8 +194,8 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
       {/* 1. EN-TÊTE DE CARTE : THÈME EN HAUT À GAUCHE & CONTRÔLES EN HAUT À DROITE */}
       {/* ========================================================================= */}
       <div className="relative z-30 pt-3 px-3 sm:pt-3.5 sm:px-3.5 flex items-center justify-between gap-1 pointer-events-auto">
-        {/* Titre thématique dans un bandeau sombre translucide */}
-        <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/65 border border-white/20 shadow-md shrink-0">
+        {/* Titre thématique dans un bandeau bleu indigo */}
+        <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/60 backdrop-blur-sm border border-white/20 shadow-md shrink-0">
           <span className="font-editorial text-[8.5px] sm:text-[10.5px] font-semibold text-white whitespace-nowrap leading-none tracking-wide select-none">
             {formatFirstLetterOnly(themeTitle)}
           </span>
@@ -208,7 +208,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
             onClick={toggleMute}
             className={`w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
               isMuted
-                ? 'bg-black/40 text-stone-300 border-white/20 hover:bg-black/60'
+                ? 'bg-[#121F4B]/60 backdrop-blur-sm text-white border-white/20 hover:bg-[#121F4B]/80'
                 : 'bg-[#A2482B] text-white border-white/40 shadow-xs'
             }`}
             title={isMuted ? 'Activer le son' : 'Couper le son'}
@@ -226,7 +226,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
             className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
               isPlaying 
                 ? 'bg-white text-[#A2482B] border border-white shadow-lg' 
-                : 'bg-black/65 text-white border border-white/20 hover:bg-black/60'
+                : 'bg-[#121F4B]/60 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
             }`}
             title={isPlaying ? 'Mettre en pause' : 'Lancer la lecture'}
             aria-label={isPlaying ? 'Mettre en pause' : 'Lancer la lecture'}
@@ -259,7 +259,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
               key={`quadrant-${participant.id}-${qIdx}`}
               style={gridStyle}
               onClick={(e) => handleSelectCard(qIdx, e)}
-              className={`relative rounded-2xl overflow-hidden transition-all duration-300 border bg-stone-900 cursor-pointer ${
+              className={`relative rounded-2xl overflow-hidden transition-all duration-300 border bg-[#121F4B] cursor-pointer ${
                 isThisActive 
                   ? 'border-2 border-[#A2482B] ring-2 ring-[#E27857]/50 shadow-2xl scale-[1.02] z-20 opacity-100' 
                   : 'border-white/15 opacity-70 hover:opacity-95 z-10 hover:scale-[1.01]'
@@ -300,7 +300,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
               )}
 
               {/* Voile dégradé sombre léger */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/40 via-transparent to-transparent pointer-events-none" />
             </div>
           );
         })}

@@ -126,7 +126,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
   projets: [
     {
       id: 'projets-1',
-      title: 'L’Atelier Créatif YonyWood Cotonou',
+      title: 'L’Atelier Créatif Gbadoo Cotonou',
       subtitle: 'Studio documentaire & archivage',
       description: 'Aménagement d’un espace indépendant à Cotonou dédié à la réalisation documentaire, à l’archivage numérique et à l’accueil de résidences créatives.',
       posterUrl: '/assets/duos/photographer-focus.jpg',
@@ -204,7 +204,7 @@ export const ROMEO_SIMULATION_DATA: Record<DemoProfileCategory, VideoSimulationI
       id: 'besoins-4',
       title: 'Soutiens & partenaires de la diaspora',
       subtitle: 'Accompagnement au cinéma indépendant',
-      description: 'Recherche de partenaires et passionnés de culture pour accompagner la première saison documentaire YonyWood.',
+      description: 'Recherche de partenaires et passionnés de culture pour accompagner la première saison documentaire Gbadoo.',
       posterUrl: '/assets/duos/tobi-houndegla.jpg',
       videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
       duration: '05:00',
@@ -326,7 +326,7 @@ export const DemoProfilPascalSection: React.FC = () => {
           <button
             type="button"
             onClick={handlePrevVideo}
-            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+            className="absolute -left-3 sm:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
             title="Vidéo précédente"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -338,7 +338,7 @@ export const DemoProfilPascalSection: React.FC = () => {
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          className="h-[min(510px,calc(100vh-210px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-stone-950 shadow-2xl border border-stone-200/50 relative flex flex-col justify-between shrink-0"
+          className="h-[min(510px,calc(100vh-210px))] aspect-[9/16] w-auto mx-auto rounded-3xl overflow-hidden bg-[#121F4B] shadow-2xl border border-stone-200/50 relative flex flex-col justify-between shrink-0"
         >
 
           {showLineage ? (
@@ -442,7 +442,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowLineage(false)}
-                  className="px-3 py-1.5 rounded-xl bg-[#1C1917] text-white font-semibold cursor-pointer"
+                  className="px-3 py-1.5 rounded-xl bg-[#1F44A8] hover:bg-[#A2482B] text-white font-semibold cursor-pointer transition-colors"
                 >
                   Fermer la lignée
                 </button>
@@ -485,15 +485,15 @@ export const DemoProfilPascalSection: React.FC = () => {
               />
 
               {/* Dégradé cinématographique pour garantir la lisibilité parfaite */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
 
               {/* HAUT GAUCHE : Badge de la catégorie ou avancement/statut */}
               <div className="absolute top-3 left-3 z-20 pointer-events-auto flex flex-col items-start gap-1 max-w-[calc(100%-80px)]">
-                <div className="px-3 py-1.5 rounded-full bg-black/60 border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
+                <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
                   <span className="truncate">{formatFirstLetterOnly(currentVideo.tag || getCategoryLabel(activeCategory))}</span>
                 </div>
                 {currentVideo.extraInfo && (
-                  <div className="px-2.5 py-0.5 rounded-full bg-black/55 border border-white/15 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
+                  <div className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/50 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
                     <span className="truncate">{currentVideo.extraInfo}</span>
                   </div>
                 )}
@@ -508,7 +508,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                     togglePlayback(e);
                   }}
                   id="btn-demo-play"
-                  className="w-8 h-8 rounded-xl bg-black/65 hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                  className="w-8 h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                   title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
                 >
                   {isPlaying ? (
@@ -534,7 +534,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     showLineage
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="1. La lignée"
                   aria-label="La lignée"
@@ -553,7 +553,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'parcours'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="2. Parcours de vie"
                   aria-label="Parcours de vie"
@@ -572,7 +572,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'produits'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="3. Produits et services"
                   aria-label="Produits et services"
@@ -591,7 +591,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'projets'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="4. Projets"
                   aria-label="Projets"
@@ -610,7 +610,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'besoins'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90'
+                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="5. Besoins"
                   aria-label="Besoins"
@@ -649,7 +649,7 @@ export const DemoProfilPascalSection: React.FC = () => {
           <button
             type="button"
             onClick={handleNextVideo}
-            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-stone-800 border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+            className="absolute -right-3 sm:-right-12 z-20 w-10 h-10 rounded-full bg-white text-[#A2482B] border border-stone-200 shadow-md flex items-center justify-center hover:bg-stone-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
             title="Vidéo suivante"
           >
             <ChevronRight className="w-5 h-5" />

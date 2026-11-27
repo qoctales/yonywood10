@@ -181,7 +181,7 @@ class TransactionService {
         {
           status: order.status,
           date: new Date().toISOString().replace('T', ' ').slice(0, 16),
-          note: 'Commande enregistrée sur YonyWood'
+          note: 'Commande enregistrée sur Gbadoo'
         }
       ]
     };

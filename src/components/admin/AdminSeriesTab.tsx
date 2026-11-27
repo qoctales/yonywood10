@@ -393,7 +393,7 @@ export const AdminSeriesTab: React.FC<AdminSeriesTabProps> = ({
 
       {/* MODAL CRÉATION NOUVELLE VERSION ÉCONOMIQUE */}
       {isEconomicModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-[#121F4B]/85 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-stone-200 my-8 space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
               <div className="flex items-center gap-2">
@@ -404,7 +404,7 @@ export const AdminSeriesTab: React.FC<AdminSeriesTabProps> = ({
               </div>
               <button 
                 onClick={() => setIsEconomicModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center cursor-pointer"
+                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>

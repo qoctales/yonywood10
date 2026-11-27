@@ -123,7 +123,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
       case 'APPROUVEES':
         return <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200">Approuvée</span>;
       case 'PUBLIEES':
-        return <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-stone-900 text-stone-100 border border-stone-800">Publiée</span>;
+        return <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#1F44A8] text-white border border-[#121F4B]/60">Publiée</span>;
     }
   };
 
@@ -173,7 +173,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
           <span>Comité Éditorial & Direction des Publications</span>
         </div>
         <h1 className="font-editorial text-2xl sm:text-3xl font-normal text-stone-900">
-          Modération & Validation Éditoriale YonyWood
+          Modération & Validation Éditoriale Gbadoo
         </h1>
         <p className="text-sm text-stone-600 max-w-3xl leading-relaxed">
           Toutes les vidéos soumises par les individus et organisations (entreprises, associations de l’onglet Lumière)
@@ -205,7 +205,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
             onClick={() => setActiveSection('applications')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
               activeSection === 'applications'
-                ? 'bg-[#1C1917] text-white shadow-sm'
+                ? 'bg-[#1F44A8] text-white shadow-sm'
                 : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
             }`}
           >
@@ -240,7 +240,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                   onClick={() => setSubmissionFilter(st)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
                     submissionFilter === st
-                      ? 'bg-stone-900 text-white'
+                      ? 'bg-[#1F44A8] text-white'
                       : 'bg-white border border-stone-200 text-stone-600 hover:bg-stone-50'
                   }`}
                 >
@@ -273,7 +273,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                     }`}
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-black shrink-0 border border-stone-200">
+                      <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-[#1F44A8] shrink-0 border border-stone-200">
                         <img
                           src={sub.thumbnailUrl || '/Posters/Onboardings/mes-videos-hero.jpg'}
                           alt={sub.title}
@@ -281,7 +281,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                           loading="lazy"
                           decoding="async"
                         />
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-[#121F4B]/25 flex items-center justify-center">
                           <Play className="w-4 h-4 text-white fill-white" />
                         </div>
                       </div>
@@ -354,7 +354,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                   </div>
 
                   {/* Vidéo / Aperçu */}
-                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-inner">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#1F44A8] shadow-inner">
                     <video
                       src={selectedSubmission.videoUrl}
                       poster={selectedSubmission.thumbnailUrl}
@@ -480,14 +480,14 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                   onClick={() => setStatusFilter(tab.id)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
                     statusFilter === tab.id
-                      ? 'bg-stone-900 text-white'
+                      ? 'bg-[#1F44A8] text-white'
                       : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                   }`}
                 >
                   <span>{tab.label}</span>
                   {typeof tab.count === 'number' && (
                     <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      statusFilter === tab.id ? 'bg-stone-800 text-stone-200' : 'bg-stone-200 text-stone-700'
+                      statusFilter === tab.id ? 'bg-[#121F4B] text-white' : 'bg-stone-200 text-stone-700'
                     }`}>
                       {tab.count}
                     </span>
@@ -638,7 +638,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
                       </button>
                       <button
                         onClick={() => handleUpdateStatus(selectedApp.id, 'PUBLIEES')}
-                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-medium transition-colors cursor-pointer"
+                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#1F44A8] hover:bg-[#163385] text-white text-xs font-medium transition-colors cursor-pointer"
                       >
                         <span>Publier au Duo</span>
                       </button>
