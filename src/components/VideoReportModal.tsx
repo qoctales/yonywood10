@@ -107,7 +107,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête */}
-        <div className="flex items-start justify-between p-4 sm:p-5 border-b border-white/15 bg-[#121F4B]/55 shrink-0">
+        <div className="flex items-start justify-between p-4 sm:p-5 border-b border-white/15 bg-[#121F4B]/70 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#A2482B]/25 border border-[#A2482B]/50 flex items-center justify-center text-[#FFE7A3] shrink-0">
               <ShieldAlert className="w-5 h-5 text-[#A2482B]" />
@@ -197,7 +197,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
                 onChange={(e) => setDetails(e.target.value)}
                 placeholder="Ex : Passage concerné, horodatage approximatif ou contexte..."
                 maxLength={300}
-                className="w-full px-3 py-2 rounded-xl bg-[#121F4B]/65 border border-white/20 focus:border-[#FFE7A3] focus:ring-1 focus:ring-[#FFE7A3] text-xs text-white placeholder-white/50 outline-none resize-none transition-colors"
+                className="w-full px-3 py-2 rounded-xl bg-[#121F4B]/75 border border-white/20 focus:border-[#FFE7A3] focus:ring-1 focus:ring-[#FFE7A3] text-xs text-white placeholder-white/50 outline-none resize-none transition-colors"
               />
               <div className="text-[10px] text-white/60 text-right mt-1">
                 {details.length}/300 caractères
@@ -205,7 +205,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
             </div>
 
             {/* Note d'information */}
-            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-[#121F4B]/50 border border-white/15 text-[11px] text-white/75 leading-relaxed">
+            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-[#121F4B]/65 border border-white/15 text-[11px] text-white/75 leading-relaxed">
               <AlertTriangle className="w-4 h-4 text-[#FFE7A3] shrink-0 mt-0.5" />
               <span>
                 Les signalements abusifs répétés peuvent entraîner une restriction d'accès aux contributions communautaires.
@@ -218,7 +218,7 @@ export const VideoReportModal: React.FC<VideoReportModalProps> = ({
                 type="button"
                 onClick={onClose}
                 disabled={isSubmitting}
-                className="px-4 py-2 rounded-xl text-xs font-medium text-white/80 hover:text-white hover:bg-[#121F4B]/60 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-medium text-white/80 hover:text-white hover:bg-[#121F4B]/72 transition-colors"
               >
                 Annuler
               </button>

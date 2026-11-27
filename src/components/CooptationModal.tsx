@@ -69,7 +69,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête sobre */}
-        <div className="flex items-center justify-between p-5 border-b border-white/15 bg-[#121F4B]/60">
+        <div className="flex items-center justify-between p-5 border-b border-white/15 bg-[#121F4B]/72">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-[#A2482B]/25 border border-[#A2482B]/50 flex items-center justify-center text-[#A2482B]">
               <UserCheck className="w-4 h-4" />
@@ -108,7 +108,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
                 </p>
               </div>
 
-              <div className="p-3 rounded-2xl bg-[#121F4B]/60 border border-white/15 text-left text-xs text-white/80 space-y-1">
+              <div className="p-3 rounded-2xl bg-[#121F4B]/72 border border-white/15 text-left text-xs text-white/80 space-y-1">
                 <div className="flex items-center gap-1.5 text-white font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#FFE7A3]" />
                   <span>Règle de filiation économique :</span>
@@ -137,7 +137,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
                 <select
                   value={selectedSeriesId}
                   onChange={(e) => setSelectedSeriesId(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/65 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3]"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/75 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3]"
                 >
                   {DOCUMENTARIES.map(doc => (
                     <option key={doc.id} value={doc.id}>
@@ -158,7 +158,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
                   placeholder="Ex: Mireille Houndé"
                   value={candidateName}
                   onChange={(e) => setCandidateName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/65 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3] placeholder:text-white/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/75 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3] placeholder:text-white/50"
                 />
               </div>
 
@@ -172,7 +172,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
                   placeholder="Ex: mireille@exemple.com"
                   value={candidateEmail}
                   onChange={(e) => setCandidateEmail(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/65 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3] placeholder:text-white/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/75 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3] placeholder:text-white/50"
                 />
               </div>
 
@@ -184,7 +184,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
                 <select
                   value={proposedRole}
                   onChange={(e) => setProposedRole(e.target.value as any)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/65 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3]"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#121F4B]/75 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3]"
                 >
                   <option value="membre_coopte">Membre coopté (témoignage et transmission)</option>
                   <option value="acteur_documentaire">Acteur documentaire (intervenant filmé clé)</option>
@@ -203,7 +203,7 @@ export const CooptationModal: React.FC<CooptationModalProps> = ({
                   placeholder="Décrivez brièvement son histoire, ses savoir-faire ou sa légitimité à porter la parole..."
                   value={motivation}
                   onChange={(e) => setMotivation(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl bg-[#121F4B]/65 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3] placeholder:text-white/50 resize-none"
+                  className="w-full px-3.5 py-2 rounded-xl bg-[#121F4B]/75 border border-white/20 text-white text-xs focus:outline-none focus:border-[#FFE7A3] placeholder:text-white/50 resize-none"
                 />
               </div>
 

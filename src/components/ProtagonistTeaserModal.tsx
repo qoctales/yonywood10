@@ -112,7 +112,7 @@ export const ProtagonistTeaserModal: React.FC<ProtagonistTeaserModalProps> = ({
         )}
 
         {/* Voile d'ambiance cinématographique */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
         {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
         <UnifiedVideoCardOverlay

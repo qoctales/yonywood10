@@ -165,7 +165,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                         className={`w-full p-2.5 rounded-xl border text-left flex items-start gap-2.5 transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-[#A2482B]/25 border-[#A2482B] text-white shadow-xs'
-                            : 'bg-[#121F4B]/55 border-white/15 text-white/90 hover:bg-[#121F4B]/80 hover:border-white/30'
+                            : 'bg-[#121F4B]/70 border-white/15 text-white/90 hover:bg-[#121F4B]/80 hover:border-white/30'
                         }`}
                       >
                         <Icon className={`w-4 h-4 mt-0.5 shrink-0 ${isSelected ? 'text-[#FFE7A3]' : 'text-white/70'}`} />
@@ -188,7 +188,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                   onChange={(e) => setDetails(e.target.value)}
                   placeholder="Décrivez brièvement le passage ou le motif précis..."
                   rows={2}
-                  className="w-full p-3 rounded-xl bg-[#121F4B]/65 border border-white/20 focus:border-[#FFE7A3] text-white text-xs placeholder:text-white/50 outline-hidden resize-none transition-all"
+                  className="w-full p-3 rounded-xl bg-[#121F4B]/75 border border-white/20 focus:border-[#FFE7A3] text-white text-xs placeholder:text-white/50 outline-hidden resize-none transition-all"
                 />
               </div>
 

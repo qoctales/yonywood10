@@ -152,12 +152,12 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
           topLeftSlot
         ) : (
           <>
-            <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
+            <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
               {badgeIcon && <span className="shrink-0">{badgeIcon}</span>}
               <span className="truncate">{formatFirstLetterOnly(titleBadge)}</span>
             </div>
             {subBadgeText && (
-              <div className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/50 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
+              <div className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/65 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
                 <span className="truncate">{subBadgeText}</span>
               </div>
             )}
@@ -183,7 +183,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
           }}
           onMouseDown={(e) => e.stopPropagation()}
           onTouchStart={(e) => e.stopPropagation()}
-          className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+          className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
           title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
         >
           {isPlaying ? (
@@ -212,7 +212,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
               e.stopPropagation();
               onToggleMute();
             }}
-            className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+            className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
             title={isMuted ? 'Activer le son' : 'Couper le son'}
             aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
           >
@@ -231,7 +231,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
               className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                 internalQuestionOpen
                   ? 'bg-[#FFE7A3] text-stone-900 border-[#FFE7A3] shadow-md'
-                  : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                  : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
               }`}
               title="Découvrir la question"
             >
@@ -249,7 +249,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
                 className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                   resonanceScore !== null && resonanceScore !== undefined
                     ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_10px_rgba(162,72,43,0.5)]'
-                    : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                    : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
                 }`}
                 title={resonanceScore !== null && resonanceScore !== undefined ? `Résonance : ${resonanceScore}%` : 'Évaluer la vidéo'}
               >
@@ -265,7 +265,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
                   e.stopPropagation();
                   onOpenProfile();
                 }}
-                className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                 title={`Voir le profil`}
               >
                 <ProfileSoloIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white" />
@@ -279,7 +279,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
               className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                 isShareCopied
                   ? 'bg-emerald-600 border-emerald-500 text-white'
-                  : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                  : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
               }`}
               title="Partager ou signaler la vidéo"
             >
@@ -324,7 +324,7 @@ export const UnifiedVideoCardOverlay: React.FC<UnifiedVideoCardOverlayProps> = (
       {(showCastingScore || castingScore !== undefined) && (
         <div className="absolute bottom-2.5 sm:bottom-3.5 right-2.5 sm:right-3.5 z-20 pointer-events-auto">
           <div 
-            className="px-2 sm:px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md flex items-center gap-1 text-white"
+            className="px-2 sm:px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md flex items-center gap-1 text-white"
             title="Note moyenne d'évaluation du public"
           >
             <Star className="w-3 h-3 text-[#FFE7A3] fill-[#FFE7A3]" />

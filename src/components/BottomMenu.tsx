@@ -42,37 +42,37 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
       isActive: isStudioActive,
       onClick: () => onNavigate({ type: 'submit_story' }),
       screenId: 'menu-item-studio',
-      iconClassName: 'w-5 h-5 sm:w-5 sm:h-5 shrink-0',
+      iconClassName: 'w-5 h-5 sm:w-[22px] sm:h-[22px] shrink-0',
       strokeWidth: 1.75
     },
     {
       id: 'dialogue',
       label: 'Duocumentaires',
-      icon: DuocumentairesTvIcon, // Télé double carré avec pupilles terracotta au repos et pieds courts
+      icon: DuocumentairesTvIcon, // Télé double carré avec pupilles et pieds courts
       isActive: isDialogueActive,
       onClick: () => onNavigate({ type: 'duo_feed' }),
       screenId: 'menu-item-dialogue',
-      iconClassName: 'w-6.5 h-6.5 sm:w-7 sm:h-7 shrink-0',
-      strokeWidth: 1.45
+      iconClassName: 'w-6 h-6 sm:w-[26px] sm:h-[26px] shrink-0',
+      strokeWidth: 1.55
     },
     {
       id: 'portrait',
       label: 'Portrait',
-      icon: ProfileSoloIcon, // Tête télé vintage avec yeux terracotta au repos
+      icon: ProfileSoloIcon, // Tête télé vintage
       isActive: isPortraitActive,
       onClick: () => onNavigate({ type: 'profile' }),
       screenId: 'menu-item-portrait',
-      iconClassName: 'w-5 h-5 sm:w-5 sm:h-5 shrink-0',
+      iconClassName: 'w-5 h-5 sm:w-[22px] sm:h-[22px] shrink-0',
       strokeWidth: 1.75
     },
     {
       id: 'focus',
       label: 'Focus',
-      icon: CameraLensFocusIcon, // Viseur optique avec point central terracotta au repos
+      icon: CameraLensFocusIcon, // Viseur optique
       isActive: isFocusActive,
       onClick: () => onNavigate({ type: 'focus' }),
       screenId: 'menu-item-focus',
-      iconClassName: 'w-5 h-5 sm:w-5 sm:h-5 shrink-0',
+      iconClassName: 'w-5 h-5 sm:w-[22px] sm:h-[22px] shrink-0',
       strokeWidth: 1.75
     }
   ];
@@ -98,18 +98,18 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
               onClick={item.onClick}
               id={item.screenId}
               title={item.label}
-              className={`relative flex-1 min-w-0 flex flex-col items-center justify-center px-0.5 sm:px-1.5 py-0.5 sm:py-1 rounded-full transition-colors duration-200 group cursor-pointer ${
+              className={`relative flex-1 min-w-0 flex flex-col items-center justify-center px-0.5 sm:px-1.5 py-0.5 sm:py-1 rounded-2xl transition-colors duration-200 group cursor-pointer ${
                 item.isActive
                   ? 'text-stone-900'
-                  : 'text-stone-500 hover:text-stone-800'
+                  : 'text-stone-500 hover:text-[#1F44A8]'
               }`}
             >
-              {/* Capsule changeante : icône en Terre Cuite (#A2482B) */}
+              {/* Capsule rectangle arrondi : icône bleue (#1F44A8) au repos, blanche sur fond terracotta (#A2482B) lorsque active */}
               <div 
-                className={`w-8 h-8 sm:w-10 sm:h-10 aspect-square shrink-0 rounded-full flex items-center justify-center transition-all duration-200 ${
+                className={`w-12 h-8 sm:w-14 sm:h-9 shrink-0 rounded-xl flex items-center justify-center transition-all duration-200 ${
                   item.isActive 
                     ? 'bg-[#A2482B] text-white shadow-sm' 
-                    : 'bg-transparent text-[#A2482B] group-hover:bg-[#A2482B]/10'
+                    : 'bg-transparent text-[#1F44A8] group-hover:bg-[#1F44A8]/8'
                 }`}
               >
                 <Icon 
@@ -124,7 +124,7 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
               <span className={`text-[8.5px] min-[380px]:text-[9.5px] sm:text-[10.5px] leading-tight tracking-tight mt-0.5 sm:mt-1 transition-colors duration-200 whitespace-nowrap text-center ${
                 item.isActive 
                   ? 'text-[#A2482B] font-semibold' 
-                  : 'text-stone-500 font-normal'
+                  : 'text-stone-500 group-hover:text-[#1F44A8] font-normal'
               }`}>
                 {item.label}
               </span>

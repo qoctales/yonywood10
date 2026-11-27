@@ -309,12 +309,12 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
           />
 
           {/* Dégradé cinématographique pour garantir la lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
           {/* HAUT GAUCHE : Badge Note & Nombre de tournages (ex. ★ 4.8 - 9 tournages) */}
           <div className="relative z-10 flex items-center justify-between w-full min-w-0 pointer-events-auto">
             <span 
-              className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-48px)] truncate"
+              className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[11px] font-semibold text-white tracking-wide shadow-sm shrink-0 whitespace-nowrap leading-none select-none max-w-[calc(100%-48px)] truncate"
               title={`${currentVideographer.rating || 4.8} - ${currentVideographer.storiesShot || 9} tournages`}
             >
               ★ {currentVideographer.rating || 4.8} - {currentVideographer.storiesShot || currentVideographer.completedShoots || 9} tournages
@@ -327,7 +327,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
                 e.stopPropagation();
                 togglePlay(e);
               }}
-              className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+              className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
               title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
             >
               <TvPlayerIcon className="w-4 h-4 text-white" strokeWidth={1.6} />
@@ -346,7 +346,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
                 e.stopPropagation();
                 setIsSpecsModalOpen(true);
               }}
-              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
               title={`Matériel & conditions de ${firstName}`}
               aria-label={`Matériel et conditions de ${firstName}`}
             >
@@ -357,7 +357,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
             <button
               type="button"
               onClick={handleOpenProfile}
-              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
               title={`Voir le portrait de ${firstName}`}
               aria-label={`Profil de ${firstName}`}
             >
@@ -371,7 +371,7 @@ export const RequestVideographerScreen: React.FC<RequestVideographerScreenProps>
                 e.stopPropagation();
                 setIsShareModalOpen(true);
               }}
-              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
+              className="w-7.5 h-7.5 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Partager"
               aria-label="Partager"
             >

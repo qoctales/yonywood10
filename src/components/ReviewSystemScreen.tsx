@@ -112,7 +112,7 @@ export const ReviewSystemScreen: React.FC<ReviewSystemScreenProps> = ({ onNaviga
                   <Play className="w-7 h-7 fill-white text-white ml-0.5" />
                 </div>
               </div>
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3 py-1.5 rounded-lg bg-[#121F4B]/60 backdrop-blur-sm border border-white/15">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3 py-1.5 rounded-lg bg-[#121F4B]/72 backdrop-blur-sm border border-white/15">
                 <span>Candidat : {selectedCandidate.candidateName}</span>
                 <span className="font-mono">{selectedCandidate.duration}</span>
               </div>

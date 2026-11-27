@@ -69,7 +69,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
               onNavigate({ type: 'protagonist_profile', protagonistId: protagonist.id });
             }
           }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#121F4B]/60 backdrop-blur-sm hover:bg-[#A2482B] text-xs sm:text-sm font-medium transition-all text-[#FAFAF9] border border-white/20 cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#121F4B]/72 backdrop-blur-sm hover:bg-[#A2482B] text-xs sm:text-sm font-medium transition-all text-[#FAFAF9] border border-white/20 cursor-pointer"
           id="video-return-btn"
         >
           <ArrowLeft className="w-4 h-4 text-[#A2482B]" />
@@ -156,7 +156,7 @@ export const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({
             >
               {/* Centre : Bouton Play / Pause blanc au centre exact */}
               <div 
-                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-200 pointer-events-none ${
+                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-200 pointer-events-none ${
                   isPlaying ? 'opacity-0 group-hover/player:opacity-100 hover:scale-105' : 'opacity-100 scale-100'
                 }`}
               >

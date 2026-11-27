@@ -74,7 +74,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
               <button
                 type="button"
                 onClick={() => setIsMuted(m => !m)}
-                className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white/95 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
+                className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white/95 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 title={isMuted ? 'Activer le son' : 'Couper le son'}
               >
                 {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -82,7 +82,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white/95 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
+                className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white/95 hover:text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 title="Fermer"
               >
                 <X className="w-4 h-4" />
@@ -114,7 +114,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
             )}
 
             {/* Dégradé discret pour laisser le champ libre à la vidéo */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
           </div>
 
           {/* Bas de carte : Juste l'onglet "Questions" épuré */}
@@ -122,7 +122,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
             <button
               type="button"
               onClick={() => setShowQuestionSheet(true)}
-              className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 text-xs font-semibold flex items-center gap-1.5 hover:bg-[#A2482B] transition-all cursor-pointer shadow-md"
+              className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white border border-white/20 text-xs font-semibold flex items-center gap-1.5 hover:bg-[#A2482B] transition-all cursor-pointer shadow-md"
             >
               <HelpCircle className="w-3.5 h-3.5 text-[#FFE7A3]" />
               <span>Questions</span>
@@ -131,7 +131,7 @@ export const ThematicStoryModal: React.FC<ThematicStoryModalProps> = ({
             <button
               type="button"
               onClick={() => setShowShareModal(true)}
-              className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center hover:bg-[#A2482B] transition-all cursor-pointer shadow-md"
+              className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center hover:bg-[#A2482B] transition-all cursor-pointer shadow-md"
               title="Partager cette story"
             >
               <Share2 className="w-3.5 h-3.5" />

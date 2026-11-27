@@ -148,19 +148,19 @@ export const DemoEntrepriseSection: React.FC = () => {
               preload="metadata"
               />
               <div className="relative z-30 flex justify-between items-center">
-                <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold tracking-wide text-white">
+                <span className="px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-bold tracking-wide text-white">
                   {currentCard.companyName}
                 </span>
                 <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => setIsMuted(!isMuted)}
-                    className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer"
+                    className="w-7 h-7 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer"
                   >
                     {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                   </button>
                   <button
                     onClick={() => setIsPlaying(false)}
-                    className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer"
+                    className="w-7 h-7 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -182,11 +182,11 @@ export const DemoEntrepriseSection: React.FC = () => {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/65 via-transparent to-[#121F4B]/15 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/75 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
               {/* Haut : Nom de l'entreprise "Africafun" & Déclencheur lecture */}
               <div className="relative z-10 flex justify-between items-center pointer-events-auto">
-                <span className="px-3.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wider">
+                <span className="px-3.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wider">
                   {currentCard.companyName}
                 </span>
 
@@ -196,7 +196,7 @@ export const DemoEntrepriseSection: React.FC = () => {
                       e.stopPropagation();
                       setIsPlaying(!isPlaying);
                     }}
-                    className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title={isPlaying ? "Mettre en pause" : `Regarder la vidéo de ${currentCard.firstName}`}
                   >
                     {isPlaying ? (
@@ -230,7 +230,7 @@ export const DemoEntrepriseSection: React.FC = () => {
                       </h4>
                     </div>
 
-                    <div className="bg-[#121F4B]/65 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
+                    <div className="bg-[#121F4B]/75 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
                       <p className="text-xs text-white/90 leading-relaxed">
                         {currentCard.quote}
                       </p>
@@ -247,7 +247,7 @@ export const DemoEntrepriseSection: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="bg-[#121F4B]/65 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
+                    <div className="bg-[#121F4B]/75 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
                       <p className="text-xs text-white/95 leading-relaxed italic">
                         {currentCard.quote}
                       </p>

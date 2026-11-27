@@ -140,13 +140,13 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
           loading="lazy"
           decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
           
           <span className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-[#A2482B] text-white text-[9px] font-mono font-bold tracking-widest uppercase">
             9:16
           </span>
 
-          <span className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] font-mono tracking-widest text-white uppercase whitespace-nowrap">
+          <span className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[10px] font-mono tracking-widest text-white uppercase whitespace-nowrap">
             AFFICHE OFFICIELLE
           </span>
         </div>
@@ -629,7 +629,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
                   
                   {/* Badge numéro d'épisode */}
                   <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#A2482B] text-white text-[10px] font-mono font-bold tracking-wider shadow-sm">
@@ -637,7 +637,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                   </div>
 
                   {q.audioDuration && (
-                    <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[9px] font-mono text-white flex items-center gap-1">
+                    <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[9px] font-mono text-white flex items-center gap-1">
                       <Clock className="w-2.5 h-2.5" />
                       <span>{q.audioDuration}</span>
                     </div>
@@ -648,7 +648,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                     <button
                       type="button"
                       onClick={() => setPlayingVideoIndex(isPlaying ? null : idx)}
-                      className="absolute top-3 right-3 z-30 w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer border border-white/20"
+                      className="absolute top-3 right-3 z-30 w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer border border-white/20"
                       title={isPlaying ? "Mettre en pause" : "Lancer la mini-vidéo de la question"}
                     >
                       {isPlaying ? (
@@ -664,7 +664,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
                     <button
                       type="button"
                       onClick={() => setIsMuted(!isMuted)}
-                      className="absolute bottom-16 right-3 w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center cursor-pointer border border-white/20"
+                      className="absolute bottom-16 right-3 w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center cursor-pointer border border-white/20"
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     </button>
@@ -738,7 +738,7 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
               className="absolute inset-0 w-full h-full object-cover"
             preload="metadata"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut */}
             <div className="relative z-10 p-4 flex items-center justify-between">
@@ -749,14 +749,14 @@ export const DocumentaryDetailScreen: React.FC<DocumentaryDetailScreenProps> = (
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsProducerVideoMuted(!isProducerVideoMuted)}
-                  className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
+                  className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 >
                   {isProducerVideoMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
 
                 <button
                   onClick={() => setActiveProducerVideo(null)}
-                  className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
+                  className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center cursor-pointer transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>

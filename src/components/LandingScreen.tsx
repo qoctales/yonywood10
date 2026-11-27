@@ -74,9 +74,9 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
           {/* Gauche : Logo officiel Gbadoo */}
           <div className="flex items-center gap-3">
             <img 
-              src="/gbadoo_logo.svg" 
+              src="/Logo Gbadoo.svg" 
               alt="Gbadoo" 
-              width={420}
+              width={467}
               height={110}
               className="h-9 sm:h-11 md:h-12 w-auto object-contain cursor-pointer hover:opacity-90 transition-all select-none"
               onClick={() => setActiveDemoTab('studio')}
@@ -157,24 +157,28 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
                 }}
                 id={item.screenId}
                 title={item.label}
-                className={`relative flex-1 min-w-0 flex flex-col items-center justify-center px-0.5 sm:px-1.5 py-1 rounded-full transition-colors duration-200 group cursor-pointer ${
-                  isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-800'
+                className={`relative flex-1 min-w-0 flex flex-col items-center justify-center px-0.5 sm:px-1.5 py-1 rounded-2xl transition-colors duration-200 group cursor-pointer ${
+                  isActive ? 'text-stone-900' : 'text-stone-500 hover:text-[#1F44A8]'
                 }`}
               >
-                {/* Capsule changeante Terre Cuite (#A2482B) uniquement sur l'icône */}
+                {/* Capsule rectangle arrondi : bleu (#1F44A8) au repos, blanc sur fond terracotta (#A2482B) actif */}
                 <div 
-                  className={`w-8 h-8 sm:w-10 sm:h-10 aspect-square shrink-0 rounded-full flex items-center justify-center transition-all duration-200 ${
+                  className={`w-11 h-8 sm:w-12 sm:h-9 shrink-0 rounded-xl flex items-center justify-center transition-all duration-200 ${
                     isActive 
                       ? 'bg-[#A2482B] text-white shadow-sm' 
-                      : 'bg-transparent text-stone-600 group-hover:bg-stone-100/80'
+                      : 'bg-transparent text-[#1F44A8] group-hover:bg-[#1F44A8]/8'
                   }`}
                 >
-                  <Icon className="w-5 h-5 shrink-0 transition-transform duration-200" strokeWidth={1.75} isActive={isActive} />
+                  <Icon 
+                    className={`${item.id === 'duos' ? 'w-6 h-6 sm:w-[26px] sm:h-[26px]' : 'w-5 h-5 sm:w-[22px] sm:h-[22px]'} shrink-0 transition-transform duration-200`} 
+                    strokeWidth={item.id === 'duos' ? 1.55 : 1.75} 
+                    isActive={isActive} 
+                  />
                 </div>
 
                 {/* Libellé textuel */}
                 <span className={`text-[8.5px] min-[380px]:text-[9.5px] sm:text-[10.5px] leading-tight tracking-tight mt-0.5 sm:mt-1 whitespace-nowrap text-center ${
-                  isActive ? 'text-[#A2482B] font-semibold' : 'text-stone-500 font-normal'
+                  isActive ? 'text-[#A2482B] font-semibold' : 'text-stone-500 group-hover:text-[#1F44A8] font-normal'
                 }`}>
                   {item.label}
                 </span>

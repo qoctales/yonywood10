@@ -815,7 +815,7 @@ export const INITIAL_ADVERTISING_CAMPAIGNS: AdvertisingCampaign[] = [
     id: 'camp-1',
     title: 'Sponsoring Majeur — Transmission Vivante',
     brandName: 'Maison Dixeat & Artisans',
-    brandLogo: '/gbadoo_logo.svg',
+    brandLogo: '/Logo Gbadoo.svg',
     targetThematiqueId: 'th-competences',
     targetThematiqueTitle: 'Compétences & Métiers d\'Art',
     targetSeriesId: 'bambous-irokos',

@@ -183,11 +183,11 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                   />
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/22 via-transparent to-[#121F4B]/70 pointer-events-none" />
 
                 {/* HAUT : Pastille titre en haut à gauche + Lecture vidéo si disponible */}
                 <div className="relative z-10 flex items-center justify-between gap-1 w-full min-w-0">
-                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
+                  <div className="inline-flex w-fit max-w-[calc(100%-64px)] min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md">
                     <span
                       className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none truncate"
                       title={series.title}
@@ -210,7 +210,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                             e.stopPropagation();
                             setIsMuted((prev) => !prev);
                           }}
-                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                           aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
@@ -238,7 +238,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl text-white border flex items-center justify-center transition-all cursor-pointer shadow-md ${
                           isPlaying
                             ? 'bg-[#A2482B] border-[#F3C677]/60'
-                            : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
+                            : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B]'
                         }`}
                         title={isPlaying ? 'Mettre en pause' : `Aperçu de ${series.title}`}
                         aria-label={isPlaying ? 'Mettre en pause' : `Aperçu de ${series.title}`}
@@ -266,7 +266,7 @@ export const SeriesSelectionSection: React.FC<SeriesSelectionSectionProps> = ({
                       e.stopPropagation();
                       setSynopsisSeries(series);
                     }}
-                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                     title="Lire le synopsis"
                     aria-label={`Synopsis de ${series.title}`}
                   >

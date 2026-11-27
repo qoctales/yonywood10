@@ -879,7 +879,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
             )}
 
             {/* Dégradé cinématique sombre */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Overlay standardisé */}
             <UnifiedVideoCardOverlay
@@ -959,7 +959,7 @@ export const PortraitsCircleView: React.FC<PortraitsCircleViewProps> = ({
             )}
 
             {/* Dégradé cinématique sombre */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Overlay standardisé identique à celui d'une personne :
                 - En haut à gauche : le domaine d'activité

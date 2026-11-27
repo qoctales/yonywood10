@@ -755,7 +755,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                           <>
                             {/* EN-TÊTE DE CARTE : TITRE DE LA SÉRIE EN HAUT À GAUCHE & BOUTON TÉLÉ EN HAUT À DROITE */}
                             <div className="relative z-20 pt-3.5 px-3 flex items-center justify-between gap-1 pointer-events-auto min-w-0">
-                              <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
+                              <div className="inline-flex w-fit max-w-full min-w-0 items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md">
                                 <span className="font-editorial text-[8px] sm:text-[10px] font-semibold text-white tracking-wide leading-tight select-none">
                                   {formatFirstLetterOnly(rawSeriesTitle)}
                                 </span>
@@ -771,7 +771,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                 className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
                                   isThisVideoPlaying 
                                     ? 'bg-[#A2482B] text-white border border-[#8A3B22]' 
-                                    : 'bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
+                                    : 'bg-[#121F4B]/70 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
                                 }`}
                                 title={isThisVideoPlaying ? 'Mettre en pause' : 'Lancer la vidéo'}
                               >
@@ -803,7 +803,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   className="w-full h-full object-cover pointer-events-none"
                                 />
                               )}
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
                             </div>
 
                             {/* COLONNE D'ACTIONS LATÉRALE DROITE (ÉPURÉE : MUTE, PROTAGONISTE MIROIR, PORTRAIT, PARTAGE) */}
@@ -816,7 +816,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                     e.stopPropagation();
                                     setIsMuted(m => !m);
                                   }}
-                                  className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 group"
+                                  className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 group"
                                   title={isMuted ? 'Activer le son' : 'Couper le son'}
                                   aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
                                 >
@@ -835,7 +835,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   e.stopPropagation();
                                   goToSlide(otherSlideTarget as 0 | 2);
                                 }}
-                                className="w-9 h-9 rounded-xl overflow-hidden p-0.5 border border-white/30 hover:border-[#A2482B] shadow-md flex items-center justify-center transition-all cursor-pointer group active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm"
+                                className="w-9 h-9 rounded-xl overflow-hidden p-0.5 border border-white/30 hover:border-[#A2482B] shadow-md flex items-center justify-center transition-all cursor-pointer group active:scale-95 bg-[#121F4B]/70 backdrop-blur-sm"
                                 title={`Passer à la vidéo de ${otherFirstName}`}
                               >
                                 <img 
@@ -855,7 +855,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   e.stopPropagation();
                                   onNavigate({ type: 'profile', protagonistId: protagonist.id });
                                 }}
-                                className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
+                                className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
                                 title={`Portrait de ${pFirstName}`}
                               >
                                 <ProfileSoloIcon className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
@@ -868,7 +868,7 @@ export const DuoFeedScreen: React.FC<DuoFeedScreenProps> = ({
                                   e.stopPropagation();
                                   setShareModalItem({ title: `Duo : ${protagonist.name}`, id: protagonist.id });
                                 }}
-                                className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
+                                className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group"
                                 title="Partager"
                               >
                                 <ShareIcon className="w-4 h-4" />

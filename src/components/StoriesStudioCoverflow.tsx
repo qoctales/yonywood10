@@ -352,7 +352,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                       />
                     )}
                     {/* Voile subtil pour la lisibilité */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
                   </div>
 
                   {/* ========================================================================= */}
@@ -361,7 +361,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                   {/* ========================================================================= */}
                   <div className="relative z-20 w-full flex items-center justify-between gap-1 pointer-events-auto">
                     {/* Titre thématique en haut à gauche */}
-                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md shrink-0">
+                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md shrink-0">
                       <span className="font-editorial text-[8.5px] sm:text-[10.5px] font-semibold text-white whitespace-nowrap leading-none tracking-wide select-none">
                         {formatFirstLetterOnly(storyThemeTitle)}
                       </span>
@@ -377,7 +377,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                       className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
                         isPlaying && isCenter
                           ? 'bg-[#A2482B] text-white border border-[#8A3B22]' 
-                          : 'bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
+                          : 'bg-[#121F4B]/70 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
                       }`}
                       title={isPlaying && isCenter ? 'Mettre en pause' : 'Lancer la vidéo'}
                     >
@@ -424,7 +424,7 @@ export const StoriesStudioCoverflow: React.FC<StoriesStudioCoverflowProps> = ({
                             onNavigateToDuo(story);
                           }
                         }}
-                        className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center shadow-lg transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                        className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center shadow-lg transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                         title={`Entrer dans les vidéos de la thématique ${storyThemeTitle}`}
                       >
                         <DoorArchIcon className="w-4 h-4 text-white" strokeWidth={1.75} />

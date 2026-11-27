@@ -128,7 +128,7 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
                       decoding="async"
                     />
                     <div className="absolute inset-0 rounded-2xl bg-[#121F4B]/25 group-hover/thumb:bg-[#121F4B]/45 transition-colors flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#121F4B]/55 backdrop-blur-sm group-hover/thumb:bg-[#A2482B] border border-white/20 group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#121F4B]/70 backdrop-blur-sm group-hover/thumb:bg-[#A2482B] border border-white/20 group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
                         <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-[0_2px_8px_rgba(18,31,75,0.9)] group-hover/thumb:scale-110 transition-transform" />
                       </div>
                     </div>
@@ -236,7 +236,7 @@ export const DuoScreen: React.FC<DuoScreenProps> = ({ duoId, onNavigate }) => {
                       decoding="async"
                     />
                     <div className="absolute inset-0 rounded-2xl bg-[#121F4B]/25 group-hover/thumb:bg-[#121F4B]/45 transition-colors flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#121F4B]/55 backdrop-blur-sm group-hover/thumb:bg-[#A2482B] border border-white/20 group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#121F4B]/70 backdrop-blur-sm group-hover/thumb:bg-[#A2482B] border border-white/20 group-hover/thumb:border-white/40 group-hover/thumb:ring-2 group-hover/thumb:ring-white/20 transition-all shadow-md">
                         <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-[0_2px_8px_rgba(18,31,75,0.9)] group-hover/thumb:scale-110 transition-transform" />
                       </div>
                     </div>

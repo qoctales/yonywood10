@@ -150,19 +150,19 @@ export const DemoDuocumentairesSection: React.FC = () => {
                 preload="metadata"
                 />
                 <div className="relative z-30 flex justify-between items-center">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[10px] font-bold">
                     {pA.universeTag || 'Univers A'}
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setIsMuted(!isMuted)}
-                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     </button>
                     <button
                       onClick={() => setPlayingSide(null)}
-                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -183,11 +183,11 @@ export const DemoDuocumentairesSection: React.FC = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                 {/* Badge univers en haut */}
                 <div className="relative z-10 flex justify-between items-center">
-                  <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
+                  <span className="px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                     {pA.universeTag || 'Univers A'}
                   </span>
                 </div>
@@ -205,7 +205,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       evaluatedScore.A !== undefined
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Évaluer la résonance"
                   >
@@ -222,7 +222,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showQuestionCard === 'A'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Découvrir la question"
                   >
@@ -239,7 +239,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showProfileCard === 'A'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title={`Découvrir le profil de ${firstNameA}`}
                   >
@@ -252,7 +252,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       copiedSide === 'A'
                         ? 'bg-emerald-700/85 border-emerald-600 text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Partager"
                   >
@@ -277,7 +277,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                       e.stopPropagation();
                       setPlayingSide(playingSide === 'A' ? null : 'A');
                     }}
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
                     title={playingSide === 'A' ? "Mettre en pause" : `Regarder le témoignage de ${firstNameA}`}
                   >
                     {playingSide === 'A' ? (
@@ -452,19 +452,19 @@ export const DemoDuocumentairesSection: React.FC = () => {
                 preload="metadata"
                 />
                 <div className="relative z-30 flex justify-between items-center">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10px] font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[10px] font-bold">
                     {pB.universeTag || 'Univers B'}
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setIsMuted(!isMuted)}
-                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     </button>
                     <button
                       onClick={() => setPlayingSide(null)}
-                      className="w-7 h-7 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
+                      className="w-7 h-7 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 hover:bg-[#A2482B] flex items-center justify-center text-white cursor-pointer transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -485,11 +485,11 @@ export const DemoDuocumentairesSection: React.FC = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                 {/* Badge univers en haut */}
                 <div className="relative z-10 flex justify-between items-center">
-                  <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
+                  <span className="px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                     {pB.universeTag || 'Univers B'}
                   </span>
                 </div>
@@ -507,7 +507,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       evaluatedScore.B !== undefined
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Évaluer la résonance"
                   >
@@ -524,7 +524,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showQuestionCard === 'B'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Découvrir la question"
                   >
@@ -541,7 +541,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       showProfileCard === 'B'
                         ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title={`Découvrir le profil de ${firstNameB}`}
                   >
@@ -554,7 +554,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                       copiedSide === 'B'
                         ? 'bg-emerald-700/85 border-emerald-600 text-white'
-                        : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                        : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                     }`}
                     title="Partager"
                   >
@@ -579,7 +579,7 @@ export const DemoDuocumentairesSection: React.FC = () => {
                       e.stopPropagation();
                       setPlayingSide(playingSide === 'B' ? null : 'B');
                     }}
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 cursor-pointer shadow-lg hover:scale-105 active:scale-95 shrink-0 group"
                     title={playingSide === 'B' ? "Mettre en pause" : `Regarder le témoignage de ${firstNameB}`}
                   >
                     {playingSide === 'B' ? (

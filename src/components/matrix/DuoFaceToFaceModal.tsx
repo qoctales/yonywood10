@@ -80,17 +80,17 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut */}
             <div className="relative z-10 flex items-center justify-between">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-[10px] font-bold text-[#FFE7A3] border border-white/20">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-[10px] font-bold text-[#FFE7A3] border border-white/20">
                 Soleil · {sun.flag}
               </span>
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => setIsMutedSun(prev => !prev)}
-                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
+                  className="p-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isMutedSun ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
@@ -100,7 +100,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                     if (next) setIsPlayingCounter(false);
                     return next;
                   })}
-                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
+                  className="p-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isPlayingSun ? <Pause className="w-3.5 h-3.5" /> : <TvPlayerIcon className="w-3.5 h-3.5" />}
                 </button>
@@ -138,17 +138,17 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut */}
             <div className="relative z-10 flex items-center justify-between">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-[10px] font-bold text-white border border-white/20">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-[10px] font-bold text-white border border-white/20">
                 Contrepoint · {counterpoint.flag}
               </span>
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => setIsMutedCounter(prev => !prev)}
-                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
+                  className="p-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isMutedCounter ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
@@ -158,7 +158,7 @@ export const DuoFaceToFaceModal: React.FC<DuoFaceToFaceModalProps> = ({
                     if (next) setIsPlayingSun(false);
                     return next;
                   })}
-                  className="p-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
+                  className="p-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white transition-colors cursor-pointer"
                 >
                   {isPlayingCounter ? <Pause className="w-3.5 h-3.5" /> : <TvPlayerIcon className="w-3.5 h-3.5" />}
                 </button>

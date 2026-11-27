@@ -106,11 +106,11 @@ export const DemoStudioSection: React.FC = () => {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut : Badge Porte & Déclencheur lecture */}
             <div className="relative z-10 flex items-center justify-between pointer-events-auto">
-              <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
+              <span className="px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                 {currentDoor.label}
               </span>
 
@@ -120,7 +120,7 @@ export const DemoStudioSection: React.FC = () => {
                   e.stopPropagation();
                   setIsVideoPlaying(!isVideoPlaying);
                 }}
-                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                 title={isVideoPlaying ? "Mettre en pause" : "Lire la vidéo"}
               >
                 {isVideoPlaying ? (
@@ -136,7 +136,7 @@ export const DemoStudioSection: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowAdvantagesModal(true)}
-                  className="px-3.5 py-2 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white hover:bg-[#121F4B]/75 transition-colors cursor-pointer"
+                  className="px-3.5 py-2 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white hover:bg-[#121F4B]/75 transition-colors cursor-pointer"
                 >
                   Avantages
                 </button>
@@ -145,7 +145,7 @@ export const DemoStudioSection: React.FC = () => {
                     setIsVideoPlaying(false);
                     setStep(2);
                   }}
-                  className="flex-1 py-2 rounded-full bg-[#121F4B]/65 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+                  className="flex-1 py-2 rounded-full bg-[#121F4B]/75 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
                 >
                   <span>Choisir cette porte</span>
                   <span>→</span>
@@ -213,11 +213,11 @@ export const DemoStudioSection: React.FC = () => {
             loading="lazy"
             decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut : Badge Titre de la série & Déclencheur lecture */}
             <div className="relative z-10 flex items-center justify-between pointer-events-auto">
-              <span className="px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
+              <span className="px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs font-bold text-white tracking-wide">
                 {currentSeries.title}
               </span>
 
@@ -227,7 +227,7 @@ export const DemoStudioSection: React.FC = () => {
                   e.stopPropagation();
                   setIsVideoPlaying(!isVideoPlaying);
                 }}
-                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                 title={isVideoPlaying ? "Mettre en pause" : "Lire la vidéo"}
               >
                 {isVideoPlaying ? (
@@ -240,13 +240,13 @@ export const DemoStudioSection: React.FC = () => {
 
             {/* Icônes d'action latérales */}
             <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
-              <div className="w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
+              <div className="w-9 h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
                 <Layers className="w-4 h-4" />
               </div>
-              <div className="w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
+              <div className="w-9 h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
                 <Film className="w-4 h-4" />
               </div>
-              <div className="w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
+              <div className="w-9 h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs">
                 <Sparkles className="w-4 h-4" />
               </div>
             </div>
@@ -258,7 +258,7 @@ export const DemoStudioSection: React.FC = () => {
                   setIsVideoPlaying(false);
                   setStep(3);
                 }}
-                className="w-full py-2.5 rounded-full bg-[#121F4B]/65 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+                className="w-full py-2.5 rounded-full bg-[#121F4B]/75 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
               >
                 <span>Choisir cette série</span>
                 <span>→</span>

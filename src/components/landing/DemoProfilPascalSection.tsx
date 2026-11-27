@@ -485,15 +485,15 @@ export const DemoProfilPascalSection: React.FC = () => {
               />
 
               {/* Dégradé cinématographique pour garantir la lisibilité parfaite */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
               {/* HAUT GAUCHE : Badge de la catégorie ou avancement/statut */}
               <div className="absolute top-3 left-3 z-20 pointer-events-auto flex flex-col items-start gap-1 max-w-[calc(100%-80px)]">
-                <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
+                <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full">
                   <span className="truncate">{formatFirstLetterOnly(currentVideo.tag || getCategoryLabel(activeCategory))}</span>
                 </div>
                 {currentVideo.extraInfo && (
-                  <div className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/50 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
+                  <div className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/65 backdrop-blur-sm border border-white/20 text-[10px] sm:text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs flex items-center gap-1 truncate max-w-full">
                     <span className="truncate">{currentVideo.extraInfo}</span>
                   </div>
                 )}
@@ -508,7 +508,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                     togglePlayback(e);
                   }}
                   id="btn-demo-play"
-                  className="w-8 h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                  className="w-8 h-8 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                   title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
                 >
                   {isPlaying ? (
@@ -534,7 +534,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     showLineage
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="1. La lignée"
                   aria-label="La lignée"
@@ -553,7 +553,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'parcours'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="2. Parcours de vie"
                   aria-label="Parcours de vie"
@@ -572,7 +572,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'produits'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="3. Produits et services"
                   aria-label="Produits et services"
@@ -591,7 +591,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'projets'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="4. Projets"
                   aria-label="Projets"
@@ -610,7 +610,7 @@ export const DemoProfilPascalSection: React.FC = () => {
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     !showLineage && activeCategory === 'besoins'
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
                   }`}
                   title="5. Besoins"
                   aria-label="Besoins"

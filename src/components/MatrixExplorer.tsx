@@ -1908,12 +1908,12 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
             )}
 
             {/* Gradient pour lisibilité */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/22 via-transparent to-[#121F4B]/72 pointer-events-none" />
 
             {/* HAUT : Titre du sujet à gauche & Déclencheur vidéo en haut à droite */}
             <div className="relative z-20 p-4 flex items-center justify-between pointer-events-auto">
               <div 
-                className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-xs text-white font-medium shadow-md tracking-wide max-w-[65%] sm:max-w-[75%] flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-xs text-white font-medium shadow-md tracking-wide max-w-[65%] sm:max-w-[75%] flex items-center gap-1.5"
               >
                 <span className="truncate block font-semibold text-white">
                   {activeTopicItem?.title || modalPerson.universeTag}
@@ -1927,7 +1927,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                   e.stopPropagation();
                   toggleVideoPlayback();
                 }}
-                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                 title={isPlaying ? 'Mettre en pause' : 'Lire la vidéo'}
               >
                 {isPlaying ? (
@@ -1954,7 +1954,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                     e.stopPropagation();
                     setIsPersonQuestionModalOpen(true);
                   }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                   title="Découvrir la question"
                 >
                   <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -1975,7 +1975,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     personResonancePct !== null
                       ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_14px_rgba(162,72,43,0.5)]'
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
                   }`}
                   title={personResonancePct !== null ? `Résonance : ${personResonancePct}%` : "Évaluer la résonance"}
                 >
@@ -1994,7 +1994,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                     e.stopPropagation();
                     handleOpenUniverse(modalPerson);
                   }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                   title="Découvrir son univers complet"
                 >
                   <ProfileSoloIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -2012,7 +2012,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
                     isShareCopied 
                       ? 'bg-emerald-700/85 border-emerald-600 text-white' 
-                      : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
+                      : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white'
                   }`}
                   title={isShareCopied ? "Lien copié !" : "Partager"}
                 >
@@ -2043,7 +2043,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
               {/* Bas droite : Note globale en pourcentage (Casting) + Bouton Muet */}
               <div className="flex items-center gap-2">
                 <div 
-                  className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md flex items-center gap-1 text-white"
+                  className="px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md flex items-center gap-1 text-white"
                   title="Note moyenne d'évaluation du public"
                 >
                   <Star className="w-3.5 h-3.5 text-[#FFE7A3] fill-[#FFE7A3]" />
@@ -2057,7 +2057,7 @@ export const MatrixExplorer: React.FC<MatrixExplorerProps> = ({
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center cursor-pointer transition-all shadow-md hover:scale-105 active:scale-95 shrink-0"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center cursor-pointer transition-all shadow-md hover:scale-105 active:scale-95 shrink-0"
                   title={isMuted ? 'Activer le son' : 'Couper le son'}
                 >
                   {isMuted ? (

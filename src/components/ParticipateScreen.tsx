@@ -441,7 +441,7 @@ export const ParticipateScreen: React.FC<ParticipateScreenProps> = () => {
   const getThemeBg = () => {
     switch (slide.bgTheme) {
       case 'deep_blue':
-        return 'bg-[#1F44A8] text-white border-[#121F4B]/60 shadow-[0_12px_40px_rgba(31,68,168,0.45)]';
+        return 'bg-[#1F44A8] text-white border-[#121F4B]/72 shadow-[0_12px_40px_rgba(31,68,168,0.45)]';
       case 'light_ivory':
         return 'bg-[#FAFAF9] text-[#1C1917] border-stone-200/90 shadow-[0_12px_40px_rgba(18,31,75,0.12)]';
       case 'terracotta':

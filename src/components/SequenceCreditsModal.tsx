@@ -59,7 +59,7 @@ export const SequenceCreditsModal: React.FC<SequenceCreditsModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête sobre et cinématographique */}
-        <div className="flex items-center justify-between p-5 border-b border-white/15 bg-[#121F4B]/60">
+        <div className="flex items-center justify-between p-5 border-b border-white/15 bg-[#121F4B]/72">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-[#A2482B]/25 border border-[#A2482B]/50 flex items-center justify-center text-[#FFE7A3]">
               <Clapperboard className="w-4 h-4 text-[#A2482B]" />
@@ -111,7 +111,7 @@ export const SequenceCreditsModal: React.FC<SequenceCreditsModalProps> = ({
                     }}
                     className={`flex items-center justify-between p-2.5 rounded-2xl border transition-all ${
                       isClickable
-                        ? 'bg-[#121F4B]/65 hover:bg-[#121F4B]/90 border-white/20 hover:border-[#A2482B] cursor-pointer group'
+                        ? 'bg-[#121F4B]/75 hover:bg-[#121F4B]/90 border-white/20 hover:border-[#A2482B] cursor-pointer group'
                         : 'bg-[#121F4B]/45 border-white/15'
                     }`}
                   >
@@ -163,7 +163,7 @@ export const SequenceCreditsModal: React.FC<SequenceCreditsModalProps> = ({
               }}
               className={`flex items-center justify-between p-2.5 rounded-2xl border transition-all ${
                 activeCredits.director.protagonistId
-                  ? 'bg-[#121F4B]/65 hover:bg-[#121F4B]/90 border-white/20 hover:border-[#FFE7A3]/60 cursor-pointer group'
+                  ? 'bg-[#121F4B]/75 hover:bg-[#121F4B]/90 border-white/20 hover:border-[#FFE7A3]/60 cursor-pointer group'
                   : 'bg-[#121F4B]/45 border-white/15'
               }`}
             >
@@ -217,7 +217,7 @@ export const SequenceCreditsModal: React.FC<SequenceCreditsModalProps> = ({
                     }}
                     className={`flex items-center justify-between p-2.5 rounded-2xl border transition-all ${
                       isClickable
-                        ? 'bg-[#121F4B]/65 hover:bg-[#121F4B]/90 border-white/20 hover:border-white/40 cursor-pointer group'
+                        ? 'bg-[#121F4B]/75 hover:bg-[#121F4B]/90 border-white/20 hover:border-white/40 cursor-pointer group'
                         : 'bg-[#121F4B]/45 border-white/15'
                     }`}
                   >
@@ -255,7 +255,7 @@ export const SequenceCreditsModal: React.FC<SequenceCreditsModalProps> = ({
         </div>
 
         {/* Pied de modale sobre */}
-        <div className="p-4 border-t border-white/15 bg-[#121F4B]/55 flex items-center justify-between text-xs text-white/75">
+        <div className="p-4 border-t border-white/15 bg-[#121F4B]/70 flex items-center justify-between text-xs text-white/75">
           <span>GBADOO • Droits & filiation certifiés</span>
           <button
             onClick={onClose}

@@ -91,7 +91,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
           <button
             type="button"
             onClick={onTopLeftClick}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 shadow-md text-white transition-colors cursor-pointer max-w-[calc(100%-80px)]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 shadow-md text-white transition-colors cursor-pointer max-w-[calc(100%-80px)]"
             title={topLeftFullTitle || topLeftLabel}
           >
             {topLeftShowBackArrow && <ArrowLeft className="w-3.5 h-3.5 shrink-0 text-white/90" />}
@@ -106,8 +106,8 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
                 key={seriesTitle}
                 className={`inline-flex items-center gap-1.5 rounded-full shadow-md max-w-full ${
                   idx === 0
-                    ? 'px-2.5 sm:px-3 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-white'
-                    : 'px-2.5 py-0.5 bg-[#121F4B]/50 backdrop-blur-sm border border-white/20 text-[#FFE7A3]'
+                    ? 'px-2.5 sm:px-3 py-1 bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-white'
+                    : 'px-2.5 py-0.5 bg-[#121F4B]/65 backdrop-blur-sm border border-white/20 text-[#FFE7A3]'
                 }`}
                 title={seriesTitle}
               >
@@ -128,7 +128,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
           </div>
         ) : topLeftLabel ? (
           <div
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md text-white max-w-[calc(100%-80px)]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md text-white max-w-[calc(100%-80px)]"
             title={topLeftFullTitle || topLeftLabel}
           >
             <span className="font-editorial text-xs font-semibold text-white whitespace-nowrap tracking-wide select-none truncate">
@@ -149,7 +149,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
                   e.stopPropagation();
                   onToggleMute();
                 }}
-                className="w-8 h-8 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95"
+                className="w-8 h-8 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95"
                 title={isMuted ? 'Activer le son' : 'Couper le son'}
               >
                 {isMuted ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-white" />}
@@ -165,7 +165,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
               className={`w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
                 isPlaying
                   ? 'bg-[#A2482B] text-white border border-[#8A3B22]'
-                  : 'bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
+                  : 'bg-[#121F4B]/70 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
               }`}
               title={isPlaying ? 'Mettre en pause' : 'Lancer la vidéo'}
             >
@@ -199,7 +199,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
             onEnded={onVideoEnded}
             className="w-full h-full object-cover pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
         </div>
       ) : (
         <div
@@ -216,7 +216,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
           ) : (
             <div className="w-full h-full bg-[#121F4B]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
         </div>
       )}
 
@@ -229,7 +229,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
               e.stopPropagation();
               onOpenSeries();
             }}
-            className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group active:scale-95"
+            className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group active:scale-95"
             title={seriesTitle || 'Séries associées'}
           >
             <BriefcaseIcon
@@ -245,7 +245,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
             e.stopPropagation();
             onOpenPortrait();
           }}
-          className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group active:scale-95"
+          className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group active:scale-95"
           title={portraitTitle}
         >
           <ProfileSoloIcon className="w-4 h-4 text-white group-hover:scale-110 transition-transform" isActive={true} />
@@ -257,7 +257,7 @@ export const FocusVideoCard: React.FC<FocusVideoCardProps> = ({
             e.stopPropagation();
             onOpenShare();
           }}
-          className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group active:scale-95"
+          className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm text-white hover:bg-[#A2482B] border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-sm group active:scale-95"
           title="Partager"
         >
           <ShareIcon className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />

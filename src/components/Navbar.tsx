@@ -127,9 +127,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Gbadoo"
           >
             <img
-              src="/gbadoo_logo.svg"
+              src="/Logo Gbadoo.svg"
               alt="Gbadoo"
-              width={420}
+              width={467}
               height={110}
               loading="eager"
               decoding="async"
@@ -138,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Actions de droite : Portrait (Critères masqué derrière SHOW_SERIES_FILTER_IN_HEADER) */}
-          <div className="flex items-center justify-end gap-0.5 sm:gap-1 shrink-0">
+          <div className="flex items-center justify-end gap-1 sm:gap-1.5 shrink-0">
             {SHOW_SERIES_FILTER_IN_HEADER && isDuocumentairesScreen && (
               <button
                 type="button"
@@ -147,14 +147,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label="Critères des séries"
                 aria-expanded={isCriteriaOpen}
                 title="Critères des séries"
-                className={`relative w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-[#A2482B]/10 active:scale-95 ${
-                  isCriteriaOpen ? 'text-[#A2482B]' : 'text-[#A2482B]'
-                }`}
+                className="relative min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center transition-colors cursor-pointer active:scale-95 group"
               >
-                <SlidersHorizontal className="w-5 h-5" strokeWidth={1.75} />
+                <div
+                  className={`w-11 h-8 sm:w-12 sm:h-9 shrink-0 rounded-xl flex items-center justify-center transition-all duration-200 ${
+                    isCriteriaOpen
+                      ? 'bg-[#A2482B] text-white shadow-sm'
+                      : 'bg-transparent text-[#1F44A8] group-hover:bg-[#1F44A8]/8'
+                  }`}
+                >
+                  <SlidersHorizontal className="w-5 h-5 sm:w-[21px] sm:h-[21px]" strokeWidth={1.75} />
+                </div>
                 {isFilterActive && (
                   <span
-                    className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-[#A2482B] ring-2 ring-white"
+                    className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#A2482B] ring-2 ring-white"
                     aria-hidden="true"
                   />
                 )}
@@ -171,19 +177,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label="Portrait"
               aria-current={isOwnPortraitActive ? 'page' : undefined}
               title="Portrait"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-[#A2482B]/10 active:scale-95 group"
+              className="min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center transition-colors cursor-pointer active:scale-95 group"
             >
               <div
-                className={`w-8 h-8 sm:w-10 sm:h-10 aspect-square shrink-0 rounded-full flex items-center justify-center transition-all duration-200 ${
+                className={`w-11 h-8 sm:w-12 sm:h-9 shrink-0 rounded-xl flex items-center justify-center transition-all duration-200 ${
                   isOwnPortraitActive
                     ? 'bg-[#A2482B] text-white shadow-sm'
-                    : 'bg-transparent text-[#A2482B]'
+                    : 'bg-transparent text-[#1F44A8] group-hover:bg-[#1F44A8]/8'
                 }`}
               >
                 <ProfileSoloIcon
-                  className={isOwnPortraitActive ? 'w-5 h-5' : 'w-6 h-6'}
+                  className="w-5 h-5 sm:w-[22px] sm:h-[22px] shrink-0"
                   strokeWidth={1.75}
-                  isActive={isOwnPortraitActive ? true : undefined}
+                  isActive={isOwnPortraitActive}
                 />
               </div>
             </button>
@@ -195,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {SHOW_SERIES_FILTER_IN_HEADER && isCriteriaOpen && isDuocumentairesScreen && (
         <div
           id="series-criteria-backdrop"
-          className="fixed inset-0 z-[70] flex items-end justify-center bg-[#121F4B]/60 select-none"
+          className="fixed inset-0 z-[70] flex items-end justify-center bg-[#121F4B]/72 select-none"
           onClick={() => setIsCriteriaOpen(false)}
         >
           <div

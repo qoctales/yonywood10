@@ -163,14 +163,14 @@ export const FullscreenStoryViewer: React.FC<FullscreenStoryViewerProps> = ({
           <div className="flex items-center gap-1.5 shrink-0">
             <button
               onClick={() => setIsMuted(m => !m)}
-              className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
               title={isMuted ? 'Activer le son' : 'Couper le son'}
             >
               {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
               title="Fermer la story"
             >
               <X className="w-4 h-4" />
@@ -205,7 +205,7 @@ export const FullscreenStoryViewer: React.FC<FullscreenStoryViewerProps> = ({
             />
           )}
           {/* Voiles pour contraste */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
         </div>
 
         {/* Bouton Question Flottant à droite */}
@@ -215,7 +215,7 @@ export const FullscreenStoryViewer: React.FC<FullscreenStoryViewerProps> = ({
               e.stopPropagation();
               setShowQuestionDrawer(prev => !prev);
             }}
-            className="w-8.5 h-8.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 flex items-center justify-center text-white transition-all shadow-md cursor-pointer"
+            className="w-8.5 h-8.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 flex items-center justify-center text-white transition-all shadow-md cursor-pointer"
             title="Consulter l'invitation / question"
           >
             <HelpCircle className="w-4 h-4 text-amber-300" />
@@ -259,7 +259,7 @@ export const FullscreenStoryViewer: React.FC<FullscreenStoryViewerProps> = ({
           {/* PASSERELLE VERS LES DUOS DOCUMENTAIRES (Bouton d'action discret en bas de story) */}
           <button
             onClick={() => onNavigateToDuo(currentStory)}
-            className="w-full py-2 px-3.5 rounded-full bg-[#121F4B]/60 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 hover:border-[#A2482B] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg active:scale-95 group"
+            className="w-full py-2 px-3.5 rounded-full bg-[#121F4B]/72 backdrop-blur-sm hover:bg-[#A2482B] border border-white/25 hover:border-[#A2482B] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg active:scale-95 group"
             title="Découvrir cet auteur dans ses duos documentaires"
           >
             <Film className="w-3.5 h-3.5 text-[#C89B3C] group-hover:text-white" />

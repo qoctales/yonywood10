@@ -195,7 +195,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
       {/* ========================================================================= */}
       <div className="relative z-30 pt-3 px-3 sm:pt-3.5 sm:px-3.5 flex items-center justify-between gap-1 pointer-events-auto">
         {/* Titre thématique dans un bandeau bleu indigo */}
-        <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/60 backdrop-blur-sm border border-white/20 shadow-md shrink-0">
+        <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/72 backdrop-blur-sm border border-white/20 shadow-md shrink-0">
           <span className="font-editorial text-[8.5px] sm:text-[10.5px] font-semibold text-white whitespace-nowrap leading-none tracking-wide select-none">
             {formatFirstLetterOnly(themeTitle)}
           </span>
@@ -208,7 +208,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
             onClick={toggleMute}
             className={`w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
               isMuted
-                ? 'bg-[#121F4B]/60 backdrop-blur-sm text-white border-white/20 hover:bg-[#121F4B]/80'
+                ? 'bg-[#121F4B]/72 backdrop-blur-sm text-white border-white/20 hover:bg-[#121F4B]/80'
                 : 'bg-[#A2482B] text-white border-white/40 shadow-xs'
             }`}
             title={isMuted ? 'Activer le son' : 'Couper le son'}
@@ -226,7 +226,7 @@ export const FourFacesCard: React.FC<FourFacesCardProps> = ({
             className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 ${
               isPlaying 
                 ? 'bg-white text-[#A2482B] border border-white shadow-lg' 
-                : 'bg-[#121F4B]/60 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
+                : 'bg-[#121F4B]/72 backdrop-blur-sm text-white border border-white/20 hover:bg-[#A2482B]'
             }`}
             title={isPlaying ? 'Mettre en pause' : 'Lancer la lecture'}
             aria-label={isPlaying ? 'Mettre en pause' : 'Lancer la lecture'}

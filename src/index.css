@@ -39,7 +39,7 @@
 
     /* Variables de style des icônes de dimensions */
     --icon-stroke-width: 1.75;
-    --icon-color-idle: #A2482B; /* terracotta au repos */
+    --icon-color-idle: #1F44A8; /* bleu au repos */
     --icon-color-active: #FFFFFF;
     --icon-bg-active: #A2482B; /* pastille ronde terracotta signature */
     --icon-size-default: 24px;
@@ -320,7 +320,7 @@
   /* Mobile (< 600px) : 50 à 55 % de la largeur, max 240px */
   width: clamp(195px, 56vw, 240px);
   height: auto;
-  aspect-ratio: 420 / 110;
+  aspect-ratio: 467 / 110;
   max-width: 100%;
 }
 
@@ -363,7 +363,7 @@
 
 /* Bouton validation : claquette épurée entrouverte au repos (blanc/crème sur sombre), claquement + terracotta (#A2482B) */
 .legba-arch-btn {
-  background-color: rgba(18, 31, 75, 0.58);
+  background-color: rgba(18, 31, 75, 0.72);
   backdrop-filter: blur(4px);
   border-color: rgba(255, 255, 255, 0.22);
   color: #F0E8DC;

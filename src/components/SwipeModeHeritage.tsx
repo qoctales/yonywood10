@@ -361,11 +361,11 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               )}
 
               {/* Voile cinématographique clair (modèle Studio / Coproduction) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
               {/* HAUT : Titre seul de la porte dans une pilule sobre + Déclencheur vidéo en haut à droite */}
               <div className="relative z-20 flex items-center justify-between pointer-events-auto">
-                <div className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide">
+                <div className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide">
                   <span>{currentSwipeDoor.label}</span>
                 </div>
 
@@ -373,7 +373,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                   {isPlayingStep1 && (
                     <button
                       onClick={toggleMute}
-                      className="p-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] transition-colors cursor-pointer"
+                      className="p-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] transition-colors cursor-pointer"
                       title={isMuted ? 'Activer le son' : 'Couper le son'}
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -385,7 +385,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                       e.stopPropagation();
                       togglePlay1();
                     }}
-                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title={isPlayingStep1 ? 'Mettre en pause' : 'Lire la vidéo'}
                   >
                     {isPlayingStep1 ? (
@@ -485,11 +485,11 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               )}
 
               {/* Voile cinématographique */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
               {/* HAUT : Icône + Titre de la direction dans une pilule sobre */}
               <div className="relative z-20 flex items-center justify-between">
-                <div className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide flex items-center gap-1.5 max-w-[85%]">
+                <div className="px-3.5 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[11px] sm:text-xs font-semibold text-white shadow-sm tracking-wide flex items-center gap-1.5 max-w-[85%]">
                   <DimensionIcon 
                     name={effectiveSubcategory.icone} 
                     size={14} 
@@ -502,7 +502,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                   {isPlayingStep2 && (
                     <button
                       onClick={toggleMute}
-                      className="p-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] transition-colors cursor-pointer shrink-0"
+                      className="p-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] transition-colors cursor-pointer shrink-0"
                       title={isMuted ? 'Activer le son' : 'Couper le son'}
                     >
                       {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -514,7 +514,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
                       e.stopPropagation();
                       togglePlay2();
                     }}
-                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                    className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                     title={isPlayingStep2 ? 'Mettre en pause' : 'Lire la vidéo'}
                   >
                     {isPlayingStep2 ? (
@@ -601,7 +601,7 @@ export const SwipeModeHeritage: React.FC<SwipeModeHeritageProps> = ({
               )}
 
               {/* Gradient pour contraste cinématographique */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/60 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/22 via-transparent to-[#121F4B]/72 pointer-events-none" />
 
               {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
               <UnifiedVideoCardOverlay

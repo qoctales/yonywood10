@@ -556,13 +556,13 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                   setIsPlaying(true);
                 }}
                 id={`tab-dim-${dim.key}`}
-                className={`shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                className={`shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#1F44A8] text-white shadow-sm'
-                    : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1C1917] hover:bg-[#EAE4D5]'
+                    ? 'bg-[#A2482B] text-white shadow-sm'
+                    : 'bg-[#F5F5F4] text-[#68655D] hover:text-[#1F44A8] hover:bg-[#1F44A8]/8'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#A2482B]'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#1F44A8]'}`} />
                 <span>{dim.label}</span>
               </button>
             );
@@ -632,7 +632,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
+                    <span className="px-3 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
                       {formatFirstLetterOnly(item.seriesTitle)}
                     </span>
                     <div className="flex items-center gap-2">
@@ -649,7 +649,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                             setIsPlaying(!isPlaying);
                           }
                         }}
-                        className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
+                        className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
                         title={isPlaying ? "Mettre en pause" : "Regarder la vidéo"}
                       >
                         {isPlaying ? (
@@ -780,7 +780,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       Crowdfunding Solidaire
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-[#C89B3C] text-[#FFFFFF] text-[10px] font-bold shadow-xs">
@@ -803,7 +803,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                     </div>
 
                     {/* Financial Gauge */}
-                    <div className="bg-[#121F4B]/60 backdrop-blur-sm rounded-2xl p-3 border border-white/20 space-y-2">
+                    <div className="bg-[#121F4B]/72 backdrop-blur-sm rounded-2xl p-3 border border-white/20 space-y-2">
                       <div className="flex justify-between items-end text-xs">
                         <div>
                           <span className="text-base font-bold text-[#C89B3C] font-mono">
@@ -925,7 +925,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       {offer.categoryLabel}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-emerald-800 text-emerald-100 text-[10px] font-semibold">
@@ -1046,7 +1046,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       {step.year}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-[#C89B3C] text-[#FFFFFF] text-[10px] font-bold shadow-xs">
@@ -1063,7 +1063,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       <h3 className="font-editorial text-lg font-bold leading-tight">
                         {step.title}
                       </h3>
-                      <div className="p-2.5 rounded-xl bg-[#121F4B]/60 backdrop-blur-sm border border-white/20 text-xs text-[#E7E5E4] italic">
+                      <div className="p-2.5 rounded-xl bg-[#121F4B]/72 backdrop-blur-sm border border-white/20 text-xs text-[#E7E5E4] italic">
                         {step.quote}
                       </div>
                       <p className="text-[11px] text-white/80 line-clamp-2 font-light leading-relaxed pt-1">
@@ -1167,7 +1167,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white text-[10px] font-bold tracking-wide uppercase border border-white/20">
                       {need.category}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-amber-600/90 text-white text-[10px] font-bold shadow-xs">
@@ -1187,7 +1187,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                       <p className="text-[11px] text-white/80 line-clamp-3 font-light leading-relaxed">
                         {need.description}
                       </p>
-                      <div className="p-2 rounded-xl bg-[#121F4B]/60 backdrop-blur-sm text-[10px] text-emerald-300">
+                      <div className="p-2 rounded-xl bg-[#121F4B]/72 backdrop-blur-sm text-[10px] text-emerald-300">
                         ✦ Impact : {need.impact}
                       </div>
                     </div>
@@ -1313,7 +1313,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                           loading="lazy"
                           decoding="async"
                         />
-                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-white text-[9px] font-mono">
+                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-white text-[9px] font-mono">
                           {pass.introYear}
                         </span>
                       </div>
@@ -1390,7 +1390,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
 
                   {/* Top Badge & Déclencheur Vidéo */}
                   <div className="absolute top-4 inset-x-4 flex justify-between items-center z-10">
-                    <span className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
+                    <span className="px-3 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md">
                       {formatFirstLetterOnly('Vidéo de présentation principale')}
                     </span>
                     <button
@@ -1403,7 +1403,7 @@ export const UniverseDimensionPage: React.FC<UniverseDimensionPageProps> = ({
                           setIsPlaying(!isPlaying);
                         }
                       }}
-                      className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
+                      className="w-8.5 h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] active:scale-95 border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
                       title={isPlaying ? "Mettre en pause" : "Regarder la vidéo"}
                     >
                       {isPlaying ? (

@@ -680,11 +680,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                   )}
 
                   {/* Voile cinématographique */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                   {/* HAUT : Titre de la série à gauche + Déclencheur Petite Télé en haut à droite */}
                   <div className="relative z-10 flex items-center justify-between gap-1.5 pointer-events-auto w-full min-w-0">
-                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md max-w-[calc(100%-80px)]">
+                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md max-w-[calc(100%-80px)]">
                       <span 
                         className="font-editorial text-[11px] sm:text-xs font-semibold text-white whitespace-nowrap tracking-wide select-none truncate block"
                         title={prod.title}
@@ -710,7 +710,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                           }}
                           onMouseDown={(e) => e.stopPropagation()}
                           onTouchStart={(e) => e.stopPropagation()}
-                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
                           {isMuted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -730,7 +730,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                         }}
                         onMouseDown={(e) => e.stopPropagation()}
                         onTouchStart={(e) => e.stopPropagation()}
-                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                         title={isPlaying && isCenter ? 'Mettre en pause' : `Visionner le teaser de ${prod.title}`}
                       >
                         {isPlaying && isCenter ? (
@@ -748,7 +748,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                   {/* BAS : JAUGE MINIMALE SANS LÉGENDES TEXTUELLES & BOUTON D'ACQUISITION */}
                   <div className="relative z-10 w-full flex items-center justify-between gap-2 pt-0.5">
                     {/* Jauge fine épurée sans légende */}
-                    <div className="flex-1 bg-[#121F4B]/55 backdrop-blur-sm rounded-full p-1 border border-white/20 shadow-sm">
+                    <div className="flex-1 bg-[#121F4B]/70 backdrop-blur-sm rounded-full p-1 border border-white/20 shadow-sm">
                       <div className="w-full h-1.5 rounded-full bg-[#121F4B]/90 overflow-hidden relative">
                         <div 
                           className="h-full rounded-full bg-gradient-to-r from-[#A2482B] via-[#C89B3C] to-[#FFE7A3] transition-all duration-700"
@@ -871,11 +871,11 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                   {/* HAUT */}
                   <div className="relative z-10 flex items-center justify-between pointer-events-auto">
-                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md max-w-[calc(100%-80px)]">
+                    <div className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md max-w-[calc(100%-80px)]">
                       <span 
                         className="font-editorial text-[11px] sm:text-xs font-semibold text-white whitespace-nowrap tracking-wide select-none truncate block"
                         title={offer.seriesTitle}
@@ -899,7 +899,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                           }}
                           onMouseDown={(e) => e.stopPropagation()}
                           onTouchStart={(e) => e.stopPropagation()}
-                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                          className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                           title={isMuted ? 'Activer le son' : 'Couper le son'}
                         >
                           {isMuted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -919,7 +919,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                         }}
                         onMouseDown={(e) => e.stopPropagation()}
                         onTouchStart={(e) => e.stopPropagation()}
-                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                         title={isPlaying && isCenter ? 'Mettre en pause' : `Visionner le teaser de ${offer.seriesTitle}`}
                       >
                         {isPlaying && isCenter ? (
@@ -936,7 +936,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                   {/* BAS */}
                   <div className="relative z-10 flex items-end justify-between gap-1.5 pt-0.5">
                     <div className="flex flex-col gap-1.5">
-                      <div className="h-7.5 sm:h-8.5 px-2.5 sm:px-3 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#121F4B]/75 text-white/95 text-[10.5px] sm:text-[11px] font-medium transition-all flex items-center gap-1.5 border border-white/20 shadow-sm w-fit">
+                      <div className="h-7.5 sm:h-8.5 px-2.5 sm:px-3 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#121F4B]/75 text-white/95 text-[10.5px] sm:text-[11px] font-medium transition-all flex items-center gap-1.5 border border-white/20 shadow-sm w-fit">
                         <span className="font-bold text-white">{offer.sharesCount} part{offer.sharesCount > 1 ? 's' : ''}</span>
                         <span className="text-white/40">•</span>
                         <span className="font-bold text-[#FFE7A3]">{offer.unitPrice} €</span>
@@ -961,7 +961,7 @@ export const LegacyMarketplaceScreen: React.FC<MarketplaceScreenProps> = ({
                             }
                           });
                         }}
-                        className="h-7 sm:h-7.5 px-2 sm:px-2.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#121F4B]/75 text-white text-[10.5px] font-medium transition-all flex items-center gap-1.5 border border-white/20 cursor-pointer shadow-sm group/user text-left w-fit active:scale-95"
+                        className="h-7 sm:h-7.5 px-2 sm:px-2.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#121F4B]/75 text-white text-[10.5px] font-medium transition-all flex items-center gap-1.5 border border-white/20 cursor-pointer shadow-sm group/user text-left w-fit active:scale-95"
                         title={`Découvrir l’univers de ${offer.sellerName}`}
                       >
                         <img 

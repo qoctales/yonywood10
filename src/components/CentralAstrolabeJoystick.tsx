@@ -215,7 +215,7 @@ export const CentralAstrolabeJoystick: React.FC<CentralAstrolabeJoystickProps> =
             <div className="absolute inset-1 rounded-full border border-[#121F4B]/40 pointer-events-none" />
 
             {/* Pastille de rafraîchissement au survol */}
-            <div className="absolute inset-0 bg-[#121F4B]/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none z-20">
+            <div className="absolute inset-0 bg-[#121F4B]/75 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none z-20">
               <RefreshCw className={`w-4 h-4 text-white mb-0.5 ${isRefreshing ? 'animate-spin' : ''}`} />
               <span className="text-[8.5px] font-semibold tracking-wider uppercase text-white">
                 Relancer
@@ -242,7 +242,7 @@ export const CentralAstrolabeJoystick: React.FC<CentralAstrolabeJoystickProps> =
             </div>
 
             {/* Pastille de rafraîchissement au survol */}
-            <div className="absolute inset-0 bg-[#121F4B]/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none">
+            <div className="absolute inset-0 bg-[#121F4B]/75 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white pointer-events-none">
               <RefreshCw className={`w-4 h-4 text-white mb-0.5 ${isRefreshing ? 'animate-spin' : ''}`} />
               <span className="text-[8.5px] font-semibold tracking-wider uppercase text-white">
                 Relancer

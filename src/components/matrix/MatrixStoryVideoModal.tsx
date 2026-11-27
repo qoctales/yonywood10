@@ -105,7 +105,7 @@ export const MatrixStoryVideoModal: React.FC<MatrixStoryVideoModalProps> = ({
       {/* Bouton Fermer discret en haut à droite de l'écran */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-50 w-9 h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+        className="absolute top-4 right-4 z-50 w-9 h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
         title="Fermer et revenir à la Matrice"
       >
         <X className="w-5 h-5 text-white" />
@@ -148,7 +148,7 @@ export const MatrixStoryVideoModal: React.FC<MatrixStoryVideoModalProps> = ({
         )}
 
         {/* Voile cinématographique pour lisibilité optimale */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
         {/* Overlay standardisé : alignement vertical strict, 6 actions, pas de croix, titre en haut à gauche et prénom épuré en bas à gauche */}
         <UnifiedVideoCardOverlay

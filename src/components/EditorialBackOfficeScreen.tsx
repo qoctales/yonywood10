@@ -123,7 +123,7 @@ export const EditorialBackOfficeScreen: React.FC<EditorialBackOfficeScreenProps>
       case 'APPROUVEES':
         return <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200">Approuvée</span>;
       case 'PUBLIEES':
-        return <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#1F44A8] text-white border border-[#121F4B]/60">Publiée</span>;
+        return <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#1F44A8] text-white border border-[#121F4B]/72">Publiée</span>;
     }
   };
 

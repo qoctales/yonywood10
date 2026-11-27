@@ -113,17 +113,17 @@ export const DemoProductionsSection: React.FC = () => {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut : Badge Titre & Déclencheur lecture */}
             <div className="relative z-10 flex items-start justify-between gap-2 pointer-events-auto">
-              <span className="px-2.5 sm:px-3 py-1 rounded-2xl sm:rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 text-[10.5px] sm:text-xs font-bold text-white tracking-wide max-w-[calc(100%-44px)] leading-snug">
+              <span className="px-2.5 sm:px-3 py-1 rounded-2xl sm:rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 text-[10.5px] sm:text-xs font-bold text-white tracking-wide max-w-[calc(100%-44px)] leading-snug">
                 {currentProd.title}
               </span>
 
               <button
                 type="button"
-                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 rounded-lg sm:rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                 title={`Regarder le teaser de ${currentProd.title}`}
               >
                 <TvPlayerIcon className="w-5 h-5 text-white transition-transform" strokeWidth={1.6} />
@@ -131,7 +131,7 @@ export const DemoProductionsSection: React.FC = () => {
             </div>
 
             {/* Bas : Bloc de coproduction semi-transparent */}
-            <div className="relative z-10 bg-[#121F4B]/65 backdrop-blur-sm rounded-2xl p-3.5 border border-white/20 space-y-2.5">
+            <div className="relative z-10 bg-[#121F4B]/75 backdrop-blur-sm rounded-2xl p-3.5 border border-white/20 space-y-2.5">
 
               <div className="flex justify-between items-baseline text-xs">
                 <div>

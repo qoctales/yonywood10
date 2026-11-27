@@ -698,7 +698,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
           normalizedCategory === 'parcours'
             ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-            : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+            : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
         }`}
         title="Parcours de vie"
         aria-label="Parcours de vie"
@@ -717,7 +717,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
             activeCategory === 'produits' || activeCategory === 'offre' || activeCategory === 'production'
               ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-              : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+              : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
           }`}
           title="Produits et services"
           aria-label="Produits et services"
@@ -736,7 +736,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
           normalizedCategory === 'projets'
             ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-            : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+            : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
         }`}
         title="Initiative personnelle"
         aria-label="Initiative personnelle"
@@ -755,7 +755,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 ${
             activeCategory === 'besoins' || activeCategory === 'appel'
               ? 'bg-[#A2482B] border-[#A2482B] text-white shadow-[0_0_12px_rgba(162,72,43,0.6)]'
-              : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
+              : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95'
           }`}
           title="Besoins exprimés"
           aria-label="Besoins exprimés"
@@ -771,7 +771,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           e.stopPropagation();
           onNavigate({ type: 'messaging' });
         }}
-        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
+        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
         title="Messagerie"
         aria-label="Messagerie"
       >
@@ -786,7 +786,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             e.stopPropagation();
             onNavigate({ type: 'settings', returnTo: 'profile' });
           }}
-          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
+          className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
           title="Paramètres"
           aria-label="Paramètres"
         >
@@ -801,7 +801,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           e.stopPropagation();
           handleShareVideo();
         }}
-        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
+        className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/95"
         title="Partager"
         aria-label="Partager"
       >
@@ -944,12 +944,12 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                   <UnifiedVideoCardOverlay
                     titleBadge={getBadgeTitleForItem(item)}
                     topLeftSlot={
-                      <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md">
+                      <div className="inline-flex w-fit max-w-full min-w-0 items-center rounded-full px-2.5 py-1 bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md">
                         <span
                           className="font-editorial text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold text-white leading-tight tracking-wide select-none truncate"
                           title={formatFirstLetterOnly(getBadgeTitleForItem(item))}

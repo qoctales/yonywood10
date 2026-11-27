@@ -423,18 +423,18 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
                 />
 
                 {/* Voile dégradé subtil pour la lisibilité du titre */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                 {/* Titre de la série en haut à gauche */}
                 <div className="absolute top-3.5 left-3.5 z-20 max-w-[85%]">
-                  <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white font-editorial text-xs sm:text-sm font-bold border border-white/20 shadow-md truncate">
+                  <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white font-editorial text-xs sm:text-sm font-bold border border-white/20 shadow-md truncate">
                     {currentProd?.seriesTitle}
                   </div>
                 </div>
 
                 {/* Badge d'état en haut à droite */}
                 <div className="absolute top-3.5 right-3.5 z-20">
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#121F4B]/55 backdrop-blur-sm text-white border border-white/20">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#121F4B]/70 backdrop-blur-sm text-white border border-white/20">
                     {currentProd?.status}
                   </span>
                 </div>
@@ -444,7 +444,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setActiveIndex(prev => prev - 1)}
-                    className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
+                    className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
                     title="Série précédente"
                   >
                     <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
@@ -456,7 +456,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setActiveIndex(prev => prev + 1)}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
                     title="Série suivante"
                   >
                     <ChevronRight className="w-5 h-5 stroke-[2.2]" />
@@ -622,10 +622,10 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
                   decoding="async"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/55 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/70 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
                 <div className="absolute top-3.5 left-3.5 z-20 max-w-[85%]">
-                  <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm text-white font-editorial text-xs sm:text-sm font-bold border border-white/20 shadow-md truncate">
+                  <div className="px-3 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm text-white font-editorial text-xs sm:text-sm font-bold border border-white/20 shadow-md truncate">
                     {activeTx.seriesTitle}
                   </div>
                 </div>
@@ -635,7 +635,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setHistoryActiveIndex(prev => prev - 1)}
-                    className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
+                    className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
                     title="Cession précédente"
                   >
                     <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
@@ -647,7 +647,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setHistoryActiveIndex(prev => prev + 1)}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-lg"
                     title="Cession suivante"
                   >
                     <ChevronRight className="w-5 h-5 stroke-[2.2]" />

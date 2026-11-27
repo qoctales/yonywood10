@@ -378,14 +378,14 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                   decoding="async"
                   className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/15 via-transparent to-[#121F4B]/55 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#121F4B]/22 via-transparent to-[#121F4B]/70 pointer-events-none" />
 
                 {/* HAUT : Pastille Titre à gauche + Badge discret Partenaire uniquement si commandité */}
                 <div className="relative z-10 flex items-center justify-between gap-1.5 w-full min-w-0">
                   <div
                     className={`inline-flex w-fit ${
                       focus.commandite ? 'max-w-[calc(100%-74px)]' : 'max-w-full'
-                    } min-w-0 items-center rounded-full px-2.5 sm:px-3 py-1 bg-[#121F4B]/55 backdrop-blur-sm border border-white/20 shadow-md`}
+                    } min-w-0 items-center rounded-full px-2.5 sm:px-3 py-1 bg-[#121F4B]/70 backdrop-blur-sm border border-white/20 shadow-md`}
                     title={focus.titre}
                   >
                     <span className="font-editorial text-[8.5px] sm:text-[11px] font-semibold text-white whitespace-nowrap leading-tight tracking-wide select-none truncate">
@@ -394,7 +394,7 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                   </div>
 
                   {focus.commandite && (
-                    <span className="px-2 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-[#FFE7A3]/40 text-[10px] font-semibold text-[#FFE7A3] tracking-wide shadow-md shrink-0">
+                    <span className="px-2 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-[#FFE7A3]/40 text-[10px] font-semibold text-[#FFE7A3] tracking-wide shadow-md shrink-0">
                       Sponsorisé
                     </span>
                   )}
@@ -414,7 +414,7 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                       setPapyrusFocus(focus);
                       celestialAudio.playOrbSelect();
                     }}
-                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
                     title="Lire le synopsis et la question"
                     aria-label={`Synopsis et question — ${focus.titre}`}
                   >
@@ -507,7 +507,7 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                   onEnded={handleNextVideo}
                   className="w-full h-full object-cover pointer-events-none"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
               </div>
 
               <UnifiedVideoCardOverlay
@@ -522,7 +522,7 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                           e.stopPropagation();
                           handleBackToCarousel();
                         }}
-                        className="px-2.5 py-1.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full transition-colors cursor-pointer"
+                        className="px-2.5 py-1.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 font-editorial text-xs font-semibold text-white tracking-wide shadow-md flex items-center gap-1.5 truncate max-w-full transition-colors cursor-pointer"
                         title="Revenir aux Focus"
                       >
                         <ArrowLeft className="w-3.5 h-3.5 shrink-0 text-white/90" />
@@ -530,14 +530,14 @@ export const FocusScreen: React.FC<FocusScreenProps> = ({
                       </button>
 
                       {currentFocus.commandite && (
-                        <span className="px-2 py-0.5 rounded-full bg-[#121F4B]/55 backdrop-blur-sm border border-[#FFE7A3]/40 text-[10px] font-semibold text-[#FFE7A3] shrink-0">
+                        <span className="px-2 py-0.5 rounded-full bg-[#121F4B]/70 backdrop-blur-sm border border-[#FFE7A3]/40 text-[10px] font-semibold text-[#FFE7A3] shrink-0">
                           Sponsorisé
                         </span>
                       )}
                     </div>
 
                     {roleBadgeText && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/50 backdrop-blur-sm border border-white/20 text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs capitalize">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#121F4B]/65 backdrop-blur-sm border border-white/20 text-[10.5px] font-semibold text-[#FFE7A3] tracking-wide shadow-xs capitalize">
                         {roleBadgeText}
                       </span>
                     )}

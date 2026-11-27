@@ -198,7 +198,7 @@ export const ResonanceFaceToFaceCard: React.FC<ResonanceFaceToFaceCardProps> = (
         
         {/* 1. Titre de la série centré au sommet */}
         <div className="flex items-center justify-center w-full shrink-0 min-w-0 px-1">
-          <div className="bg-[#121F4B]/60 backdrop-blur-sm px-2.5 sm:px-3.5 py-1 rounded-full border border-white/20 shadow-xs max-w-full">
+          <div className="bg-[#121F4B]/72 backdrop-blur-sm px-2.5 sm:px-3.5 py-1 rounded-full border border-white/20 shadow-xs max-w-full">
             <span className="font-editorial text-[8px] sm:text-[10px] font-semibold text-white tracking-wide leading-tight block text-center drop-shadow-xs">
               {formatFirstLetterOnly(seriesTitle) || 'Duocumentaires'}
             </span>

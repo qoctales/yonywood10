@@ -407,7 +407,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                           loading="lazy"
                           decoding="async" 
                         />
-                        <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-300">
+                        <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/75 backdrop-blur-sm text-amber-300">
                           <Sparkles className="w-2.5 h-2.5" />
                         </div>
                       </button>
@@ -499,7 +499,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   loading="lazy"
                   decoding="async" 
                 />
-                <div className="absolute bottom-1 right-1 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-300">
+                <div className="absolute bottom-1 right-1 p-0.5 rounded-xs bg-[#121F4B]/75 backdrop-blur-sm text-amber-300">
                   <Sparkles className="w-3 h-3" />
                 </div>
               </button>
@@ -665,7 +665,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                             loading="lazy"
                             decoding="async" 
                           />
-                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-200">
+                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/75 backdrop-blur-sm text-amber-200">
                             <Sparkles className="w-2.5 h-2.5" />
                           </div>
                         </button>
@@ -819,7 +819,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                             loading="lazy"
                             decoding="async" 
                           />
-                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/65 backdrop-blur-sm text-amber-200">
+                          <div className="absolute bottom-0.5 right-0.5 p-0.5 rounded-xs bg-[#121F4B]/75 backdrop-blur-sm text-amber-200">
                             <Sparkles className="w-2 h-2" />
                           </div>
                         </button>
@@ -895,7 +895,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
               setIsPlaying(false);
               setIsQuestionModalOpen(false);
             }}
-            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/25 hover:border-[#A2482B] flex items-center justify-center transition-all cursor-pointer shadow-xl hover:scale-105 active:scale-95 shrink-0"
+            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] text-white border border-white/25 hover:border-[#A2482B] flex items-center justify-center transition-all cursor-pointer shadow-xl hover:scale-105 active:scale-95 shrink-0"
             title="Fermer"
           >
             <X className="w-5 h-5 text-white" />
@@ -930,7 +930,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
             )}
 
             {/* Gradient sombre pour lisibilité cinématographique */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/60 via-transparent to-[#121F4B]/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121F4B]/72 via-transparent to-[#121F4B]/22 pointer-events-none" />
 
             {/* Haut de carte : Son et Pause */}
             <div 
@@ -946,7 +946,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     e.stopPropagation();
                     setIsMuted((prev) => !prev);
                   }}
-                  className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                  className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                   title={isMuted ? 'Activer le son' : 'Couper le son'}
                 >
                   {isMuted ? <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" /> : <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />}
@@ -960,7 +960,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                   e.stopPropagation();
                   togglePlayback();
                 }}
-                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-lg sm:rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+                className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-lg sm:rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] flex items-center justify-center text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 shrink-0"
                 title={isPlaying ? "Mettre en pause" : "Regarder"}
               >
                 {isPlaying ? (
@@ -980,7 +980,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
               <button
                 id={`lineage-btn-question-${videoModalMember.id}`}
                 onClick={() => setIsQuestionModalOpen(true)}
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                 title="Découvrir la question"
               >
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -1007,7 +1007,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                     }
                   }
                 }}
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border border-white/20 hover:border-[#A2482B] text-white flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
                 title={
                   videoModalMember.entityType === 'organization' 
                     ? `Découvrir la mise en lumière de ${videoModalMember.name}` 
@@ -1039,7 +1039,7 @@ export const ProfileLineageFrise: React.FC<ProfileLineageFriseProps> = ({
                 className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 ${
                   copied
                     ? 'bg-emerald-700/85 border-emerald-600 text-white'
-                    : 'bg-[#121F4B]/55 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
+                    : 'bg-[#121F4B]/70 backdrop-blur-sm hover:bg-[#A2482B] border-white/20 text-white'
                 }`}
                 title="Partager ce témoignage"
               >
