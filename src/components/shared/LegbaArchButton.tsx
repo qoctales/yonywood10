@@ -5,7 +5,7 @@ export function playLegbaKnock(): void {
 }
 
 export interface LegbaArchButtonProps {
-  /** Déclenché lorsque l'option est choisie (après l'animation d'activation si isCenterAction = true). */
+  /** Déclenché juste après le claquement du clap (400 ms). */
   onActivate: (e: React.MouseEvent<HTMLButtonElement>) => void;
   /** Si la carte n'est pas centrée, exécute l'action immédiatement sans passer par l'état actif. */
   onCenterCard?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -27,11 +27,16 @@ export const LegbaArchButton: React.FC<LegbaArchButtonProps> = ({
 }) => {
   const [internalOn, setInternalOn] = useState(false);
   const actionTimerRef = useRef<number | null>(null);
+  const hapticTimerRef = useRef<number | null>(null);
 
   const clearTimers = () => {
     if (actionTimerRef.current !== null) {
       window.clearTimeout(actionTimerRef.current);
       actionTimerRef.current = null;
+    }
+    if (hapticTimerRef.current !== null) {
+      window.clearTimeout(hapticTimerRef.current);
+      hapticTimerRef.current = null;
     }
   };
 
@@ -81,52 +86,81 @@ export const LegbaArchButton: React.FC<LegbaArchButtonProps> = ({
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    if (!prefersReducedMotion && typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+      hapticTimerRef.current = window.setTimeout(() => {
+        hapticTimerRef.current = null;
+        try {
+          navigator.vibrate(12);
+        } catch {
+          // ignore unsupported vibration errors
+        }
+      }, 205);
+    }
+
     actionTimerRef.current = window.setTimeout(
       () => {
         actionTimerRef.current = null;
         onActivate(e);
       },
-      prefersReducedMotion ? 100 : 480
+      prefersReducedMotion ? 70 : 400
     );
   };
 
   return (
     <button
       type="button"
-      aria-label="Choisir"
+      aria-label="Valider"
       aria-pressed={isOn}
       onClick={handleClick}
-      className={`legba-arch-btn ${isOn ? 'on' : ''} relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center shrink-0 cursor-pointer shadow-md transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F3EBE0]/75 before:content-[''] before:absolute before:-inset-1.5 ${className}`}
+      className={`legba-arch-btn ${isOn ? 'on' : ''} relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center shrink-0 cursor-pointer shadow-md hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F0E8DC]/75 before:content-[''] before:absolute before:-inset-1.5 ${className}`}
     >
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {isOn ? 'Choix validé' : ''}
+      </span>
       <svg
-        viewBox="0 0 32 32"
+        className="clap w-4 h-4 sm:w-[17px] sm:h-[17px] overflow-visible block"
+        viewBox="0 0 24 24"
         fill="none"
+        overflow="visible"
         aria-hidden="true"
-        className="w-5 h-5 sm:w-5.5 sm:h-5.5 overflow-visible block"
+        focusable="false"
       >
-        {/* Onde discrète au sol au moment où le bâton touche le sol */}
-        <path
-          className="legba-rekad-impact"
-          d="M11.2 27.3 Q15.6 29.0 20.0 27.3"
-          stroke="#F3EBE0"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-
-        {/* Bâton légèrement courbé centré, pivotant depuis la base */}
-        <g className="legba-rekad">
-          {/* Partie supérieure légèrement courbée */}
+        <g transform="translate(12 13.5)">
+          <circle className="clap__ring" r="10.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        </g>
+        <g className="clap__shake">
+          {/* Boîtier inférieur de la claquette */}
           <path
-            d="M14.2 15.6 C14.3 11.0 15.9 7.6 19.4 5.8 C19.8 5.6 20.2 6.0 19.9 6.5 C18.0 8.9 17.1 11.8 17.0 15.6 Z"
-            fill="#F3EBE0"
+            d="M 3 11 H 21 V 19 A 2 2 0 0 1 19 21 H 5 A 2 2 0 0 1 3 19 Z"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          {/* Manche inférieur séparé par un anneau fin */}
-          <path
-            d="M14.2 17.0 H17.0 L16.7 25.8 C16.7 26.4 16.2 26.8 15.6 26.8 H15.5 C14.9 26.8 14.4 26.4 14.4 25.8 Z"
-            fill="#F3EBE0"
-          />
+          {/* Bras supérieur articulé à la charnière (3, 11) */}
+          <g transform="translate(3 11)">
+            <g className="clap__arm">
+              <path
+                d="M 0 0 V -2.4 A 1.7 1.7 0 0 1 1.7 -4.1 H 16.4 A 1.6 1.6 0 0 1 18 -2.5 V 0 Z"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                className="clap__stripes"
+                d="M 4.4 -4.0 L 7.2 -0.1 M 10.6 -4.0 L 13.4 -0.1"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+              />
+            </g>
+          </g>
         </g>
       </svg>
     </button>
   );
 };
+
+
+

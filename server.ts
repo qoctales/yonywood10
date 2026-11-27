@@ -378,6 +378,7 @@ async function synthesizeSpeechWav(text: string, style: string, voiceName: strin
           },
         ],
         config: {
+          temperature: 0.2,
           responseModalities: ['AUDIO'],
           speechConfig: {
             voiceConfig: {
@@ -562,6 +563,7 @@ app.post('/api/tts-stream', async (req: Request, res: Response) => {
             },
           ],
           config: {
+            temperature: 0.2,
             responseModalities: ['AUDIO'],
             speechConfig: {
               voiceConfig: {

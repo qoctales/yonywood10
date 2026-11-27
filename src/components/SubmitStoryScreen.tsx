@@ -638,8 +638,8 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     !selectedFinalChoice;
   const isTrailerSynopsisModal = Boolean(
     synopsisModalItem &&
-      isLevel1 &&
-      (activePillar?.id === 'focus' || activePillar?.id === 'duos')
+      ((isLevel1 && (activePillar?.id === 'focus' || activePillar?.id === 'duos')) ||
+        (isSideSelectionLevel && activePillar?.id === 'duos'))
   );
 
   useEffect(() => {
@@ -756,7 +756,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
       if ((isLevel1 || isSideSelectionLevel) && !isPortraitQuestion && activeItem.subtitle) {
         episodeVoiceReader.preload(
           {
-            mode: isLevel1 ? 'trailer' : 'synopsis',
+            mode: 'trailer',
             synopsis: activeItem.subtitle,
           },
           { cacheOnly: !isTrailerSeriesCard }
@@ -2148,7 +2148,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                                 episodeVoiceReader.speak(
                                   isSynopsisAudioMode
                                     ? {
-                                        mode: isSeriesAudioCard ? 'trailer' : 'synopsis',
+                                        mode: 'trailer',
                                         synopsis: castingItem.subtitle,
                                         onLoadStart: () => setIsAudioLoading(true),
                                         onStart: () => setIsAudioLoading(false),

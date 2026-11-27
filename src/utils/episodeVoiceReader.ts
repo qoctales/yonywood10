@@ -19,18 +19,19 @@ export interface EpisodeVoicePayload {
 const PRONUNCIATION_HINT =
   'Prononcer « Vodoun » avec le son « ou » et prononcer le mot anglais « Rays » en anglais comme « Days » (/reɪz/).';
 
+const TRAILER_SYNOPSES_STYLE =
+  `Voix d'homme noire grave, rauque, ronde et profondément chaleureuse, avec une forte présence dans les graves et un timbre humain très naturel, posé et authentique, comme un conteur intime qui parle près du micro avec calme et intensité, sans ton robotique ni emphase artificielle. ${PRONUNCIATION_HINT}`;
+
 const STYLE_BY_MODE: Record<VoiceReaderMode, string> = {
   episode:
     `Voix de femme française très douce, chaleureuse, naturelle et posée, rythme intime et fluide de narratrice documentaire. ${PRONUNCIATION_HINT}`,
-  synopsis:
-    `Voix de femme française douce, chaleureuse, naturelle et posée, ton calme et incarné de bande-annonce documentaire. ${PRONUNCIATION_HINT}`,
-  trailer:
-    `Voix d'homme noire grave, rauque, ronde et profondément chaleureuse, avec une forte présence dans les graves et un timbre humain très naturel, posé et authentique, comme un conteur intime qui parle près du micro avec calme et intensité, sans ton robotique ni emphase artificielle. ${PRONUNCIATION_HINT}`,
+  synopsis: TRAILER_SYNOPSES_STYLE,
+  trailer: TRAILER_SYNOPSES_STYLE,
 };
 
 const VOICE_BY_MODE: Record<VoiceReaderMode, string> = {
   episode: 'Kore',
-  synopsis: 'Kore',
+  synopsis: 'Algenib',
   trailer: 'Algenib',
 };
 
@@ -192,7 +193,8 @@ class EpisodeVoiceReader {
 
     const voiceName = payload.voiceName || VOICE_BY_MODE[mode];
     const style = STYLE_BY_MODE[mode];
-    const cacheKey = `${mode}::${voiceName}::${text}`;
+    const effectiveModeKey = mode === 'synopsis' ? 'trailer' : mode;
+    const cacheKey = `${effectiveModeKey}::${voiceName}::${text}`;
     return { mode, voiceName, text, style, cacheKey, questionStartRatio };
   }
 
@@ -323,8 +325,9 @@ class EpisodeVoiceReader {
     const frVoices = voices.filter((v) => v.lang.toLowerCase().startsWith('fr'));
     if (frVoices.length === 0) return null;
 
+    const isTrailerTone = mode === 'trailer' || mode === 'synopsis';
     const preferredKeywords =
-      mode === 'trailer'
+      isTrailerTone
         ? ['thomas', 'nicolas', 'daniel', 'paul', 'henri', 'google', 'natural', 'neural']
         : ['google', 'natural', 'neural', 'thomas', 'amélie', 'amelie', 'denise', 'hortense', 'audrey', 'virginie', 'julie', 'céline'];
     for (const kw of preferredKeywords) {
@@ -346,11 +349,12 @@ class EpisodeVoiceReader {
 
     try {
       const mode: VoiceReaderMode = payload.mode ?? 'episode';
+      const isTrailerTone = mode === 'trailer' || mode === 'synopsis';
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'fr-FR';
-      utterance.rate = mode === 'trailer' ? 0.93 : 0.96;
-      utterance.pitch = mode === 'trailer' ? 0.86 : 1.0;
+      utterance.rate = isTrailerTone ? 0.93 : 0.96;
+      utterance.pitch = isTrailerTone ? 0.86 : 1.0;
 
       const preferredVoice = this.pickBestFrenchVoice(mode);
       if (preferredVoice) {
@@ -506,7 +510,7 @@ class EpisodeVoiceReader {
     audio.preload = 'auto';
     this.activeAudio = audio;
 
-    if (mode === 'trailer') {
+    if (mode === 'trailer' || mode === 'synopsis') {
       const ctx = this.getOrUnlockAudioContext();
       if (ctx) {
         try {
@@ -581,7 +585,7 @@ class EpisodeVoiceReader {
     this.activeStreamReader = reader;
 
     const streamDestination: AudioNode =
-      resolved.mode === 'trailer'
+      resolved.mode === 'trailer' || resolved.mode === 'synopsis'
         ? this.createTrailerEqChain(ctx).input
         : ctx.destination;
 

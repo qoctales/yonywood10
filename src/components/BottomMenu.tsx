@@ -4,7 +4,7 @@ import { SHOW_PORTRAIT_IN_BAR } from '../config/flags';
 import { 
   CameraLensFocusIcon,
   DuocumentairesTvIcon,
-  ActionClapperboardIcon,
+  DirectorChairIcon,
   ProfileSoloIcon
 } from './YonywoodBrandIcons';
 
@@ -38,7 +38,7 @@ export const BottomMenu: React.FC<BottomMenuProps> = ({ currentScreen, onNavigat
     {
       id: 'studio',
       label: 'Studio',
-      icon: ActionClapperboardIcon, // Claquette de cinéma
+      icon: DirectorChairIcon, // Siège de réalisateur
       isActive: isStudioActive,
       onClick: () => onNavigate({ type: 'submit_story' }),
       screenId: 'menu-item-studio',

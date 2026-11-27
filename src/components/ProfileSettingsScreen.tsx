@@ -5,7 +5,8 @@ import {
   CheckCircle2,
   Video,
   Send,
-  Copy
+  Copy,
+  Settings
 } from 'lucide-react';
 import { useAuth } from '../services/authContext';
 import { ShareIcon } from './ShareIcon';
@@ -14,8 +15,7 @@ import {
   ParcoursDeVieIcon,
   ProduitsServicesIcon,
   ProjetsIcon,
-  BesoinsHandsIcon,
-  DirectorChairIcon
+  BesoinsHandsIcon
 } from './YonywoodBrandIcons';
 import { 
   ROMEO_SIMULATION_DATA,
@@ -778,7 +778,7 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
         <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
       </button>
 
-      {/* 4 (Propriétaire uniquement). Mon Studio */}
+      {/* 4 (Propriétaire uniquement). Paramètres */}
       {isOwner && (
         <button
           type="button"
@@ -787,10 +787,10 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             onNavigate({ type: 'settings', returnTo: 'profile' });
           }}
           className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl border flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 bg-black/70 hover:bg-[#A2482B] border-white/20 hover:border-[#A2482B] text-white/90"
-          title="Mon Studio"
-          aria-label="Mon Studio"
+          title="Paramètres"
+          aria-label="Paramètres"
         >
-          <DirectorChairIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" isActive={true} />
+          <Settings className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" strokeWidth={1.8} />
         </button>
       )}
 

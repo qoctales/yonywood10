@@ -598,8 +598,8 @@ export const DirectorChairIcon: React.FC<StudioChairIconProps> = ({
       aria-hidden="true"
     >
       <title>Studio</title>
-      {/* Dossier supérieur en toile terracotta au repos, blanc en mode actif */}
-      <rect x="5" y="3.5" width="14" height="4.5" rx="1" stroke={accentColor} />
+      {/* Dossier supérieur plein : toile terracotta au repos, blanc plein en mode actif */}
+      <rect x="5" y="3.5" width="14" height="4.5" rx="1" fill={accentColor} stroke={accentColor} />
       {/* Structure et piétement ciseau en X */}
       <path d="M 6.5 8 L 6.5 14 M 17.5 8 L 17.5 14 M 4.5 14 L 19.5 14 M 7 14 L 17.5 21 M 17 14 L 6.5 21" />
     </svg>
