@@ -1,5 +1,6 @@
 import { SERIES_REGISTRY } from './seriesRegistry';
 import { FOCUS_DATA } from './focusData';
+import { FOCUS_EPISODE_POSTERS, DUO_EPISODE_POSTERS } from './episodePosters';
 
 export interface StudioPillarItem {
   id: string;
@@ -71,24 +72,29 @@ export const STUDIO_PILLARS: StudioPillar[] = [
       partBName: series.partB.name,
       partBDescription: series.partB.description,
       partBPosterUrl: series.partB.posterUrl,
-      subCategories: series.episodes.map((ep) => ({
-        id: `${series.id}__${ep.id}`,
-        seriesId: series.id,
-        title: series.title,
-        badge: `Épisode ${parseInt(ep.number, 10) || ep.number}`,
-        episodeTitle: ep.title,
-        durationBadge: "Jusqu'à 2 minutes 56",
-        subtitle: series.synopsis,
-        question: ep.question,
-        posterUrl: series.posterUrl,
-        videoUrl: STOCK_VIDEOS[idx % STOCK_VIDEOS.length],
-        partAName: series.partA.name,
-        partADescription: series.partA.description,
-        partAPosterUrl: series.partA.posterUrl,
-        partBName: series.partB.name,
-        partBDescription: series.partB.description,
-        partBPosterUrl: series.partB.posterUrl
-      }))
+      subCategories: series.episodes.map((ep) => {
+        const epPosters = DUO_EPISODE_POSTERS[series.id]?.[ep.id];
+        const partAEpisodePoster = epPosters?.partA || series.partA.posterUrl;
+        const partBEpisodePoster = epPosters?.partB || series.partB.posterUrl;
+        return {
+          id: `${series.id}__${ep.id}`,
+          seriesId: series.id,
+          title: series.title,
+          badge: `Épisode ${parseInt(ep.number, 10) || ep.number}`,
+          episodeTitle: ep.title,
+          durationBadge: "Jusqu'à 2 minutes 56",
+          subtitle: series.synopsis,
+          question: ep.question,
+          posterUrl: partAEpisodePoster,
+          videoUrl: STOCK_VIDEOS[idx % STOCK_VIDEOS.length],
+          partAName: series.partA.name,
+          partADescription: series.partA.description,
+          partAPosterUrl: partAEpisodePoster,
+          partBName: series.partB.name,
+          partBDescription: series.partB.description,
+          partBPosterUrl: partBEpisodePoster
+        };
+      })
     }))
   },
 
@@ -980,7 +986,7 @@ export const STUDIO_PILLARS: StudioPillar[] = [
         consigne: focus.consigne,
         question: q.question,
         roles: focus.roles,
-        posterUrl: focus.posterUrl,
+        posterUrl: FOCUS_EPISODE_POSTERS[focus.id]?.[q.id] || focus.posterUrl,
         videoUrl: STOCK_VIDEOS[idx % STOCK_VIDEOS.length]
       }))
     }))

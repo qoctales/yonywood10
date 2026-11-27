@@ -492,6 +492,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
 
   // 6. Modale Synopsis (Papyrus) - largeur ajustée à la carte vidéo
   const [synopsisModalItem, setSynopsisModalItem] = useState<StudioPillar | StudioPillarItem | null>(null);
+  const [seriesReminderView, setSeriesReminderView] = useState<'series' | 'side'>('series');
   const [isSynopsisModalPlaying, setIsSynopsisModalPlaying] = useState(false);
   const [isSynopsisModalLoading, setIsSynopsisModalLoading] = useState(false);
   const [coproduceModalSeriesId, setCoproduceModalSeriesId] = useState<string | null>(null);
@@ -539,6 +540,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
   const closeSynopsisModal = useCallback(() => {
     stopVoicePlayback();
     setSynopsisModalItem(null);
+    setSeriesReminderView('series');
   }, [stopVoicePlayback]);
 
   useEffect(() => {
@@ -640,6 +642,12 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
     synopsisModalItem &&
       ((isLevel1 && (activePillar?.id === 'focus' || activePillar?.id === 'duos')) ||
         (isSideSelectionLevel && activePillar?.id === 'duos'))
+  );
+  const isEpisodeSeriesReminderModal = Boolean(
+    synopsisModalItem &&
+      isLevel2 &&
+      (activePillar?.id === 'duos' || activePillar?.id === 'focus') &&
+      activeCastingCategory
   );
 
   useEffect(() => {
@@ -2004,6 +2012,12 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                 const isEpisodeAudioCard = isPortraitQuestionCard || (isLevel2 && (activePillar?.id === 'duos' || activePillar?.id === 'focus'));
                 const isAudioCard = isSeriesAudioCard || isSideAudioCard || isEpisodeAudioCard;
                 const isSynopsisAudioMode = isSeriesAudioCard || isSideAudioCard;
+                const resolvedCardPosterUrl =
+                  isLevel2 && activePillar?.id === 'duos' && selectedSeriesSide
+                    ? selectedSeriesSide === 'part-a'
+                      ? (castingItem.partAPosterUrl || item.posterUrl)
+                      : (castingItem.partBPosterUrl || item.posterUrl)
+                    : item.posterUrl;
 
                 return (
                   <div
@@ -2035,7 +2049,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                     {isPlaying && !isAudioCard ? (
                       <video
                         src={item.videoUrl}
-                        poster={item.posterUrl}
+                        poster={resolvedCardPosterUrl}
                         preload="metadata"
                         autoPlay
                         loop
@@ -2045,7 +2059,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                       />
                     ) : (
                       <img
-                        src={item.posterUrl}
+                        src={resolvedCardPosterUrl}
                         alt={item.title}
                         loading={Math.abs(diff) <= 1 ? 'eager' : 'lazy'}
                         decoding="async"
@@ -2054,9 +2068,13 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           const target = e.currentTarget;
                           target.onerror = null;
                           target.src =
-                            isSideSelectionLevel && activeRegistrySeries?.posterUrl
-                              ? activeRegistrySeries.posterUrl
-                              : encodeURI('/Posters/Duos/Modernite\u0301 <> Tradition.png');
+                            isLevel2 && chosenSeriesSide?.posterUrl
+                              ? chosenSeriesSide.posterUrl
+                              : isLevel2 && activeCastingCategory?.posterUrl
+                                ? activeCastingCategory.posterUrl
+                                : isSideSelectionLevel && activeRegistrySeries?.posterUrl
+                                  ? activeRegistrySeries.posterUrl
+                                  : encodeURI('/Posters/Duos/Modernite\u0301 <> Tradition.png');
                         }}
                         className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-300 ${
                           isPlaying && isAudioCard ? 'animate-poster-kenburns' : ''
@@ -2309,11 +2327,16 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            setSeriesReminderView('series');
                             setSynopsisModalItem(item);
                             celestialAudio?.playOrbSelect?.();
                           }}
                           className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl bg-black/70 hover:bg-[#A2482B] active:bg-[#8A3B22] text-white border border-white/20 hover:border-[#A2482B] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
-                          title="Lire le synopsis"
+                          title={
+                            isLevel2 && (activePillar?.id === 'duos' || activePillar?.id === 'focus')
+                              ? 'Rappel de la série'
+                              : 'Lire le synopsis'
+                          }
                         >
                           <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                         </button>
@@ -2379,7 +2402,12 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
                             isCenterAction={isCenter}
                             resetKey={`studio-c-final-${activePillar?.id || ''}-${activeCastingCategory?.id || ''}-${item.id}`}
                             onCenterCard={() => setCurrentIndex(idx)}
-                            onActivate={() => handleSelectFinalChoice(item as StudioPillarItem)}
+                            onActivate={() =>
+                              handleSelectFinalChoice({
+                                ...(item as StudioPillarItem),
+                                posterUrl: resolvedCardPosterUrl
+                              })
+                            }
                           />
                         )}
                       </div>
@@ -2405,7 +2433,7 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* 4. MODALE SYNOPSIS ÉPURÉE (LARGEUR CALQUÉE SUR LA CARTE VIDÉO)           */}
+      {/* 4. MODALE SYNOPSIS OU RAPPEL DE SÉRIE (LARGEUR CALQUÉE SUR LA CARTE)      */}
       {/* ========================================================================= */}
       {synopsisModalItem && (
         <div 
@@ -2417,71 +2445,151 @@ export const SubmitStoryScreen: React.FC<SubmitStoryScreenProps> = ({
             className="w-[min(calc(100vw-64px),calc((100dvh-230px)*9/16))] max-w-[228px] sm:max-w-[270px] md:max-w-[290px] max-h-[78dvh] bg-[#FAF7F2] rounded-3xl p-4 sm:p-5 shadow-2xl border border-stone-200 flex flex-col gap-3 animate-modal-sheet text-stone-800"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header épuré : Papyrus + Nom de la carte + Lecture bande-annonce / Fermer */}
-            <div className="flex items-center gap-2 border-b border-stone-200/80 pb-2.5 shrink-0">
-              <div className="w-7 h-7 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
-                <Scroll className="w-3.5 h-3.5" />
-              </div>
-              <div className="flex flex-col min-w-0 flex-1">
-                <h3 className="font-editorial text-[11px] sm:text-sm font-semibold text-stone-900 leading-tight">
-                  {synopsisModalItem.title}
-                </h3>
-                {'sousTitre' in synopsisModalItem && synopsisModalItem.sousTitre && (
-                  <span className="text-[10.5px] font-medium text-stone-500 leading-snug mt-0.5">
-                    {synopsisModalItem.sousTitre}
-                  </span>
-                )}
-              </div>
-              {isTrailerSynopsisModal ? (
-                <button
-                  type="button"
-                  onClick={handleToggleSynopsisModalVoice}
-                  className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
-                    isSynopsisModalPlaying || isSynopsisModalLoading
-                      ? 'bg-[#A2482B] border-[#A2482B] text-white'
-                      : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
-                  }`}
-                  title={
-                    isSynopsisModalLoading
-                      ? 'Chargement de la voix...'
-                      : isSynopsisModalPlaying
-                        ? 'Arrêter la lecture du synopsis'
-                        : 'Écouter le synopsis'
-                  }
-                  aria-label={isSynopsisModalPlaying ? 'Arrêter la lecture du synopsis' : 'Écouter le synopsis'}
-                >
-                  {isSynopsisModalLoading ? (
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  ) : isSynopsisModalPlaying ? (
-                    <Pause className="w-3.5 h-3.5 fill-current" />
-                  ) : (
-                    <TvPlayerIcon className="w-4 h-4" strokeWidth={1.75} />
-                  )}
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={closeSynopsisModal}
-                  className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-                  title="Fermer"
-                  aria-label="Fermer"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </div>
+            {isEpisodeSeriesReminderModal && activeCastingCategory ? (
+              <>
+                <div className="flex items-center gap-2 border-b border-stone-200/80 pb-2.5 shrink-0">
+                  <div className="w-7 h-7 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
+                    <Scroll className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex flex-col min-w-0 flex-1">
+                    <span className="text-[9.5px] font-bold uppercase tracking-wider text-stone-400 leading-none mb-0.5">
+                      Rappel de la série
+                    </span>
+                    <h3 className="font-editorial text-[11px] sm:text-sm font-semibold text-stone-900 leading-tight truncate">
+                      {activeCastingCategory.title}
+                    </h3>
+                    {chosenSeriesSide && (
+                      <span className="text-[10.5px] font-medium text-[#A2482B] leading-snug mt-0.5 truncate">
+                        Côté {chosenSeriesSide.name}
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={closeSynopsisModal}
+                    className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                    title="Fermer"
+                    aria-label="Fermer"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
 
-            {/* Corps de la présentation textuelle : uniquement le synopsis */}
-            <div className="py-1 overflow-y-auto pr-1 min-h-0">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-1">
-                  Synopsis
-                </span>
-                <p className="text-stone-700 text-xs sm:text-[13px] leading-relaxed">
-                  {synopsisModalItem.subtitle}
-                </p>
-              </div>
-            </div>
+                {chosenSeriesSide && (
+                  <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-stone-200/70 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setSeriesReminderView('series')}
+                      className={`py-1 px-2 rounded-lg text-[10px] sm:text-[11px] font-semibold transition-all cursor-pointer truncate ${
+                        seriesReminderView === 'series'
+                          ? 'bg-white text-stone-900 shadow-xs'
+                          : 'text-stone-600 hover:text-stone-900'
+                      }`}
+                    >
+                      Série
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSeriesReminderView('side')}
+                      className={`py-1 px-2 rounded-lg text-[10px] sm:text-[11px] font-semibold transition-all cursor-pointer truncate ${
+                        seriesReminderView === 'side'
+                          ? 'bg-white text-[#A2482B] shadow-xs'
+                          : 'text-stone-600 hover:text-stone-900'
+                      }`}
+                    >
+                      {chosenSeriesSide.name}
+                    </button>
+                  </div>
+                )}
+
+                <div className="flex-1 min-h-0 flex items-center justify-center py-0.5">
+                  <div className="h-[min(44dvh,305px)] max-w-full aspect-[9/16] rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-[#151513] relative">
+                    <img
+                      src={
+                        chosenSeriesSide && seriesReminderView === 'side'
+                          ? chosenSeriesSide.posterUrl
+                          : activeCastingCategory.posterUrl
+                      }
+                      alt={
+                        chosenSeriesSide && seriesReminderView === 'side'
+                          ? `${activeCastingCategory.title} — ${chosenSeriesSide.name}`
+                          : activeCastingCategory.title
+                      }
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Header épuré : Papyrus + Nom de la carte + Lecture bande-annonce / Fermer */}
+                <div className="flex items-center gap-2 border-b border-stone-200/80 pb-2.5 shrink-0">
+                  <div className="w-7 h-7 rounded-xl bg-[#A2482B]/10 text-[#A2482B] flex items-center justify-center shrink-0">
+                    <Scroll className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex flex-col min-w-0 flex-1">
+                    <h3 className="font-editorial text-[11px] sm:text-sm font-semibold text-stone-900 leading-tight">
+                      {synopsisModalItem.title}
+                    </h3>
+                    {'sousTitre' in synopsisModalItem && synopsisModalItem.sousTitre && (
+                      <span className="text-[10.5px] font-medium text-stone-500 leading-snug mt-0.5">
+                        {synopsisModalItem.sousTitre}
+                      </span>
+                    )}
+                  </div>
+                  {isTrailerSynopsisModal ? (
+                    <button
+                      type="button"
+                      onClick={handleToggleSynopsisModalVoice}
+                      className={`w-7.5 h-7.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105 active:scale-95 ${
+                        isSynopsisModalPlaying || isSynopsisModalLoading
+                          ? 'bg-[#A2482B] border-[#A2482B] text-white'
+                          : 'bg-stone-900/90 hover:bg-[#A2482B] border-stone-900/15 hover:border-[#A2482B] text-white'
+                      }`}
+                      title={
+                        isSynopsisModalLoading
+                          ? 'Chargement de la voix...'
+                          : isSynopsisModalPlaying
+                            ? 'Arrêter la lecture du synopsis'
+                            : 'Écouter le synopsis'
+                      }
+                      aria-label={isSynopsisModalPlaying ? 'Arrêter la lecture du synopsis' : 'Écouter le synopsis'}
+                    >
+                      {isSynopsisModalLoading ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : isSynopsisModalPlaying ? (
+                        <Pause className="w-3.5 h-3.5 fill-current" />
+                      ) : (
+                        <TvPlayerIcon className="w-4 h-4" strokeWidth={1.75} />
+                      )}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={closeSynopsisModal}
+                      className="w-6.5 h-6.5 rounded-lg hover:bg-stone-200/70 text-stone-400 hover:text-stone-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                      title="Fermer"
+                      aria-label="Fermer"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+
+                {/* Corps de la présentation textuelle : uniquement le synopsis */}
+                <div className="py-1 overflow-y-auto pr-1 min-h-0">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-1">
+                      Synopsis
+                    </span>
+                    <p className="text-stone-700 text-xs sm:text-[13px] leading-relaxed">
+                      {synopsisModalItem.subtitle}
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
